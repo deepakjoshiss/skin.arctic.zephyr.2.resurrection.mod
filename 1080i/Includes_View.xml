@@ -1062,43 +1062,60 @@
     </include> -->
 
     <include name="View_WatchedOverlay">
-        <control type="group">
-            <visible>!Skin.HasSetting(DisableWatchedOverlay)</visible>
-            <control type="image">
-                <bottom>-15</bottom>
-                <right>20</right>
-                <width>64</width>
-                <height>64</height>
-                <texture colordiffuse="ff333333">$VAR[Image_Overlay_CircleBG]</texture>
+        <param name="prbottom" default="16"/>
+        <definition>
+            <control type="group">
+                <visible>!Skin.HasSetting(DisableWatchedOverlay)</visible>
+                <control type="progress">
+                    <visible>!String.IsEmpty(ListItem.PercentPlayed) + [!Integer.IsEqual(ListItem.PercentPlayed,0) | ListItem.IsResumable]</visible>
+                    <centerleft>50%</centerleft>
+                    <left>22</left>
+                    <right>22</right>
+                    <height>2</height>
+                    <bottom>$PARAM[prbottom]</bottom>
+                    <reveal>true</reveal>
+                    <info>ListItem.PercentPlayed</info>
+                    <texturebg colordiffuse="44ffffff">osd/progress-bg.png</texturebg>
+                    <lefttexture />
+                    <righttexture />
+                    <midtexture colordiffuse="$VAR[ColorHighlight]">osd/progress-bg.png</midtexture>
+                </control>
+                <control type="image">
+                    <top>15</top>
+                    <right>15</right>
+                    <width>64</width>
+                    <height>64</height>
+                    <texture colordiffuse="77000000">$VAR[Image_Overlay_Corner]</texture>
+                </control>
+                <!-- <control type="image">
+                    <bottom>-15</bottom>
+                    <right>20</right>
+                    <width>64</width>
+                    <height>64</height>
+                    <texture flipx="true" flipy="true" colordiffuse="ff00dd44">$VAR[Defs_PercentPlayed,progress/circle/p,.png]</texture>
+                </control> -->
+                <control type="image">
+                    <top>22</top>
+                    <right>22</right>
+                    <width>24</width>
+                    <height>24</height>
+                    <align>center</align>
+                    <texture colordiffuse="ffffffff">$VAR[Image_Overlay]</texture>
+                    <visible>!Integer.IsGreater(ListItem.Property(UnWatchedEpisodes),0) | ![String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)]</visible>
+                </control>
+                <control type="label">
+                    <bottom>3</bottom>
+                    <right>38</right>
+                    <width>28</width>
+                    <height>28</height>
+                    <font>font_unwatched</font>
+                    <align>center</align>
+                    <textcolor>ffffffff</textcolor>
+                    <label>$INFO[ListItem.Property(UnWatchedEpisodes)]</label>
+                    <include>View_UnwatchedEpisodes_Visible</include>
+                </control>
             </control>
-            <control type="image">
-                <bottom>-15</bottom>
-                <right>20</right>
-                <width>64</width>
-                <height>64</height>
-                <texture flipx="true" flipy="true" colordiffuse="ff00dd44">$VAR[Defs_PercentPlayed,progress/circle/p,.png]</texture>
-            </control>
-            <control type="image">
-                <bottom>6</bottom>
-                <right>41</right>
-                <width>24</width>
-                <height>24</height>
-                <align>center</align>
-                <texture colordiffuse="ffffffff">$VAR[Image_Overlay]</texture>
-                <visible>!Integer.IsGreater(ListItem.Property(UnWatchedEpisodes),0) | ![String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)]</visible>
-            </control>
-            <control type="label">
-                <bottom>3</bottom>
-                <right>38</right>
-                <width>28</width>
-                <height>28</height>
-                <font>font_unwatched</font>
-                <align>center</align>
-                <textcolor>ffffffff</textcolor>
-                <label>$INFO[ListItem.Property(UnWatchedEpisodes)]</label>
-                <include>View_UnwatchedEpisodes_Visible</include>
-            </control>
-        </control>
+        </definition>
     </include>
 
     <include name="View_WatchedOverlay_Focus">
@@ -1169,7 +1186,7 @@
     </include>
 
     <include name="View_Selectbox_Bold">
-        <param name="overlay" default="true" />
+        <param name="overlay" default="false" />
         <param name="pad" default="-7" />
         <param name="colordiffuse" default="$VAR[ColorHighlight]" />
         <param name="focusbounce" default="true" />
