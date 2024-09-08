@@ -50,11 +50,6 @@
             <size>24</size>
         </font>
         <font>
-            <name>font_statusbar</name>
-            <filename>RobotoCondensed-Regular.ttf</filename>
-            <size>22</size>
-        </font>
-        <font>
             <name>font_fps</name>
             <filename>RobotoCondensed-Regular.ttf</filename>
             <size>16</size>
@@ -65,9 +60,29 @@
             <size>10</size>
         </font>
         <font>
+            <name>font_statusbar</name>
+            <filename>RobotoCondensed-Regular.ttf</filename>
+            <size>22</size>
+        </font>
+        <font>
             <name>font_statusbar_bold</name>
             <filename>RobotoCondensed-Bold.ttf</filename>
             <size>22</size>
+        </font>
+        <font>
+            <name>font_statusbar_s</name>
+            <filename>RobotoCondensed-Regular.ttf</filename>
+            <size>20</size>
+        </font>
+        <font>
+            <name>font_statusbar_s_bold</name>
+            <filename>RobotoCondensed-Bold.ttf</filename>
+            <size>20</size>
+        </font>
+        <font>
+            <name>font_statusbar_xs</name>
+            <filename>RobotoCondensed-Regular.ttf</filename>
+            <size>18</size>
         </font>
         <font>
             <name>font_info_buttons</name>

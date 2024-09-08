@@ -1,0 +1,26 @@
+<shortcuts>
+	<shortcut>
+		<defaultID>20077</defaultID>
+		<label>20077</label>
+		<label2>Settings</label2>
+		<icon>special://skin/extras/icons/year.png</icon>
+		<thumb>special://skin/extras/icons/paintbrush2.png</thumb>
+		<action>ActivateWindow(SkinSettings)</action>
+		</shortcut>
+	<shortcut>
+		<defaultID />
+		<label>Home Settings</label>
+		<label2>Custom item</label2>
+		<icon>DefaultShortcut.png</icon>
+		<thumb />
+		<action>RunScript(script.skinshortcuts,type=manage&amp;group=mainmenu)</action>
+		</shortcut>
+	<shortcut>
+		<defaultID />
+		<label>Show add-on settings</label>
+		<label2>Video Add-On</label2>
+		<icon>DefaultShortcut.png</icon>
+		<thumb>image://%2fUsers%2fdeepak%2fLibrary%2fApplication%20Support%2fKodi%2faddons%2fplugin.video.jellycon%2ficon.png/</thumb>
+		<action>ActivateWindow(Videos,"plugin://plugin.video.jellycon/?mode=SHOW_SETTINGS",return)</action>
+		</shortcut>
+	</shortcuts>

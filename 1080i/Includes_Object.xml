@@ -65,10 +65,10 @@
 
     <include name="Object_SearchList_Template">
         <param name="labelinclude" default="Defs_Null" />
-        <param name="smallsquarecondition" default="false" />
-        <param name="squarecondition" default="false" />
-        <param name="smalllandscapecondition" default="false" />
+        <param name="portraitcondition" default="false" />
+        <param name="titlecardcondition" default="false" />
         <param name="landscapecondition" default="false" />
+        <param name="billboardcondition" default="false" />
         <param name="iconcondition" default="false" />
         <param name="bannercondition" default="false" />
         <definition>
@@ -92,10 +92,10 @@
                 <param name="target" value="$PARAM[target]" />
                 <param name="limit" value="$PARAM[limit]" />
                 <param name="content" value="$PARAM[path]$INFO[Skin.String(SearchTerm)]$PARAM[path2]" />
-                <param name="smallsquarecondition" value="$PARAM[smallsquarecondition]" />
-                <param name="squarecondition" value="$PARAM[squarecondition]" />
-                <param name="smalllandscapecondition" value="$PARAM[smalllandscapecondition]" />
+                <param name="portraitcondition" value="$PARAM[portraitcondition]" />
+                <param name="titlecardcondition" value="$PARAM[titlecardcondition]" />
                 <param name="landscapecondition" value="$PARAM[landscapecondition]" />
+                <param name="billboardcondition" value="$PARAM[billboardcondition]" />
                 <param name="iconcondition" value="$PARAM[iconcondition]" />
                 <param name="bannercondition" value="$PARAM[iconcondition]" />
                 <onback>301</onback>
@@ -229,18 +229,18 @@
     <include name="Object_Widget_Spotlight">
         <param name="id" default="5610" />
         <param name="controltype" default="list" />
-        <param name="squarecondition" default="[!String.IsEmpty(Container(302).ListItem.Property(widgetPath)) + String.IsEqual(Container(302).ListItem.Property(widgetAspect),Square)] | [String.IsEmpty(Container(302).ListItem.Property(widgetPath)) + String.IsEqual(Container(301).ListItem.Property(widgetAspect),Square)]" />
+        <param name="titlecardcondition" default="[!String.IsEmpty(Container(302).ListItem.Property(widgetPath)) + String.IsEqual(Container(302).ListItem.Property(widgetAspect),Square)] | [String.IsEmpty(Container(302).ListItem.Property(widgetPath)) + String.IsEqual(Container(301).ListItem.Property(widgetAspect),Square)]" />
         <param name="iconcondition" default="[!String.IsEmpty(Container(302).ListItem.Property(widgetPath)) + String.IsEqual(Container(302).ListItem.Property(widgetAspect),Icon)] | [String.IsEmpty(Container(302).ListItem.Property(widgetPath)) + String.IsEqual(Container(301).ListItem.Property(widgetAspect),Icon)]" />
+        <param name="billboardcondition" default="[!String.IsEmpty(Container(302).ListItem.Property(widgetPath)) + String.IsEqual(Container(302).ListItem.Property(widgetAspect),Landscape)] | [String.IsEmpty(Container(302).ListItem.Property(widgetPath)) + String.IsEqual(Container(301).ListItem.Property(widgetAspect),Landscape)]" />
         <param name="landscapecondition" default="[!String.IsEmpty(Container(302).ListItem.Property(widgetPath)) + String.IsEqual(Container(302).ListItem.Property(widgetAspect),Landscape)] | [String.IsEmpty(Container(302).ListItem.Property(widgetPath)) + String.IsEqual(Container(301).ListItem.Property(widgetAspect),Landscape)]" />
-        <param name="smalllandscapecondition" default="[!String.IsEmpty(Container(302).ListItem.Property(widgetPath)) + String.IsEqual(Container(302).ListItem.Property(widgetAspect),Small Landscape)] | [String.IsEmpty(Container(302).ListItem.Property(widgetPath)) + String.IsEqual(Container(301).ListItem.Property(widgetAspect),Small Landscape)]" />
-        <param name="smallsquarecondition" default="false" />
+        <param name="portraitcondition" default="false" />
         <param name="bannercondition" default="false" />
         <param name="height" default="item_row_height" />
         <param name="includecontent" default="true" />
         <param name="top" default="442.5" />
         <param name="landscapelabelinclude" default="View_51_Wall_Landscape_Home_Label" />
         <param name="smalllandscapelabelinclude" default="View_51_Wall_SmallLandscape_Home_Label" />
-        <param name="squarelabelinclude" default="View_51_Wall_SmallSquare_Home_Label" />
+        <param name="squarelabelinclude" default="View_51_Wall_portrait_Home_Label" />
         <param name="left" default="-15" />
         <param name="right" default="-25" />
         <param name="limit" default="25" />
@@ -260,13 +260,13 @@
                 <preloaditems>2</preloaditems>
                 <orientation>horizontal</orientation>
 
-                <itemlayout width="item_smallsquare_width" height="item_row_height" condition="$PARAM[smallsquarecondition]">
+                <itemlayout width="item_width_portrait" height="item_cardheight_portrait" condition="$PARAM[portraitcondition]">
                     <include content="View_512_Wall_Itemlayout">
                         <param name="aspectratio" value="scale" />
-                        <param name="icononlyheight" value="item_smallsquare_iconheight" />
+                        <param name="iconheight" value="item_cardheight_portrait" />
+                        <param name="icononlyheight" value="item_iconheight_portrait" />
                         <param name="textfade_end" value="$VAR[Defs_WidgetTextContrast_End]" />
                         <param name="textfade_start" value="$VAR[Defs_WidgetTextContrast_Start]" />
-                        <param name="bordersize" value="90" />
                         <param name="selectbox" value="false" />
                         <param name="diffuse" value="diffuse/square-wall.png" />
                         <param name="icon" value="$VAR[Image_Poster]" />
@@ -274,13 +274,13 @@
                         <param name="labelinclude" value="$PARAM[squarelabelinclude]" />
                     </include>
                 </itemlayout>
-                <focusedlayout width="item_smallsquare_width" height="item_row_height" condition="$PARAM[smallsquarecondition]">
+                <focusedlayout width="item_width_portrait" height="item_cardheight_portrait" condition="$PARAM[portraitcondition]">
                     <include content="View_512_Wall_Itemlayout">
                         <param name="selectbox" value="true" />
                         <param name="aspectratio" value="scale" />
-                        <param name="icononlyheight" value="item_smallsquare_iconheight" />
+                        <param name="iconheight" value="item_cardheight_portrait" />
+                        <param name="icononlyheight" value="item_iconheight_portrait" />
                         <param name="textfade_start" value="$VAR[Defs_WidgetTextContrast_Start]" />
-                        <param name="bordersize" value="90" />
                         <param name="diffuse" value="diffuse/square-wall.png" />
                         <param name="icon" value="$VAR[Image_Poster]" />
                         <param name="id" value="$PARAM[id]" />
@@ -299,27 +299,47 @@
                     </control>
                 </focusedlayout>
 
-                <itemlayout width="item_square_width" height="item_row_height" condition="$PARAM[iconcondition] | $PARAM[squarecondition]">
-                    <include content="View_512_Wall_Itemlayout">
-                        <param name="aspectratio" value="keep" />
-                        <param name="bordersize" value="90" />
+                <itemlayout width="item_width_billboard" height="item_cardheight_billboard" condition="$PARAM[billboardcondition]">
+                    <include content="View_51_Wall_Itemlayout">
+                        <param name="iconheight" value="item_cardheight_billboard" />
                         <param name="selectbox" value="false" />
-                        <param name="diffuse" value="diffuse/square-wall.png" />
-                        <param name="icon" value="$VAR[Image_Poster]" />
+                        <param name="icon" value="$VAR[Image_Landscape]" />
+                        <param name="diffuse" value="diffuse/landscape-wall.png" />
+                        <param name="labelinclude" value="Defs_Null" />
+                        <param name="clearlogo" value="![String.IsEmpty(ListItem.Art(clearlogo)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEqual(Container.ShowTitle,ListItem.TvShowTitle)] + [[String.IsEmpty(Container.Art(landscape)) + Skin.HasSetting(LandscapeArt)] + [String.IsEmpty(Container.Art(tvshow.landscape)) + Skin.HasSetting(LandscapeArt)]]" />
                         <param name="id" value="$PARAM[id]" />
-                        <param name="labelinclude" value="$PARAM[labelinclude]" />
+                        <param name="label2" value="$PARAM[label2]" />
                     </include>
+                    <control type="image">
+                        <width>30%</width>
+                        <centerleft>75%</centerleft>
+                        <centertop>85%</centertop>
+                        <height>30%</height>
+                        <aspectratio align="center">keep</aspectratio>
+                        <texture background="true">$VAR[Image_ClearLogo]</texture>
+                        <visible>String.IsEmpty(ListItem.Art(banner)) + String.IsEmpty(ListItem.Art(tvshow.banner))</visible>
+                    </control>
                 </itemlayout>
-                <focusedlayout width="item_square_width" height="item_row_height" condition="$PARAM[iconcondition] | $PARAM[squarecondition]">
-                    <include content="View_512_Wall_Itemlayout">
+                <focusedlayout width="item_width_billboard" height="item_cardheight_billboard" condition="$PARAM[billboardcondition]">
+                    <include content="View_51_Wall_Itemlayout">
                         <param name="selectbox" value="true" />
-                        <param name="aspectratio" value="keep" />
-                        <param name="bordersize" value="90" />
-                        <param name="diffuse" value="diffuse/square-wall.png" />
-                        <param name="icon" value="$VAR[Image_Poster]" />
+                        <param name="iconheight" value="item_cardheight_billboard" />
+                        <param name="icon" value="$VAR[Image_Landscape]" />
+                        <param name="diffuse" value="diffuse/landscape-wall.png" />
+                        <param name="labelinclude" value="Defs_Null" />
+                        <param name="clearlogo" value="![String.IsEmpty(ListItem.Art(clearlogo)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEqual(Container.ShowTitle,ListItem.TvShowTitle)] + [[String.IsEmpty(Container.Art(landscape)) + Skin.HasSetting(LandscapeArt)] + [String.IsEmpty(Container.Art(tvshow.landscape)) + Skin.HasSetting(LandscapeArt)]]" />
                         <param name="id" value="$PARAM[id]" />
-                        <param name="labelinclude" value="$PARAM[labelinclude]" />
+                        <param name="label2" value="$PARAM[label2]" />
                     </include>
+                    <control type="image">
+                        <width>30%</width>
+                        <centerleft>75%</centerleft>
+                        <centertop>85%</centertop>
+                        <height>30%</height>
+                        <aspectratio align="center">keep</aspectratio>
+                        <texture background="true">$VAR[Image_ClearLogo]</texture>
+                        <visible>String.IsEmpty(ListItem.Art(banner)) + String.IsEmpty(ListItem.Art(tvshow.banner))</visible>
+                    </control>
                     <control type="button">
                         <include>Defs_Hidden_Button</include>
                         <include>Animation_Flix_AlarmDelay</include>
@@ -333,63 +353,29 @@
                     </control>
                 </focusedlayout>
 
-                <itemlayout width="item_landscape_width" height="item_row_height" condition="$PARAM[landscapecondition]">
+                <itemlayout width="item_width_smalllandscape" height="item_height" condition="$PARAM[landscapecondition]">
                     <include content="View_51_Wall_Itemlayout">
-                        <param name="iconheight" value="item_icon_height" />
-                        <param name="selectbox" value="false" />
-                        <param name="icon" value="$VAR[Image_Landscape]" />
-                        <param name="diffuse" value="diffuse/landscape-wall.png" />
-                        <param name="labelinclude" value="Defs_Null" />
-                        <param name="clearlogo" value="![String.IsEmpty(ListItem.Art(clearlogo)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEqual(Container.ShowTitle,ListItem.TvShowTitle)] + [[String.IsEmpty(Container.Art(landscape)) + Skin.HasSetting(LandscapeArt)] + [String.IsEmpty(Container.Art(tvshow.landscape)) + Skin.HasSetting(LandscapeArt)]]" />
-                        <param name="id" value="$PARAM[id]" />
-                        <param name="label2" value="$PARAM[label2]" />
-                    </include>
-                </itemlayout>
-                <focusedlayout width="item_landscape_width" height="item_row_height" condition="$PARAM[landscapecondition]">
-                    <include content="View_51_Wall_Itemlayout">
-                        <param name="selectbox" value="true" />
-                        <param name="iconheight" value="item_icon_height" />
-                        <param name="icon" value="$VAR[Image_Landscape]" />
-                        <param name="diffuse" value="diffuse/landscape-wall.png" />
-                        <param name="labelinclude" value="Defs_Null" />
-                        <param name="clearlogo" value="![String.IsEmpty(ListItem.Art(clearlogo)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEqual(Container.ShowTitle,ListItem.TvShowTitle)] + [[String.IsEmpty(Container.Art(landscape)) + Skin.HasSetting(LandscapeArt)] + [String.IsEmpty(Container.Art(tvshow.landscape)) + Skin.HasSetting(LandscapeArt)]]" />
-                        <param name="id" value="$PARAM[id]" />
-                        <param name="label2" value="$PARAM[label2]" />
-                    </include>
-                    <control type="button">
-                        <include>Defs_Hidden_Button</include>
-                        <include>Animation_Flix_AlarmDelay</include>
-                        <onunfocus>CancelAlarm(playtrailer,true)</onunfocus>
-                        <onunfocus condition="Skin.HasSetting(HomeMultiFlixView)">PlayerControl(Stop)</onunfocus>
-
-                        <onfocus condition="Skin.HasSetting(HomeMultiFlixView) + Control.HasFocus($PARAM[id]) + [!String.IsEmpty(ListItem.Trailer) + !Player.HasVideo]">SetProperty(HasTrailer,$INFO[ListItem.Trailer],Home)</onfocus>
-                        <onfocus condition="Skin.HasSetting(HomeMultiFlixView) + [Skin.HasSetting(global.showvideo) + Skin.HasSetting(global.playtrailerinbg)] + System.AddonIsEnabled(plugin.video.youtube) + Control.HasFocus($PARAM[id]) + [!String.IsEmpty(ListItem.Trailer) + !Player.HasVideo] + [String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE, tvshow)]">AlarmClock(playtrailer,PlayMedia($INFO[ListItem.Trailer],False,1),00:01,silent)</onfocus>
-                        <onfocus condition="Skin.HasSetting(HomeMultiFlixView) + Control.HasFocus($PARAM[id]) + [String.IsEmpty(ListItem.Trailer) + !Player.HasVideo]">SetProperty(HasTrailer,$INFO[Container(99950).ListItem.Trailer],Home)</onfocus>
-                        <onfocus condition="[Skin.HasSetting(HomeMultiFlixView) + Skin.HasSetting(global.showvideo) + Skin.HasSetting(global.playtrailerinbg)] + System.AddonIsEnabled(plugin.video.youtube) + Control.HasFocus($PARAM[id]) + [String.IsEmpty(ListItem.Trailer) + !Player.HasVideo] + [String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,tvshow)]">AlarmClock(playtrailer,PlayMedia($INFO[Container(99950).ListItem.Trailer],False,1),00:01,silent)</onfocus>
-                    </control>
-                </focusedlayout>
-
-                <itemlayout width="item_smalllandscape_width" height="item_row_height" condition="$PARAM[smalllandscapecondition]">
-                    <include content="View_51_Wall_Itemlayout">
-                        <param name="iconheight" value="item_icon_height" />
-                        <param name="icononlyheight" value="item_smalllandscape_iconheight" />
+                        <param name="iconheight" value="item_cardheight_smalllandscape" />
+                        <param name="icononlyheight" value="item_iconheight_smalllandscape" />
                         <param name="textfade_end" value="$VAR[Defs_WidgetTextContrast_Start]" />
                         <param name="textfade_start" value="$VAR[Defs_WidgetTextContrast_End]" />
                         <param name="selectbox" value="false" />
                         <param name="icon" value="$VAR[Image_Landscape_Small]" />
                         <param name="diffuse" value="diffuse/landscape-small-wall.png" />
+                        <param name="title" value="$VAR[Label_TitelcardWidget_Label]" />
                         <param name="labelinclude" value="$PARAM[smalllandscapelabelinclude]" />
                         <param name="id" value="$PARAM[id]" />
                     </include>
                 </itemlayout>
-                <focusedlayout width="item_smalllandscape_width" height="item_row_height" condition="$PARAM[smalllandscapecondition]">
+                <focusedlayout width="item_width_smalllandscape" height="item_height" condition="$PARAM[landscapecondition]">
                     <include content="View_51_Wall_Itemlayout">
                         <param name="selectbox" value="true" />
-                        <param name="iconheight" value="item_icon_height" />
+                        <param name="iconheight" value="item_cardheight_smalllandscape" />
                         <param name="textfade_start" value="$VAR[Defs_WidgetTextContrast_Start]" />
-                        <param name="icononlyheight" value="item_smalllandscape_iconheight" />
+                        <param name="icononlyheight" value="item_iconheight_smalllandscape" />
                         <param name="icon" value="$VAR[Image_Landscape_Small]" />
                         <param name="diffuse" value="diffuse/landscape-small-wall.png" />
+                        <param name="title" value="$VAR[Label_TitelcardWidget_Label]" />
                         <param name="labelinclude" value="$PARAM[smalllandscapelabelinclude]" />
                         <param name="id" value="$PARAM[id]" />
                     </include>
@@ -406,34 +392,40 @@
                     </control>
                 </focusedlayout>
 
-                <itemlayout width="1800" height="item_row_height" condition="$PARAM[bannercondition]">
+                <itemlayout width="item_width_banner" height="item_cardheight_banner" condition="$PARAM[bannercondition]">
                     <include content="View_51_Wall_Itemlayout">
                         <param name="selectbox" value="false" />
-                        <param name="icon" value="$VAR[Image_Banner]" />
+                        <param name="iconheight" value="100%" />
+                        <param name="icon" value="$VAR[Image_Landscape]" />
                         <param name="id" value="$PARAM[id]" />
                         <param name="labelinclude" value="Defs_Null" />
                         <param name="diffuse" value="diffuse/banner-widget.png" />
                     </include>
                     <control type="image">
-                        <aspectratio align="left">keep</aspectratio>
-                        <bordersize>90</bordersize>
-                        <height>350</height>
+                        <width>50%</width>
+                        <centerleft>50%</centerleft>
+                        <centertop>70%</centertop>
+                        <height>25%</height>
+                        <aspectratio align="center">keep</aspectratio>
                         <texture background="true">$VAR[Image_ClearLogo]</texture>
                         <visible>String.IsEmpty(ListItem.Art(banner)) + String.IsEmpty(ListItem.Art(tvshow.banner))</visible>
                     </control>
                 </itemlayout>
-                <focusedlayout width="1800" height="item_row_height" condition="$PARAM[bannercondition]">
+                <focusedlayout width="item_width_banner" height="item_cardheight_banner" condition="$PARAM[bannercondition]">
                     <include content="View_51_Wall_Itemlayout">
                         <param name="selectbox" value="true" />
-                        <param name="icon" value="$VAR[Image_Banner]" />
+                        <param name="iconheight" value="100%" />
+                        <param name="icon" value="$VAR[Image_Landscape]" />
                         <param name="id" value="$PARAM[id]" />
                         <param name="labelinclude" value="Defs_Null" />
                         <param name="diffuse" value="diffuse/banner-widget.png" />
                     </include>
                     <control type="image">
-                        <aspectratio align="left">keep</aspectratio>
-                        <bordersize>90</bordersize>
-                        <height>350</height>
+                        <width>55%</width>
+                        <centerleft>50%</centerleft>
+                        <centertop>67%</centertop>
+                        <height>28%</height>
+                        <aspectratio align="center">keep</aspectratio>
                         <texture background="true">$VAR[Image_ClearLogo]</texture>
                         <visible>String.IsEmpty(ListItem.Art(banner)) + String.IsEmpty(ListItem.Art(tvshow.banner))</visible>
                     </control>
@@ -450,7 +442,43 @@
                     </control>
                 </focusedlayout>
 
-                <itemlayout width="item_poster_width" height="item_row_height" condition="![$PARAM[squarecondition] | $PARAM[iconcondition] | $PARAM[landscapecondition] | $PARAM[smalllandscapecondition] | $PARAM[smallsquarecondition] | $PARAM[bannercondition]]">
+                <itemlayout width="item_width_titlecard" height="item_cardheight_titlecard" condition="$PARAM[iconcondition] | $PARAM[titlecardcondition]">
+                    <include content="View_51_Wall_Itemlayout">
+                        <param name="selectbox" value="false" />
+                        <param name="iconheight" value="100%" />
+                        <param name="icononlyheight" value="item_iconheight_titlecard" />
+                        <param name="diffuse" value="diffuse/banner-widget.png" />
+                        <param name="icon" value="$VAR[Image_Landscape]" />
+                        <param name="id" value="$PARAM[id]" />
+                        <param name="title" value="$VAR[Label_TitelcardWidget_Label]" />
+                        <param name="labelinclude" value="$PARAM[squarelabelinclude]" />
+                    </include>
+                </itemlayout>
+                <focusedlayout width="item_width_titlecard" height="item_cardheight_titlecard" condition="$PARAM[iconcondition] | $PARAM[titlecardcondition]">
+                    <include content="View_51_Wall_Itemlayout">
+                        <param name="selectbox" value="true" />
+                        <param name="iconheight" value="100%" />
+                        <param name="icononlyheight" value="item_iconheight_titlecard" />
+                        <param name="diffuse" value="diffuse/banner-widget.png" />
+                        <param name="icon" value="$VAR[Image_Landscape]" />
+                        <param name="id" value="$PARAM[id]" />
+                        <param name="title" value="$VAR[Label_TitelcardWidget_Label]" />
+                        <param name="labelinclude" value="$PARAM[squarelabelinclude]" />
+                    </include>
+                    <control type="button">
+                        <include>Defs_Hidden_Button</include>
+                        <include>Animation_Flix_AlarmDelay</include>
+                        <onunfocus>CancelAlarm(playtrailer,true)</onunfocus>
+                        <onunfocus condition="Skin.HasSetting(HomeMultiFlixView)">PlayerControl(Stop)</onunfocus>
+
+                        <onfocus condition="Skin.HasSetting(HomeMultiFlixView) + Control.HasFocus($PARAM[id]) + [!String.IsEmpty(ListItem.Trailer) + !Player.HasVideo]">SetProperty(HasTrailer,$INFO[ListItem.Trailer],Home)</onfocus>
+                        <onfocus condition="Skin.HasSetting(HomeMultiFlixView) + [Skin.HasSetting(global.showvideo) + Skin.HasSetting(global.playtrailerinbg)] + System.AddonIsEnabled(plugin.video.youtube) + Control.HasFocus($PARAM[id]) + [!String.IsEmpty(ListItem.Trailer) + !Player.HasVideo] + [String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE, tvshow)]">AlarmClock(playtrailer,PlayMedia($INFO[ListItem.Trailer],False,1),00:01,silent)</onfocus>
+                        <onfocus condition="Skin.HasSetting(HomeMultiFlixView) + Control.HasFocus($PARAM[id]) + [String.IsEmpty(ListItem.Trailer) + !Player.HasVideo]">SetProperty(HasTrailer,$INFO[Container(99950).ListItem.Trailer],Home)</onfocus>
+                        <onfocus condition="[Skin.HasSetting(HomeMultiFlixView) + Skin.HasSetting(global.showvideo) + Skin.HasSetting(global.playtrailerinbg)] + System.AddonIsEnabled(plugin.video.youtube) + Control.HasFocus($PARAM[id]) + [String.IsEmpty(ListItem.Trailer) + !Player.HasVideo] + [String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,tvshow)]">AlarmClock(playtrailer,PlayMedia($INFO[Container(99950).ListItem.Trailer],False,1),00:01,silent)</onfocus>
+                    </control>
+                </focusedlayout>
+
+                <itemlayout width="item_width_portrait" height="item_cardheight_portrait" condition="![$PARAM[titlecardcondition] | $PARAM[iconcondition] | $PARAM[billboardcondition] | $PARAM[landscapecondition] | $PARAM[portraitcondition] | $PARAM[bannercondition]]">
                     <include content="View_51_Wall_Itemlayout">
                         <param name="selectbox" value="false" />
                         <param name="icon" value="$VAR[Image_Poster]" />
@@ -458,7 +486,7 @@
                         <param name="labelinclude" value="$PARAM[labelinclude]" />
                     </include>
                 </itemlayout>
-                <focusedlayout width="item_poster_width" height="item_row_height" condition="![$PARAM[squarecondition] | $PARAM[iconcondition] | $PARAM[landscapecondition] | $PARAM[smalllandscapecondition] | $PARAM[smallsquarecondition] | $PARAM[bannercondition]]">
+                <focusedlayout width="item_width_portrait" height="item_cardheight_portrait" condition="![$PARAM[titlecardcondition] | $PARAM[iconcondition] | $PARAM[billboardcondition] | $PARAM[landscapecondition] | $PARAM[portraitcondition] | $PARAM[bannercondition]]">
                     <include content="View_51_Wall_Itemlayout">
                         <param name="selectbox" value="true" />
                         <param name="icon" value="$VAR[Image_Poster]" />

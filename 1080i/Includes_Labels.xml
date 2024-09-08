@@ -54,12 +54,30 @@
         <value>$LOCALIZE[208]</value>
     </variable>
 
+    <variable name="Label_Duration">
+        <value condition="!String.IsEmpty(ListItem.Duration) + Integer.IsGreater(ListItem.Duration(h),0)">$INFO[ListItem.Duration(h),, $LOCALIZE[31036] ]$INFO[ListItem.Duration(mm),, $LOCALIZE[31020]]</value>
+        <value condition="!String.IsEmpty(ListItem.Duration)">$INFO[ListItem.Duration(mins),, $LOCALIZE[31020]]</value>
+    </variable>
+
+    <variable name="Label_SubExtraInfo">
+        <value condition="!String.IsEmpty(ListItem.Genre)"> | $INFO[ListItem.Genre]</value>
+        <value condition="!String.IsEmpty(ListItem.VideoHeight)"> - $INFO[ListItem.VideoHeight]p $INFO[ListItem.HdrType]</value>
+    </variable>
+
+    <variable name="Label_TitelcardWidget_Label">
+        <value condition="!String.IsEmpty(ListItem.TvShowTitle) + !String.IsEqual(ListItem.Label,ListItem.TvShowTitle)">$INFO[ListItem.TvShowTitle] $VAR[Label_SeasonEpisodeLabel] - $INFO[ListItem.Label]</value>
+        <value condition="!String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(ListItem.Year)">$INFO[ListItem.Label] $INFO[ListItem.Year, (,)]</value>
+        <value condition="!String.IsEmpty(ListItem.Artist) + !String.IsEqual(ListItem.Label,ListItem.Artist)">$INFO[ListItem.Artist] - $INFO[ListItem.Label]</value>
+        <value>$INFO[ListItem.Label]</value>
+    </variable>
+
     <variable name="Label_SmallLandscapeWidget_Sublabel">
         <value condition="!String.IsEmpty(ListItem.ChannelName)">$INFO[ListItem.Title]</value>
+        <value condition="ListItem.IsFolder | ListItem.IsCollection">Directory</value>
         <value condition="!String.IsEmpty(ListItem.Property(NextDay))">$INFO[ListItem.Property(NextDay)]$INFO[ListItem.Property(ShortTime), @ ,]</value>
-        <value condition="!String.IsEmpty(ListItem.TvShowTitle) + !String.IsEqual(ListItem.Label,ListItem.TvShowTitle)">$INFO[ListItem.TvShowTitle]</value>
         <value condition="!String.IsEmpty(ListItem.Studio) + [String.IsEqual(ListItem.DBType,video) | [String.IsEmpty(ListItem.DBType) + String.IsEmpty(ListItem.Genre)]]">$INFO[ListItem.Studio]$VAR[Label_Duration, - ,]</value>
         <value condition="!String.IsEmpty(ListItem.Artist) + !String.IsEqual(ListItem.Label,ListItem.Artist)">$INFO[ListItem.Artist]</value>
+        <value condition="!String.IsEmpty(ListItem.Duration)">$VAR[Label_Duration]$VAR[Label_SubExtraInfo]</value>
         <value>$INFO[ListItem.Genre]</value>
     </variable>
 
@@ -287,11 +305,6 @@
     <variable name="Label_Premiered">
         <value condition="!String.IsEmpty(ListItem.Premiered) + !String.IsEqual(ListItem.DBType,movie) + !String.IsEqual(ListItem.DBType,set) + !String.IsEqual(ListItem.DBType,tvshow) + !String.IsEqual(ListItem.DBType,season)">$INFO[ListItem.Premiered]</value>
         <value condition="!String.IsEmpty(ListItem.Year)">$INFO[ListItem.Year]</value>
-    </variable>
-
-    <variable name="Label_Duration">
-        <value condition="!String.IsEmpty(ListItem.Duration) + Integer.IsGreater(ListItem.Duration(h),0)">$INFO[ListItem.Duration(h),, $LOCALIZE[31036] ]$INFO[ListItem.Duration(mm),, $LOCALIZE[31020]]</value>
-        <value condition="!String.IsEmpty(ListItem.Duration)">$INFO[ListItem.Duration(mins),, $LOCALIZE[31020]]</value>
     </variable>
 
     <variable name="Label_AddonInfo_Enable">

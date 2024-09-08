@@ -1,0 +1,26 @@
+<shortcuts>
+	<shortcut>
+		<defaultID>jellyvincw</defaultID>
+		<label>Continue Watching</label>
+		<label2>Video Add-On</label2>
+		<icon>DefaultShortcut.png</icon>
+		<thumb>image://%2fUsers%2fdeepak%2fLibrary%2fApplication%20Support%2fKodi%2faddons%2fplugin.video.jellycon%2ficon.png/</thumb>
+		<action>ActivateWindow(Videos,"plugin://plugin.video.jellycon/?mode=GET_CONTENT&amp;url=/Users/%7Buserid%7D/Items/Resume%3FFields%3DDateCreated%252CEpisodeCount%252CSeasonCount%252CPath%252CGenres%252CStudios%252CEtag%252CTaglines%252CSortName%252CRecursiveItemCount%252CChildCount%252CProductionLocations%252CCriticRating%252COfficialRating%252CCommunityRating%252CPremiereDate%252CProductionYear%252CAirTime%252CStatus%252CTags%252CMediaStreams%252COverview%26ImageTypeLimit%3D1%26format%3Djson&amp;media_type=movies&amp;name_format=Episode%7Cepisode_name_format",return)</action>
+		</shortcut>
+	<shortcut>
+		<defaultID>jellyvinnu</defaultID>
+		<label>Next Up</label>
+		<label2>Video Add-On</label2>
+		<icon>DefaultShortcut.png</icon>
+		<thumb>image://%2fUsers%2fdeepak%2fLibrary%2fApplication%20Support%2fKodi%2faddons%2fplugin.video.jellycon%2ficon.png/</thumb>
+		<action>ActivateWindow(Videos,"plugin://plugin.video.jellycon/?mode=WIDGET_CONTENT&amp;type=nextup_episodes",return)</action>
+		</shortcut>
+	<shortcut>
+		<defaultID>jellyvinra</defaultID>
+		<label>Recently Added</label>
+		<label2>Video Add-On</label2>
+		<icon>DefaultShortcut.png</icon>
+		<thumb>image://%2fUsers%2fdeepak%2fLibrary%2fApplication%20Support%2fKodi%2faddons%2fplugin.video.jellycon%2ficon.png/</thumb>
+		<action>ActivateWindow(Videos,"plugin://plugin.video.jellycon/?url=/Users/%7Buserid%7D/Items%3FCollapseBoxSetItems%3DTrue%26GroupItemsIntoCollections%3DTrue%26Recursive%3DTrue%26IsMissing%3DFalse%26Fields%3DDateCreated%252CEpisodeCount%252CSeasonCount%252CPath%252CGenres%252CStudios%252CEtag%252CTaglines%252CSortName%252CRecursiveItemCount%252CChildCount%252CProductionLocations%252CCriticRating%252COfficialRating%252CCommunityRating%252CPremiereDate%252CProductionYear%252CAirTime%252CStatus%252CTags%252CMediaStreams%252COverview%26ImageTypeLimit%3D1%26format%3Djson%26IsPlayed%3DFalse%26SortBy%3DDateCreated%26SortOrder%3DDescending%26Filters%3DIsNotFolder%26Limit%3D20&amp;mode=GET_CONTENT&amp;media_type=movies&amp;sort=none",return)</action>
+		</shortcut>
+	</shortcuts>

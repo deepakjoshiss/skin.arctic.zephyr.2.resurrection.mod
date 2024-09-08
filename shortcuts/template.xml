@@ -138,10 +138,10 @@
                     <param name="label" value="$SKINSHORTCUTS[label]" />
                     <param name="limit" value="$SKINSHORTCUTS[limit]" />
                     <param name="target" value="$SKINSHORTCUTS[target]" />
-                    <param name="smallsquarecondition" value="$PYTHON['true' if widgetAspect in 'Small Square' else 'false']" />
-                    <param name="squarecondition" value="$PYTHON['true' if widgetAspect in 'Big Square' else 'false']" />
-                    <param name="smalllandscapecondition" value="$PYTHON['true' if widgetAspect in 'Small Landscape' else 'false']" />
-                    <param name="landscapecondition" value="$PYTHON['true' if widgetAspect in 'Big Landscape' else 'false']" />
+                    <param name="portraitcondition" value="$PYTHON['true' if widgetAspect in 'Portrait' else 'false']" />
+                    <param name="titlecardcondition" value="$PYTHON['true' if widgetAspect in 'Titlecard' else 'false']" />
+                    <param name="landscapecondition" value="$PYTHON['true' if widgetAspect in 'Landscape' else 'false']" />
+                    <param name="billboardcondition" value="$PYTHON['true' if widgetAspect in 'Billboard' else 'false']" />
                     <param name="iconcondition" value="$PYTHON['true' if widgetAspect in 'Icon' else 'false']" />
                     <param name="bannercondition" value="$PYTHON['true' if widgetAspect in 'Banner' else 'false']" />
                 </include>
@@ -177,10 +177,10 @@
                 <param name="label2" value="ListItem.TvShowTitle" />
                 <param name="target" value="$SKINSHORTCUTS[widgetTarget]" />
                 <param name="content" value="$SKINSHORTCUTS[widgetPath]" />
-                <param name="smallsquarecondition" value="$PYTHON['true' if widgetAspect in 'Small Square' else 'false']" />
-                <param name="squarecondition" value="$PYTHON['true' if widgetAspect in 'Big Square' else 'false']" />
-                <param name="smalllandscapecondition" value="$PYTHON['true' if widgetAspect in 'Small Landscape' else 'false']" />
-                <param name="landscapecondition" value="$PYTHON['true' if widgetAspect in 'Big Landscape' else 'false']" />
+                <param name="portraitcondition" value="$PYTHON['true' if widgetAspect in 'Portrait' else 'false']" />
+                <param name="titlecardcondition" value="$PYTHON['true' if widgetAspect in 'Titlecard' else 'false']" />
+                <param name="landscapecondition" value="$PYTHON['true' if widgetAspect in 'Landscape' else 'false']" />
+                <param name="billboardcondition" value="$PYTHON['true' if widgetAspect in 'Billboard' else 'false']" />
                 <param name="iconcondition" value="$PYTHON['true' if widgetAspect in 'Icon' else 'false']" />
                 <param name="bannercondition" value="$PYTHON['true' if widgetAspect in 'Banner' else 'false']" />
                 <include content="Defs_AutoScroll">
@@ -205,10 +205,10 @@
                 <param name="label2" value="ListItem.TvShowTitle" />
                 <param name="target" value="$SKINSHORTCUTS[widgetTarget]" />
                 <param name="content" value="$SKINSHORTCUTS[widgetPath]" />
-                <param name="smallsquarecondition" value="$PYTHON['true' if widgetAspect in 'Small Square' else 'false']" />
-                <param name="squarecondition" value="$PYTHON['true' if widgetAspect in 'Big Square' else 'false']" />
-                <param name="smalllandscapecondition" value="$PYTHON['true' if widgetAspect in 'Small Landscape' else 'false']" />
-                <param name="landscapecondition" value="$PYTHON['true' if widgetAspect in 'Big Landscape' else 'false']" />
+                <param name="portraitcondition" value="$PYTHON['true' if widgetAspect in 'Portrait' else 'false']" />
+                <param name="titlecardcondition" value="$PYTHON['true' if widgetAspect in 'Titlecard' else 'false']" />
+                <param name="landscapecondition" value="$PYTHON['true' if widgetAspect in 'Landscape' else 'false']" />
+                <param name="billboardcondition" value="$PYTHON['true' if widgetAspect in 'Billboard' else 'false']" />
                 <param name="iconcondition" value="$PYTHON['true' if widgetAspect in 'Icon' else 'false']" />
                 <param name="bannercondition" value="$PYTHON['true' if widgetAspect in 'Banner' else 'false']" />
                 <include content="Defs_AutoScroll">
@@ -308,7 +308,7 @@
                 <param name="top" value="52" />
                 <param name="left" value="0" />
                 <param name="right" value="-30" />
-                <param name="height" value="380.5" />
+                <param name="height" value="item_height_$PYTHON[widgetAspect]" />
                 <param name="orientation" value="horizontal" />
                 <param name="labelinclude" value="Defs_Null" />
                 <param name="landscapelabelinclude" value="View_Widget_LandscapeLabel" />
@@ -318,10 +318,10 @@
                 <param name="limit" value="$SKINSHORTCUTS[widgetLimit]" />
                 <param name="sortby" value="$SKINSHORTCUTS[widgetSortby]" />
                 <param name="sortorder" value="$SKINSHORTCUTS[widgetSortorder]" />
-                <param name="smallsquarecondition" value="$PYTHON['true' if widgetAspect in 'Small Square' else 'false']" />
-                <param name="squarecondition" value="$PYTHON['true' if widgetAspect in 'Big Square' else 'false']" />
-                <param name="smalllandscapecondition" value="$PYTHON['true' if widgetAspect in 'Small Landscape' else 'false']" />
-                <param name="landscapecondition" value="$PYTHON['true' if widgetAspect in 'Big Landscape' else 'false']" />
+                <param name="portraitcondition" value="$PYTHON['true' if widgetAspect in 'Portrait' else 'false']" />
+                <param name="titlecardcondition" value="$PYTHON['true' if widgetAspect in 'Titlecard' else 'false']" />
+                <param name="landscapecondition" value="$PYTHON['true' if widgetAspect in 'Landscape' else 'false']" />
+                <param name="billboardcondition" value="$PYTHON['true' if widgetAspect in 'Billboard' else 'false']" />
                 <param name="iconcondition" value="$PYTHON['true' if widgetAspect in 'Icon' else 'false']" />
                 <param name="bannercondition" value="$PYTHON['true' if widgetAspect in 'Banner' else 'false']" />
                 <onback>SetFocus($PYTHON[int(mainmenuid)]3101)</onback>
@@ -341,7 +341,7 @@
                 <param name="top" value="52" />
                 <param name="left" value="0" />
                 <param name="right" value="-30" />
-                <param name="height" value="380.5" />
+                <param name="height" value="item_height_$PYTHON[widgetAspect]" />
                 <param name="orientation" value="horizontal" />
                 <param name="labelinclude" value="Defs_Null" />
                 <param name="landscapelabelinclude" value="View_Widget_LandscapeLabel" />
@@ -351,10 +351,10 @@
                 <param name="limit" value="$SKINSHORTCUTS[widgetLimit]" />
                 <param name="sortby" value="$SKINSHORTCUTS[widgetSortby]" />
                 <param name="sortorder" value="$SKINSHORTCUTS[widgetSortorder]" />
-                <param name="smallsquarecondition" value="$PYTHON['true' if widgetAspect in 'Small Square' else 'false']" />
-                <param name="squarecondition" value="$PYTHON['true' if widgetAspect in 'Big Square' else 'false']" />
-                <param name="smalllandscapecondition" value="$PYTHON['true' if widgetAspect in 'Small Landscape' else 'false']" />
-                <param name="landscapecondition" value="$PYTHON['true' if widgetAspect in 'Big Landscape' else 'false']" />
+                <param name="portraitcondition" value="$PYTHON['true' if widgetAspect in 'Portrait' else 'false']" />
+                <param name="titlecardcondition" value="$PYTHON['true' if widgetAspect in 'Titlecard' else 'false']" />
+                <param name="landscapecondition" value="$PYTHON['true' if widgetAspect in 'Landscape' else 'false']" />
+                <param name="billboardcondition" value="$PYTHON['true' if widgetAspect in 'Billboard' else 'false']" />
                 <param name="iconcondition" value="$PYTHON['true' if widgetAspect in 'Icon' else 'false']" />
                 <param name="bannercondition" value="$PYTHON['true' if widgetAspect in 'Banner' else 'false']" />
                 <onback>SetFocus($PYTHON[int(mainmenuid)]3101)</onback>
@@ -450,10 +450,10 @@
                 <param name="label2" value="ListItem.TvShowTitle" />
                 <param name="target" value="$SKINSHORTCUTS[widgetTarget]" />
                 <param name="content" value="$SKINSHORTCUTS[widgetPath]" />
-                <param name="smallsquarecondition" value="$PYTHON['true' if widgetAspect in 'Small Square' else 'false']" />
-                <param name="squarecondition" value="$PYTHON['true' if widgetAspect in 'Big Square' else 'false']" />
-                <param name="smalllandscapecondition" value="$PYTHON['true' if widgetAspect in 'Small Landscape' else 'false']" />
-                <param name="landscapecondition" value="$PYTHON['true' if widgetAspect in 'Big Landscape' else 'false']" />
+                <param name="portraitcondition" value="$PYTHON['true' if widgetAspect in 'Portrait' else 'false']" />
+                <param name="titlecardcondition" value="$PYTHON['true' if widgetAspect in 'Titlecard' else 'false']" />
+                <param name="landscapecondition" value="$PYTHON['true' if widgetAspect in 'Landscape' else 'false']" />
+                <param name="billboardcondition" value="$PYTHON['true' if widgetAspect in 'Billboard' else 'false']" />
                 <param name="iconcondition" value="$PYTHON['true' if widgetAspect in 'Icon' else 'false']" />
                 <param name="bannercondition" value="$PYTHON['true' if widgetAspect in 'Banner' else 'false']" />
                 <visible>String.IsEqual(Container(301).ListItem.Property(submenuVisibility),num-$SKINSHORTCUTS[submenuVisibility]) | String.IsEqual(Container(301).ListItem.Property(submenuVisibility),$SKINSHORTCUTS[submenuVisibility])</visible>
@@ -479,10 +479,10 @@
                 <param name="label2" value="ListItem.TvShowTitle" />
                 <param name="target" value="$SKINSHORTCUTS[widgetTarget]" />
                 <param name="content" value="$SKINSHORTCUTS[widgetPath]" />
-                <param name="smallsquarecondition" value="$PYTHON['true' if widgetAspect in 'Small Square' else 'false']" />
-                <param name="squarecondition" value="$PYTHON['true' if widgetAspect in 'Big Square' else 'false']" />
-                <param name="smalllandscapecondition" value="$PYTHON['true' if widgetAspect in 'Small Landscape' else 'false']" />
-                <param name="landscapecondition" value="$PYTHON['true' if widgetAspect in 'Big Landscape' else 'false']" />
+                <param name="portraitcondition" value="$PYTHON['true' if widgetAspect in 'Portrait' else 'false']" />
+                <param name="titlecardcondition" value="$PYTHON['true' if widgetAspect in 'Titlecard' else 'false']" />
+                <param name="landscapecondition" value="$PYTHON['true' if widgetAspect in 'Landscape' else 'false']" />
+                <param name="billboardcondition" value="$PYTHON['true' if widgetAspect in 'Billboard' else 'false']" />
                 <param name="iconcondition" value="$PYTHON['true' if widgetAspect in 'Icon' else 'false']" />
                 <param name="bannercondition" value="$PYTHON['true' if widgetAspect in 'Banner' else 'false']" />
                 <skinshortcuts>visibility</skinshortcuts>
