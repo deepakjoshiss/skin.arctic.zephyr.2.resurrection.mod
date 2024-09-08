@@ -138,23 +138,23 @@
                 <control type="label">
                     <left>15</left>
                     <right>15</right>
-                    <font>font_tiny_bold</font>
+                    <font>font_statusbar_s_bold</font>
                     <selectedcolor>panel_fg_100</selectedcolor>
                     <textcolor>panel_fg_100</textcolor>
-                    <top>5</top>
-                    <height>20</height>
+                    <top>6</top>
+                    <height>0</height>
                     <aligny>center</aligny>
                     <align>center</align>
-                    <label>$INFO[ListItem.Label]</label>
+                    <label>$PARAM[title]</label>
                 </control>
                 <control type="label">
                     <left>15</left>
                     <right>15</right>
-                    <font>font_statusbar</font>
+                    <font>font_statusbar_xs</font>
                     <selectedcolor>panel_fg_70</selectedcolor>
                     <textcolor>panel_fg_70</textcolor>
-                    <top>35</top>
-                    <height>20</height>
+                    <top>32</top>
+                    <height>0</height>
                     <aligny>center</aligny>
                     <align>center</align>
                     <label>$VAR[Label_SmallLandscapeWidget_Sublabel]</label>
@@ -163,7 +163,7 @@
         </definition>
     </include>
 
-    <include name="View_51_Wall_SmallSquare_Home_Label">
+    <include name="View_51_Wall_portrait_Home_Label">
         <param name="textfade_end" default="100" />
         <param name="textfade_start" default="100" />
         <definition>
@@ -174,14 +174,14 @@
                 <control type="label">
                     <left>25</left>
                     <right>35</right>
-                    <font>font_statusbar</font>
+                    <font>font_statusbar_xs</font>
                     <selectedcolor>panel_fg_100</selectedcolor>
                     <textcolor>panel_fg_100</textcolor>
-                    <top>-7</top>
-                    <height>20</height>
+                    <top>1</top>
+                    <height>0</height>
                     <aligny>center</aligny>
                     <align>center</align>
-                    <label>$INFO[ListItem.Label]</label>
+                    <label>$PARAM[title]</label>
                 </control>
             </control>
         </definition>
@@ -323,6 +323,7 @@
         <param name="clearlogo" default="false" />
         <param name="circle" default="false" />
         <param name="diffuse" default="diffuse/poster-wall.png" />
+        <param name="title" default="$INFO[ListItem.Label]" />
         <definition>
             <control type="group">
                 <right>10</right>
@@ -379,6 +380,7 @@
                         <param name="iconheight" value="$PARAM[iconheight]" />
                         <param name="icononlyheight" value="$PARAM[icononlyheight]" />
                         <param name="label2" value="$PARAM[label2]" />
+                        <param name="title" value="$PARAM[title]" />
                         <param name="textfade_end" value="$PARAM[textfade_end]" />
                         <param name="textfade_start" value="$PARAM[textfade_start]" />
                         <param name="id" value="$PARAM[id]" />
@@ -406,6 +408,7 @@
                     <param name="iconheight" value="$PARAM[iconheight]" />
                     <param name="icononlyheight" value="$PARAM[icononlyheight]" />
                     <param name="label2" value="$PARAM[label2]" />
+                    <param name="title" value="$PARAM[title]" />
                     <param name="textfade_end" value="$PARAM[textfade_end]" />
                     <param name="textfade_start" value="$PARAM[textfade_start]" />
                     <param name="id" value="$PARAM[id]" />
@@ -448,6 +451,7 @@
         <param name="labelinclude" default="View_512_Wall_Label" />
         <param name="aspectratio" default="scale" />
         <param name="diffuse" default="diffuse/poster-wall.png" />
+        <param name="title" default="$INFO[ListItem.Label]" />
         <!-- FIX ME -->
         <param name="stretchsides" default="Control.IsVisible(512) + !Window.IsVisible(home) + !$EXP[InGameMode]" />
         <definition>
@@ -548,6 +552,7 @@
                 <param name="textfade_start" value="$PARAM[textfade_start]" />
                 <param name="id" value="$PARAM[id]" />
                 <param name="selectbox" value="$PARAM[selectbox]" />
+                <param name="title" value="$PARAM[title]" />
             </include>
         </definition>
     </include>

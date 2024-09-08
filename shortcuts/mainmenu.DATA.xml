@@ -1,74 +1,103 @@
-<?xml version='1.0' encoding='UTF-8'?>
 <shortcuts>
-    <shortcut>
-        <label>20342</label>
-        <label2>Common Shortcut</label2>
-        <defaultID>movies</defaultID>
-        <icon>special://skin/extras/icons/film.png</icon>
-        <action>ActivateWindow(Videos,MovieTitles,return)</action>
-    </shortcut>
-    <shortcut>
-        <label>20343</label>
-        <label2>Common Shortcut</label2>
-        <defaultID>tvshows</defaultID>
-        <icon>special://skin/extras/icons/tv.png</icon>
-        <action>ActivateWindow(Videos,TVShowTitles,return)</action>
-    </shortcut>
-    <shortcut>
-        <label>2</label>
-        <label2>Common Shortcut</label2>
-        <defaultID>music</defaultID>
-        <icon>special://skin/extras/icons/songs.png</icon>
-        <action>ActivateWindow(Music)</action>
-    </shortcut>
-    <shortcut>
-        <label>31103</label>
-        <label2>Common Shortcut</label2>
-        <defaultID>livetv</defaultID>
-        <icon>special://skin/extras/icons/livetv.png</icon>
-        <action>ActivateWindow(TVChannels)</action>
-        <visible>PVR.HasTVChannels</visible>
-    </shortcut>
-    <shortcut>
-        <label>24001</label>
-        <label2/>
-        <defaultID>addons</defaultID>
-        <icon />
-        <action>ActivateWindow(AddonBrowser)</action>
-    </shortcut>
-    <shortcut>
-        <label>$LOCALIZE[137]</label>
-        <label2>Common Shortcut</label2>
-        <icon>special://skin/extras/icons/search.png</icon>
-        <thumb />
-        <action>Skin.SetString(SearchTerm)</action>
-        <action>ActivateWindow(1138)</action>
-    </shortcut>
-    <shortcut>
-        <label>3</label>
-        <label2>32034</label2>
-        <icon>DefaultVideo.png</icon>
-        <thumb />
-        <action>ActivateWindow(Videos)</action>
-    </shortcut>
-    <shortcut>
-        <label>32032</label>
-        <label2>32034</label2>
-        <icon>DefaultDVDFull.png</icon>
-        <thumb />
-        <action>PlayDVD()</action>
-    </shortcut>
-    <shortcut>
-        <label>5</label>
-        <label2>Common Shortcut</label2>
-        <defaultID>settings</defaultID>
-        <icon>special://skin/extras/icons/settings.png</icon>
-        <action>ActivateWindow(Settings)</action>
-    </shortcut>
-    <shortcut>
-        <label>13012</label>
-        <label2>Common Shortcut</label2>
-        <icon>special://skin/extras/icons/power.png</icon>
-        <action>ActivateWindow(shutdownmenu)</action>
-    </shortcut>
-</shortcuts>
+	<shortcut>
+		<defaultID>jellyfin</defaultID>
+		<label>Jellyfin</label>
+		<label2>Video Add-On</label2>
+		<icon>DefaultShortcut.png</icon>
+		<thumb>special://skin/extras/icons/jellyfin.png</thumb>
+		<action>ActivateWindow(Videos,"plugin://plugin.video.jellycon/?mode=SHOW_ADDON_MENU&amp;type=library",return)</action>
+		</shortcut>
+	<shortcut>
+		<defaultID />
+		<label>Media</label>
+		<label2>Custom item</label2>
+		<icon>DefaultShortcut.png</icon>
+		<thumb>special://skin/extras/icons/video.png</thumb>
+		<action>ActivateWindow(Videos,"plugin://plugin.video.jellycon/?url=/Users/%7Buserid%7D/Items%3FParentId%3D031407224d13e5276604635a9769cd97%26Recursive%3DFalse%26ImageTypeLimit%3D1%26IsMissing%3DFalse%26Fields%3DDateCreated%252CEpisodeCount%252CSeasonCount%252CPath%252CGenres%252CStudios%252CEtag%252CTaglines%252CSortName%252CRecursiveItemCount%252CChildCount%252CProductionLocations%252CCriticRating%252COfficialRating%252CCommunityRating%252CPremiereDate%252CProductionYear%252CAirTime%252CStatus%252CTags%252CMediaStreams%252COverview%26format%3Djson&amp;mode=GET_CONTENT&amp;media_type=musicvideos",return)</action>
+		</shortcut>
+	<shortcut>
+		<defaultID>movies</defaultID>
+		<label>20342</label>
+		<label2>Custom item</label2>
+		<icon>special://skin/extras/icons/film.png</icon>
+		<thumb />
+		<action>ActivateWindow(Videos,"plugin://plugin.video.jellycon/?url=/Users/%7Buserid%7D/Items%3FIncludeItemTypes%3DMovie%26CollapseBoxSetItems%3DTrue%26GroupItemsIntoCollections%3DTrue%26Recursive%3DTrue%26IsMissing%3DFalse%26Fields%3DDateCreated%252CEpisodeCount%252CSeasonCount%252CPath%252CGenres%252CStudios%252CEtag%252CTaglines%252CSortName%252CRecursiveItemCount%252CChildCount%252CProductionLocations%252CCriticRating%252COfficialRating%252CCommunityRating%252CPremiereDate%252CProductionYear%252CAirTime%252CStatus%252CTags%252CMediaStreams%252COverview%26ImageTypeLimit%3D1%26ParentId%3Df137a2dd21bbc1b99aa5c0f6bf02a805%26format%3Djson&amp;mode=GET_CONTENT&amp;media_type=movies",return)</action>
+		</shortcut>
+	<shortcut>
+		<defaultID>tvshows</defaultID>
+		<label>20343</label>
+		<label2>Custom item</label2>
+		<icon>special://skin/extras/icons/tv.png</icon>
+		<thumb />
+		<action>ActivateWindow(Videos,"plugin://plugin.video.jellycon/?url=/Users/%7Buserid%7D/Items%3FFields%3DDateCreated%252CEpisodeCount%252CSeasonCount%252CPath%252CGenres%252CStudios%252CEtag%252CTaglines%252CSortName%252CRecursiveItemCount%252CChildCount%252CProductionLocations%252CCriticRating%252COfficialRating%252CCommunityRating%252CPremiereDate%252CProductionYear%252CAirTime%252CStatus%252CTags%252CMediaStreams%252COverview%26ImageTypeLimit%3D1%26IsMissing%3DFalse%26IncludeItemTypes%3DSeries%26Recursive%3DTrue%26format%3Djson&amp;mode=GET_CONTENT&amp;media_type=tvshows",return)</action>
+		</shortcut>
+	<shortcut>
+		<defaultID>music</defaultID>
+		<label>2</label>
+		<label2>Custom item</label2>
+		<icon>special://skin/extras/icons/songs.png</icon>
+		<thumb />
+		<action>ActivateWindow(Videos,library://video/musicvideos/titles.xml/,return)</action>
+		<disabled>True</disabled>
+		</shortcut>
+	<shortcut>
+		<defaultID>addons</defaultID>
+		<label>24001</label>
+		<label2 />
+		<icon>special://skin/extras/icons/addons.png</icon>
+		<thumb>special://skin/extras/icons/</thumb>
+		<action>ActivateWindow(AddonBrowser)</action>
+		</shortcut>
+	<shortcut>
+		<defaultID>livetv</defaultID>
+		<label>$SKIN[31103|skin.arctic.zephyr.2.resurrection.mod|None]</label>
+		<label2>Common Shortcut</label2>
+		<icon>special://skin/extras/icons/livetv.png</icon>
+		<thumb />
+		<action>ActivateWindow(TVChannels)</action>
+		<visible>PVR.HasTVChannels</visible>
+		</shortcut>
+	<shortcut>
+		<defaultID>137</defaultID>
+		<label>137</label>
+		<label2>Common Shortcut</label2>
+		<icon>special://skin/extras/icons/search.png</icon>
+		<thumb />
+		<action>Skin.SetString(SearchTerm)</action>
+		<disabled>True</disabled>
+		</shortcut>
+	<shortcut>
+		<defaultID>videos</defaultID>
+		<label>3</label>
+		<label2>Common menu item</label2>
+		<icon>DefaultVideo.png</icon>
+		<thumb />
+		<action>ActivateWindow(Videos)</action>
+		<disabled>True</disabled>
+		</shortcut>
+	<shortcut>
+		<defaultID>dvd</defaultID>
+		<label>32032</label>
+		<label2>Common menu item</label2>
+		<icon>DefaultDVDFull.png</icon>
+		<thumb />
+		<action>PlayDVD()</action>
+		<disabled>True</disabled>
+		</shortcut>
+	<shortcut>
+		<defaultID>settings</defaultID>
+		<label>5</label>
+		<label2>Common Shortcut</label2>
+		<icon>special://skin/extras/icons/settings.png</icon>
+		<thumb />
+		<action>ActivateWindow(Settings)</action>
+		</shortcut>
+	<shortcut>
+		<defaultID>13012</defaultID>
+		<label>13012</label>
+		<label2>Common Shortcut</label2>
+		<icon>special://skin/extras/icons/power.png</icon>
+		<thumb />
+		<action>ActivateWindow(shutdownmenu)</action>
+		</shortcut>
+	</shortcuts>

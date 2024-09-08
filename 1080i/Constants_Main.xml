@@ -17,11 +17,39 @@
     <constant name="item_poster_width">257.14</constant>
     <constant name="item_square_width">360</constant>
     <constant name="item_icon_height">350</constant>
-    <constant name="item_landscape_width">600</constant>
-    <constant name="item_smalllandscape_width">450</constant>
-    <constant name="item_smalllandscape_iconheight">261</constant>
-    <constant name="item_smallsquare_width">257.14</constant>
-    <constant name="item_smallsquare_iconheight">310</constant>
+
+    <!-- Item Configuration -->
+    <!-- Main Heights -->
+    <constant name="item_icon_height">350</constant>
+
+    <!-- Portrait -->
+    <constant name="item_height_Portrait">372</constant>
+    <constant name="item_height_Poster">372</constant>
+    <constant name="item_width_portrait">240</constant>
+    <constant name="item_iconheight_portrait">324</constant>
+    <constant name="item_cardheight_portrait">360</constant>
+
+    <!-- Landscape -->
+    <constant name="item_height_Landscape">292</constant>
+    <constant name="item_width_smalllandscape">400</constant>
+    <constant name="item_iconheight_smalllandscape">210</constant>
+    <constant name="item_cardheight_smalllandscape">280</constant>
+
+    <!-- Banner -->    
+    <constant name="item_height_Banner">214.5</constant>
+    <constant name="item_width_banner">360</constant>
+    <constant name="item_cardheight_banner">202.5</constant>
+    
+    <!-- Titlecard -->
+    <constant name="item_height_Titlecard">232.5</constant>
+    <constant name="item_width_titlecard">360</constant>
+    <constant name="item_iconheight_titlecard">184.5</constant>
+    <constant name="item_cardheight_titlecard">220.5</constant>
+
+    <!-- Billboard -->    
+    <constant name="item_height_Billboard">327</constant>
+    <constant name="item_width_billboard">560</constant>
+    <constant name="item_cardheight_billboard">315</constant>
 
     <constant name="menu_itemgap">30</constant>
 
