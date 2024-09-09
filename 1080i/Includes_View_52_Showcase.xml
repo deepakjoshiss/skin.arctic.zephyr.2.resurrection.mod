@@ -639,14 +639,17 @@
                 <param name="itemheight" value="item_cast_height" />
                 <param name="icon" value="$VAR[Image_Landscape]" />
                 <param name="iconheight" value="254" />
-                <param name="visible" value="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(videos) | $EXP[InGameMode]" />
+                <param name="visible" value="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(videos) | Container.Content(files) | $EXP[InGameMode]" />
                 <param name="viewtype" value="Flix Landscape" />
                 <param name="viewtypename" value="wrap" />
                 <param name="forced" value="true" />
                 <movement>3</movement>
                 <include>View_Horizontal_Movement</include>
             </include>
-            <include>Flix_View_52_Showcase_Info2</include>
+            <control type="group">
+                <visible>!Container.Content(files)</visible>
+                <include>Flix_View_52_Showcase_Info2</include>
+            </control>
         </control>
     </include>
 
