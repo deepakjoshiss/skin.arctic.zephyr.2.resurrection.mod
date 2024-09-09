@@ -692,6 +692,8 @@
             <include content="View_51_Wall_Container">
                 <param name="id" value="51" />
                 <param name="height" value="view_height" />
+                <param name="itemwidth" value="item_width_portrait" />
+                <param name="iconheight" value="item_cardheight_portrait" />
                 <param name="viewtype" value="Poster Wall" />
                 <param name="viewtypename" value="icon" />
                 <param name="forced" value="true" />

@@ -23,8 +23,8 @@
     <constant name="item_icon_height">350</constant>
 
     <!-- Portrait -->
-    <constant name="item_height_Portrait">372</constant>
     <constant name="item_height_Poster">372</constant>
+    <constant name="item_height_Portrait">372</constant>
     <constant name="item_width_portrait">240</constant>
     <constant name="item_iconheight_portrait">324</constant>
     <constant name="item_cardheight_portrait">360</constant>
@@ -45,6 +45,12 @@
     <constant name="item_width_titlecard">360</constant>
     <constant name="item_iconheight_titlecard">184.5</constant>
     <constant name="item_cardheight_titlecard">220.5</constant>
+
+    <!-- Icon -->
+    <constant name="item_height_Icon">288</constant>
+    <constant name="item_width_icon">240</constant>
+    <constant name="item_iconheight_icon">240</constant>
+    <constant name="item_cardheight_icon">240</constant>
 
     <!-- Billboard -->    
     <constant name="item_height_Billboard">327</constant>
