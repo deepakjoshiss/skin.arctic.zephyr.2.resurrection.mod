@@ -11,7 +11,7 @@
         <param name="fgcolor" default="main_fg" />
         <definition>
             <control type="group">
-                <top>30</top>
+                <top>10</top>
                 <include condition="$PARAM[info_hide]">Defs_InfoDialog_Visible</include>
                 <control type="group">
                     <height>120</height>
@@ -75,6 +75,17 @@
             <include>Animation_FadeInOut</include>
             <visible>!Control.HasFocus(300) | Window.IsVisible(SettingsCategory.xml) | Window.IsVisible(SettingsProfile.xml) | Window.IsVisible(SkinSettings.xml) | Window.IsVisible(eventlog) | Window.IsVisible(SettingsSystemInfo.xml)</visible>
             <visible>!Skin.HasSetting(EnableClearlogo)</visible>
+        </control>
+        <control type="label">
+            <aligny>center</aligny>
+            <align>center</align>
+            <font>font_byline</font>
+            <width>1200</width>
+            <centerleft>30%</centerleft>
+            <textcolor>$PARAM[fgcolor]_70</textcolor>
+            <label>$INFO[Container.Content]</label>
+            <include>Animation_FadeInOut</include>
+            <visible>!Control.HasFocus(300) | Window.IsVisible(SettingsCategory.xml) | Window.IsVisible(SettingsProfile.xml) | Window.IsVisible(SkinSettings.xml) | Window.IsVisible(eventlog) | Window.IsVisible(SettingsSystemInfo.xml)</visible>
         </control>
         <control type="label">
             <visible>$PARAM[visible]</visible>
@@ -172,7 +183,7 @@
         <control type="grouplist">
             <right>view_pad</right>
             <align>right</align>
-            <top>60</top>
+            <top>72</top>
             <orientation>horizontal</orientation>
             <control type="label">
                 <width>auto</width>
@@ -277,7 +288,7 @@
             <movement>5</movement>
             <centerleft>50%</centerleft>
             <orientation>horizontal</orientation>
-            <top>55</top>
+            <top>25</top>
             <height>120</height>
             <itemlayout width="80" height="70">
                 <control type="image">

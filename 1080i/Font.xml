@@ -159,7 +159,7 @@
         <!-- Showcase title font -->
         <font>
             <name>font_title_large</name>
-            <filename>RobotoCondensed-Bold.ttf</filename>
+            <filename>RobotoCondensed-Medium.ttf</filename>
             <size>64</size>
             <aspect>0.9</aspect>
             <style>bold</style>

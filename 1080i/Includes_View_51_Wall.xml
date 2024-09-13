@@ -227,7 +227,7 @@
         <param name="diffuse" default="diffuse/poster-wall.png" />
         <definition>
             <control type="group">
-                <right>10</right>
+                <right>0</right>
                 <control type="group">
                     <height>$PARAM[iconheight]</height>
                     <include condition="$PARAM[circle]" content="View_51_Wall_Circle">
@@ -326,7 +326,7 @@
         <param name="title" default="$INFO[ListItem.Label]" />
         <definition>
             <control type="group">
-                <right>10</right>
+                <right>0</right>
                 <animation effect="zoom" time="350" end="110,110" center="120,120" ease="inout" condition="Skin.HasSetting(EnableZoomOnHover)">Focus</animation>
                 <control type="group">
                     <height>$PARAM[iconheight]</height>
@@ -456,7 +456,7 @@
         <param name="stretchsides" default="Control.IsVisible(512) + !Window.IsVisible(home) + !$EXP[InGameMode]" />
         <definition>
             <control type="group">
-                <right>10</right>
+                <right>0</right>
                 <height>$PARAM[iconheight]</height>
                 <include content="Object_Geometric">
                     <param name="diffuse" value="$PARAM[diffuse]" />
@@ -537,7 +537,7 @@
                     </control>
                 </control>
                 <include content="View_WatchedOverlay">
-                    <param name="prbottom" value="15" />
+                    <param name="prbottom" value="14" />
                 </include>
                 <control type="group">
                     <visible>Control.HasFocus($PARAM[id])</visible>
@@ -736,7 +736,7 @@
                 <param name="diffuse" value="diffuse/square-wall.png" />
                 <param name="labelinclude" value="View_517_Wall_Label" />
                 <param name="forced" value="true" />
-                <param name="visible" value="Container.Content(artists) | Container.Content(albums) | Container.Content(games) | Container.Content(programs) | Container.Content(addons) | Container.Content(images) | Container.Content() | Container.Content(files) | Container.Content(favourites) | $EXP[InGameMode]" />
+                <param name="visible" value="Container.Content(artists) | Container.Content(albums) | Container.Content(games) | Container.Content(programs) | Container.Content(addons) | Container.Content(images) | Container.Content() | Container.Content(files) | Container.Content(sets) | Container.Content(favourites) | $EXP[InGameMode]" />
                 <include>View_Vertical_Movement</include>
             </include>
         </control>
@@ -861,6 +861,156 @@
                 <param name="isView2" value="true" />
             </include>
         </control>
+    </include>
+
+    <include name="View_518_Wall_Label">
+        <top>36</top>
+        <include>View_Wall_FlipSides</include>
+        <preloaditems>2</preloaditems>
+        <pagecontrol>60</pagecontrol>
+        <oninfo condition="ListItem.IsCollection">ActivateWindow(1140)</oninfo>
+    </include>
+
+    <include name="View_518_Showcase_Seasons_Info">
+        <definition>
+            <control type="group">
+                <top>-64</top>
+                <right>30</right>
+                <visible>$PARAM[visible]</visible>
+                <control type="image">
+                    <width>360</width>
+                    <top>18</top>
+                    <left>20</left>
+                    <height>80</height>
+                    <aspectratio align="center">keep</aspectratio>
+                    <texture background="true">$VAR[Image_ClearLogo]</texture>
+                </control>
+                <include content="Object_Info_Ratings">
+                    <param name="top" value="18" />
+                    <param name="align" value="right" />
+                    <param name="imdbvotes" value="true" />
+                    <param name="top250" value="true" />
+                    <param name="oscars" value="false" />
+                </include>
+                <control type="group">
+                    <centerleft>50%</centerleft>
+                    <width>1100</width>
+                    <control type="label">
+                        <font>font_topbar</font>
+                        <textcolor>main_fg_100</textcolor>
+                        <align>center</align>
+                        <aligny>top</aligny>
+                        <width>100%</width>
+                        <label>$PARAM[title]</label>
+                    </control>
+                </control>
+                <control type="group">
+                    <top>54</top>
+                    <width>100%</width>
+                    <centerleft>50%</centerleft>
+                    <include condition="!$EXP[InGameMode]" content="Object_Info_Line">
+                        <param name="align" value="center" />
+                        <param name="nextaired" value="false" />
+                        <param name="usealt" value="true" />
+                        <param name="label" value="$INFO[Container($PARAM[id]).ListItem.MPAA]" />
+                        <param name="container" value="Container($PARAM[id])." />
+                    </include>
+                </control>
+            </control>
+        </definition>
+    </include>
+
+    <include name="View_518_Wall_Info_Layout">
+        <top>54</top>
+        <include>View_Wall_FlipSides</include>
+        <preloaditems>2</preloaditems>
+        <pagecontrol>60</pagecontrol>
+        <oninfo condition="ListItem.IsCollection">ActivateWindow(1140)</oninfo>
+    </include>
+
+    <include name="View_518_Wall_Info_3">
+        <param name="id" default="518" />
+        <param name="viewtypename" default="icon" />
+        <param name="visible" default="Container.Content(files) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)" />
+        <definition>
+            <control type="group">
+                <include>View_Group</include>
+                <visible>Control.IsVisible($PARAM[id])</visible>
+                <include content="View_51_Wall_Container">
+                    <param name="id" value="$PARAM[id]" />
+                    <param name="height" value="view_wall_info_height" />
+                    <param name="itemheight" value="item_height_wall_poster" />
+                    <param name="itemwidth" value="item_width_portrait" />
+                    <param name="iconheight" value="item_cardheight_portrait" />
+                    <param name="viewtype" value="Info Wall 3" />
+                    <param name="viewtypename" value="$PARAM[viewtypename]" />
+                    <param name="controllayout" value="View_518_Wall_Info_Layout" />
+                    <param name="forced" value="true" />
+                    <param name="visible" value="$PARAM[visible]" />
+                    <include>View_Vertical_Movement</include>
+                </include>
+                <include content="View_518_Showcase_Seasons_Info">
+                    <param name="visible" value="true" />
+                    <param name="icon" value="$VAR[Image_Landscape]" />
+                    <param name="title" value="$VAR[Label_List_Title]" />
+                    <param name="plot" value="$INFO[ListItem.Plot]" />
+                    <param name="isView2" value="true" />
+                </include>
+                <!-- <control type="label">
+                    <font>font_topbar</font>
+                    <textcolor>main_fg_100</textcolor>
+                    <align>center</align>
+                    <aligny>top</aligny>
+                    <width>100%</width>
+                    <label>$VAR[View_50_Default_View]</label>
+                </control> -->
+            </control>
+        </definition>
+    </include>
+
+    <include name="View_516_Landscape_Info_Layout">
+        <top>64</top>
+        <include>View_Wall_FlipSides</include>
+        <preloaditems>2</preloaditems>
+        <pagecontrol>60</pagecontrol>
+        <oninfo condition="ListItem.IsCollection">ActivateWindow(1140)</oninfo>
+    </include>
+
+    <include name="View_516_Landscape_Info">
+        <param name="id" default="516" />
+        <param name="viewtypename" default="wrap" />
+        <param name="visible" default="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(videos) | Container.Content(files) | $EXP[InGameMode]" />
+        <definition>
+            <control type="group">
+                <include>View_Group</include>
+                <visible>Control.IsVisible($PARAM[id])</visible>
+                <include content="View_51_Flix_Container">
+                    <param name="id" value="$PARAM[id]" />
+                    <param name="height" value="view_landscape_info_height" />
+                    <param name="orientation" value="vertical" />
+                    <param name="controllayout" value="View_516_Landscape_Info_Layout" />
+                    <!-- <param name="labelinclude" value="View_51_Flix_Label" /> -->
+                    <param name="diffuse" value="diffuse/landscape-wall.png" />
+                    <param name="itemwidth" value="item_width_flix_landscape" />
+                    <param name="itemheight" value="item_height_flix_landscape" />
+                    <param name="icon" value="$VAR[Image_Landscape]" />
+                    <param name="iconheight" value="item_iconheight_flix_landscape" />
+                    <param name="visible" value="$PARAM[visible]" />
+                    <param name="viewtype" value="Landscape Info" />
+                    <param name="viewtypename" value="$PARAM[viewtypename]" />
+                    <param name="forced" value="true" />
+                    <movement>0</movement>
+                    <include>View_Vertical_Movement</include>
+                </include>
+                <include content="View_518_Showcase_Seasons_Info">
+                    <param name="visible" value="true" />
+                    <param name="icon" value="$VAR[Image_Landscape]" />
+                    <param name="title" value="$VAR[Label_List_Title]" />
+                    <param name="plot" value="$INFO[ListItem.Plot]" />
+                    <param name="isView2" value="true" />
+                </include>
+            </control>
+        </definition>
     </include>
 
     <include name="View_515_Wall_Landscape_Small">

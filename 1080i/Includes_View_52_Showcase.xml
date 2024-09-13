@@ -186,16 +186,16 @@
 
     <include name="View_52_Showcase_Layout_Standard">
         <top>165</top>
-        <right>-15</right>
-        <left>-15</left>
+        <right>0</right>
+        <left>0</left>
         <preloaditems>2</preloaditems>
         <pagecontrol>62</pagecontrol>
     </include>
 
     <include name="View_52_Showcase_Layout">
         <focusposition>3</focusposition>
-        <movement>3</movement>
-        <animation effect="slide" end="-122.14" condition="Integer.IsEqual(Container.NumAllItems,6) | Integer.IsEqual(Container.NumAllItems,4) | Integer.IsEqual(Container.NumAllItems,2)">Conditional</animation>
+        <movement>4</movement>
+        <animation effect="slide" end="125" condition="Integer.IsEqual(Container.NumAllItems,7) | Integer.IsEqual(Container.NumAllItems,5) | Integer.IsEqual(Container.NumAllItems,3) | Integer.IsEqual(Container.NumAllItems,1)">Conditional</animation>
         <include>View_52_Showcase_Layout_Standard</include>
     </include>
 
@@ -323,7 +323,7 @@
                     <control type="image">
                         <width>480</width>
                         <aspectratio>keep</aspectratio>
-                        <texture background="true">$VAR[Image_ClearLogo]</texture>
+                        <texture background="true">$VAR[Image_TopBar_ClearLogo]</texture>
                     </control>
                 </control>
                 <include content="Flix_Object_Info_Line">
@@ -471,29 +471,36 @@
     </include>
 
     <include name="View_52_Showcase">
-        <control type="group">
-            <include>View_Group</include>
-            <visible>Control.IsVisible(52)</visible>
-            <include content="View_51_Wall_Container">
-                <param name="id" value="52" />
-                <param name="height" value="item_row_height" />
-                <param name="orientation" value="horizontal" />
-                <param name="labelinclude" value="Defs_Null" />
-                <param name="controltype" value="fixedlist" />
-                <param name="controllayout" value="View_52_Showcase_Layout" />
-                <param name="visible" value="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | $EXP[InGameMode]" />
-                <param name="viewtype" value="Poster Showcase" />
-                <param name="viewtypename" value="wrap" />
-                <param name="forced" value="true" />
-                <include>View_Horizontal_Movement</include>
-            </include>
-            <include content="View_52_Showcase_Header">
-                <param name="id" value="52" />
-            </include>
-            <include content="View_52_Showcase_Plot">
-                <param name="id" value="52" />
-            </include>
-        </control>
+        <param name="id" default="52" />
+        <param name="viewtypename" default="wrap" />
+        <param name="visible" default="[Container.Content(movies) | Container.Content(sets) | !$EXP[InGameMode]] + !Container.Content(tvshows) + !Container.Content(seasons)" />
+        <definition>
+            <control type="group">
+                <include>View_Group</include>
+                <visible>Control.IsVisible($PARAM[id])</visible>
+                <include content="View_51_Wall_Container">
+                    <param name="id" value="$PARAM[id]" />
+                    <param name="height" value="item_row_height" />
+                    <param name="itemheight" value="item_height_wall_poster" />
+                    <param name="itemwidth" value="item_width_portrait" />
+                    <param name="iconheight" value="item_cardheight_portrait" />
+                    <param name="orientation" value="horizontal" />
+                    <param name="controltype" value="fixedlist" />
+                    <param name="controllayout" value="View_52_Showcase_Layout" />
+                    <param name="visible" value="$PARAM[visible]" />
+                    <param name="viewtype" value="Poster Showcase" />
+                    <param name="viewtypename" value="$PARAM[viewtypename]" />
+                    <param name="forced" value="true" />
+                    <include>View_Horizontal_Movement</include>
+                </include>
+                <include content="View_52_Showcase_Header">
+                    <param name="id" value="$PARAM[id]" />
+                </include>
+                <include content="View_52_Showcase_Plot">
+                    <param name="id" value="$PARAM[id]" />
+                </include>
+            </control>
+        </definition>
     </include>
 
 
@@ -624,33 +631,38 @@
     </include>
 
     <include name="View_529_Flix_Landscape">
-        <control type="group">
-            <include>View_Group</include>
-            <visible>Control.IsVisible(529)</visible>
-            <include content="View_51_Flix_Container">
-                <param name="id" value="529" />
-                <param name="height" value="item_cast_height" />
-                <param name="orientation" value="horizontal" />
-                <param name="controltype" value="fixedlist" />
-                <param name="controllayout" value="View_52_Showcase_Aura_Layout" />
-                <param name="labelinclude" value="View_51_Flix_Label" />
-                <param name="diffuse" value="diffuse/landscape-wall.png" />
-                <param name="itemwidth" value="450" />
-                <param name="itemheight" value="item_cast_height" />
-                <param name="icon" value="$VAR[Image_Landscape]" />
-                <param name="iconheight" value="254" />
-                <param name="visible" value="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(videos) | Container.Content(files) | $EXP[InGameMode]" />
-                <param name="viewtype" value="Flix Landscape" />
-                <param name="viewtypename" value="wrap" />
-                <param name="forced" value="true" />
-                <movement>3</movement>
-                <include>View_Horizontal_Movement</include>
-            </include>
+        <param name="id" default="529" />
+        <param name="viewtypename" default="wrap" />
+        <param name="visible" default="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(videos) | Container.Content(files) | $EXP[InGameMode]" />
+        <definition>
             <control type="group">
-                <visible>!Container.Content(files)</visible>
-                <include>Flix_View_52_Showcase_Info2</include>
+                <include>View_Group</include>
+                <visible>Control.IsVisible($PARAM[id])</visible>
+                <include content="View_51_Flix_Container">
+                    <param name="id" value="$PARAM[id]" />
+                    <param name="height" value="item_cast_height" />
+                    <param name="orientation" value="horizontal" />
+                    <param name="controltype" value="fixedlist" />
+                    <param name="controllayout" value="View_52_Showcase_Aura_Layout" />
+                    <param name="labelinclude" value="View_51_Flix_Label" />
+                    <param name="diffuse" value="diffuse/landscape-wall.png" />
+                    <param name="itemwidth" value="450" />
+                    <param name="itemheight" value="item_cast_height" />
+                    <param name="icon" value="$VAR[Image_Landscape]" />
+                    <param name="iconheight" value="254" />
+                    <param name="visible" value="$PARAM[visible]" />
+                    <param name="viewtype" value="Flix Landscape" />
+                    <param name="viewtypename" value="$PARAM[viewtypename]" />
+                    <param name="forced" value="true" />
+                    <movement>3</movement>
+                    <include>View_Horizontal_Movement</include>
+                </include>
+                <control type="group">
+                    <visible>!Container.Content(files)</visible>
+                    <include>Flix_View_52_Showcase_Info2</include>
+                </control>
             </control>
-        </control>
+        </definition>
     </include>
 
     <include name="View_521_Showcase_Landscape">
