@@ -448,7 +448,7 @@
                         <height>25%</height>
                         <aspectratio align="center">keep</aspectratio>
                         <texture background="true">$VAR[Image_ClearLogo]</texture>
-                        <visible>String.IsEmpty(ListItem.Art(banner)) + String.IsEmpty(ListItem.Art(tvshow.banner))</visible>
+                        <visible>String.IsEqual(ListItem.DBType,episode)</visible>
                     </control>
                 </itemlayout>
                 <focusedlayout width="item_width_banner" height="item_cardheight_banner" condition="$PARAM[bannercondition]">
@@ -467,7 +467,7 @@
                         <height>28%</height>
                         <aspectratio align="center">keep</aspectratio>
                         <texture background="true">$VAR[Image_ClearLogo]</texture>
-                        <visible>String.IsEmpty(ListItem.Art(banner)) + String.IsEmpty(ListItem.Art(tvshow.banner))</visible>
+                        <visible>String.IsEqual(ListItem.DBType,episode)</visible>
                     </control>
                     <control type="button">
                         <include>Defs_Hidden_Button</include>
@@ -521,6 +521,7 @@
                 <itemlayout width="item_width_portrait" height="item_cardheight_portrait" condition="![$PARAM[titlecardcondition] | $PARAM[iconcondition] | $PARAM[billboardcondition] | $PARAM[landscapecondition] | $PARAM[portraitcondition] | $PARAM[bannercondition]]">
                     <include content="View_51_Wall_Itemlayout">
                         <param name="selectbox" value="false" />
+                        <param name="iconheight" value="100%" />
                         <param name="icon" value="$VAR[Image_Poster]" />
                         <param name="id" value="$PARAM[id]" />
                         <param name="labelinclude" value="$PARAM[labelinclude]" />
@@ -529,6 +530,7 @@
                 <focusedlayout width="item_width_portrait" height="item_cardheight_portrait" condition="![$PARAM[titlecardcondition] | $PARAM[iconcondition] | $PARAM[billboardcondition] | $PARAM[landscapecondition] | $PARAM[portraitcondition] | $PARAM[bannercondition]]">
                     <include content="View_51_Wall_Itemlayout">
                         <param name="selectbox" value="true" />
+                        <param name="iconheight" value="100%" />
                         <param name="icon" value="$VAR[Image_Poster]" />
                         <param name="id" value="$PARAM[id]" />
                         <param name="labelinclude" value="$PARAM[labelinclude]" />
@@ -1128,6 +1130,7 @@
         <param name="imdbvotes" default="true" />
         <param name="top250" default="true" />
         <param name="oscars" default="true" />
+        <param name="align" value="left" />
         <definition>
             <control type="group">
                 <visible>
@@ -1147,7 +1150,7 @@
                     <left>0</left>
                     <include content="Object_Ratings_Content">
                         <param name="colordiffuse" value="$VAR[IconsDiffuse_Var]" />
-                        <param name="align" value="left" />
+                        <param name="align" value="$PARAM[align]" />
                         <param name="imdbvotes" value="$PARAM[imdbvotes]" />
                         <param name="top250" value="$PARAM[top250]" />
                         <param name="oscars" value="$PARAM[oscars]" />
@@ -1381,6 +1384,7 @@
         <param name="container" default="" />
         <param name="uid" default="661" />
         <param name="fullgenre" default="false" />
+        <param name="align" default="left" />
         <definition>
             <control type="grouplist">
                 <height>40</height>
@@ -1389,6 +1393,7 @@
                 <itemgap>0</itemgap>
                 <left>0</left>
                 <right>0</right>
+                <align>$PARAM[align]</align>
                 <!-- First Items -->
                 <!-- Set a fallback so divider is not first item if blank -->
                 <include content="Object_Info_Line_Label">
@@ -1462,7 +1467,7 @@
                     <param name="id" value="$PARAM[uid]05" />
                     <param name="label" value="$INFO[$PARAM[container]ListItem.Duration(mins),, $LOCALIZE[31020]]" />
                     <param name="textcolor" value="$PARAM[textcolor]" />
-                    <param name="visible" value="[String.IsEqual($PARAM[container]ListItem.DBType,movie) | String.IsEqual($PARAM[container]ListItem.DBType,episode)] + [!String.IsEmpty($PARAM[container]ListItem.Duration) + !Integer.IsGreater($PARAM[container]ListItem.Duration(h),0)]" />
+                    <param name="visible" value="[String.IsEqual($PARAM[container]ListItem.DBType,movie) | String.IsEqual($PARAM[container]ListItem.DBType,episode) | String.IsEqual($PARAM[container]ListItem.DBType,musicvideo)] + [!String.IsEmpty($PARAM[container]ListItem.Duration) + !Integer.IsGreater($PARAM[container]ListItem.Duration(h),0)]" />
                 </include>
                 <include content="Object_Info_Line_Label">
                     <param name="id" value="$PARAM[uid]06" />
@@ -2454,6 +2459,9 @@
         <param name="oscars" default="true" />
         <param name="numericstarrating" default="!Skin.HasSetting(DisableStarRating)" />
         <param name="top250" default="true" />
+        <param name="rt_rating" default="ListItem.Property(RottenTomatoes_Rating)" />
+        <param name="imdb_rating" default="ListItem.Rating(imdb)" />
+
         <definition>
             <control type="grouplist">
                 <left>0</left>
@@ -2463,6 +2471,86 @@
                 <itemgap>8</itemgap>
                 <usecontrolcoords>true</usecontrolcoords>
 
+                <control type="label">
+                    <textcolor>main_fg_100</textcolor>
+                    <top>2</top>
+                    <width>auto</width>
+                    <height>28</height>
+                    <align>left</align>
+                    <font>font_tiny</font>
+                    <label>$INFO[Container(99950).ListItem.Property(top250),#,  ]</label>
+                    <visible>String.IsEqual($PARAM[align],Skin.String(right))</visible>
+                    <visible>Integer.IsGreater(Container(99950).ListItem.Property(top250),0)</visible>
+                    <visible>$PARAM[imdb]</visible>
+                    <visible>!Skin.HasSetting(Ratings.IMDB)</visible>
+                    <visible>$PARAM[top250]</visible>
+                    <visible>!Skin.HasSetting(Ratings.Top250)</visible>
+                </control>
+
+                <control type="image">
+                    <top>1</top>
+                    <width>52</width>
+                    <height>32</height>
+                    <texture colordiffuse="$PARAM[colordiffuse]">flags/$PARAM[directory]/ratings/imdb.png</texture>
+                    <visible>!String.IsEmpty($PARAM[imdb_rating])</visible>
+                    <visible>$PARAM[imdb]</visible>
+                    <visible>!Skin.HasSetting(Ratings.IMDB)</visible>
+                </control>
+            
+                <control type="label">
+                    <textcolor>main_fg_100</textcolor>
+                    <top>2</top>
+                    <width>auto</width>
+                    <height>28</height>
+                    <align>right</align>
+                    <font>font_tiny</font>
+                    <label>$INFO[$PARAM[imdb_rating],,   ]</label>
+                    <visible>!String.IsEmpty($PARAM[imdb_rating])</visible>
+                    <visible>$PARAM[imdb]</visible>
+                    <visible>!Skin.HasSetting(Ratings.IMDB)</visible>
+                </control>
+
+                <control type="image">
+                    <width>32</width>
+                    <height>32</height>
+                    <texture colordiffuse="$PARAM[colordiffuse]">flags/$PARAM[directory]/ratings/rtrotten.png</texture>
+                    <visible>!String.IsEmpty($PARAM[rt_rating])</visible>
+                    <visible>Integer.IsGreater($PARAM[rt_rating],0) + !Integer.IsGreater($PARAM[rt_rating],59)</visible>
+                    <visible>$PARAM[rottentomatoes]</visible>
+                    <visible>!Skin.HasSetting(Ratings.RottenTomatoes)</visible>
+                </control>
+
+                <control type="image">
+                    <width>32</width>
+                    <height>32</height>
+                    <texture colordiffuse="$PARAM[colordiffuse]">flags/$PARAM[directory]/ratings/rtfresh.png</texture>
+                    <visible>!String.IsEmpty($PARAM[rt_rating])</visible>
+                    <visible>Integer.IsGreater($PARAM[rt_rating],59) + !Integer.IsGreater($PARAM[rt_rating],74)</visible>
+                    <visible>$PARAM[rottentomatoes]</visible>
+                    <visible>!Skin.HasSetting(Ratings.RottenTomatoes)</visible>
+                </control>
+                <control type="image" description="remove the rtfresh texture line for certified logo">
+                    <width>32</width>
+                    <height>32</height>
+                    <!-- <texture colordiffuse="$PARAM[colordiffuse]">flags/$PARAM[directory]/ratings/rtfresh.png</texture> -->
+                    <texture colordiffuse="$PARAM[colordiffuse]">flags/$PARAM[directory]/ratings/certified.png</texture>
+                    <visible>!String.IsEmpty($PARAM[rt_rating])</visible>
+                    <visible>Integer.IsGreater($PARAM[rt_rating],74)</visible>
+                    <visible>$PARAM[rottentomatoes]</visible>
+                    <visible>!Skin.HasSetting(Ratings.RottenTomatoes)</visible>
+                </control>
+                <control type="label">
+                    <textcolor>main_fg_100</textcolor>
+                    <top>2</top>
+                    <width>auto</width>
+                    <height>28</height>
+                    <align>right</align>
+                    <font>font_tiny</font>
+                    <label>$INFO[$PARAM[rt_rating], ,%   ]</label>
+                    <visible>!String.IsEmpty($PARAM[rt_rating])</visible>
+                    <visible>$PARAM[rottentomatoes]</visible>
+                    <visible>!Skin.HasSetting(Ratings.RottenTomatoes)</visible>
+                </control>
 
                 <control type="image">
                     <top>-17</top>
@@ -2471,6 +2559,7 @@
                     <height>64</height>
                     <texture colordiffuse="main_fg_100">flags/star10.png</texture>
                     <visible>$PARAM[numericstarrating]</visible>
+                    <visible>String.IsEmpty($PARAM[imdb_rating])</visible>
                     <visible>!String.IsEmpty(ListItem.Rating)</visible>
                 </control>
                 <control type="label">
@@ -2481,6 +2570,7 @@
                     <height>28</height>
                     <align>right</align>
                     <font>font_tiny</font>
+                    <visible>String.IsEmpty($PARAM[imdb_rating])</visible>
                     <label>$INFO[ListItem.Rating,,   ]</label>
                     <visible>$PARAM[numericstarrating]</visible>
                     <visible>!String.IsEmpty(ListItem.Rating)</visible>
@@ -2492,6 +2582,7 @@
                     <height>32</height>
                     <texture colordiffuse="main_fg_100">flags/$PARAM[directory]/ratings/user_rating.png</texture>
                     <visible>!Skin.HasSetting(Ratings.User)</visible>
+                    <visible>String.IsEmpty($PARAM[imdb_rating])</visible>
                     <visible>!String.IsEmpty(ListItem.UserRating)</visible>
                 </control>
                 <control type="label">
@@ -2503,6 +2594,7 @@
                     <font>font_tiny</font>
                     <label>$INFO[ListItem.UserRating,,.0   ]</label>
                     <visible>!Skin.HasSetting(Ratings.User)</visible>
+                    <visible>String.IsEmpty($PARAM[imdb_rating])</visible>
                     <visible>!String.IsEmpty(ListItem.UserRating)</visible>
                 </control>
 
@@ -2668,6 +2760,7 @@
                     <width>52</width>
                     <height>32</height>
                     <texture colordiffuse="$PARAM[colordiffuse]">flags/$PARAM[directory]/ratings/imdb.png</texture>
+                    <visible>String.IsEmpty(ListItem.Rating(imdb))</visible>
                     <visible>!String.IsEmpty(Container(99950).ListItem.Property(IMDb_Rating))</visible>
                     <visible>$PARAM[imdb]</visible>
                     <visible>!Skin.HasSetting(Ratings.IMDB)</visible>
@@ -2680,6 +2773,7 @@
                     <align>right</align>
                     <font>font_tiny</font>
                     <label>$INFO[Container(99950).ListItem.Property(IMDb_Rating), ,]$INFO[Container(99950).ListItem.Property(IMDb_Votes), (, $LOCALIZE[205])]</label>
+                    <visible>String.IsEmpty(ListItem.Rating(imdb))</visible>
                     <visible>!String.IsEmpty(Container(99950).ListItem.Property(IMDb_Rating))</visible>
                     <visible>$PARAM[imdb]</visible>
                     <visible>!Skin.HasSetting(Ratings.IMDB)</visible>
@@ -2721,6 +2815,7 @@
                     <align>right</align>
                     <font>font_tiny</font>
                     <label>$INFO[Container(99950).ListItem.Property(top250),#,]</label>
+                    <visible>!String.IsEqual($PARAM[align],Skin.String(right))</visible>
                     <visible>Integer.IsGreater(Container(99950).ListItem.Property(top250),0)</visible>
                     <visible>$PARAM[imdb]</visible>
                     <visible>!Skin.HasSetting(Ratings.IMDB)</visible>
@@ -2996,7 +3091,7 @@
 
     <include name="Object_Scrollbars">
         <include content="Object_Scrollbar_Vert">
-            <param name="visible" value="Control.IsVisible(50) | Control.IsVisible(500) | Control.IsVisible(501) | Control.IsVisible(502) | Control.IsVisible(503) | Control.IsVisible(504) | Control.IsVisible(51) | Control.IsVisible(510) | Control.IsVisible(511) | Control.IsVisible(512) | Control.IsVisible(513) | Control.IsVisible(514) | Control.IsVisible(515) | Control.IsVisible(540) | Control.IsVisible(516) | Control.IsVisible(541)" />
+            <param name="visible" value="Control.IsVisible(50) | Control.IsVisible(58) | Control.IsVisible(500) | Control.IsVisible(501) | Control.IsVisible(502) | Control.IsVisible(503) | Control.IsVisible(504) | Control.IsVisible(51) | Control.IsVisible(510) | Control.IsVisible(511) | Control.IsVisible(512) | Control.IsVisible(513) | Control.IsVisible(514) | Control.IsVisible(515) | Control.IsVisible(540) | Control.IsVisible(516) | Control.IsVisible(518) | Control.IsVisible(541)" />
         </include>
         <include content="Object_Scrollbar_Horz">
             <param name="visible" value="Control.IsVisible(52) | Control.IsVisible(520) | Control.IsVisible(521) | Control.IsVisible(522) | Control.IsVisible(523) | Control.IsVisible(525) | Control.IsVisible(53)" />

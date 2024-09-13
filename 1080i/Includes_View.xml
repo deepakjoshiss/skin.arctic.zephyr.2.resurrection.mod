@@ -1062,7 +1062,7 @@
     </include> -->
 
     <include name="View_WatchedOverlay">
-        <param name="prbottom" default="16"/>
+        <param name="prbottom" default="14"/>
         <definition>
             <control type="group">
                 <visible>!Skin.HasSetting(DisableWatchedOverlay)</visible>
