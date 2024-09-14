@@ -439,7 +439,7 @@
                         <param name="icon" value="$VAR[Image_Landscape]" />
                         <param name="id" value="$PARAM[id]" />
                         <param name="labelinclude" value="Defs_Null" />
-                        <param name="diffuse" value="diffuse/banner-widget.png" />
+                        <param name="diffuse" value="diffuse/landscape-small-wall.png" />
                     </include>
                     <control type="image">
                         <width>50%</width>
@@ -458,7 +458,7 @@
                         <param name="icon" value="$VAR[Image_Landscape]" />
                         <param name="id" value="$PARAM[id]" />
                         <param name="labelinclude" value="Defs_Null" />
-                        <param name="diffuse" value="diffuse/banner-widget.png" />
+                        <param name="diffuse" value="diffuse/landscape-small-wall.png" />
                     </include>
                     <control type="image">
                         <width>55%</width>
@@ -620,6 +620,7 @@
 
     <include name="Object_Codecs">
         <param name="infohide" default="true" />
+        <param name="video_type" default="| String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.DBType,musicvideo)"/>
         <definition>
             <control type="grouplist">
                 <visible>!Skin.HasSetting(DisableCodecs)</visible>
@@ -650,7 +651,7 @@
                     </include>
                     <aspectratio align="left">keep</aspectratio>
                     <texture colordiffuse="main_fg_100">flags/$INFO[Skin.String(Icons)]/other/3D.png</texture>
-                    <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,video)</visible>
+                    <visible>$PARAM[video_type]</visible>
                     <visible>ListItem.IsStereoscopic</visible>
                 </control>
                 <control type="image">
@@ -668,7 +669,7 @@
                     </include>
                     <aspectratio align="left">keep</aspectratio>
                     <texture colordiffuse="main_fg_100">$VAR[Image_VideoPlayer_HDRCodec]</texture>
-                    <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,video)</visible>
+                    <visible>>$PARAM[video_type]</visible>
                     <visible>String.Contains(ListItem.FileNameAndPath,HDR) | String.IsEqual(ListItem.HdrType,hdr10) | String.IsEqual(ListItem.HdrType,dolbyvision) | String.IsEqual(ListItem.HdrType,hlg)</visible>
                 </control>
                 <control type="image" id="77881">
@@ -686,7 +687,7 @@
                     </include>
                     <aspectratio align="left">keep</aspectratio>
                     <texture colordiffuse="main_fg_100">$VAR[Image_RipSource]</texture>
-                    <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,video)</visible>
+                    <visible>>$PARAM[video_type]</visible>
                     <visible>!String.IsEmpty(Control.GetLabel(77881))</visible>
                 </control>
                 <control type="image" id="77882">
@@ -704,7 +705,7 @@
                     </include>
                     <aspectratio>keep</aspectratio>
                     <texture colordiffuse="main_fg_100">flags/$INFO[Skin.String(Icons)]/resolution/$INFO[ListItem.VideoResolution].png</texture>
-                    <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,video)</visible>
+                    <visible>>$PARAM[video_type]</visible>
                     <visible>!String.IsEmpty(Control.GetLabel(77882))</visible>
                 </control>
                 <control type="image" id="77883">
@@ -722,7 +723,7 @@
                     </include>
                     <aspectratio>keep</aspectratio>
                     <texture colordiffuse="main_fg_100">flags/$INFO[Skin.String(Icons)]/source/$INFO[ListItem.VideoCodec].png</texture>
-                    <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,video)</visible>
+                    <visible>>$PARAM[video_type]</visible>
                     <visible>!String.IsEmpty(Control.GetLabel(77883))</visible>
                 </control>
                 <control type="image" id="77884">
@@ -740,7 +741,7 @@
                     </include>
                     <aspectratio>keep</aspectratio>
                     <texture colordiffuse="main_fg_100">flags/$INFO[Skin.String(Icons)]/aspectratio/$INFO[ListItem.VideoAspect].png</texture>
-                    <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,video)</visible>
+                    <visible>>$PARAM[video_type]</visible>
                     <visible>!String.IsEmpty(Control.GetLabel(77884))</visible>
                 </control>
                 <control type="image" id="77885">
@@ -758,7 +759,7 @@
                     </include>
                     <aspectratio>keep</aspectratio>
                     <texture colordiffuse="main_fg_100">$VAR[Image_AudioCodec]</texture>
-                    <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,video)</visible>
+                    <visible>>$PARAM[video_type]</visible>
                     <visible>!String.IsEmpty(Control.GetLabel(77885))</visible>
                 </control>
                 <control type="image" id="77886">
@@ -777,7 +778,7 @@
                     </include>
                     <aspectratio>scale</aspectratio>
                     <texture colordiffuse="main_fg_100">flags/$INFO[Skin.String(Icons)]/channels/$INFO[ListItem.AudioChannels].png</texture>
-                    <visible>String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,video)</visible>
+                    <visible>>$PARAM[video_type]</visible>
                     <visible>!String.IsEmpty(Control.GetLabel(77886))</visible>
                 </control>
             </control>
@@ -1397,11 +1398,18 @@
                 <!-- First Items -->
                 <!-- Set a fallback so divider is not first item if blank -->
                 <include content="Object_Info_Line_Label">
+                    <param name="label" value="Folder" />
+                    <param name="textcolor" value="$PARAM[textcolor]" />
+                    <param name="divider" value="false" />
+                    <param name="fallback" value="N/A" />
+                    <param name="visible" value="$PARAM[container]ListItem.IsFolder" />
+                </include>
+                <include content="Object_Info_Line_Label">
                     <param name="label" value="$INFO[$PARAM[container]ListItem.Year]" />
                     <param name="textcolor" value="$PARAM[textcolor]" />
                     <param name="divider" value="false" />
                     <param name="fallback" value="N/A" />
-                    <param name="visible" value="!String.IsEqual($PARAM[container]ListItem.DBType,set) + !String.IsEqual($PARAM[container]ListItem.DBType,artist) + !String.IsEqual($PARAM[container]ListItem.DBType,album) + !String.IsEqual($PARAM[container]ListItem.DBType,song) + [!String.IsEqual($PARAM[container]ListItem.DBType,episode) | String.IsEmpty($PARAM[container]ListItem.Premiered)]" />
+                    <param name="visible" value="!$PARAM[container]ListItem.IsFolder + !String.IsEqual($PARAM[container]ListItem.DBType,set) + !String.IsEqual($PARAM[container]ListItem.DBType,artist) + !String.IsEqual($PARAM[container]ListItem.DBType,album) + !String.IsEqual($PARAM[container]ListItem.DBType,song) + [!String.IsEqual($PARAM[container]ListItem.DBType,episode) | String.IsEmpty($PARAM[container]ListItem.Premiered)]" />
                 </include>
                 <include content="Object_Info_Line_Label">
                     <param name="label" value="$INFO[$PARAM[container]ListItem.Premiered]" />
@@ -1461,7 +1469,7 @@
                     <param name="id" value="$PARAM[uid]04" />
                     <param name="label" value="$INFO[$PARAM[container]ListItem.Duration(h),, $LOCALIZE[31036] ]$INFO[$PARAM[container]ListItem.Duration(mm),, $LOCALIZE[31020]]" />
                     <param name="textcolor" value="$PARAM[textcolor]" />
-                    <param name="visible" value="[String.IsEqual($PARAM[container]ListItem.DBType,movie) | String.IsEqual($PARAM[container]ListItem.DBType,episode)] + [!String.IsEmpty($PARAM[container]ListItem.Duration) + Integer.IsGreater($PARAM[container]ListItem.Duration(h),0)]" />
+                    <param name="visible" value="[String.IsEqual($PARAM[container]ListItem.DBType,movie) | String.IsEqual($PARAM[container]ListItem.DBType,episode) | String.IsEqual($PARAM[container]ListItem.DBType,musicvideo)] + [!String.IsEmpty($PARAM[container]ListItem.Duration) + Integer.IsGreater($PARAM[container]ListItem.Duration(h),0)]" />
                 </include>
                 <include content="Object_Info_Line_Label">
                     <param name="id" value="$PARAM[uid]05" />
@@ -1473,7 +1481,7 @@
                     <param name="id" value="$PARAM[uid]06" />
                     <param name="label" value="$INFO[$PARAM[container]ListItem.EndTime,$LOCALIZE[31106],]" />
                     <param name="textcolor" value="$PARAM[textcolor]" />
-                    <param name="visible" value="[String.IsEqual($PARAM[container]ListItem.DBType,movie) | String.IsEqual($PARAM[container]ListItem.DBType,episode)] + [!String.IsEmpty($PARAM[container]ListItem.EndTime) + !String.IsEqual($PARAM[container]ListItem.EndTime,System.Time)]" />
+                    <param name="visible" value="[String.IsEqual($PARAM[container]ListItem.DBType,movie) | String.IsEqual($PARAM[container]ListItem.DBType,episode) | String.IsEqual($PARAM[container]ListItem.DBType,musicvideo)] + [!String.IsEmpty($PARAM[container]ListItem.EndTime) + !String.IsEqual($PARAM[container]ListItem.EndTime,System.Time)]" />
                 </include>
                 <include content="Object_Info_Line_Label">
                     <param name="id" value="$PARAM[uid]07" />

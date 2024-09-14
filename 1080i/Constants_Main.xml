@@ -33,16 +33,13 @@
     <constant name="item_cardheight_portrait">315</constant>
 
     <!-- Landscape -->
-    <constant name="item_height_Landscape">292</constant>
+    <constant name="item_height_Landscape">282</constant>
     <constant name="item_width_smalllandscape">400</constant>
-    <constant name="item_iconheight_smalllandscape">210</constant>
-    <constant name="item_cardheight_smalllandscape">280</constant>
+    <constant name="item_iconheight_smalllandscape">200</constant>
+    <constant name="item_cardheight_smalllandscape">270</constant>
     
     <!-- Landscape flix info -->
-    <constant name="item_height_flix_landscape">326</constant>
-    <constant name="item_width_flix_landscape">443</constant>
-    <constant name="item_iconheight_flix_landscape">262.3</constant>
-
+    <constant name="item_height_flix_landscape">280</constant>
     <!-- Banner -->    
     <constant name="item_height_Banner">226.5</constant>
     <constant name="item_width_banner">358</constant>
