@@ -76,17 +76,17 @@
             <visible>!Control.HasFocus(300) | Window.IsVisible(SettingsCategory.xml) | Window.IsVisible(SettingsProfile.xml) | Window.IsVisible(SkinSettings.xml) | Window.IsVisible(eventlog) | Window.IsVisible(SettingsSystemInfo.xml)</visible>
             <visible>!Skin.HasSetting(EnableClearlogo)</visible>
         </control>
-        <control type="label">
+        <!-- <control type="label">
             <aligny>center</aligny>
             <align>center</align>
-            <font>font_byline</font>
+            <font>font_statusbar</font>
             <width>1200</width>
             <centerleft>30%</centerleft>
             <textcolor>$PARAM[fgcolor]_70</textcolor>
-            <label>$INFO[Container.Content]</label>
+            <label>$INFO[Container.Content] > $INFO[ListItem.DBType]</label>
             <include>Animation_FadeInOut</include>
             <visible>!Control.HasFocus(300) | Window.IsVisible(SettingsCategory.xml) | Window.IsVisible(SettingsProfile.xml) | Window.IsVisible(SkinSettings.xml) | Window.IsVisible(eventlog) | Window.IsVisible(SettingsSystemInfo.xml)</visible>
-        </control>
+        </control> -->
         <control type="label">
             <visible>$PARAM[visible]</visible>
             <visible>!Skin.HasSetting(DisableCenter)</visible>

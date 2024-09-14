@@ -327,7 +327,7 @@
         <definition>
             <control type="group">
                 <right>0</right>
-                <animation effect="zoom" time="350" end="110,110" center="120,120" ease="inout" condition="Skin.HasSetting(EnableZoomOnHover)">Focus</animation>
+                <animation effect="zoom" time="120" end="104,104" center="120,120" ease="inout" condition="Skin.HasSetting(EnableZoomOnHover)">Focus</animation>
                 <control type="group">
                     <height>$PARAM[iconheight]</height>
                     <include condition="$PARAM[circle]" content="View_51_Wall_Circle">
@@ -387,8 +387,10 @@
                         <param name="selectbox" value="$PARAM[selectbox]" />
                     </include>
 
+                    <include content="View_Folder_Overlay_Icon"/>
+
                     <include condition="!$PARAM[circle]" content="View_WatchedOverlay">
-                        <param name="prbottom" value="16" />
+                        <param name="prbottom" value="15" />
                     </include>
                     
                     <control type="group">
@@ -536,8 +538,11 @@
                         <visible>String.IsEqual(ListItem.DBType,country) | String.IsEqual(ListItem.DBType,director) | String.IsEqual(ListItem.DBType,year) | [String.IsEmpty(ListItem.DBType) + String.IsEmpty(ListItem.Icon)]</visible>
                     </control>
                 </control>
+                
+                <include content="View_Folder_Overlay_Icon"/>
+
                 <include content="View_WatchedOverlay">
-                    <param name="prbottom" value="14" />
+                    <param name="prbottom" value="15" />
                 </include>
                 <control type="group">
                     <visible>Control.HasFocus($PARAM[id])</visible>
@@ -928,7 +933,7 @@
         <oninfo condition="ListItem.IsCollection">ActivateWindow(1140)</oninfo>
     </include>
 
-    <include name="View_518_Wall_Info_3">
+    <include name="View_518_Poster_Info">
         <param name="id" default="518" />
         <param name="viewtypename" default="icon" />
         <param name="visible" default="Container.Content(files) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)" />
@@ -942,7 +947,7 @@
                     <param name="itemheight" value="item_height_wall_poster" />
                     <param name="itemwidth" value="item_width_portrait" />
                     <param name="iconheight" value="item_cardheight_portrait" />
-                    <param name="viewtype" value="Info Wall 3" />
+                    <param name="viewtype" value="Poster Info" />
                     <param name="viewtypename" value="$PARAM[viewtypename]" />
                     <param name="controllayout" value="View_518_Wall_Info_Layout" />
                     <param name="forced" value="true" />
@@ -970,6 +975,8 @@
 
     <include name="View_516_Landscape_Info_Layout">
         <top>64</top>
+        <left>-15</left>
+        <right>-15</right>
         <include>View_Wall_FlipSides</include>
         <preloaditems>2</preloaditems>
         <pagecontrol>60</pagecontrol>
@@ -979,22 +986,22 @@
     <include name="View_516_Landscape_Info">
         <param name="id" default="516" />
         <param name="viewtypename" default="wrap" />
-        <param name="visible" default="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(videos) | Container.Content(files) | $EXP[InGameMode]" />
+        <param name="visible" default="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(videos) | Container.Content(files) | Container.Content(musicvideos) | $EXP[InGameMode]" />
         <definition>
             <control type="group">
                 <include>View_Group</include>
                 <visible>Control.IsVisible($PARAM[id])</visible>
-                <include content="View_51_Flix_Container">
+                <include content="View_51_Wall_Container">
                     <param name="id" value="$PARAM[id]" />
                     <param name="height" value="view_landscape_info_height" />
                     <param name="orientation" value="vertical" />
                     <param name="controllayout" value="View_516_Landscape_Info_Layout" />
                     <!-- <param name="labelinclude" value="View_51_Flix_Label" /> -->
-                    <param name="diffuse" value="diffuse/landscape-wall.png" />
-                    <param name="itemwidth" value="item_width_flix_landscape" />
+                    <param name="diffuse" value="diffuse/landscape-small-wall.png" />
+                    <param name="itemwidth" value="item_width_banner" />
                     <param name="itemheight" value="item_height_flix_landscape" />
                     <param name="icon" value="$VAR[Image_Landscape]" />
-                    <param name="iconheight" value="item_iconheight_flix_landscape" />
+                    <param name="iconheight" value="item_cardheight_banner" />
                     <param name="visible" value="$PARAM[visible]" />
                     <param name="viewtype" value="Landscape Info" />
                     <param name="viewtypename" value="$PARAM[viewtypename]" />

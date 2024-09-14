@@ -1061,6 +1061,29 @@
         </control>
     </include> -->
 
+    <include name="View_Folder_Overlay_Icon">
+        <param name="pad" default="8"/>
+        <definition>
+            <control type="group">
+                <width>40</width>
+                <height>40</height>
+                <left>20</left>
+                <top>20</top>
+                <visible>ListItem.IsFolder + String.IsEqual(ListItem.DBType,video) </visible>
+                <control type="image">
+                    <texture colordiffuse="50000000">indicator/circle-fo.png</texture>
+                </control>
+                <control type="image">
+                    <left>$PARAM[pad]</left>
+                    <top>$PARAM[pad]</top>
+                    <right>$PARAM[pad]</right>
+                    <bottom>$PARAM[pad]</bottom>
+                    <texture colordiffuse="ddffffff">indicator/folder.png</texture>
+                </control>
+            </control>
+        </definition>
+    </include>
+
     <include name="View_WatchedOverlay">
         <param name="prbottom" default="14"/>
         <definition>
@@ -1071,7 +1094,7 @@
                     <centerleft>50%</centerleft>
                     <left>22</left>
                     <right>22</right>
-                    <height>2</height>
+                    <height>2.5</height>
                     <bottom>$PARAM[prbottom]</bottom>
                     <reveal>true</reveal>
                     <info>ListItem.PercentPlayed</info>
@@ -1081,8 +1104,8 @@
                     <midtexture colordiffuse="$VAR[ColorHighlight]">osd/progress-bg.png</midtexture>
                 </control>
                 <control type="image">
-                    <top>15</top>
-                    <right>15</right>
+                    <top>14</top>
+                    <right>14</right>
                     <width>64</width>
                     <height>64</height>
                     <texture colordiffuse="77000000">$VAR[Image_Overlay_Corner]</texture>
