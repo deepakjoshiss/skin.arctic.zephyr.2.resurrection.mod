@@ -298,6 +298,8 @@
                 <param name="id" value="$PYTHON[int(mainmenuid)]$PYTHON[int(id) + 3100]" />
                 <param name="label" value="$SKINSHORTCUTS[widgetName]" />
                 <param name="spinner-visible" value="true" />
+                <param name="font-bold" value="font_statusbar_bold" />
+                <param name="font" value="font_statusbar" />
                 <visible>String.IsEqual(Container(301).ListItem.Property(id),$SKINSHORTCUTS[mainmenuid])</visible>
                 <onfocus>SetProperty(widgetMovementId,$PYTHON[int(id)],Home)</onfocus>
                 <animation effect="fade" start="100" end="0" time="300" reversible="true" easing="inout" condition="Integer.IsGreater(Window(home).Property(widgetMovementId),$PYTHON[int(id)]) + Skin.HasSetting(HomeMultiFlixView)">Conditional</animation>

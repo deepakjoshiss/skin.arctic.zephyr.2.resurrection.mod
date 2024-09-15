@@ -11,10 +11,10 @@
         <param name="fgcolor" default="main_fg" />
         <definition>
             <control type="group">
-                <top>10</top>
+                <top>4</top>
                 <include condition="$PARAM[info_hide]">Defs_InfoDialog_Visible</include>
                 <control type="group">
-                    <height>120</height>
+                    <height>100</height>
                     <visible allowhiddenfocus="true">!$EXP[Exp_ShowPlotOverlay]</visible>
                     <include>Animation_FadeInOut</include>
                     <include content="Topbar_Left">

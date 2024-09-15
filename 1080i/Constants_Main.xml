@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
     <constant name="view_pad">80</constant>
-    <constant name="view_top">180</constant>
+    <constant name="view_top">168</constant>
     <constant name="view_bottom">92</constant>
     <constant name="view_height">825</constant>
     <constant name="view_poster_height">810</constant>
@@ -20,6 +20,8 @@
 
     <!-- Item Configuration -->
     <!-- Main Heights -->
+    <constant name="view_height_multi_vertical">880</constant>
+    <constant name="view_height_multi_horizontal">860</constant>
     <constant name="view_wall_info_height">770</constant>
     <constant name="view_landscape_info_height">750</constant>
     <constant name="item_icon_height">350</constant>
