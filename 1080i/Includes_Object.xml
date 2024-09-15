@@ -1141,8 +1141,8 @@
                 [!String.IsEmpty(Container(99950).ListItem.Property(Trakt_Rating)) + !Skin.HasSetting(Ratings.Trakt)] |
                 [!String.IsEmpty(Container(99950).ListItem.Property(TMDb_Rating)) + !Skin.HasSetting(Ratings.TheMovieDB)] |
                 [!String.IsEmpty(Container(99950).ListItem.Property(Metacritic_Rating)) + !Skin.HasSetting(Ratings.Metacritic)] |
-                [!String.IsEmpty(Container(99950).ListItem.Property(RottenTomatoes_UserMeter)) + !Skin.HasSetting(Ratings.RottenTomatoes)] |
-                [!String.IsEmpty(Container(99950).ListItem.Property(IMDb_Rating)) + [!Skin.HasSetting(Ratings.IMDB) | !Skin.HasSetting(Ratings.IMDB.Votes)]]
+                [[!String.IsEmpty(Container(99950).ListItem.Property(RottenTomatoes_UserMeter)) | !String.IsEmpty(ListItem.Property(RottenTomatoes_Rating))] + !Skin.HasSetting(Ratings.RottenTomatoes)] |
+                [[!String.IsEmpty(Container(99950).ListItem.Property(IMDb_Rating)) |  !String.IsEmpty(ListItem.Rating(imdb))] + [!Skin.HasSetting(Ratings.IMDB) | !Skin.HasSetting(Ratings.IMDB.Votes)]]
                 </visible>
                 <top>$PARAM[top]</top>
                 <height>75</height>

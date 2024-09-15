@@ -427,9 +427,11 @@
         <param name="altid" default="999999" />
         <param name="uselabel2" default="false" />
         <param name="spinner-visible" default="true" />
+        <param name="font-bold" default="font_tiny_bold" />
+        <param name="font" default="font_tiny" />
         <definition>
             <control type="group" id="$PARAM[groupid]">
-                <top>52</top>
+                <top>46</top>
                 <height>52</height>
                 <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,0) | Container($PARAM[id]).IsUpdating</visible>
                 <nested />
@@ -445,7 +447,7 @@
                         <label>$PARAM[label]</label>
                         <aligny>center</aligny>
                         <textcolor>main_fg_100</textcolor>
-                        <font>font_tiny_bold</font>
+                        <font>$PARAM[font-bold]</font>
                         <height>24</height>
                         <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,0) | Container($PARAM[id]).IsUpdating</visible>
                         <visible>Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])</visible>
@@ -461,7 +463,7 @@
                             <param name="alt" value="main_fg_70" />
                             <param name="usealt" value="Skin.HasSetting(EnableHighContrastWidgetText)" />
                         </include>
-                        <font>font_tiny_bold</font>
+                        <font>$PARAM[font-bold]</font>
                         <height>24</height>
                         <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,0) | Container($PARAM[id]).IsUpdating</visible>
                         <visible>![Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])]</visible>
@@ -472,7 +474,7 @@
                         <label>|</label>
                         <aligny>center</aligny>
                         <textcolor>$VAR[ColorHighlight]</textcolor>
-                        <font>font_tiny_bold</font>
+                        <font>$PARAM[font-bold]</font>
                         <height>24</height>
                         <visible>Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])</visible>
                         <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Label)</visible>
@@ -485,7 +487,7 @@
                         <label>$INFO[Container($PARAM[id]).ListItem.Label]</label>
                         <aligny>center</aligny>
                         <textcolor>main_fg_100</textcolor>
-                        <font>font_tiny</font>
+                        <font>$PARAM[font]</font>
                         <height>24</height>
                         <visible>Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])</visible>
                         <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,0) + !Container($PARAM[id]).IsUpdating</visible>
@@ -500,7 +502,7 @@
                         <label>$INFO[Container($PARAM[id]).ListItem.Year, (,)]</label>
                         <aligny>center</aligny>
                         <textcolor>main_fg_100</textcolor>
-                        <font>font_tiny</font>
+                        <font>$PARAM[font]</font>
                         <height>24</height>
                         <visible>Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])</visible>
                         <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,0) + !Container($PARAM[id]).IsUpdating</visible>
@@ -525,7 +527,7 @@
                         <label>$INFO[Container($PARAM[id]).ListItem.TvShowTitle,, - ]$INFO[Container($PARAM[id]).ListItem.Label]</label>
                         <aligny>center</aligny>
                         <textcolor>main_fg_100</textcolor>
-                        <font>font_tiny</font>
+                        <font>$PARAM[font]</font>
                         <height>24</height>
                         <visible>Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])</visible>
                         <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,0) + !Container($PARAM[id]).IsUpdating</visible>
@@ -539,7 +541,7 @@
                         <label>$INFO[Container($PARAM[id]).ListItem.ChannelName]$INFO[Container($PARAM[id]).ListItem.Title, - ,]$INFO[Container($PARAM[id]).ListItem.StartTime, - ,]$INFO[Container($PARAM[id]).ListItem.EndTime, - ,]</label>
                         <aligny>center</aligny>
                         <textcolor>main_fg_100</textcolor>
-                        <font>font_tiny</font>
+                        <font>$PARAM[font]</font>
                         <height>24</height>
                         <visible>Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])</visible>
                         <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,0) + !Container($PARAM[id]).IsUpdating</visible>
@@ -552,7 +554,7 @@
                         <label>$PARAM[label2]</label>
                         <aligny>center</aligny>
                         <textcolor>main_fg_100</textcolor>
-                        <font>font_tiny</font>
+                        <font>$PARAM[font]</font>
                         <height>24</height>
                         <visible>Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])</visible>
                         <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,0) + !Container($PARAM[id]).IsUpdating</visible>
@@ -1074,10 +1076,7 @@
                     <texture colordiffuse="50000000">indicator/circle-fo.png</texture>
                 </control>
                 <control type="image">
-                    <left>$PARAM[pad]</left>
-                    <top>$PARAM[pad]</top>
-                    <right>$PARAM[pad]</right>
-                    <bottom>$PARAM[pad]</bottom>
+                    <bordersize>$PARAM[pad]</bordersize>
                     <texture colordiffuse="ddffffff">indicator/folder.png</texture>
                 </control>
             </control>
@@ -1101,7 +1100,7 @@
                     <texturebg colordiffuse="44ffffff">osd/progress-bg.png</texturebg>
                     <lefttexture />
                     <righttexture />
-                    <midtexture colordiffuse="$VAR[ColorHighlight]">osd/progress-bg.png</midtexture>
+                    <midtexture colordiffuse="$VAR[ColorHighlightOverlay]">osd/progress-bg.png</midtexture>
                 </control>
                 <control type="image">
                     <top>14</top>
@@ -1210,7 +1209,7 @@
 
     <include name="View_Selectbox_Bold">
         <param name="overlay" default="false" />
-        <param name="pad" default="-7" />
+        <param name="pad" default="-7.5" />
         <param name="colordiffuse" default="$VAR[ColorHighlight]" />
         <param name="focusbounce" default="true" />
         <definition>
