@@ -65,7 +65,7 @@
     </variable>
 
     <variable name="Label_TitelcardWidget_Label">
-        <value condition="!String.IsEmpty(ListItem.TvShowTitle) + !String.IsEqual(ListItem.Label,ListItem.TvShowTitle)">$INFO[ListItem.TvShowTitle] $VAR[Label_SeasonEpisodeLabel] - $INFO[ListItem.Label]</value>
+        <value condition="!String.IsEmpty(ListItem.TvShowTitle) + !String.IsEqual(ListItem.Label,ListItem.TvShowTitle)">$INFO[ListItem.TvShowTitle,, : ]$VAR[Label_List_Left] - $INFO[ListItem.Title]</value>
         <value condition="!String.IsEqual(ListItem.DBType,episode) + !String.IsEmpty(ListItem.Year)">$INFO[ListItem.Label] $INFO[ListItem.Year, (,)]</value>
         <value condition="!String.IsEmpty(ListItem.Artist) + !String.IsEqual(ListItem.Label,ListItem.Artist)">$INFO[ListItem.Artist] - $INFO[ListItem.Label]</value>
         <value>$INFO[ListItem.Label]</value>

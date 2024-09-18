@@ -1511,6 +1511,21 @@
                 <onclick>ActivateWindow(125)</onclick>
             </item>
             <item>
+                <icon/>
+                <label>297</label>
+                <onclick>audiodelay</onclick>
+            </item>
+            <item>
+                <icon/>
+                <label>22006</label>
+                <onclick>subtitledelay</onclick>
+            </item>
+            <item>
+                <icon />
+                <label>Player process info</label>
+                <onclick>ActivateWindow(playerprocessinfo)</onclick>
+            </item>
+            <item>
                 <icon />
                 <label>$LOCALIZE[13395]</label>
                 <onclick>ActivateWindow(osdvideosettings)</onclick>
@@ -1525,17 +1540,6 @@
                 <label>$LOCALIZE[31408]</label>
                 <onclick>ActivateWindow(osdsubtitlesettings)</onclick>
             </item>
-            <item>
-                <icon/>
-                <label>297</label>
-                <onclick>audiodelay</onclick>
-            </item>
-            <item>
-                <icon/>
-                <label>22006</label>
-                <onclick>subtitledelay</onclick>
-            </item>
-            
         </content>
     </include>
 
@@ -2454,6 +2458,12 @@
             <label>$LOCALIZE[30064]</label>
             <include>Dialog_Standard_Button</include>
             <onclick>Skin.SetString(OSD_Timeout,$LOCALIZE[30064])</onclick>
+            <onclick>Dialog.Close(1150)</onclick>
+        </control>
+        <control type="button" id="9010">
+            <label>4 Seconds</label>
+            <include>Dialog_Standard_Button</include>
+            <onclick>Skin.SetString(OSD_Timeout,4 Seconds)</onclick>
             <onclick>Dialog.Close(1150)</onclick>
         </control>
         <control type="button" id="9003">

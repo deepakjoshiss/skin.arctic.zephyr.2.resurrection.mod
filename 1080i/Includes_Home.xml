@@ -1171,7 +1171,7 @@
 
                             <itemlayout width="257.14" height="item_list_height" condition="Skin.HasSetting(HomeIcons) + !Skin.HasSetting(VerticalIconsOnly)">
                                 <control type="image">
-                                    <centertop>53%</centertop>
+                                    <centertop>48%</centertop>
                                     <height>64</height>
                                     <right>0</right>
                                     <aspectratio>keep</aspectratio>
@@ -1179,30 +1179,52 @@
                                     <texture colordiffuse="main_fg_30">$INFO[ListItem.Icon]</texture>
                                 </control>
                                 <control type="label">
+                                    <centertop>48%</centertop>
                                     <right>80</right>
                                     <font>font_topbar_small</font>
                                     <align>right</align>
                                     <aligny>center</aligny>
                                     <textcolor>main_fg_30</textcolor>
-                                    <label>$INFO[ListItem.Label]</label>
+                                    <label>[UPPERCASE]$INFO[ListItem.Label][/UPPERCASE]</label>
                                 </control>
                             </itemlayout>
                             <focusedlayout width="257.14" height="item_list_height" condition="Skin.HasSetting(HomeIcons) + !Skin.HasSetting(VerticalIconsOnly)">
                                 <control type="image">
-                                    <centertop>53%</centertop>
+                                    <animation type="Focus">
+                                        <effect type="zoom" time="100" start="92,92" end="100,100" center="210,110" ease="inout" />
+                                        <effect type="fadediffuse" time="140" start="main_fg_30" end="main_fg_100" ease="in" />
+                                    </animation>
+                                    <centertop>48%</centertop>
                                     <height>64</height>
                                     <right>0</right>
                                     <aspectratio>keep</aspectratio>
                                     <width>item_list_height</width>
                                     <texture colordiffuse="main_fg_100">$INFO[ListItem.Icon]</texture>
                                 </control>
-                                <control type="label">
-                                    <right>80</right>
-                                    <font>font_topbar</font>
+                                <control type="grouplist">
+                                    <animation type="Focus">
+                                        <effect type="zoom" time="100" start="92,92" end="100,100" center="210,110" ease="inout" />
+                                        <effect type="fadediffuse" time="140" start="main_fg_30" end="main_fg_100" ease="in" />
+                                    </animation>
+                                    <orientation>horizontal</orientation>
+                                    
+                                    <width>100%</width>
                                     <align>right</align>
-                                    <aligny>center</aligny>
-                                    <textcolor>main_fg_100</textcolor>
-                                    <label>$INFO[ListItem.Label]</label>
+                                    <centertop>48%</centertop>
+                                    <height>64</height>
+                                    <right>23</right>
+                                    <itemgap>0</itemgap>
+                                    <usecontrolcoords>true</usecontrolcoords>
+                                    <control type="button">
+                                        <font>font_topbar_medium</font>
+                                        <width>auto</width>
+                                        <textcolor>main_fg_100</textcolor>
+                                        <label>[UPPERCASE]$INFO[ListItem.Label][/UPPERCASE]       </label>
+                                        <textoffsetx>0</textoffsetx>
+                                        <texturenofocus border="8" colordiffuse="$VAR[ColorHighlight]">common/underline.png</texturenofocus>
+                                        <!-- <texturefocus colordiffuse="$VAR[ColorHighlight]">common/white.png</texturefocus> -->
+                                    </control>
+
                                 </control>
                             </focusedlayout>
 

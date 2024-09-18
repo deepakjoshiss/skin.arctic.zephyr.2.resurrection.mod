@@ -228,6 +228,7 @@
         <definition>
             <control type="group">
                 <right>0</right>
+                <animation effect="zoom" time="120" end="104,104" center="120,120" ease="inout" condition="Skin.HasSetting(EnableZoomOnHover)">Focus</animation>
                 <control type="group">
                     <height>$PARAM[iconheight]</height>
                     <include condition="$PARAM[circle]" content="View_51_Wall_Circle">
@@ -322,7 +323,7 @@
         <param name="aspectratio" default="scale" />
         <param name="clearlogo" default="false" />
         <param name="circle" default="false" />
-        <param name="diffuse" default="diffuse/poster-wall.png" />
+        <param name="diffuse" default="diffuse/portrait.png" />
         <param name="title" default="$INFO[ListItem.Label]" />
         <definition>
             <control type="group">
@@ -460,6 +461,7 @@
             <control type="group">
                 <right>0</right>
                 <height>$PARAM[iconheight]</height>
+                <animation effect="zoom" time="120" end="104,104" center="120,120" ease="inout" condition="Skin.HasSetting(EnableZoomOnHover)">Focus</animation>
                 <include content="Object_Geometric">
                     <param name="diffuse" value="$PARAM[diffuse]" />
                 </include>
@@ -901,7 +903,7 @@
                     <centerleft>50%</centerleft>
                     <width>1100</width>
                     <control type="label">
-                        <font>font_topbar</font>
+                        <font>font_topbar_medium</font>
                         <textcolor>main_fg_100</textcolor>
                         <align>center</align>
                         <aligny>top</aligny>
@@ -917,6 +919,7 @@
                         <param name="align" value="center" />
                         <param name="nextaired" value="false" />
                         <param name="usealt" value="true" />
+                        <param name="textcolor" value="main_fg_90" />
                         <param name="label" value="$INFO[Container($PARAM[id]).ListItem.MPAA]" />
                         <param name="container" value="Container($PARAM[id])." />
                     </include>
@@ -997,7 +1000,7 @@
                     <param name="orientation" value="vertical" />
                     <param name="controllayout" value="View_516_Landscape_Info_Layout" />
                     <!-- <param name="labelinclude" value="View_51_Flix_Label" /> -->
-                    <param name="diffuse" value="diffuse/landscape-small-wall.png" />
+                    <param name="diffuse" value="diffuse/icon-wall.png" />
                     <param name="itemwidth" value="item_width_banner" />
                     <param name="itemheight" value="item_height_flix_landscape" />
                     <param name="icon" value="$VAR[Image_Landscape]" />

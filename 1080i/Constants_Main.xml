@@ -26,7 +26,7 @@
     <constant name="view_landscape_info_height">750</constant>
     <constant name="item_icon_height">350</constant>
 
-    <!-- Portrait -->
+    <!-- Portrait (Poster is 190 x 285) -->
     <constant name="item_height_Poster">327</constant>
     <constant name="item_height_Portrait">327</constant>
     <constant name="item_height_wall_poster">392</constant>

@@ -45,7 +45,7 @@
             <control type="label">
                 <aligny>center</aligny>
                 <width max="1140">auto</width>
-                <font>font_topbar</font>
+                <font>font_topbar_medium</font>
                 <textcolor>$PARAM[fgcolor]_70</textcolor>
                 <label>$VAR[Label_Header_Content]</label>
                 <visible>!Control.HasFocus(300) | Window.IsVisible(SettingsCategory.xml) | Window.IsVisible(SettingsProfile.xml) | Window.IsVisible(SkinSettings.xml) | Window.IsVisible(eventlog) | Window.IsVisible(SettingsSystemInfo.xml)</visible>
@@ -53,7 +53,7 @@
             <control type="label">
                 <aligny>center</aligny>
                 <width max="1140">auto</width>
-                <font>font_topbar</font>
+                <font>font_topbar_medium</font>
                 <textcolor>$PARAM[fgcolor]_70</textcolor>
                 <label>$INFO[Container(300).ListItem.Label]</label>
                 <visible>Control.HasFocus(300) + ![Window.IsVisible(SettingsCategory.xml) | Window.IsVisible(SettingsProfile.xml) | Window.IsVisible(SkinSettings.xml) | Window.IsVisible(eventlog) | Window.IsVisible(SettingsSystemInfo.xml)]</visible>
