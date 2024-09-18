@@ -261,27 +261,25 @@
                 <orientation>horizontal</orientation>
 
                 <itemlayout width="item_width_portrait" height="item_cardheight_portrait" condition="$PARAM[portraitcondition]">
-                    <include content="View_512_Wall_Itemlayout">
+                    <include content="View_51_Wall_Itemlayout">
                         <param name="aspectratio" value="scale" />
                         <param name="iconheight" value="100%" />
                         <param name="icononlyheight" value="item_iconheight_portrait" />
                         <param name="textfade_end" value="$VAR[Defs_WidgetTextContrast_End]" />
                         <param name="textfade_start" value="$VAR[Defs_WidgetTextContrast_Start]" />
                         <param name="selectbox" value="false" />
-                        <param name="diffuse" value="diffuse/square-wall.png" />
                         <param name="icon" value="$VAR[Image_Poster]" />
                         <param name="id" value="$PARAM[id]" />
                         <param name="labelinclude" value="$PARAM[squarelabelinclude]" />
                     </include>
                 </itemlayout>
                 <focusedlayout width="item_width_portrait" height="item_cardheight_portrait" condition="$PARAM[portraitcondition]">
-                    <include content="View_512_Wall_Itemlayout">
+                    <include content="View_51_Wall_Itemlayout">
                         <param name="selectbox" value="true" />
                         <param name="aspectratio" value="scale" />
                         <param name="iconheight" value="100%" />
                         <param name="icononlyheight" value="item_iconheight_portrait" />
                         <param name="textfade_start" value="$VAR[Defs_WidgetTextContrast_Start]" />
-                        <param name="diffuse" value="diffuse/square-wall.png" />
                         <param name="icon" value="$VAR[Image_Poster]" />
                         <param name="id" value="$PARAM[id]" />
                         <param name="labelinclude" value="$PARAM[squarelabelinclude]" />
@@ -299,9 +297,8 @@
                     </control>
                 </focusedlayout>
 
-
                 <itemlayout width="item_width_icon" height="item_cardheight_icon" condition="$PARAM[iconcondition]">
-                    <include content="View_512_Wall_Itemlayout">
+                    <include content="View_51_Wall_Itemlayout">
                         <param name="aspectratio" value="keep" />
                         <param name="iconheight" value="100%" />
                         <param name="icononlyheight" value="item_iconheight_icon" />
@@ -315,7 +312,7 @@
                     </include>
                 </itemlayout>
                 <focusedlayout width="item_width_icon" height="item_cardheight_icon" condition="$PARAM[iconcondition]">
-                    <include content="View_512_Wall_Itemlayout">
+                    <include content="View_51_Wall_Itemlayout">
                         <param name="selectbox" value="true" />
                         <param name="aspectratio" value="keep" />
                         <param name="iconheight" value="100%" />
@@ -439,7 +436,7 @@
                         <param name="icon" value="$VAR[Image_Landscape]" />
                         <param name="id" value="$PARAM[id]" />
                         <param name="labelinclude" value="Defs_Null" />
-                        <param name="diffuse" value="diffuse/landscape-small-wall.png" />
+                        <param name="diffuse" value="diffuse/icon-wall.png" />
                     </include>
                     <control type="image">
                         <width>50%</width>
@@ -458,7 +455,7 @@
                         <param name="icon" value="$VAR[Image_Landscape]" />
                         <param name="id" value="$PARAM[id]" />
                         <param name="labelinclude" value="Defs_Null" />
-                        <param name="diffuse" value="diffuse/landscape-small-wall.png" />
+                        <param name="diffuse" value="diffuse/icon-wall.png" />
                     </include>
                     <control type="image">
                         <width>55%</width>
@@ -487,7 +484,7 @@
                         <param name="selectbox" value="false" />
                         <param name="iconheight" value="100%" />
                         <param name="icononlyheight" value="item_iconheight_titlecard" />
-                        <param name="diffuse" value="diffuse/banner-widget.png" />
+                        <param name="diffuse" value="diffuse/icon-wall.png" />
                         <param name="icon" value="$VAR[Image_Landscape]" />
                         <param name="id" value="$PARAM[id]" />
                         <param name="title" value="$VAR[Label_TitelcardWidget_Label]" />
@@ -499,7 +496,7 @@
                         <param name="selectbox" value="true" />
                         <param name="iconheight" value="100%" />
                         <param name="icononlyheight" value="item_iconheight_titlecard" />
-                        <param name="diffuse" value="diffuse/banner-widget.png" />
+                        <param name="diffuse" value="diffuse/icon-wall.png" />
                         <param name="icon" value="$VAR[Image_Landscape]" />
                         <param name="id" value="$PARAM[id]" />
                         <param name="title" value="$VAR[Label_TitelcardWidget_Label]" />
@@ -651,7 +648,7 @@
                     </include>
                     <aspectratio align="left">keep</aspectratio>
                     <texture colordiffuse="main_fg_100">flags/$INFO[Skin.String(Icons)]/other/3D.png</texture>
-                    <visible>$PARAM[video_type]</visible>
+                    <visible>String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.DBType,musicvideo)</visible>
                     <visible>ListItem.IsStereoscopic</visible>
                 </control>
                 <control type="image">
@@ -1211,11 +1208,11 @@
                 <width>auto</width>
                 <label>  |  </label>
                 <height>40</height>
-                <aligny>top</aligny>
+                <aligny>center</aligny>
                 <textcolor>$VAR[ColorHighlight]</textcolor>
                 <include content="Object_Variable_Font">
-                    <param name="std" value="font_small" />
-                    <param name="alt" value="font_tiny" />
+                    <param name="std" value="font_tiny" />
+                    <param name="alt" value="font_statusbar_l" />
                     <param name="usealt" value="$EXP[FontSetIsMediumOrLarger]" />
                 </include>
 
@@ -1227,11 +1224,11 @@
                 <width>auto</width>
                 <label fallback="$PARAM[fallback]">$PARAM[label]</label>
                 <height>40</height>
-                <aligny>top</aligny>
+                <aligny>center</aligny>
                 <textcolor>$PARAM[textcolor]</textcolor>
                 <include content="Object_Variable_Font">
-                    <param name="std" value="font_small" />
-                    <param name="alt" value="font_tiny" />
+                    <param name="std" value="font_tiny" />
+                    <param name="alt" value="font_statusbar_l" />
                     <param name="usealt" value="$EXP[FontSetIsMediumOrLarger]" />
                 </include>
 

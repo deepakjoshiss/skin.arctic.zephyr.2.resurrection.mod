@@ -253,6 +253,106 @@
         <centerbottom>95</centerbottom>
     </include>
 
+    <include name="OSD_Video_Codec_Info">
+        <control type="grouplist">
+            <bottom>120</bottom>
+            <right>view_pad</right>
+            <orientation>horizontal</orientation>
+            <align>right</align>
+            <height>80</height>
+            <itemgap>20</itemgap>
+            <usecontrolcoords>true</usecontrolcoords>
+            <visible>!String.IsEmpty(Window(Home).Property(OSDInfo)) | Player.ShowInfo | Window.IsActive(DialogFullScreenInfo.xml) | Skin.HasSetting(ShowInfoPaused)</visible>
+            <visible>!Window.IsVisible(DialogPlayerProcessInfo.xml)</visible>
+            <include>Animation_FadeIn</include>
+            <include>Animation_FadeOut</include>
+            <control type="image">
+                <fadetime>100</fadetime>
+                <centertop>50%</centertop>
+                <width>64</width>
+                <height>56</height>
+                <aspectratio align="left">keep</aspectratio>
+                <texture colordiffuse="panel_fg_100">flags/$INFO[Skin.String(Icons)]/other/3D.png</texture>
+                <visible>VideoPlayer.IsStereoscopic</visible>
+            </control>
+            <control type="image" id="78880">
+                <fadetime>100</fadetime>
+                <centertop>50%</centertop>
+                <width>62</width>
+                <height>56</height>
+                <aspectratio align="left">keep</aspectratio>
+                <texture colordiffuse="panel_fg_100">flags/$INFO[Skin.String(Icons)]/other/$INFO[VideoPlayer.HdrType].png</texture>
+                <visible>!String.IsEmpty(Control.GetLabel(78880))</visible>
+            </control>
+            <control type="image" id="78881">
+                <fadetime>100</fadetime>
+                <centertop>50%</centertop>
+                <width>62</width>
+                <height>56</height>
+                <aspectratio align="left">keep</aspectratio>
+                <texture colordiffuse="panel_fg_100">$VAR[Image_VideoPlayer_RipSource]</texture>
+                <visible>!String.IsEmpty(Control.GetLabel(78881))</visible>
+            </control>
+            <control type="image" id="78882">
+                <fadetime>100</fadetime>
+                <centertop>50%</centertop>
+                <width>64</width>
+                <height>42</height>
+                <aspectratio>keep</aspectratio>
+                <texture colordiffuse="panel_fg_100">flags/$INFO[Skin.String(Icons)]/resolution/$INFO[VideoPlayer.VideoResolution].png</texture>
+                <visible>!String.IsEmpty(Control.GetLabel(78882))</visible>
+            </control>
+            <control type="image" id="78883">
+                <fadetime>100</fadetime>
+                <centertop>50%</centertop>
+                <width>71</width>
+                <height>48</height>
+                <aspectratio>keep</aspectratio>
+                <texture colordiffuse="panel_fg_100">flags/$INFO[Skin.String(Icons)]/source/$INFO[VideoPlayer.VideoCodec].png</texture>
+                <visible>!String.IsEmpty(Control.GetLabel(78883))</visible>
+            </control>
+            <control type="group">
+                <width>71</width>
+                <height>48</height>
+                <centertop>50%</centertop>
+                <visible>!String.IsEmpty(Player.Process(VideoFPS)) + Integer.IsGreater(Player.Process(VideoFPS),0)</visible>
+                <control type="image">
+                    <texture colordiffuse="panel_fg_100">flags/$INFO[Skin.String(Icons)]/other/fps.png</texture>
+                    <aspectratio align="center">keep</aspectratio>
+                </control>
+                <control type="label">
+                    <height>24</height>
+                    <bottom>2</bottom>
+                    <textcolor>panel_fg_100</textcolor>
+                    <font>font_fps</font>
+                    <label>$INFO[Player.Process(VideoFPS)]</label>
+                    <align>center</align>
+                    <aligny>center</aligny>
+                </control>
+            </control>
+            <control type="image" id="78884">
+                <fadetime>100</fadetime>
+                <centertop>50%</centertop>
+                <width>71</width>
+                <height>48</height>
+                <aspectratio>keep</aspectratio>
+                <texture colordiffuse="panel_fg_100">$VAR[Image_VideoPlayer_AudioCodec]</texture>
+                <visible>!String.IsEmpty(Control.GetLabel(78884))</visible>
+            </control>
+            <control type="image" id="78885">
+                <left>7</left>
+                <fadetime>100</fadetime>
+                <centertop>50%</centertop>
+                <width>32</width>
+                <height>32</height>
+                <aspectratio>scale</aspectratio>
+                <texture colordiffuse="panel_fg_100">flags/$INFO[Skin.String(Icons)]/channels/$INFO[VideoPlayer.AudioChannels].png</texture>
+                <visible>!String.IsEmpty(Control.GetLabel(78885))</visible>
+            </control>
+        </control>
+    </include>
+
+
     <include name="OSD_LiveTV_Seekbar">
         <control type="group">
             <visible>!Window.IsVisible(DialogPVRChannelsOSD.xml) + !Window.IsVisible(DialogPVRChannelGuide.xml) + !Window.IsVisible(1139)</visible>
@@ -643,96 +743,6 @@
                                 <font>font_small</font>
                                 <visible>Pvr.IsPlayingTv</visible>
                             </control>
-                            <control type="grouplist">
-                                <top>-10</top>
-                                <orientation>horizontal</orientation>
-                                <align>right</align>
-                                <itemgap>20</itemgap>
-                                <usecontrolcoords>true</usecontrolcoords>
-                                <control type="image">
-                                    <fadetime>100</fadetime>
-                                    <centertop>50%</centertop>
-                                    <width>64</width>
-                                    <height>56</height>
-                                    <aspectratio align="left">keep</aspectratio>
-                                    <texture colordiffuse="panel_fg_100">flags/$INFO[Skin.String(Icons)]/other/3D.png</texture>
-                                    <visible>VideoPlayer.IsStereoscopic</visible>
-                                </control>
-                                <control type="image" id="78880">
-                                    <fadetime>100</fadetime>
-                                    <centertop>50%</centertop>
-                                    <width>62</width>
-                                    <height>56</height>
-                                    <aspectratio align="left">keep</aspectratio>
-                                    <texture colordiffuse="panel_fg_100">flags/$INFO[Skin.String(Icons)]/other/$INFO[VideoPlayer.HdrType].png</texture>
-                                    <visible>!String.IsEmpty(Control.GetLabel(78880))</visible>
-                                </control>
-                                <control type="image" id="78881">
-                                    <fadetime>100</fadetime>
-                                    <centertop>50%</centertop>
-                                    <width>62</width>
-                                    <height>56</height>
-                                    <aspectratio align="left">keep</aspectratio>
-                                    <texture colordiffuse="panel_fg_100">$VAR[Image_VideoPlayer_RipSource]</texture>
-                                    <visible>!String.IsEmpty(Control.GetLabel(78881))</visible>
-                                </control>
-                                <control type="image" id="78882">
-                                    <fadetime>100</fadetime>
-                                    <centertop>50%</centertop>
-                                    <width>64</width>
-                                    <height>42</height>
-                                    <aspectratio>keep</aspectratio>
-                                    <texture colordiffuse="panel_fg_100">flags/$INFO[Skin.String(Icons)]/resolution/$INFO[VideoPlayer.VideoResolution].png</texture>
-                                    <visible>!String.IsEmpty(Control.GetLabel(78882))</visible>
-                                </control>
-                                <control type="image" id="78883">
-                                    <fadetime>100</fadetime>
-                                    <centertop>50%</centertop>
-                                    <width>71</width>
-                                    <height>48</height>
-                                    <aspectratio>keep</aspectratio>
-                                    <texture colordiffuse="panel_fg_100">flags/$INFO[Skin.String(Icons)]/source/$INFO[VideoPlayer.VideoCodec].png</texture>
-                                    <visible>!String.IsEmpty(Control.GetLabel(78883))</visible>
-                                </control>
-                                <control type="group">
-                                    <width>71</width>
-                                    <height>48</height>
-                                    <centertop>50%</centertop>
-                                    <visible>!String.IsEmpty(Player.Process(VideoFPS)) + Integer.IsGreater(Player.Process(VideoFPS),0)</visible>
-                                    <control type="image">
-                                        <texture colordiffuse="panel_fg_100">flags/$INFO[Skin.String(Icons)]/other/fps.png</texture>
-                                        <aspectratio align="center">keep</aspectratio>
-                                    </control>
-                                    <control type="label">
-                                        <height>24</height>
-                                        <bottom>2</bottom>
-                                        <textcolor>panel_fg_100</textcolor>
-                                        <font>font_fps</font>
-                                        <label>$INFO[Player.Process(VideoFPS)]</label>
-                                        <align>center</align>
-                                        <aligny>center</aligny>
-                                    </control>
-                                </control>
-                                <control type="image" id="78884">
-                                    <fadetime>100</fadetime>
-                                    <centertop>50%</centertop>
-                                    <width>71</width>
-                                    <height>48</height>
-                                    <aspectratio>keep</aspectratio>
-                                    <texture colordiffuse="panel_fg_100">$VAR[Image_VideoPlayer_AudioCodec]</texture>
-                                    <visible>!String.IsEmpty(Control.GetLabel(78884))</visible>
-                                </control>
-                                <control type="image" id="78885">
-                                    <left>7</left>
-                                    <fadetime>100</fadetime>
-                                    <centertop>50%</centertop>
-                                    <width>32</width>
-                                    <height>32</height>
-                                    <aspectratio>scale</aspectratio>
-                                    <texture colordiffuse="panel_fg_100">flags/$INFO[Skin.String(Icons)]/channels/$INFO[VideoPlayer.AudioChannels].png</texture>
-                                    <visible>!String.IsEmpty(Control.GetLabel(78885))</visible>
-                                </control>
-                            </control>
                         </control>
                         <control type="textbox">
                             <aligny>top</aligny>
@@ -786,10 +796,10 @@
                         <control type="label">
                             <top>25</top>
                             <aligny>top</aligny>
-                            <height>100</height>
+                            <height>80</height>
                             <width>1430</width>
                             <scroll>false</scroll>
-                            <font>font_title_medium</font>
+                            <font>font_small_bold</font>
                             <textcolor>panel_fg_100</textcolor>
                             <label>$VAR[Label_OSD_Title]</label>
                         </control>
@@ -807,7 +817,7 @@
                                 <height>40</height>
                                 <aligny>top</aligny>
                                 <textcolor>$VAR[ColorHighlight]</textcolor>
-                                <font>font_small</font>
+                                <font>font_tiny</font>
                             </control>
                         </control>
                     </control>
@@ -816,6 +826,7 @@
             <include>OSD_Clock</include>
             <include>OSD_Progress_Text</include>
             <include>OSD_Progress_Bar</include>
+            <include>OSD_Video_Codec_Info</include>
         </control>
     </include>
 
@@ -1039,6 +1050,7 @@
         <onfocus condition="!String.IsEmpty(Window(Home).Property(OSDExtendedInfo))">ClearProperty(OSDExtendedInfo,Home)</onfocus>
         <onfocus>ClearProperty(OSD_Menu,Home)</onfocus>
         <onfocus condition="Skin.String(OSD_Timeout,$LOCALIZE[30064])">AlarmClock(osd_timeout,SetFocus(99220),00:03,silent)</onfocus>
+        <onfocus condition="Skin.String(OSD_Timeout,4 Seconds)">AlarmClock(osd_timeout,SetFocus(99220),00:04,silent)</onfocus>
         <onfocus condition="Skin.String(OSD_Timeout,$LOCALIZE[30065])">AlarmClock(osd_timeout,SetFocus(99220),00:05,silent)</onfocus>
         <onfocus condition="Skin.String(OSD_Timeout,$LOCALIZE[31117])">AlarmClock(osd_timeout,SetFocus(99220),00:10,silent)</onfocus>
         <onfocus condition="Skin.String(OSD_Timeout,$LOCALIZE[31122])">AlarmClock(osd_timeout,SetFocus(99220),00:12,silent)</onfocus>
@@ -1047,6 +1059,18 @@
         <onfocus condition="Skin.String(OSD_Timeout,$LOCALIZE[31125])">AlarmClock(osd_timeout,SetFocus(99220),00:30,silent)</onfocus>
         <onfocus condition="Skin.String(OSD_Timeout,$LOCALIZE[31126])">AlarmClock(osd_timeout,SetFocus(99220),01:00,silent)</onfocus>
         <onunfocus>CancelAlarm(osd_timeout,true)</onunfocus>
+    </include>
+
+    <include name="OSD_Button_OnClick">
+        <onclick condition="Skin.String(OSD_Timeout,$LOCALIZE[30064])">AlarmClock(osd_timeout,SetFocus(99220),00:03,silent)</onclick>
+        <onclick condition="Skin.String(OSD_Timeout,4 Seconds)">AlarmClock(osd_timeout,SetFocus(99220),00:04,silent)</onclick>
+        <onclick condition="Skin.String(OSD_Timeout,$LOCALIZE[30065])">AlarmClock(osd_timeout,SetFocus(99220),00:05,silent)</onclick>
+        <onclick condition="Skin.String(OSD_Timeout,$LOCALIZE[31117])">AlarmClock(osd_timeout,SetFocus(99220),00:10,silent)</onclick>
+        <onclick condition="Skin.String(OSD_Timeout,$LOCALIZE[31122])">AlarmClock(osd_timeout,SetFocus(99220),00:12,silent)</onclick>
+        <onclick condition="Skin.String(OSD_Timeout,$LOCALIZE[31123])">AlarmClock(osd_timeout,SetFocus(99220),00:15,silent)</onclick>
+        <onclick condition="Skin.String(OSD_Timeout,$LOCALIZE[31124])">AlarmClock(osd_timeout,SetFocus(99220),00:20,silent)</onclick>
+        <onclick condition="Skin.String(OSD_Timeout,$LOCALIZE[31125])">AlarmClock(osd_timeout,SetFocus(99220),00:30,silent)</onclick>
+        <onclick condition="Skin.String(OSD_Timeout,$LOCALIZE[31126])">AlarmClock(osd_timeout,SetFocus(99220),01:00,silent)</onclick>
     </include>
 
     <include name="OSD_Controls">
@@ -1084,25 +1108,19 @@
             <visible>[Player.SeekEnabled + !VideoPlayer.Content(livetv)] + !Player.Paused</visible>
         </control>
 
-        <control type="togglebutton" id="14">
+        <control type="button" id="25">
             <centertop>50%</centertop>
-            <description>Play/Pause</description>
+            <description>Settings</description>
             <width>48</width>
             <height>48</height>
             <label/>
-            <altlabel></altlabel>
             <font/>
-            <texturefocus colordiffuse="$VAR[ColorHighlight]">osd/pause.png</texturefocus>
-            <texturenofocus colordiffuse="panel_fg_70">osd/pause.png</texturenofocus>
-            <usealttexture>Player.Paused | Player.Forwarding | Player.Rewinding</usealttexture>
-            <alttexturefocus colordiffuse="$VAR[ColorHighlight]">osd/play.png</alttexturefocus>
-            <alttexturenofocus colordiffuse="panel_fg_70">osd/play.png</alttexturenofocus>
-            <onclick>PlayerControl(Play)</onclick>
-            <visible>Player.PauseEnabled</visible>
-            <animation effect="fade" start="100" end="33" time="100" condition="!Player.PauseEnabled">Conditional</animation>
-            <onfocus>ClearProperty(OSD_Menu,Home)</onfocus>
-            <include>OSD_Button_OnFocus</include>
-            <visible>!Skin.HasSetting(HidePlayPauseButton)</visible>
+            <texturefocus colordiffuse="$VAR[ColorHighlight]">osd/settings-filled.png</texturefocus>
+            <texturenofocus colordiffuse="panel_fg_90">osd/settings-circle.png</texturenofocus>
+            <onclick>SetFocus(3112,9)</onclick>
+            <onup>SetFocus(3112,9)</onup>
+            <visible>!Skin.HasSetting(HideSettingsButton)</visible>
+            <visible>!VideoPlayer.Content(musicvideos)</visible>
             <visible>!VideoPlayer.Content(LiveTV)</visible>
         </control>
 
@@ -1113,12 +1131,35 @@
             <height>48</height>
             <label/>
             <font/>
-            <texturefocus colordiffuse="$VAR[ColorHighlight]">osd/stop.png</texturefocus>
-            <texturenofocus colordiffuse="panel_fg_70">osd/stop.png</texturenofocus>
+            <texturefocus colordiffuse="$VAR[ColorHighlight]">osd/stop-filled.png</texturefocus>
+            <texturenofocus colordiffuse="panel_fg_90">osd/stop-circle.png</texturenofocus>
             <onclick>PlayerControl(Stop)</onclick>
             <onfocus>ClearProperty(OSD_Menu,Home)</onfocus>
             <include>OSD_Button_OnFocus</include>
             <visible>!Skin.HasSetting(HideStopButton)</visible>
+            <visible>!VideoPlayer.Content(LiveTV)</visible>
+        </control>
+
+        <control type="togglebutton" id="14">
+            <centertop>50%</centertop>
+            <description>Play/Pause</description>
+            <width>60</width>
+            <height>60</height>
+            <label/>
+            <altlabel></altlabel>
+            <font/>
+            <texturefocus colordiffuse="$VAR[ColorHighlight]">osd/pause-filled.png</texturefocus>
+            <texturenofocus colordiffuse="panel_fg_90">osd/pause-circle.png</texturenofocus>
+            <usealttexture>Player.Paused | Player.Forwarding | Player.Rewinding</usealttexture>
+            <alttexturefocus colordiffuse="$VAR[ColorHighlight]">osd/play-filled.png</alttexturefocus>
+            <alttexturenofocus colordiffuse="panel_fg_90">osd/play-circle.png</alttexturenofocus>
+            <onclick>PlayerControl(Play)</onclick>
+            <visible>Player.PauseEnabled</visible>
+            <animation effect="fade" start="100" end="33" time="100" condition="!Player.PauseEnabled">Conditional</animation>
+            <onfocus>ClearProperty(OSD_Menu,Home)</onfocus>
+            <include>OSD_Button_OnClick</include>
+            <include>OSD_Button_OnFocus</include>
+            <visible>!Skin.HasSetting(HidePlayPauseButton)</visible>
             <visible>!VideoPlayer.Content(LiveTV)</visible>
         </control>
 
@@ -1226,19 +1267,21 @@
             <height>48</height>
             <label>$VAR[OSD_CurrentSubLang]</label>
             <textcolor>Selected</textcolor>
-            <focusedcolor>Highlight</focusedcolor>
+            <!-- <focusedcolor>Highlight</focusedcolor> -->
             <shadowcolor>Shadow</shadowcolor>
             <font>font_osd_lang</font>
             <align>right</align>
             <aligny>top</aligny>
             <textoffsetx>0</textoffsetx>
-            <texturefocus colordiffuse="$VAR[ColorHighlight]">osd/subs.png</texturefocus>
-            <texturenofocus colordiffuse="panel_fg_70">osd/subs.png</texturenofocus>
+            <texturefocus colordiffuse="$VAR[ColorHighlight]">osd/subs-filled.png</texturefocus>
+            <texturenofocus colordiffuse="panel_fg_90">osd/subs-circle.png</texturenofocus>
+            <onclick condition="Skin.HasSetting(OSDSubtitleSettings)">SetProperty(ShowSubs,1,Home)</onclick>
             <onclick condition="Skin.HasSetting(OSDSubtitleSettings)">ActivateWindow(osdsubtitlesettings)</onclick>
             <onclick condition="!Skin.HasSetting(OSDSubtitleSettings) + VideoPlayer.HasSubtitles">NextSubtitle</onclick>
             <onclick condition="!Skin.HasSetting(OSDSubtitleSettings) + !VideoPlayer.HasSubtitles">Close</onclick>
             <onclick condition="!Skin.HasSetting(OSDSubtitleSettings) + !VideoPlayer.HasSubtitles">ActivateWindow(SubtitleSearch)</onclick>
             <onfocus>ClearProperty(OSD_Menu,Home)</onfocus>
+            <include>OSD_Button_OnClick</include>
             <include>OSD_Button_OnFocus</include>
             <visible>Window.IsVisible(videoosd)</visible>
             <visible>!VideoPlayer.Content(LiveTV)</visible>
@@ -1251,22 +1294,23 @@
             <height>48</height>
             <label>$INFO[VideoPlayer.AudioLanguage,[UPPERCASE],[/UPPERCASE]]</label>
             <textcolor>Selected</textcolor>
-            <focusedcolor>Highlight</focusedcolor>
             <shadowcolor>Shadow</shadowcolor>
             <font>font_osd_lang</font>
             <align>right</align>
             <aligny>top</aligny>
             <textoffsetx>0</textoffsetx>
-            <texturefocus colordiffuse="$VAR[ColorHighlight]">osd/audio-settings.png</texturefocus>
-            <texturenofocus colordiffuse="panel_fg_70">osd/audio-settings.png</texturenofocus>
+            <texturefocus colordiffuse="$VAR[ColorHighlight]">osd/audio-filled.png</texturefocus>
+            <texturenofocus colordiffuse="panel_fg_90">osd/audio-circle.png</texturenofocus>
+            <onclick condition="Skin.HasSetting(OSDAudioSettings)">SetProperty(ShowSubs,1,Home)</onclick>
             <onclick condition="Skin.HasSetting(OSDAudioSettings)">ActivateWindow(osdaudiosettings)</onclick>
             <onclick condition="!Skin.HasSetting(OSDAudioSettings)">AudioNextLanguage</onclick>
+            <include>OSD_Button_OnClick</include>
             <include>OSD_Button_OnFocus</include>
             <visible>Window.IsVisible(videoosd)</visible>
             <visible>!VideoPlayer.Content(LiveTV)</visible>
             <visible>!VideoPlayer.Content(musicvideos)</visible>
         </control>
-        <control type="button" id="41">
+        <!-- <control type="button" id="41">
             <centertop>50%</centertop>
             <description>Video Settings</description>
             <width>48</width>
@@ -1278,9 +1322,9 @@
             <onclick>ActivateWindow(osdvideosettings)</onclick>
             <visible>!VideoPlayer.Content(musicvideos)</visible>
             <visible>!VideoPlayer.Content(LiveTV)</visible>
-        </control>
+        </control> -->
 
-        <control type="button" id="32">
+        <!-- <control type="button" id="32">
             <centertop>50%</centertop>
             <description>extrainfo</description>
             <width>48</width>
@@ -1301,7 +1345,7 @@
             <include>OSD_Button_OnFocus</include>
             <visible>Window.IsVisible(videoosd)</visible>
             <visible>!VideoPlayer.Content(livetv)</visible>
-        </control>
+        </control> -->
         <control type="togglebutton" id="20">
             <usealttexture>Control.HasFocus(20) | Control.HasFocus(21) | Control.HasFocus(22)</usealttexture>
             <centertop>50%</centertop>
@@ -1387,21 +1431,6 @@
             <onfocus>ClearProperty(OSD_Menu,Home)</onfocus>
             <include>OSD_Button_OnFocus</include>
             <visible>Window.IsVisible(musicosd)</visible>
-        </control>
-        <control type="button" id="25">
-            <centertop>50%</centertop>
-            <description>Settings</description>
-            <width>48</width>
-            <height>48</height>
-            <label/>
-            <font/>
-            <texturefocus colordiffuse="$VAR[ColorHighlight]">osd/settings.png</texturefocus>
-            <texturenofocus colordiffuse="panel_fg_70">osd/settings.png</texturenofocus>
-            <onclick>SetFocus(3112,9)</onclick>
-            <onup>SetFocus(3112,9)</onup>
-            <visible>!Skin.HasSetting(HideSettingsButton)</visible>
-            <visible>!VideoPlayer.Content(musicvideos)</visible>
-            <visible>!VideoPlayer.Content(LiveTV)</visible>
         </control>
 
         <control type="button" id="42">

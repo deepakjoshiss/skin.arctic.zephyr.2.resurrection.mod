@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
-
+    <!-- <onload condition="Window.IsActive(osdsubtitlesettings) + !String.IsEmpty(Window(Home).Property(ShowSubs))">Notification(,This is test notification)</onload> -->
+    <onload condition="Window.IsActive(osdsubtitlesettings) + !String.IsEmpty(Window(Home).Property(ShowSubs))">SendClick(-178)</onload>
+    <onload condition="Window.IsActive(osdaudiosettings) + !String.IsEmpty(Window(Home).Property(ShowSubs))">SendClick(-176)</onload>
+    <!-- <onunload condition="!String.IsEmpty(Window(Home).Property(ShowSubs))">Notification(,This is close notification)</onunload> -->
+    <onunload condition="!String.IsEmpty(Window(Home).Property(ShowSubs))">ClearProperty(ShowSubs,Home)</onunload>
     <controls>
         <control type="group">
             <animation effect="fade" start="100" end="0" time="400" condition="Window.IsVisible(SliderDialog)">Conditional</animation>

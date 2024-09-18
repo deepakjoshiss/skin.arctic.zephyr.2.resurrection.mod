@@ -654,7 +654,8 @@
                     <param name="viewtype" value="Flix Landscape" />
                     <param name="viewtypename" value="$PARAM[viewtypename]" />
                     <param name="forced" value="true" />
-                    <movement>3</movement>
+                    <movement>2</movement>
+                    <focusposition>1</focusposition>
                     <include>View_Horizontal_Movement</include>
                 </include>
                 <control type="group">

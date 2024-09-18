@@ -1091,23 +1091,22 @@
                 <control type="progress">
                     <visible>!String.IsEmpty(ListItem.PercentPlayed) + [!Integer.IsEqual(ListItem.PercentPlayed,0) | ListItem.IsResumable]</visible>
                     <centerleft>50%</centerleft>
-                    <left>22</left>
-                    <right>22</right>
+                    <left>15</left>
+                    <right>15</right>
                     <height>2.5</height>
                     <bottom>$PARAM[prbottom]</bottom>
-                    <reveal>true</reveal>
                     <info>ListItem.PercentPlayed</info>
-                    <texturebg colordiffuse="44ffffff">osd/progress-bg.png</texturebg>
+                    <texturebg colordiffuse="40ffffff" border="5,0,5,0">diffuse/progress-line-bg.png</texturebg>
                     <lefttexture />
+                    <midtexture colordiffuse="$VAR[ColorGradient]" border="5,0,10,0" diffuse="progress/diffuse-small.png">diffuse/progress-line-mid.png</midtexture>
                     <righttexture />
-                    <midtexture colordiffuse="$VAR[ColorHighlightOverlay]">osd/progress-bg.png</midtexture>
                 </control>
                 <control type="image">
-                    <top>14</top>
-                    <right>14</right>
+                    <top>15</top>
+                    <right>15</right>
                     <width>64</width>
                     <height>64</height>
-                    <texture colordiffuse="77000000">$VAR[Image_Overlay_Corner]</texture>
+                    <texture border="15" colordiffuse="77000000">$VAR[Image_Overlay_Corner]</texture>
                 </control>
                 <!-- <control type="image">
                     <bottom>-15</bottom>
