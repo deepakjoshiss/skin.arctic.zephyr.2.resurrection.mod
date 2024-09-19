@@ -36,6 +36,8 @@
     <onload condition="!Skin.HasSetting(SkinInit)">Skin.SetBool(SubmenuOnly)</onload>
     <onload condition="!Skin.HasSetting(SkinInit)">Skin.SetBool(DisableStarRating)</onload>
     <onload condition="!Skin.HasSetting(SkinInit)">Skin.SetBool(OSDSubtitleSettings)</onload>
+    <onload condition="!Skin.HasSetting(SkinInit)">Skin.SetBool(OSDAudioSettings)</onload>
+    <onload condition="!Skin.HasSetting(SkinInit)">Skin.SetBool(HidePlayerInfoButton)</onload>
     <onload condition="!Skin.HasSetting(SkinInit)">Skin.SetBool(Ratings.Oscars)</onload>
     <onload condition="!Skin.HasSetting(SkinInit)">Skin.SetBool(Ratings.User)</onload>
     <onload condition="!Skin.HasSetting(SkinInit)">Skin.SetBool(Ratings.Metacritic)</onload>
@@ -63,6 +65,7 @@
     SubmenuOnly
     DisableStarRating
     OSDSubtitleSettings
+    OSDAudioSettings
     HidePlayerInfoButton
     Ratings.Oscars
     Ratings. others
