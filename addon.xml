@@ -9,10 +9,14 @@
         <import addon="resource.images.moviegenreicons.transparent"/>
         <import addon="resource.images.weathericons.white"/>
         <import addon="resource.images.moviecountryicons.maps"/>
+        <import addon="xbmc.python" version="3.0.0"/>
+		<import addon="script.module.pil"/>
     </requires>
     <extension point="xbmc.gui.skin" debugging="false">
 		<res width="1920" height="1080" aspect="16:9" default="true" folder="1080i" />
 	</extension>
+	<extension point="xbmc.python.library" library="lib/default.py" />
+    
     <extension point="xbmc.addon.metadata">
         <news></news>
         <summary lang="de">Klar, minimalistisch, elegant, einfach, leicht</summary>

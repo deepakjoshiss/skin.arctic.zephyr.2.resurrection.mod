@@ -70,7 +70,8 @@
                 </itemlayout>
                 <focusedlayout width="450" height="item_list_height">
                     <control type="image">
-                        <width>458</width>
+                        <left>0</left>
+                        <right>0</right>
                         <height>item_list_height</height>
                         <texture>special://userdata/addon_data/script.skinhelper/button_texture.png</texture>
                     </control>
