@@ -36,7 +36,7 @@
     <color name="panel_fg_12">1Ff5f5f5</color>
     
     <!-- Background -->
-    <color name="Background">ff050505</color>
+    <color name="Background">ff000000</color>
     <color name="HomePanel">e7181818</color>
 
     <!-- Backing Panels and Furniture -->

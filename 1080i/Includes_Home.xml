@@ -1064,6 +1064,7 @@
                         <width>257.14</width>
                         <left>15</left>
                         <top>-7</top>
+                        <align>right</align>
                         <bottom>7</bottom>
                         <control type="group">
                             <width>257.14</width>
@@ -1074,17 +1075,17 @@
                                 <onleft>301</onleft>
                                 <onright>301</onright>
                                 <onback>301</onback>
-                                <font>font_topbar</font>
-                                <align>right</align>
+                                <font>font_topbar_medium</font>
+                                <align>center</align>
                                 <aligny>center</aligny>
-                                <textcolor>main_fg_30</textcolor>
+                                <textcolor>main_fg_70</textcolor>
                                 <focusedcolor>main_fg_100</focusedcolor>
                                 <textoffsetx>0</textoffsetx>
-                                <texturefocus />
-                                <texturenofocus />
-                                <label>$INFO[Container(301).ListItem.Label]</label>
+                                <texturenofocus border="8" colordiffuse="main_fg_70">common/underline.png</texturenofocus>
+                                <texturefocus border="8" colordiffuse="$VAR[ColorHighlight]">common/underline.png</texturefocus>
+                                <label>[UPPERCASE]$INFO[Container(301).ListItem.Label][/UPPERCASE]</label>
                                 <onclick>$INFO[Container(301).ListItem.Property(path)]</onclick>
-                                <height>item_list_height</height>
+                                <height>72</height>
                                 <include>Animation_Left</include>
                                 <visible allowhiddenfocus="true">Control.HasFocus(302) | Control.HasFocus(3002)</visible>
                             </control>
@@ -1107,7 +1108,7 @@
                                     <control type="label">
                                         <right>40</right>
                                         <font>font_submenu_small</font>
-                                        <align>right</align>
+                                        <align>center</align>
                                         <aligny>center</aligny>
                                         <textcolor>main_fg_30</textcolor>
                                         <label>$INFO[ListItem.Label]</label>
@@ -1117,7 +1118,7 @@
                                     <control type="label">
                                         <right>40</right>
                                         <font>font_submenu</font>
-                                        <align>right</align>
+                                        <align>center</align>
                                         <aligny>center</aligny>
                                         <textcolor>main_fg_100</textcolor>
                                         <label>$INFO[ListItem.Label]</label>
@@ -1191,10 +1192,10 @@
                             <focusedlayout width="257.14" height="item_list_height" condition="Skin.HasSetting(HomeIcons) + !Skin.HasSetting(VerticalIconsOnly)">
                                 <control type="image">
                                     <animation type="Focus">
-                                        <effect type="zoom" time="100" start="92,92" end="100,100" center="210,110" ease="inout" />
+                                        <effect type="zoom" time="100" start="95,95" end="110,110" center="230,80" ease="inout" />
                                         <effect type="fadediffuse" time="140" start="main_fg_30" end="main_fg_100" ease="in" />
                                     </animation>
-                                    <centertop>48%</centertop>
+                                    <centertop>54%</centertop>
                                     <height>64</height>
                                     <right>0</right>
                                     <aspectratio>keep</aspectratio>

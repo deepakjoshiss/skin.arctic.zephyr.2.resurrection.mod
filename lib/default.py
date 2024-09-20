@@ -4,6 +4,7 @@ import xbmcvfs
 from PIL import Image, ImageDraw
 from constants import MASTER_PATH
 from common import log
+from fonts import generatefonts
 
 def hex_to_rgb(h):
     return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
@@ -40,6 +41,11 @@ class Main:
             return False
 
         for h in self.handle:
+            if h == 'generatefonts=true':
+                try:
+                    generatefonts()
+                except Exception:
+                    pass
             if h == 'gradient=true':
                 try:
                     self.generate_gradient()

@@ -903,7 +903,7 @@
                     <centerleft>50%</centerleft>
                     <width>1100</width>
                     <control type="label">
-                        <font>font_topbar_medium</font>
+                        <font>font_title_small_medium</font>
                         <textcolor>main_fg_100</textcolor>
                         <align>center</align>
                         <aligny>top</aligny>

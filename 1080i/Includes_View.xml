@@ -1208,7 +1208,7 @@
 
     <include name="View_Selectbox_Bold">
         <param name="overlay" default="false" />
-        <param name="pad" default="-7.5" />
+        <param name="pad" default="-5" />
         <param name="colordiffuse" default="$VAR[ColorHighlight]" />
         <param name="focusbounce" default="true" />
         <definition>
@@ -1226,12 +1226,12 @@
                         <control type="image">
                             <bordersize>15</bordersize>
                             <bordertexture border="30" colordiffuse="55ffffff">common/shadow-15.png</bordertexture>
-                            <texture colordiffuse="$VAR[ColorHighlight]" border="10">common/selectbox.png</texture>
+                            <texture colordiffuse="$VAR[ColorHighlight]" border="10">common/selectbox-2.png</texture>
                         </control>
                         <control type="image">
                             <bordersize>15</bordersize>
                             <bordertexture border="30" colordiffuse="55ffffff">common/shadow-15.png</bordertexture>
-                            <texture colordiffuse="$VAR[ColorGradient]" border="10">common/selectbox-gradient.png</texture>
+                            <texture colordiffuse="$VAR[ColorGradient]" border="10">common/selectbox-gradient-2.png</texture>
                             <visible>!Skin.HasSetting(EnableMonochromeHighlight)</visible>
                         </control>
                         <visible>String.IsEqual(Skin.String(PosterHighlight),Highlight) | String.IsEqual(Skin.String(PosterHighlight),Mix) | String.IsEmpty(Skin.String(PosterHighlight))</visible>
