@@ -36,7 +36,7 @@
 
     <!-- Landscape -->
     <constant name="item_height_Landscape">282</constant>
-    <constant name="item_width_smalllandscape">400</constant>
+    <constant name="item_width_smalllandscape">384</constant>
     <constant name="item_iconheight_smalllandscape">200</constant>
     <constant name="item_cardheight_smalllandscape">270</constant>
     
