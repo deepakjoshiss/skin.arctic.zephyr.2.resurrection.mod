@@ -178,72 +178,48 @@
         </include>
     </include>
     <include name="InfoSubWidgetSystem">
-        <definition>
-            <top>view_top</top>
-            <bottom>view_bottom</bottom>
-            <control type="image">
-                <top>-28</top>
-                <left>15</left>
-                <width>30</width>
-                <height>30</height>
-                <aspectratio align="right">keep</aspectratio>
-                <texture colordiffuse="$VAR[ColorHighlight]">buttons/kodi-logo.png</texture>
-            </control>
-            <control type="image">
-                <top>-28</top>
-                <left>15</left>
-                <width>30</width>
-                <height>30</height>
-                <aspectratio align="right">keep</aspectratio>
-                <texture colordiffuse="$VAR[ColorGradient]">buttons/kodi-logo-gradient.png</texture>
-            </control>
+        <top>view_top</top>
+        <bottom>view_bottom</bottom>
+        <control type="group">
+            <top>-26</top>
+            <left>10</left>
+            <include content="Defs_SectionHeaderIconLabel">
+                <param name="focused" value="Control.HasFocus(39999)" />
+            </include>
+        </control>
 
-            <control type="label">
-                <font>font_topbar_small</font>
-                <align>left</align>
-                <top>-34</top>
-                <left>56</left>
-                <height>36</height>
-                <aligny>center</aligny>
-                <textcolor>main_fg_90</textcolor>
-                <label>$LOCALIZE[130]</label>
-            </control>
+        <control type="panel" id="39999">
+            <right>view_pad</right>
+            <top>24</top>
+            <onleft>301</onleft>
+            <onback>301</onback>
+            <orientation>vertical</orientation>
+            <preloaditems>2</preloaditems>
+            <!-- <onfocus>Notification("Message", "test")</onfocus> -->
+            <itemlayout width="item_width_banner" height="item_width_banner">
+                <control type="group">
+                    <right>2</right>
+                    <bottom>30</bottom>
+                    <include>Widget_Systeminfo_Item_Layout</include>
+                </control>
+            </itemlayout>
+            <focusedlayout width="item_width_banner" height="item_width_banner">
+                <control type="group">
+                    <right>2</right>
+                    <bottom>30</bottom>
+                    <include>Widget_Systeminfo_Item_Layout</include>
 
-            <control type="panel" id="39999">
-                <right>view_pad</right>
-                <top>24</top>
-                <onleft>301</onleft>
-                <onback>301</onback>
-                <orientation>vertical</orientation>
-                <preloaditems>2</preloaditems>
-                <content>
-                    <include>SystemInfoItems</include>
-                </content>
-                <!-- <onfocus>Notification("Message", "test")</onfocus> -->
-                <onfocus>SetProperty(widgetMovementId,999999],Home)</onfocus>
-
-                <itemlayout width="item_width_banner" height="item_width_banner">
                     <control type="group">
-                        <right>2</right>
-                        <bottom>30</bottom>
-                        <include>Widget_Systeminfo_Item_Layout</include>
+                        <include content="View_Selectbox_Thin">
+                            <param name="focusbounce" value="true" />
+                        </include>
                     </control>
-                </itemlayout>
-                <focusedlayout width="item_width_banner" height="item_width_banner">
-                    <control type="group">
-                        <right>2</right>
-                        <bottom>30</bottom>
-                        <include>Widget_Systeminfo_Item_Layout</include>
-
-                        <control type="group">
-                            <include content="View_Selectbox_Thin">
-                                <param name="focusbounce" value="true" />
-                            </include>
-                        </control>
-                    </control>
-                </focusedlayout>
-            </control>
-            <!-- <include content="InfoSubWidgetSystemInclude"/> -->
-        </definition>
+                </control>
+            </focusedlayout>
+            <content>
+                <include>SystemInfoItems</include>
+            </content>
+        </control>
+        <!-- <include content="InfoSubWidgetSystemInclude"/> -->
     </include>
 </includes>

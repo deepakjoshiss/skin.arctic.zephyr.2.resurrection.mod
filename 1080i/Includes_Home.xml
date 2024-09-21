@@ -1041,7 +1041,7 @@
                     <include>InfoSubWidgetSystem</include>
                 </control>
                 <control type="group">
-                    <animation effect="slide" start="0, 0" end="270, -24" time="0" condition="true">Conditional</animation>
+                    <animation effect="slide" start="0, 0" end="270, -18" time="0" condition="true">Conditional</animation>
                     <visible>String.IsEqual(Container(9989).ListItemAbsolute(0).Property(list),Settings)</visible>
                     <include content="View_Settings">
                         <param name="hideonwindowopen" value="false" />
