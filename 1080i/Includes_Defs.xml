@@ -876,7 +876,35 @@
     </include>
 
     <include name="Defs_SectionHeaderIconLabel">
-        
+        <param name="label" default="$LOCALIZE[130]" />
+        <param name="focused" default="false" />
+        <param name="fade" default="55" />
+        <definition>
+            <animation effect="fade" start="100" end="$PARAM[fade]" time="150" condition="!$PARAM[focused]" reversible="true" tween="inout">Conditional</animation>
+            <control type="image">
+                <width>30</width>
+                <height>30</height>
+                <aspectratio align="right">keep</aspectratio>
+                <texture colordiffuse="$VAR[ColorHighlight]">buttons/kodi-logo.png</texture>
+            </control>
+            <control type="image">
+                <width>30</width>
+                <height>30</height>
+                <aspectratio align="right">keep</aspectratio>
+                <texture colordiffuse="$VAR[ColorGradient]">buttons/kodi-logo-gradient.png</texture>
+            </control>
+
+            <control type="label">
+                <font>font_topbar_small</font>
+                <align>left</align>
+                <left>40</left>
+                <top>-6</top>
+                <height>36</height>
+                <aligny>center</aligny>
+                <textcolor>main_fg_90</textcolor>
+                <label>$PARAM[label]</label>
+            </control>
+        </definition>
     </include>
 
 </includes>

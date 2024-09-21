@@ -1,0 +1,14 @@
+{
+  "xml.fileAssociations": [
+    {
+      "pattern": "**.xml",
+      "systemId": "1080i/schema.xsd"
+    }
+  ],
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  },
+  "editor.wordBasedSuggestionsMode": "allDocuments"
+}

@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="fonts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="fontset"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="fontset">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element ref="font"/>
+        <xs:element ref="include"/>
+      </xs:choice>
+      <xs:attribute name="id" use="required"/>
+      <xs:attribute name="unicode" use="required" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="includes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="constant"/>
+        <xs:sequence minOccurs="0">
+          <xs:element maxOccurs="unbounded" ref="default"/>
+          <xs:element maxOccurs="unbounded" ref="expression"/>
+        </xs:sequence>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="include"/>
+          <xs:element ref="variable"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="constant">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:decimal">
+          <xs:attribute name="name" use="required" type="xs:NCName"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="default">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="texturebg"/>
+          <xs:element ref="lefttexture"/>
+          <xs:element ref="midtexture"/>
+          <xs:element ref="righttexture"/>
+          <xs:element ref="overlaytexture"/>
+        </xs:sequence>
+        <xs:element minOccurs="0" ref="width"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="height"/>
+          <xs:element ref="texturesliderbackground"/>
+        </xs:choice>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="align"/>
+          <xs:element ref="aligny"/>
+          <xs:element ref="alttexturenofocus"/>
+          <xs:element ref="focusedcolor"/>
+          <xs:element ref="font"/>
+          <xs:element ref="orientation"/>
+          <xs:element ref="radioposx"/>
+          <xs:element ref="selectedcolor"/>
+          <xs:element ref="textcolor"/>
+          <xs:element ref="textoffsetx"/>
+          <xs:element ref="texturefocus"/>
+          <xs:element ref="texturenofocus"/>
+          <xs:element ref="textureradiooffdisabled"/>
+          <xs:element ref="textureradioofffocus"/>
+          <xs:element ref="textureradiooffnofocus"/>
+          <xs:element ref="textureradioondisabled"/>
+          <xs:element ref="textureradioonfocus"/>
+          <xs:element ref="textureradioonnofocus"/>
+          <xs:element ref="colorheight"/>
+          <xs:element ref="colorwidth"/>
+          <xs:element ref="disabledcolor"/>
+          <xs:element ref="pulseonselect"/>
+          <xs:element ref="radioheight"/>
+          <xs:element ref="radiowidth"/>
+          <xs:element ref="reverse"/>
+          <xs:element ref="shadowcolor"/>
+          <xs:element ref="showonepage"/>
+          <xs:element ref="sliderheight"/>
+          <xs:element ref="sliderwidth"/>
+          <xs:element ref="spinheight"/>
+          <xs:element ref="spinwidth"/>
+          <xs:element ref="texturecolordisabledmask"/>
+          <xs:element ref="texturecolormask"/>
+          <xs:element ref="texturedown"/>
+          <xs:element ref="texturedowndisabled"/>
+          <xs:element ref="texturedownfocus"/>
+          <xs:element ref="texturesliderbar"/>
+          <xs:element ref="texturesliderbarfocus"/>
+          <xs:element ref="textureslidernib"/>
+          <xs:element ref="textureslidernibfocus"/>
+          <xs:element ref="textureup"/>
+          <xs:element ref="textureupdisabled"/>
+          <xs:element ref="textureupfocus"/>
+        </xs:choice>
+        <xs:choice minOccurs="0">
+          <xs:element ref="textoffsety"/>
+          <xs:sequence>
+            <xs:element ref="pagecontrol"/>
+            <xs:element ref="autoscroll"/>
+          </xs:sequence>
+          <xs:sequence>
+            <xs:element ref="scrollout"/>
+            <xs:element ref="pauseatend"/>
+          </xs:sequence>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="overlaytexture">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="texturesliderbackground" type="TextureType"/>
+  <xs:element name="colorheight" type="xs:integer"/>
+  <xs:element name="colorwidth" type="xs:integer"/>
+  <xs:element name="disabledcolor" type="xs:NCName"/>
+  <xs:element name="pulseonselect" type="xs:boolean"/>
+  <xs:element name="radioheight" type="xs:integer"/>
+  <xs:element name="radiowidth" type="xs:integer"/>
+  <xs:element name="reverse" type="xs:NCName"/>
+  <xs:element name="shadowcolor">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="showonepage" type="xs:boolean"/>
+  <xs:element name="sliderheight" type="xs:integer"/>
+  <xs:element name="sliderwidth" type="xs:integer"/>
+  <xs:element name="spinheight" type="xs:integer"/>
+  <xs:element name="spinwidth" type="xs:integer"/>
+  <xs:element name="texturecolordisabledmask" type="TextureType"/>
+  <xs:element name="texturecolormask" type="TextureType"/>
+  <xs:element name="texturedown" type="TextureType"/>
+  <xs:element name="texturedowndisabled" type="TextureType"/>
+  <xs:element name="texturedownfocus" type="TextureType"/>
+  <xs:element name="texturesliderbar" type="TextureType"/>
+  <xs:element name="texturesliderbarfocus" type="TextureType"/>
+  <xs:element name="textureslidernib" type="TextureType"/>
+  <xs:element name="textureslidernibfocus" type="TextureType"/>
+  <xs:element name="textureup" type="TextureType"/>
+  <xs:element name="textureupdisabled" type="TextureType"/>
+  <xs:element name="textureupfocus" type="TextureType"/>
+  <xs:element name="textoffsety" type="xs:integer"/>
+  <xs:element name="pagecontrol" type="xs:integer"/>
+  <xs:element name="scrollout" type="xs:boolean"/>
+  <xs:element name="expression">
+    <xs:complexType mixed="true">
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="variable">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="value"/>
+      </xs:sequence>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="value">
+    <xs:complexType mixed="true">
+      <xs:attribute name="condition"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="window">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="defaultcontrol"/>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="onload"/>
+          <xs:element ref="onunload"/>
+        </xs:choice>
+        <xs:element ref="controls"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="defaultcontrol">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:integer">
+          <xs:attribute name="always" use="required" type="xs:boolean"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="onunload">
+    <xs:complexType mixed="true">
+      <xs:attribute name="condition"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="controls">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element ref="control"/>
+        <xs:element ref="include"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="include">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:group ref="ControlGroup" />
+        <xs:element ref="definition"/>
+        <xs:element ref="param"/>
+        <xs:element ref="item"/>
+      </xs:choice>
+      <xs:attribute name="condition"/>
+      <xs:attribute name="content"/>
+      <xs:attribute name="name" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="alttexturefocus" type="TextureType"/>
+  <xs:element name="definition">
+    <xs:complexType>
+      <xs:group ref="ControlGroup"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="param">
+    <xs:complexType>
+      <xs:attribute name="default"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="value"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="radioposy" type="xs:integer"/>
+  <xs:element name="textureradiofocus" type="TextureType"/>
+  <xs:element name="textureradionofocus" type="TextureType"/>
+  <xs:element name="timeperimage" type="xs:string"/>
+  <xs:element name="font">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="aspect"/>
+        <xs:element ref="filename"/>
+        <xs:element ref="linespacing"/>
+        <xs:element ref="name"/>
+        <xs:element ref="size"/>
+        <xs:element ref="style"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="aspect" type="xs:decimal"/>
+  <xs:element name="filename" type="xs:NCName"/>
+  <xs:element name="linespacing" type="xs:decimal"/>
+  <xs:element name="name" type="xs:NCName"/>
+  <xs:element name="size" type="xs:integer"/>
+  <xs:element name="style" type="xs:string"/>
+  <xs:element name="texturebg" type="TextureType"/>
+  <xs:element name="lefttexture" type="TextureType"/>
+  <xs:element name="midtexture" type="TextureType"/>
+  <xs:element name="righttexture" type="TextureType"/>
+  <xs:element name="width">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="max" type="xs:integer"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="height" type="xs:string"/>
+  <xs:element name="orientation" type="xs:NCName"/>
+  <xs:element name="selectedcolor" type="xs:string"/>
+  <xs:element name="textoffsetx" type="xs:integer"/>
+  <xs:element name="textcolor" type="xs:string"/>
+  <xs:element name="focusedcolor" type="xs:string"/>
+  <xs:element name="texturenofocus" type="TextureType" />
+  <xs:element name="alttexturenofocus" type="TextureType" />
+  <xs:element name="textureradioondisabled" type="TextureType"/>
+  <xs:element name="textureradiooffdisabled" type="TextureType"/>
+  <xs:element name="textureradioonfocus" type="TextureType"/>
+  <xs:element name="textureradioofffocus" type="TextureType"/>
+  <xs:element name="textureradioonnofocus" type="TextureType"/>
+  <xs:element name="textureradiooffnofocus" type="TextureType"/>
+  <xs:element name="texturefocus" type="TextureType"/>
+  <xs:element name="align" type="xs:NCName"/>
+  <xs:element name="aligny" type="xs:NCName"/>
+  <xs:element name="radioposx" type="xs:integer"/>
+  <xs:element name="autoscroll">
+    <xs:complexType mixed="true">
+      <xs:attribute name="delay" type="xs:integer"/>
+      <xs:attribute name="repeat" type="xs:integer"/>
+      <xs:attribute name="time" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="pauseatend" type="xs:string"/>
+  <xs:element name="onload">
+    <xs:complexType mixed="true">
+      <xs:attribute name="condition"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="item">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:group ref="ControlGroup" />
+        <xs:element ref="property"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="control">
+    <xs:complexType>
+      <xs:group ref="ControlGroup" />
+      <xs:attribute name="description" type="xs:NCName"/>
+      <xs:attribute name="id"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="altlabel" type="xs:string"/>
+  <xs:element name="icon" type="xs:string"/>
+  <xs:element name="aspectratio">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:NCName">
+          <xs:attribute name="align" type="xs:NCName"/>
+          <xs:attribute name="aligny" type="xs:NCName"/>
+          <xs:attribute name="scalediffuse" type="xs:boolean"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="fadetime" type="xs:integer"/>
+  <xs:element name="preloaditems" type="xs:integer"/>
+  <xs:element name="focusedlayout">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="ControlGroup"/>
+      </xs:sequence>
+      <xs:attribute name="condition"/>
+      <xs:attribute name="height" type="xs:string"/>
+      <xs:attribute name="width" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="imagepath" type="TextureType"/>
+  <xs:element name="itemlayout">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="ControlGroup"/>
+      </xs:sequence>
+      <xs:attribute name="condition"/>
+      <xs:attribute name="height" type="xs:string"/>
+      <xs:attribute name="width" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="label">
+    <xs:complexType mixed="true">
+      <xs:attribute name="fallback" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="label2">
+    <xs:complexType mixed="true">
+      <xs:attribute name="fallback" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="info" type="xs:string"/>
+  <xs:element name="nested">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="posx" type="xs:integer"/>
+  <xs:element name="posy" type="xs:integer"/>
+  <xs:element name="randomize" type="xs:boolean"/>
+  <xs:element name="scrolltime">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:integer">
+          <xs:attribute name="tween" use="required" type="xs:NCName"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="usealttexture" type="xs:string"/>
+  <xs:element name="onfocus">
+    <xs:complexType mixed="true">
+      <xs:attribute name="condition"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="onup">
+    <xs:complexType mixed="true">
+      <xs:attribute name="condition"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="centerleft" type="xs:string"/>
+  <xs:element name="centertop" type="xs:string"/>
+  <xs:element name="bordertexture" type="TextureType"/>
+  <xs:element name="onright">
+    <xs:complexType mixed="true">
+      <xs:attribute name="condition"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="visible">
+    <xs:complexType mixed="true">
+      <xs:attribute name="allowhiddenfocus" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="bottom" type="xs:string"/>
+  <xs:element name="ondown">
+    <xs:complexType mixed="true">
+      <xs:attribute name="condition"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="onclick">
+    <xs:complexType mixed="true">
+      <xs:attribute name="condition"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="animation">
+    <xs:complexType mixed="true">
+      <xs:sequence minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="effect"></xs:element>
+      </xs:sequence>
+      <xs:attributeGroup ref="AnimationType"/>
+      <xs:attribute name="effect" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="effect">
+    <xs:complexType>
+      <xs:attributeGroup ref="AnimationType"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="left" type="xs:string"/>
+  <xs:element name="itemgap" type="xs:string"/>
+  <xs:element name="description" type="xs:string"/>
+  <xs:element name="property">
+    <xs:complexType mixed="true">
+      <xs:attribute name="name"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="onleft">
+    <xs:complexType mixed="true">
+      <xs:attribute name="condition"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="content">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="include"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="top" type="xs:string"/>
+  <xs:element name="onback">
+    <xs:complexType mixed="true">
+      <xs:attribute name="condition"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="usecontrolcoords" type="xs:boolean"/>
+  <xs:element name="texture" type="TextureType"/>
+  <xs:element name="right" type="xs:string"/>
+  <xs:element name="bordersize" type="xs:string"/>
+
+  <xs:group name="ControlGroup">
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="animation"/>
+        <xs:element ref="left" maxOccurs="1"/>
+        <xs:element ref="top"/>
+        <xs:element ref="right"/>
+        <xs:element ref="bottom"/>
+        <xs:element ref="width"/>
+        <xs:element ref="height"/>
+        <xs:element ref="align"/>
+        <xs:element ref="aligny"/>
+        <xs:element ref="bordersize"/>
+        <xs:element ref="bordertexture"/>
+        <xs:element ref="centerleft"/>
+        <xs:element ref="centertop"/>
+        <xs:element ref="control"/>
+        <xs:element ref="description"/>
+        <xs:element ref="focusedcolor"/>
+        <xs:element ref="font"/>
+        <xs:element ref="include"/>
+        <xs:element ref="itemgap"/>
+        <xs:element ref="lefttexture"/>
+        <xs:element ref="midtexture"/>
+        <xs:element ref="onback"/>
+        <xs:element ref="onclick"/>
+        <xs:element ref="ondown"/>
+        <xs:element ref="onfocus"/>
+        <xs:element ref="onleft"/>
+        <xs:element ref="onright"/>
+        <xs:element ref="onup"/>
+        <xs:element ref="orientation"/>
+        <xs:element ref="righttexture"/>
+        <xs:element ref="selectedcolor"/>
+        <xs:element ref="textcolor"/>
+        <xs:element ref="textoffsetx"/>
+        <xs:element ref="texture"/>
+        <xs:element ref="texturebg"/>
+        <xs:element ref="texturefocus"/>
+        <xs:element ref="texturenofocus"/>
+        <xs:element ref="usecontrolcoords"/>
+        <xs:element ref="visible"/>
+        <xs:element ref="altlabel"/>
+        <xs:element ref="icon"/>
+        <xs:element ref="aspectratio"/>
+        <xs:element ref="fadetime"/>
+        <xs:element ref="focusedlayout"/>
+        <xs:element ref="imagepath"/>
+        <xs:element ref="itemlayout"/>
+        <xs:element ref="label"/>
+        <xs:element ref="label2"/>
+        <xs:element ref="info"/>
+        <xs:element ref="nested"/>
+        <xs:element ref="posx"/>
+        <xs:element ref="posy"/>
+        <xs:element ref="preloaditems"/>
+        <xs:element ref="randomize"/>
+        <xs:element ref="scrolltime"/>
+        <xs:element ref="usealttexture"/>
+        <xs:element ref="content"/>
+        <xs:element ref="pagecontrol"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:group>
+  <xs:attributeGroup name="AnimationType">
+    <xs:attribute name="center" type="xs:string"/>
+    <xs:attribute name="condition"/>
+    <xs:attribute name="delay" type="xs:integer"/>
+    <xs:attribute name="easing" type="xs:NCName"/>
+    <xs:attribute name="ease" type="xs:NCName"/>
+    <xs:attribute name="end"/>
+    <xs:attribute name="loop" type="xs:boolean"/>
+    <xs:attribute name="pulse" type="xs:boolean"/>
+    <xs:attribute name="reversible" type="xs:boolean"/>
+    <xs:attribute name="start"/>
+    <xs:attribute name="time" type="xs:integer"/>
+    <xs:attribute name="tween" type="xs:NCName"/>
+    <xs:attribute name="type" type="xs:NCName"/>
+  </xs:attributeGroup>
+  <xs:complexType name="TextureType" mixed="true">
+    <xs:attribute name="background" type="xs:boolean"/>
+    <xs:attribute name="border" type="xs:string"/>
+    <xs:attribute name="colordiffuse"/>
+    <xs:attribute name="diffuse"/>
+    <xs:attribute name="fallback" type="xs:string"/>
+    <xs:attribute name="infill" type="xs:boolean"/>
+    <xs:attribute name="flipx" type="xs:boolean"/>
+    <xs:attribute name="flipy" type="xs:boolean"/>
+  </xs:complexType>
+</xs:schema>

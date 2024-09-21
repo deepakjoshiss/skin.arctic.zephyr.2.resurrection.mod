@@ -4,7 +4,7 @@
         <control type="label">
             <left>15</left>
             <right>15</right>
-            <font>font_statusbar</font>
+            <font>font_statusbar_s</font>
             <selectedcolor>main_fg_100</selectedcolor>
             <textcolor>main_fg_100</textcolor>
             <top>$PARAM[iconheight]</top>

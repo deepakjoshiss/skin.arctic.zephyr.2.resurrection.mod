@@ -59,11 +59,20 @@
         <param name="colordiffuse" default="panel_fg_70" />
         <definition>
             <control type="group">
+                <animation effect="zoom" time="120" end="104,104" center="120,120" ease="inout" condition="Skin.HasSetting(EnableZoomOnHover)">Focus</animation>
                 <right>10</right>
                 <bottom>10</bottom>
                 <include content="Object_Geometric">
                     <param name="diffuse" value="$PARAM[diffuse]" />
+                    <param name="altcolor" value="44202020" />
                 </include>
+                <control type="image">
+                    <top>15</top>
+                    <left>15</left>
+                    <right>15</right>
+                    <bottom>15</bottom>
+                    <texture border="4" background="true" colordiffuse="44ffffff" infill="false">common/box21.png</texture>
+                </control>
                 <control type="image">
                     <top>20</top>
                     <centerleft>50%</centerleft>
@@ -84,8 +93,7 @@
                 </control>
                 <control type="group">
                     <visible>Control.HasFocus($PARAM[id])</visible>
-                    <include condition="$PARAM[selectbox] + [String.IsEqual(Skin.String(FocusBorderSize),Bold) | String.IsEmpty(Skin.String(FocusBorderSize))]">View_Selectbox_Bold</include>
-                    <include condition="$PARAM[selectbox] + String.IsEqual(Skin.String(FocusBorderSize),Thin)">View_Selectbox_Thin</include>
+                    <include condition="$PARAM[selectbox]">View_Selectbox_Thin</include>
                 </control>
             </control>
 
@@ -862,30 +870,16 @@
                 <include content="View_Group">
                     <param name="animation" value="$PARAM[animation]" />
                 </include>
-                <control type="label">
-                    <top>0</top>
+                <control type="group">
+                    <top>-8</top>
                     <left>0</left>
-                    <width>auto</width>
-                    <label>$LOCALIZE[31312]</label>
-                    <aligny>center</aligny>
-                    <textcolor>main_fg_100</textcolor>
-                    <font>font_tiny_bold</font>
-                    <height>24</height>
                     <visible>$PARAM[toplabel]</visible>
-                    <visible>Control.HasFocus(5000)</visible>
+                    <include content="Defs_SectionHeaderIconLabel">
+                        <param name="label" value="$LOCALIZE[31312]" />
+                        <param name="focused" value="Control.HasFocus(5000)" />
+                    </include>
                 </control>
-                <control type="label">
-                    <top>0</top>
-                    <left>0</left>
-                    <width>auto</width>
-                    <label>$LOCALIZE[31312]</label>
-                    <aligny>center</aligny>
-                    <textcolor>main_fg_30</textcolor>
-                    <font>font_tiny_bold</font>
-                    <height>24</height>
-                    <visible>$PARAM[toplabel]</visible>
-                    <visible>!Control.HasFocus(5000)</visible>
-                </control>
+
                 <control type="group">
                     <top>$PARAM[top]</top>
                     <include content="View_51_Wall_Container">
@@ -912,40 +906,16 @@
                         <include>Items_Settings_System</include>
                     </include>
                 </control>
+
                 <control type="group">
                     <top>360</top>
-                    <control type="label">
-                        <top>-80</top>
-                        <height>40</height>
-                        <align>center</align>
-                        <font>font_byline</font>
-                        <textcolor>main_fg_70</textcolor>
-                        <label>$LOCALIZE[5]</label>
-                        <visible>!$PARAM[toplabel]</visible>
-                    </control>
-                    <control type="label">
-                        <top>-52</top>
+                    <control type="group">
+                        <top>-60</top>
                         <left>0</left>
-                        <width>auto</width>
-                        <label>$LOCALIZE[5]</label>
-                        <aligny>center</aligny>
-                        <textcolor>main_fg_100</textcolor>
-                        <font>font_tiny_bold</font>
-                        <height>24</height>
-                        <visible>$PARAM[toplabel]</visible>
-                        <visible>Control.HasFocus(5100)</visible>
-                    </control>
-                    <control type="label">
-                        <top>-52</top>
-                        <left>0</left>
-                        <width>auto</width>
-                        <label>$LOCALIZE[5]</label>
-                        <aligny>center</aligny>
-                        <textcolor>main_fg_30</textcolor>
-                        <font>font_tiny_bold</font>
-                        <height>24</height>
-                        <visible>$PARAM[toplabel]</visible>
-                        <visible>!Control.HasFocus(5100)</visible>
+                        <include content="Defs_SectionHeaderIconLabel">
+                            <param name="label" value="$LOCALIZE[5]" />
+                            <param name="focused" value="Control.HasFocus(5100) + $PARAM[toplabel]" />
+                        </include>
                     </control>
                     <include content="View_51_Wall_Container">
                         <param name="id" value="5100" />
