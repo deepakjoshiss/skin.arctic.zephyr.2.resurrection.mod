@@ -121,7 +121,7 @@
                 <aspectratio>scale</aspectratio>
                 <fadetime>600</fadetime>
                 <animation effect="fade" start="60" end="45" reversible="false" condition="!Skin.HasSetting(DisableBackgroundOverlay) + [Skin.HasSetting(TMDbHelper.EnableBlur) | [Window.IsActive(DialogVideoInfo.xml) | Window.IsActive(DialogMusicInfo.xml) | Window.IsActive(DialogAddonInfo.xml)]]">Conditional</animation>
-                <animation effect="fade" start="10" end="20" reversible="false" condition="!Skin.HasSetting(DisableBackgroundOverlay) + !Skin.HasSetting(TMDbHelper.EnableBlur)">Conditional</animation>
+                <animation effect="fade" start="10" end="15" reversible="false" condition="!Skin.HasSetting(DisableBackgroundOverlay) + !Skin.HasSetting(TMDbHelper.EnableBlur)">Conditional</animation>
                 <imagepath background="true">$VAR[Global_Background_Image]</imagepath>
                 <animation effect="zoom" start="110" end="130" center="auto" time="10000" tween="sine" easing="inout" pulse="true" condition="Skin.HasSetting(KenBurnsEffect)">Conditional</animation>
                 <animation effect="slide" start="-30,-30" end="30,30" time="6000" tween="sine" easing="inout" pulse="true" condition="Skin.HasSetting(KenBurnsEffect)">Conditional</animation>
@@ -217,6 +217,9 @@
 
         <!-- Weather -->
         <value condition="[Window.IsVisible(weather) | [Window.IsVisible(Home) + !Skin.HasSetting(HomeMulti) + String.IsEqual(Container(301).ListItem.Property(widget),Weather)] | [Window.IsVisible(Home) + Skin.HasSetting(HomeMulti) + [Control.HasFocus(9999) | String.IsEqual(Container(9989).ListItem.Property(list),Weather)]]] + System.HasAddon(resource.images.weatherfanart.multi)">$INFO[Window(Weather).Property(Current.FanartCode),resource://resource.images.weatherfanart.multi/,/]</value>
+
+        <!-- Systeminfo -->
+        <value condition="[Window.IsVisible(Home) + Skin.HasSetting(HomeMulti) + [Control.HasFocus(39999) | String.IsEqual(Container(9989).ListItem.Property(list),Systeminfo)]]">special://skin/extras/backgrounds/systeminfo.jpg</value>
 
         <!-- Fanart -->
         <value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>

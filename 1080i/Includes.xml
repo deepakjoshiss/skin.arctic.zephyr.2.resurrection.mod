@@ -27,6 +27,7 @@
     <include file="Includes_Topbar.xml" />
     <include file="Includes_VideoLyrics.xml" />
     <include file="Includes_Weather.xml" />
+    <include file="Includes_Systeminfo.xml" />
     <include file="Includes_AEL.xml" />
     <include file="Includes_PVRWidgets.xml" />
 
@@ -130,6 +131,15 @@
         <right>-20</right>
         <width>1520</width>
         <height>925</height>
+    </include>
+
+    <include name="IntentButton">
+        <control type="button">
+            <width>1</width>
+            <height>1</height>
+            <label />
+            <enable>false</enable>
+        </control>
     </include>
 
     <include name="AutoCompletion">
