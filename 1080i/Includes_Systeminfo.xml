@@ -1,0 +1,249 @@
+<includes>
+    <include name="SystemInfoItems">
+        <item>
+            <label>$LOCALIZE[705]</label>
+            <label2>$INFO[Network.LinkState]</label2>
+            <icon>special://skin/extras/icons/networkinfo.png</icon>
+            <property name="Label3">$INFO[Network.IPAddress,IP: ]</property>
+            <visible>!String.IsEmpty(Network.IPAddress)</visible>
+            <onclick>ActivateWindowAndFocus(systeminfo,96,0)</onclick>
+        </item>
+        <item>
+            <label>$LOCALIZE[705]</label>
+            <label2>$INFO[Network.LinkState]</label2>
+            <icon>special://skin/extras/icons/network.png</icon>
+            <property name="Label3">$INFO[Network.IPAddress,IP: ]</property>
+            <visible>String.IsEmpty(Network.IPAddress)</visible>
+            <onclick>ActivateWindowAndFocus(systeminfo,96,0)</onclick>
+        </item>
+        <item>
+            <label>$LOCALIZE[13280]</label>
+            <label2>$INFO[System.ScreenWidth]x$INFO[System.ScreenHeight]</label2>
+            <icon>special://skin/extras/icons/graphicinfo.png</icon>
+            <property name="Label3">$INFO[System.fps,, FPS]</property>
+            <onclick>ActivateWindowAndFocus(systeminfo,97,0)</onclick>
+        </item>
+        <item>
+            <label>CPU</label>
+            <label2>$INFO[System.CPUUsage(used.percent)]</label2>
+            <icon>special://skin/extras/icons/sysinfo.png</icon>
+            <property name="Label3">$INFO[System.CpuFrequency]</property>
+            <property name="Label4">cpu</property>
+            <onclick>ActivateWindowAndFocus(systeminfo,98,0)</onclick>
+        </item>
+        <item>
+            <label>RAM</label>
+            <label2>$INFO[System.Memory(used.percent)] $LOCALIZE[20162]</label2>
+            <icon>special://skin/extras/icons/raminfo.png</icon>
+            <property name="Label3">$INFO[System.Memory(total)] $LOCALIZE[20161]</property>
+            <property name="Label4">ram</property>
+            <onclick>ActivateWindowAndFocus(systeminfo,98,0)</onclick>
+        </item>
+        <item>
+            <label>$LOCALIZE[154]</label>
+            <label2>$INFO[System.UsedSpacePercent]</label2>
+            <icon>special://skin/extras/icons/storageinfo.png</icon>
+            <property name="Label3">$INFO[System.TotalSpace]</property>
+            <property name="Label4">storage</property>
+            <onclick>ActivateWindowAndFocus(systeminfo,94,0)</onclick>
+        </item>
+        <item>
+            <label>$LOCALIZE[14204]</label>
+            <label2>$INFO[Pvr.BackendName]</label2>
+            <icon>special://skin/extras/icons/pvrinfo.png</icon>
+            <property name="Label3">$INFO[Pvr.BackendChannels] $LOCALIZE[19019]</property>
+            <visible>PVR.HasTVChannels</visible>
+            <onclick>ActivateWindowAndFocus(systeminfo,99,0)</onclick>
+        </item>
+        <item>
+            <label>$LOCALIZE[20342] &amp; $LOCALIZE[20343]</label>
+            <label2>$INFO[Window(home).Property(Movies.Count)] $LOCALIZE[20342]</label2>
+            <icon>special://skin/extras/icons/tv.png</icon>
+            <property name="Label3">$INFO[Window(home).Property(TVShows.Count)] $LOCALIZE[20343]</property>
+            <visible>Library.HasContent(Movies) | Library.HasContent(TVShows)</visible>
+            <onclick>ActivateWindow(systeminfo)</onclick>
+        </item>
+        <item>
+            <label>$LOCALIZE[132] &amp; $LOCALIZE[134]</label>
+            <label2>$INFO[Window(home).Property(Music.AlbumsCount)] $LOCALIZE[132]</label2>
+            <icon>special://skin/extras/icons/songs.png</icon>
+            <property name="Label3">$INFO[Window(home).Property(Music.SongsCount)] $LOCALIZE[134]</property>
+            <visible>Library.HasContent(Music)</visible>
+            <onclick>ActivateWindow(systeminfo)</onclick>
+        </item>
+        <item>
+            <label>$LOCALIZE[19114]</label>
+            <label2>$INFO[System.BuildVersion]</label2>
+            <icon>special://skin/extras/icons/kodi.png</icon>
+            <property name="Label3">$INFO[System.BuildDate]</property>
+            <onclick>ActivateWindow(systeminfo)</onclick>
+        </item>
+    </include>
+
+    <include name="Defs_Systeminfo_Progress">
+        <param name="info" default="System.CPUUsage"/>
+        <param name="visible" default="false"/>
+        <definition>
+            <control type="progress">
+                <height>10</height>
+                <!-- <reveal>true</reveal> -->
+                <!-- <width>180</width> -->
+                <bottom>30</bottom>
+                <left>42</left>
+                <right>42</right>
+                <info>$PARAM[info]</info>
+                <!-- <animation effect="rotate" condition="true" start="360" end="90" loop="false" time="0" center="auto">Conditional</animation> -->
+                <visible>$PARAM[visible]</visible>
+                <!-- <lefttexture /> -->
+                <!-- <texturebg colordiffuse="44444444" border="0">common/white.png</texturebg>
+                <midtexture colordiffuse="$VAR[ColorHighlight]">common/white.png</midtexture> -->
+                <!-- <righttexture /> -->
+            </control>
+        </definition>
+    </include>
+
+    <include name="Widget_Systeminfo_Item_Layout">
+        <include content="Object_Geometric">
+            <param name="diffuse" value="diffuse/icon-wall.png" />
+            <param name="altcolor" value="55333333" />
+        </include>
+        <control type="image">
+            <top>15</top>
+            <left>15</left>
+            <right>15</right>
+            <bottom>15</bottom>
+            <texture border="4" background="true" colordiffuse="ffffffff" infill="false">common/box21.png</texture>
+            <animation effect="fade" start="100" end="50" condition="true">Conditional</animation>
+        </control>
+        <control type="image">
+            <top>15</top>
+            <left>15</left>
+            <right>15</right>
+            <bottom>15</bottom>
+            <aspectratio>scale</aspectratio>
+            <texture border="5">special://skin/extras/backgrounds/systeminfo.jpg</texture>
+            <animation effect="fade" start="100" end="30" condition="true">Conditional</animation>
+        </control>
+        <control type="group">
+            <left>40</left>
+            <top>40</top>
+            <right>40</right>
+            <control type="label">
+                <align>left</align>
+                <aligny>top</aligny>
+                <textcolor>main_fg_90</textcolor>
+                <label>$INFO[ListItem.Label]</label>
+                <font>font_statusbar_xl_medium</font>
+            </control>
+            <control type="label">
+                <top>45</top>
+                <bottom>10</bottom>
+                <align>left</align>
+                <aligny>top</aligny>
+                <textcolor>main_fg_70</textcolor>
+                <label>$INFO[ListItem.Label2]</label>
+                <font>font_statusbar_l</font>
+            </control>
+            <control type="label">
+                <top>80</top>
+                <bottom>10</bottom>
+                <align>left</align>
+                <aligny>top</aligny>
+                <textcolor>main_fg_70</textcolor>
+                <selectedcolor>$VAR[ColorGradient]</selectedcolor>
+                <label>$INFO[ListItem.Property(Label3)]</label>
+                <animation effect="slide" end="0,-36" condition="String.IsEmpty(ListItem.Label2)" time="0">Conditional</animation>
+                <font>font_statusbar_l</font>
+            </control>
+        </control>
+        <control type="image">
+            <width>120</width>
+            <height>120</height>
+            <right>10</right>
+            <bottom>30</bottom>
+            <aspectratio scalediffuse="false">keep</aspectratio>
+            <texture background="true" colordiffuse="main_fg_70" fallback="DefaultMovies.png">$INFO[ListItem.Icon]</texture>
+        </control>
+        <include content="Defs_Systeminfo_Progress">
+            <param name="info" value="System.CPUUsage"/>
+            <param name="visible" value="String.IsEqual(ListItem.Property(Label4),cpu)"/>
+        </include>
+        <include content="Defs_Systeminfo_Progress">
+            <param name="info" value="system.memory(used)"/>
+            <param name="visible" value="String.IsEqual(ListItem.Property(Label4),ram)"/>
+        </include>
+        <include content="Defs_Systeminfo_Progress">
+            <param name="info" value="System.UsedSpace"/>
+            <param name="visible" value="String.IsEqual(ListItem.Property(Label4),storage)"/>
+        </include>
+    </include>
+    <include name="InfoSubWidgetSystem">
+        <definition>
+            <top>view_top</top>
+            <bottom>view_bottom</bottom>
+            <control type="image">
+                <top>-28</top>
+                <left>15</left>
+                <width>30</width>
+                <height>30</height>
+                <aspectratio align="right">keep</aspectratio>
+                <texture colordiffuse="$VAR[ColorHighlight]">buttons/kodi-logo.png</texture>
+            </control>
+            <control type="image">
+                <top>-28</top>
+                <left>15</left>
+                <width>30</width>
+                <height>30</height>
+                <aspectratio align="right">keep</aspectratio>
+                <texture colordiffuse="$VAR[ColorGradient]">buttons/kodi-logo-gradient.png</texture>
+            </control>
+
+            <control type="label">
+                <font>font_topbar_small</font>
+                <align>left</align>
+                <top>-34</top>
+                <left>56</left>
+                <height>36</height>
+                <aligny>center</aligny>
+                <textcolor>main_fg_90</textcolor>
+                <label>$LOCALIZE[130]</label>
+            </control>
+
+            <control type="panel" id="39999">
+                <right>view_pad</right>
+                <top>24</top>
+                <onleft>301</onleft>
+                <onback>301</onback>
+                <orientation>vertical</orientation>
+                <preloaditems>2</preloaditems>
+                <content>
+                    <include>SystemInfoItems</include>
+                </content>
+                <!-- <onfocus>Notification("Message", "test")</onfocus> -->
+                <onfocus>SetProperty(widgetMovementId,999999],Home)</onfocus>
+
+                <itemlayout width="item_width_banner" height="item_width_banner">
+                    <control type="group">
+                        <right>2</right>
+                        <bottom>30</bottom>
+                        <include>Widget_Systeminfo_Item_Layout</include>
+                    </control>
+                </itemlayout>
+                <focusedlayout width="item_width_banner" height="item_width_banner">
+                    <control type="group">
+                        <right>2</right>
+                        <bottom>30</bottom>
+                        <include>Widget_Systeminfo_Item_Layout</include>
+
+                        <control type="group">
+                            <include content="View_Selectbox_Thin">
+                                <param name="focusbounce" value="true" />
+                            </include>
+                        </control>
+                    </control>
+                </focusedlayout>
+            </control>
+            <!-- <include content="InfoSubWidgetSystemInclude"/> -->
+        </definition>
+    </include>
+</includes>

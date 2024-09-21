@@ -1093,7 +1093,7 @@
                     <centerleft>50%</centerleft>
                     <left>15</left>
                     <right>15</right>
-                    <height>2.5</height>
+                    <height>2</height>
                     <bottom>$PARAM[prbottom]</bottom>
                     <info>ListItem.PercentPlayed</info>
                     <texturebg colordiffuse="40ffffff" border="5,0,5,0">diffuse/progress-line-bg.png</texturebg>
@@ -1252,7 +1252,7 @@
 
     <include name="View_Selectbox_Thin">
         <param name="overlay" default="true" />
-        <param name="pad" default="0" />
+        <param name="pad" default="-2" />
         <param name="colordiffuse" default="$VAR[ColorHighlight2]" />
         <param name="focusbounce" default="true" />
         <definition>

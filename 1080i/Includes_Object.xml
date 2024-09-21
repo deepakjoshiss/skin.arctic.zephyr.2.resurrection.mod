@@ -1634,6 +1634,7 @@
 
     <include name="Object_Geometric">
         <param name="pad" default="0" />
+        <param name="altcolor" default="AltPosterBack" />
         <definition>
             <control type="image">
                 <left>$PARAM[pad]</left>
@@ -1650,7 +1651,7 @@
                 </include>
                 <include content="Object_Geometric_Panel" condition="!Skin.HasSetting(EnableGeometric)">
                     <param name="diffuse" value="$PARAM[diffuse]" />
-                    <param name="colordiffuse" value="AltPosterBack" />
+                    <param name="colordiffuse" value="$PARAM[altcolor]" />
                     <param name="texture" value="$PARAM[diffuse]" />
                 </include>
             </control>

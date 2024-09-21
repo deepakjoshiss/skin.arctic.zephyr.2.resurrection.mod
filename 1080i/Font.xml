@@ -65,34 +65,44 @@
             <size>12</size>
         </font>
         <font>
+            <name>font_statusbar_xl</name>
+            <filename>RobotoCondensed-Regular.ttf</filename>
+            <size>30</size>
+        </font>
+        <font>
+            <name>font_statusbar_xl_medium</name>
+            <filename>RobotoCondensed-Medium.ttf</filename>
+            <size>30</size>
+        </font>
+        <font>
             <name>font_statusbar_l</name>
             <filename>RobotoCondensed-Regular.ttf</filename>
-            <size>24</size>
+            <size>26</size>
         </font>
         <font>
             <name>font_statusbar</name>
             <filename>RobotoCondensed-Regular.ttf</filename>
-            <size>22</size>
+            <size>24</size>
         </font>
         <font>
             <name>font_statusbar_bold</name>
             <filename>RobotoCondensed-Bold.ttf</filename>
-            <size>22</size>
+            <size>24</size>
         </font>
         <font>
             <name>font_statusbar_s</name>
             <filename>RobotoCondensed-Regular.ttf</filename>
-            <size>20</size>
+            <size>22</size>
         </font>
         <font>
             <name>font_statusbar_s_bold</name>
             <filename>RobotoCondensed-Bold.ttf</filename>
-            <size>20</size>
+            <size>22</size>
         </font>
         <font>
             <name>font_statusbar_xs</name>
             <filename>RobotoCondensed-Regular.ttf</filename>
-            <size>18</size>
+            <size>20</size>
         </font>
 
         <font>

@@ -875,4 +875,8 @@
         </definition>
     </include>
 
+    <include name="Defs_SectionHeaderIconLabel">
+        
+    </include>
+
 </includes>
