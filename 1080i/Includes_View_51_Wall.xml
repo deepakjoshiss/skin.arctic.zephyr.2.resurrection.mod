@@ -138,7 +138,7 @@
                 <control type="label">
                     <left>15</left>
                     <right>15</right>
-                    <font>font_statusbar_s_bold</font>
+                    <font>font_statusbar_xs_medium</font>
                     <selectedcolor>panel_fg_100</selectedcolor>
                     <textcolor>panel_fg_100</textcolor>
                     <top>6</top>
@@ -150,7 +150,7 @@
                 <control type="label">
                     <left>15</left>
                     <right>15</right>
-                    <font>font_statusbar_xs</font>
+                    <font>font_statusbar_xs_medium</font>
                     <selectedcolor>panel_fg_70</selectedcolor>
                     <textcolor>panel_fg_70</textcolor>
                     <top>32</top>
@@ -174,7 +174,7 @@
                 <control type="label">
                     <left>25</left>
                     <right>35</right>
-                    <font>font_statusbar_xs</font>
+                    <font>font_statusbar_xxs</font>
                     <selectedcolor>panel_fg_100</selectedcolor>
                     <textcolor>panel_fg_100</textcolor>
                     <top>1</top>

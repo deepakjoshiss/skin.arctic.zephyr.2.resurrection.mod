@@ -2,11 +2,13 @@
 <!-- Foundation -->
 <window id="2901">
     <onload condition="!Player.PauseEnabled">SetFocus(15)</onload>
+    <onload>SetProperty(plugin.video.jellycon-updatesub,1,Home)</onload>
     <onload condition="Player.PauseEnabled + !Skin.HasSetting(HidePlayPauseButton)">SetFocus(14)</onload>
     <onload condition="Player.PauseEnabled + [Skin.HasSetting(HidePlayPauseButton) + !Skin.HasSetting(HideStopButton)]">SetFocus(15)</onload>
     <onload condition="Player.PauseEnabled + [Skin.HasSetting(HidePlayPauseButton) + Skin.HasSetting(HideStopButton)]">SetFocus(18)</onload>
     <onunload>ClearProperty(OSDInfo,Home)</onunload>
     <onunload>CancelAlarm(osd_timeout,true)</onunload>
+    <onunload>ClearProperty(plugin.video.jellycon-updatesub,Home)</onunload>
     <controls>
 
         <control type="button" id="99220">

@@ -1,8 +1,32 @@
 import xbmc
+import xbmcgui
 
 from constants import ADDON
 from constants import ADDON_ID
 
+
+class HomeWindow:
+    """
+        xbmcgui.Window(10000) with add-on id prefixed to keys
+    """
+
+    def __init__(self):
+        self.id_string = ADDON_ID + '-%s'
+        self.window = xbmcgui.Window(10000)
+
+    def get_property(self, key):
+        key = self.id_string % key
+        value = self.window.getProperty(key)
+        return value
+
+    def set_property(self, key, value):
+        key = self.id_string % key
+        log(">>>>>>> generating fonts {0} key".format(key))
+        self.window.setProperty(key, value)
+
+    def clear_property(self, key):
+        key = self.id_string % key
+        self.window.clearProperty(key)
 
 def log(txt):
         if isinstance(txt, bytes):

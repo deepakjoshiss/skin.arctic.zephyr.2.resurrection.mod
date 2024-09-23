@@ -104,6 +104,16 @@
             <filename>RobotoCondensed-Regular.ttf</filename>
             <size>20</size>
         </font>
+        <font>
+            <name>font_statusbar_xs_medium</name>
+            <filename>RobotoCondensed-Medium.ttf</filename>
+            <size>20</size>
+        </font>
+        <font>
+            <name>font_statusbar_xxs</name>
+            <filename>RobotoCondensed-Regular.ttf</filename>
+            <size>18</size>
+        </font>
 
         <font>
             <name>font_info_buttons</name>
