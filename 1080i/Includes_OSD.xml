@@ -5,6 +5,18 @@
         <value condition="VideoPlayer.SubtitlesEnabled">$INFO[VideoPlayer.SubtitlesLanguage,[UPPERCASE],[/UPPERCASE]]</value>
         <value></value>
     </variable>
+    <variable name="OSD_CurrentSubName">
+        <value condition="VideoPlayer.SubtitlesEnabled + !String.IsEmpty(Window(home).Property(plugin.video.jellycon-currentsub))">$INFO[Window(home).Property(plugin.video.jellycon-currentsub)]</value>
+        <value></value>
+    </variable>
+    <variable name="OSD_SettingsDialogId">
+        <value condition="Window.IsActive(osdaudiosettings)">10124</value>
+        <value>10159</value>
+    </variable>
+    <variable name="OSD_SettingsDialogClickId">
+        <value condition="Window.IsActive(osdaudiosettings)">-176</value>
+        <value>-178</value>
+    </variable>
 
     <include name="OSD_LeftSide">
         <left>view_pad</left>
@@ -266,6 +278,23 @@
             <visible>!Window.IsVisible(DialogPlayerProcessInfo.xml)</visible>
             <include>Animation_FadeIn</include>
             <include>Animation_FadeOut</include>
+            <control type="button" id="78889">
+                <font>font_statusbar_xxs</font>
+                <centertop>52%</centertop>
+                <textcolor>main_fg_90</textcolor>
+                <textoffsetx>10</textoffsetx>
+                <width>auto</width>
+                <height>36</height>
+                <texturenofocus border="10" colordiffuse="panel_fg_70">common/box22.png</texturenofocus>
+                <label>$VAR[OSD_CurrentSubName]</label>
+                <visible>!String.IsEmpty(Control.GetLabel(78889))</visible>
+            </control>
+            <control type="label">
+                <width>1</width>
+                <height>32</height>
+                <label></label>
+                <visible>!String.IsEmpty(Control.GetLabel(78889))</visible>
+            </control>
             <control type="image">
                 <fadetime>100</fadetime>
                 <centertop>50%</centertop>
@@ -1275,7 +1304,7 @@
             <textoffsetx>0</textoffsetx>
             <texturefocus colordiffuse="$VAR[ColorHighlight]">osd/subs-filled.png</texturefocus>
             <texturenofocus colordiffuse="panel_fg_90">osd/subs-circle.png</texturenofocus>
-            <onclick condition="Skin.HasSetting(OSDSubtitleSettings)">SetProperty(ShowSubs,1,Home)</onclick>
+            <onclick condition="Skin.HasSetting(OSDSubtitleSettings) + VideoPlayer.SubtitlesEnabled + VideoPlayer.HasSubtitles">SetProperty(ShowSubs,1,Home)</onclick>
             <onclick condition="Skin.HasSetting(OSDSubtitleSettings)">ActivateWindow(osdsubtitlesettings)</onclick>
             <onclick condition="!Skin.HasSetting(OSDSubtitleSettings) + VideoPlayer.HasSubtitles">NextSubtitle</onclick>
             <onclick condition="!Skin.HasSetting(OSDSubtitleSettings) + !VideoPlayer.HasSubtitles">Close</onclick>

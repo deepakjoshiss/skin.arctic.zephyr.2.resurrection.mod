@@ -1,11 +1,27 @@
 import xbmc
 
 from constants import ADDON, SKIN_PATH, ADDON_ID
-from common import log
+from common import HomeWindow, log
+from jsonrpc import JsonRpc
 import xml.etree.ElementTree as ET
 
 def generatefonts():
-    log(">>>>>>> generating fonts")
+    log(">>>>>>> generating fonts start")
+    window = HomeWindow()
+    log(">>>>>>> generating fonts {0} abc".format(window.window.getFocusId()))
+    window.set_property('djprop', 'DJ Prop')
+    log(">>>>>>> generating fonts {0} abc".format(window.window.getProperty('skin.vinelec-djprop')))
+    params = {
+        'addonid': "plugin.video.jellycon",
+        'enabled': False
+    }
+    result = JsonRpc('Addons.SetAddonEnabled').execute(params)
+
+    params = {
+        'addonid': "plugin.video.jellycon",
+        'enabled': True
+    }
+    result = JsonRpc('Addons.SetAddonEnabled').execute(params)
     tree = ET.parse(SKIN_PATH +'/1080i/Font.xml')
     root = tree.getroot()
     for child in root:
