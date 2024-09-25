@@ -65,6 +65,13 @@
             <size>12</size>
         </font>
         <font>
+            <name>font_info_s</name>
+            <filename>RobotoCondensed-Medium.ttf</filename>
+            <size>23</size>
+            <aspect>1.1</aspect>
+            <linespacing>1.35</linespacing>
+        </font>
+        <font>
             <name>font_statusbar_xl</name>
             <filename>RobotoCondensed-Regular.ttf</filename>
             <size>30</size>

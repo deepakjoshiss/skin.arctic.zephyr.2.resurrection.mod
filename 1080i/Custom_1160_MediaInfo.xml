@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Foundation -->
+<window type="dialog" id="1160">
+    <defaultcontrol always="false">3000</defaultcontrol>
+    <coordinates>
+        <origin x="0" y="0" />
+    </coordinates>
+    <!-- <onload></onload> -->
+    <onunload>ClearProperty(CustomDialogWindow.header)</onunload>
+    <onunload>ClearProperty(CustomDialogWindow.items)</onunload>
+
+    <controls>
+        <include>Global_Overlay</include>
+        <control type="image">
+            <description>background image</description>
+            <bordertexture border="32">common/shadow-dialog-24.png</bordertexture>
+            <bordersize>70,104,70,80</bordersize>
+            <texture border="16" colordiffuse="dialog_bg_100">common/dialog.png</texture>
+        </control>
+        <control type="group">
+            <left>120</left>
+            <top>140</top>
+            <right>120</right>
+            <bottom>110</bottom>
+
+            <control type="label" id="3100">
+                <font>font_statusbar_s</font>
+                <aligny>top</aligny>
+                <left>194</left>
+                <top>2</top>
+                <textcolor>main_fg_90</textcolor>
+                <label></label>
+            </control>
+
+            <control type="label" id="3101">
+                <font>font_statusbar_s</font>
+                <aligny>top</aligny>
+                <top>48</top>
+                <left>36</left>
+                <textcolor>main_fg_90</textcolor>
+                <label></label>
+            </control>
+
+            <include content="Defs_SectionHeaderIconLabel">
+                <param name="label" value="Media Info[COLOR $VAR[ColorHighlight]] | [/COLOR]" />
+                <param name="focused" value="true" />
+            </include>
+
+            <control type="fixedlist" id="3000">
+                <description>Control Area</description>
+                <top>120</top>
+                <itemgap>0</itemgap>
+                <width>500</width>
+                <orientation>vertical</orientation>
+                <usecontrolcoords>true</usecontrolcoords>
+                <movement>5</movement>
+                <focusposition>3</focusposition>
+                <itemlayout width="500" height="56">
+                    <control type="label">
+                        <left>16</left>
+                        <right>16</right>
+                        <font>font_statusbar_s</font>
+                        <textcolor>main_fg_70</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                </itemlayout>
+                <focusedlayout width="500" height="56">
+                    <control type="image">
+                        <texture border="8" colordiffuse="main_fg_90" background="true">common/box22.png</texture>
+                    </control>
+                    <control type="image">
+                        <animation effect="fade" start="100" end="60" condition="true">Conditional</animation>
+                        <texture border="8" colordiffuse="main_fg_70" background="true">common/box.png</texture>
+                    </control>
+                    <control type="label">
+                        <left>16</left>
+                        <right>16</right>
+                        <font>font_statusbar_s_bold</font>
+                        <textcolor>dialog_bg_100</textcolor>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                </focusedlayout>
+
+                <!-- <content>
+                        <item>
+                            <label>this is test</label>
+                        </item>
+                        <item>
+                            <label>this is test2</label>
+                        </item>
+                      </content> -->
+            </control>
+            
+            <control type="group">
+                <left>640</left>
+                <top>124</top>
+                <right>40</right>
+                <control type="image">
+                    <width>1</width>
+                    <left>-70</left>
+                    <top>dialog_pad</top>
+                    <bottom>dialog_pad</bottom>
+                    <texture colordiffuse="dialog_fg_12">common/white.png</texture>
+                </control>
+                <control type="textbox" id='3111'>
+                    <font>font_info_s</font>
+                    <textcolor>main_fg_90</textcolor>
+                    <monospace>true</monospace>
+                    <label>$INFO[ListItem.Property(StreamInfo)]</label>
+                </control>
+                <control type="textbox" id='3112'>
+                    <font>font_info_s</font>
+                    <left>580</left>
+                    <textcolor>main_fg_90</textcolor>
+                    <label>$INFO[ListItem.Property(StreamInfo2)]</label>
+                </control>
+            </control>
+        </control>
+
+    </controls>
+</window>
