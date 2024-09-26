@@ -50,7 +50,7 @@
         <include content="View_516_Landscape_Info">
             <param name="id" value="502" />
             <param name="viewtypename" value="list" />
-            <param name="visible" value="Container.Content(episodes)" />
+            <param name="visible" value="Container.Content(episodes) | Container.Content(video)" />
         </include>
     </include>
 

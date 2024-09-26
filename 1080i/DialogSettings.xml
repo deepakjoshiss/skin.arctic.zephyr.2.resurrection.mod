@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
     <!-- <onload condition="Window.IsActive(osdsubtitlesettings) + !String.IsEmpty(Window(Home).Property(ShowSubs))">Notification(,This is test notification)</onload> -->
-    <onload condition="Window.IsActive(osdsubtitlesettings)">SetProperty(skin.vinelec-subtilewindow,1,Home)</onload>
+    <onload condition="Window.IsActive(osdsubtitlesettings)">SetProperty(skin.vinelec-subtitlewindow,1,Home)</onload>
     <onload condition="[Window.IsActive(osdsubtitlesettings) | Window.IsActive(osdaudiosettings)] + !String.IsEmpty(Window(Home).Property(ShowSubs))">SendClick($VAR[OSD_SettingsDialogClickId])</onload>
     <onload condition="[Window.IsActive(osdsubtitlesettings) | Window.IsActive(osdaudiosettings)] + !String.IsEmpty(Window(Home).Property(ShowSubs))">Dialog.Close($VAR[OSD_SettingsDialogId])</onload>
-    <onunload condition="!String.IsEmpty(Window(Home).Property(skin.vinelec-subtilewindow) + String.IsEmpty(Window(Home).Property(plugin.video.jellycon-updatesub)">SetProperty(plugin.video.jellycon-updatesub,1,Home)</onunload>
-    <onunload condition="!String.IsEmpty(Window(Home).Property(skin.vinelec-subtilewindow)">ClearProperty(skin.vinelec-subtilewindow,Home)</onunload>
+    <onunload condition="!String.IsEmpty(Window(Home).Property(skin.vinelec-subtitlewindow) + String.IsEmpty(Window(Home).Property(plugin.video.jellycon-updatesub))">SetProperty(plugin.video.jellycon-updatesub,1,Home)</onunload>
+    <onunload condition="!String.IsEmpty(Window(Home).Property(skin.vinelec-subtitlewindow))">ClearProperty(skin.vinelec-subtitlewindow,Home)</onunload>
 
     <!-- <onunload condition="!String.IsEmpty(Window(Home).Property(ShowSubs))">Notification(,This is close notification)</onunload> -->
     <onunload condition="!String.IsEmpty(Window(Home).Property(ShowSubs))">ClearProperty(ShowSubs,Home)</onunload>

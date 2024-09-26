@@ -939,7 +939,7 @@
     <include name="View_518_Poster_Info">
         <param name="id" default="518" />
         <param name="viewtypename" default="icon" />
-        <param name="visible" default="Container.Content(files) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)" />
+        <param name="visible" default="Container.Content(files) | Container.Content(video) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)" />
         <definition>
             <control type="group">
                 <include>View_Group</include>

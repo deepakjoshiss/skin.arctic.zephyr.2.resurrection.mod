@@ -1986,6 +1986,14 @@
                 <onclick>Skin.SetString(SearchTerm)</onclick>
                 <onclick>ActivateWindow(1138)</onclick>
                 <visible>!Window.IsVisible(MyPVRChannels.xml) + !Window.IsVisible(MyPVRGuide.xml) + !Window.IsVisible(MyPVRTimers.xml) + !Window.IsVisible(MyPVRRecordings.xml) + !Window.IsVisible(MyPVRSearch.xml)</visible>
+                <visible>!String.IsEqual(Container.PluginName, plugin.video.jellycon)</visible>
+            </item>
+            <item>
+                <label>$LOCALIZE[137]</label>
+                <icon>special://skin/extras/icons/search.png</icon>
+                <onclick>ActivateWindow(Videos,"plugin://plugin.video.jellycon/?mode=NEW_SEARCH&amp;item_type=$INFO[Container.Content]",return)</onclick>
+                <visible>!Window.IsVisible(MyPVRChannels.xml) + !Window.IsVisible(MyPVRGuide.xml) + !Window.IsVisible(MyPVRTimers.xml) + !Window.IsVisible(MyPVRRecordings.xml) + !Window.IsVisible(MyPVRSearch.xml)</visible>
+                <visible>String.IsEqual(Container.PluginName, plugin.video.jellycon)</visible>
             </item>
             <!-- Filter -->
             <item>

@@ -210,6 +210,7 @@
     <!-- Main Grouping -->
     <groupings>
         <node label="32029">
+            <shortcut label="Jellyfin Search" type="$LOCALIZE[31018]" icon="special://skin/extras/icons/search.png">RunScript(plugin.video.jellycon,0,?mode=SEARCH_ALL)</shortcut>
             <content>common</content>
             <shortcut label="$LOCALIZE[10821]" type="32021" icon="special://skin/extras/icons/games.png">ActivateWindow(Games)</shortcut>
             <shortcut label="$LOCALIZE[137]" type="$LOCALIZE[31018]" icon="special://skin/extras/icons/search.png">Skin.SetString(SearchTerm)</shortcut>

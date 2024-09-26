@@ -977,6 +977,13 @@
 
                         <control type="radiobutton" id="19701" description="Header">
                             <include>Defs_Settings_Button</include>
+                            <label>Debug Breadcrumbs</label>
+                            <selected>Skin.HasSetting(DebugBreadcrumbs)</selected>
+                            <onclick>Skin.ToggleSetting(DebugBreadcrumbs)</onclick>
+                        </control>
+
+                        <control type="radiobutton" id="19701" description="Header">
+                            <include>Defs_Settings_Button</include>
                             <label>$LOCALIZE[31026]</label>
                             <selected>!Skin.HasSetting(DisableHeader)</selected>
                             <onclick>Skin.ToggleSetting(DisableHeader)</onclick>
