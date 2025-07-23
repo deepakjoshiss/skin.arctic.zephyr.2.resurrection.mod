@@ -652,7 +652,7 @@
         <param name="visible" default="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(videos) | Container.Content(files) | $EXP[InGameMode]" />
         <definition>
             <control type="group">
-                <include>View_Group</include>
+                <include content="View_Group">
                     <param name="animation" value="Defs_Null" />
                 </include>
                 <visible>Control.IsVisible($PARAM[id])</visible>

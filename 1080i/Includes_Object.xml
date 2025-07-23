@@ -1290,7 +1290,7 @@
                 [!String.IsEmpty(Container(99950).ListItem.Property(TMDb_Rating)) + !Skin.HasSetting(Ratings.TheMovieDB)] |
                 [!String.IsEmpty(Container(99950).ListItem.Property(Metacritic_Rating)) + !Skin.HasSetting(Ratings.Metacritic)] |
                 [[!String.IsEmpty(Container(99950).ListItem.Property(RottenTomatoes_UserMeter)) | !String.IsEmpty(ListItem.Property(RottenTomatoes_Rating))] + !Skin.HasSetting(Ratings.RottenTomatoes)] |
-                [[!String.IsEmpty(Container(99950).ListItem.Property(IMDb_Rating)) |  !String.IsEmpty(ListItem.Rating(imdb))] + [!Skin.HasSetting(Ratings.IMDB) | !Skin.HasSetting(Ratings.IMDB.Votes)]]
+                [[!String.IsEmpty(Container(99950).ListItem.Property(IMDb_Rating)) | !String.IsEmpty(ListItem.Rating(imdb))] + [!Skin.HasSetting(Ratings.IMDB) | !Skin.HasSetting(Ratings.IMDB.Votes)]]
                 </visible>
                 <top>$PARAM[top]</top>
                 <height>75</height>
@@ -2412,6 +2412,7 @@
         <param name="trakt" default="true" />
         <param name="metacritic" default="true" />
         <param name="oscars" default="true" />
+        <param name="numericstarrating" default="!Skin.HasSetting(DisableStarRating)" />
         <param name="top250" default="true" />
         <param name="rt_rating" default="ListItem.Property(RottenTomatoes_Rating)" />
         <param name="imdb_rating" default="ListItem.Rating(imdb)" />
@@ -2525,9 +2526,9 @@
                     <height>28</height>
                     <align>right</align>
                     <font>font_tiny</font>
-                    <visible>String.IsEmpty($PARAM[imdb_rating])</visible>
                     <label>$INFO[ListItem.Rating,,   ]</label>
                     <visible>$PARAM[numericstarrating]</visible>
+                    <visible>String.IsEmpty($PARAM[imdb_rating])</visible>
                     <visible>!String.IsEmpty(ListItem.Rating)</visible>
                 </control>
 
@@ -2777,11 +2778,8 @@
                     <visible>$PARAM[top250]</visible>
                     <visible>!Skin.HasSetting(Ratings.Top250)</visible>
                 </control>
-            </control>
-        </definition>
-    </include>
 
-                <include content="Object_Rating_Line_Label" condition="!$PARAM[is_player] + !Skin.HasSetting(Ratings.Metacritic)">
+                <!-- <include content="Object_Rating_Line_Label" condition="!$PARAM[is_player] + !Skin.HasSetting(Ratings.Metacritic)">
                     <param name="icon" value="flags/$PARAM[directory]/ratings/metacritic.png" />
                     <param name="label" value="$INFO[Window(Home).Property(TMDbHelper.ListItem.Metacritic_Rating), ,%   ]" />
                     <param name="visible" value="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Metacritic_Rating))" />
@@ -2878,7 +2876,7 @@
                     <param name="label" value="$INFO[Window(home).Property(TMDbHelper.Player.IMDb_Rating)]" />
                     <param name="visible" value="$PARAM[imdb] + !String.IsEmpty(Window(home).Property(TMDbHelper.Player.IMDb_Rating))" />
                     <param name="icon_w">52</param>
-                </include>
+                </include> -->
             </control>
         </definition>
     </include>
