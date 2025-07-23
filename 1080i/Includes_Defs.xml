@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
-    <include name="Defs_TMDbHelper_Loader">
-        <control type="list" id="99950">
-            <itemlayout />
-            <focusedlayout />
-            <width>1</width>
-            <height>1</height>
-            <left>-1920</left>
-        </control>
-    </include>
-
     <include name="Defs_Progress_Gradient">
         <control type="progress" id="$PARAM[id]">
             <nested />
@@ -257,18 +247,15 @@
     </include>
 
     <include name="Defs_InfoList_OnBack">
-        <onback condition="Skin.HasSetting(DisableExtendedInfo)">SetFocus(50)</onback>
-        <onback>SetFocus(5000)</onback>
+        <onback>SetFocus(50)</onback>
         <onback>300</onback>
     </include>
 
     <include name="Defs_InfoList_OnClick">
-        <param name="prevent_del" default="prevent_del" />
         <definition>
-            <onclick condition="Skin.HasSetting(DisableExtendedInfo)">SetFocus(50)</onclick>
-            <onclick>SetFocus(5000)</onclick>
+            <onclick>SetFocus(50)</onclick>
             <onclick>SetFocus(300)</onclick>
-            <onclick condition="String.IsEmpty(ListItem.DBID) | [!String.IsEqual(ListItem.DBType,movie) + !String.IsEqual(ListItem.DBType,tvshow)]">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[ListItem.FolderPath],call_auto=1190)</onclick>
+            <onclick condition="String.IsEmpty(ListItem.DBID) | [!String.IsEqual(ListItem.DBType,movie) + !String.IsEqual(ListItem.DBType,tvshow)]">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[ListItem.FolderPath],call_auto=1190,return)</onclick>
             <onclick condition="!String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBType,movie)">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[ListItem.Label,videodb://movies/titles/?xsp=%7B%22order%22%3A%7B%22direction%22%3A%22ascending%22%2C%22ignorefolders%22%3A0%2C%22method%22%3A%22sorttitle%22%7D%2C%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22,%22%5D%7D%5D%7D%2C%22type%22%3A%22movies%22%7D],call_auto=1190)</onclick>
             <onclick condition="!String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBType,tvshow)">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[ListItem.Label,videodb://tvshows/titles/?xsp=%7B%22order%22%3A%7B%22direction%22%3A%22ascending%22%2C%22ignorefolders%22%3A0%2C%22method%22%3A%22sorttitle%22%7D%2C%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22,%22%5D%7D%5D%7D%2C%22type%22%3A%22tvshows%22%7D],call_auto=1190)</onclick>
         </definition>
@@ -319,27 +306,15 @@
     </variable>
 
     <variable name="Def_Set_List">
-        <value condition="!Skin.HasSetting(DisableExtendedInfo) + !String.IsEmpty(ListItem.Set)">plugin://plugin.video.themoviedb.helper/?info=collection&amp;type=movie&amp;query=$INFO[ListItem.Set]&amp;nextpage=false</value>
-        <value condition="!String.IsEmpty(ListItem.Set)">videodb://movies/titles/?xsp=%7b%22rules%22%3a%7b%22and%22%3a%5b%7b%22field%22%3a%22set%22%2c%22operator%22%3a%22is%22%2c%22value%22%3a%5b%22$INFO[ListItem.Set]%22%5d%7d%5d%7d%2c%22type%22%3a%22movies%22%7d</value>
+        <value condition="!String.IsEmpty(ListItem.SetID)">$INFO[ListItem.SetID,videodb://movies/sets/,/]</value>
+        <value>-</value>
     </variable>
 
     <variable name="Def_Similar_List">
-        <value condition="!Skin.HasSetting(DisableExtendedInfo) + String.IsEqual(ListItem.DBType,tvshow)">plugin://plugin.video.themoviedb.helper?info=similar&amp;type=tv&amp;query=$INFO[ListItem.Label]</value>
-        <value condition="!Skin.HasSetting(DisableExtendedInfo) + String.IsEqual(ListItem.DBType,movie)">plugin://plugin.video.themoviedb.helper?info=similar&amp;type=movie&amp;query=$INFO[ListItem.Label]</value>
-        <value condition="String.IsEqual(ListItem.DBType,movie)">plugin://plugin.video.themoviedb.helper?info=similar&amp;type=movie&amp;imdb_id=$INFO[ListItem.IMDBNumber]</value>
-        <value condition="String.IsEqual(ListItem.DBType,tvshow)">plugin://plugin.video.themoviedb.helper?info=similar&amp;type=tv&amp;imdb_id=$INFO[ListItem.IMDBNumber]</value>
-    </variable>
-
-    <variable name="Def_Director_List">
-        <value condition="!Skin.HasSetting(DisableExtendedInfo)">plugin://plugin.video.themoviedb.helper/?info=crew_in_movies&amp;type=person&amp;filter_key=job&amp;filter_value=Director&amp;query=$INFO[ListItem.Director]&amp;exclude_key=title&amp;exclude_value=$INFO[ListItem.Title]&amp;nextpage=false</value>
-        <value>videodb://movies/titles/?xsp=%7b%22rules%22%3a%7b%22and%22%3a%5b%7b%22field%22%3a%22director%22%2c%22operator%22%3a%22is%22%2c%22value%22%3a%5b%22$INFO[ListItem.Director]%22%5d%7d%5d%7d%2c%22type%22%3a%22movies%22%7d</value>
-    </variable>
-
-    <variable name="Def_Studio_List">
-        <value condition="!Skin.HasSetting(DisableExtendedInfo) + String.IsEqual(ListItem.DBType,tvshow)">plugin://plugin.video.themoviedb.helper?info=discover&amp;type=tv&amp;with_companies=$INFO[Container(99950).ListItem.Property(Studio.1.TMDb_ID))]&amp;with_id=True&amp;exclude_key=title&amp;exclude_value=$INFO[ListItem.Title]&amp;nextpage=false</value>
-        <value condition="Skin.HasSetting(DisableExtendedInfo) + String.IsEqual(ListItem.DBType,tvshow)">videodb://tvshows/titles/?xsp=%7b%22rules%22%3a%7b%22and%22%3a%5b%7b%22field%22%3a%22studio%22%2c%22operator%22%3a%22is%22%2c%22value%22%3a%5b%22$INFO[ListItem.Studio]%22%5d%7d%5d%7d%2c%22type%22%3a%22tvshows%22%7d</value>
-        <value condition="!Skin.HasSetting(DisableExtendedInfo)">plugin://plugin.video.themoviedb.helper?info=discover&amp;type=movie&amp;with_companies=$INFO[Container(99950).ListItem.Property(Studio.1.TMDb_ID))]&amp;with_id=True&amp;exclude_key=title&amp;exclude_value=$INFO[ListItem.Title]&amp;nextpage=false</value>
-        <value condition="Skin.HasSetting(DisableExtendedInfo)">videodb://movies/titles/?xsp=%7b%22rules%22%3a%7b%22and%22%3a%5b%7b%22field%22%3a%22studio%22%2c%22operator%22%3a%22is%22%2c%22value%22%3a%5b%22$INFO[ListItem.Studio]%22%5d%7d%5d%7d%2c%22type%22%3a%22movies%22%7d</value>
+        <value condition="!Skin.HasSetting(DisableExtendedInfo) + String.IsEqual(ListItem.DBType,tvshow)">plugin://plugin.video.themoviedb.helper?info=similar&amp;type=tv$VAR[Path_Param_Query]$VAR[Path_Param_Widget]</value>
+        <value condition="!Skin.HasSetting(DisableExtendedInfo) + String.IsEqual(ListItem.DBType,movie)">plugin://plugin.video.themoviedb.helper?info=similar&amp;type=movie$VAR[Path_Param_Query]$VAR[Path_Param_Widget]</value>
+        <value condition="String.IsEqual(ListItem.DBType,movie)">plugin://plugin.video.themoviedb.helper?info=similar&amp;type=movie&amp;imdb_id=$INFO[ListItem.IMDBNumber]$VAR[Path_Param_Widget]</value>
+        <value condition="String.IsEqual(ListItem.DBType,tvshow)">plugin://plugin.video.themoviedb.helper?info=similar&amp;type=tv&amp;imdb_id=$INFO[ListItem.IMDBNumber]$VAR[Path_Param_Widget]</value>
     </variable>
 
     <variable name="Def_Percentage_Rating">
@@ -875,6 +850,29 @@
         </definition>
     </include>
 
+    <include name="Defs_Pad">
+        <param name="pad" default="5" />
+        <definition>
+            <left>$PARAM[pad]</left>
+            <right>$PARAM[pad]</right>
+            <bottom>$PARAM[pad]</bottom>
+            <top>$PARAM[pad]</top>
+        </definition>
+    </include>
+
+    <include name="Defs_Margins">
+        <left>$PARAM[left]</left>
+        <right>$PARAM[right]</right>
+        <top>$PARAM[top]</top>
+        <bottom>$PARAM[bottom]</bottom>
+    </include>
+
+    <include name="Defs_Margins_Centertop">
+        <left>$PARAM[left]</left>
+        <right>$PARAM[right]</right>
+        <centertop>$PARAM[centertop]</centertop>
+        <bottom>$PARAM[bottom]</bottom>
+    </include>
     <!-- VinELEC -->
     <include name="Defs_SectionHeaderIconLabel">
         <param name="label" default="$LOCALIZE[130]" />

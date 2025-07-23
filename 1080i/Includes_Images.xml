@@ -51,13 +51,6 @@
         <value condition="![String.Contains(ListItem.FileNameAndPath,2160p) | String.Contains(ListItem.FileNameAndPath,UHD) | String.Contains(ListItem.FileNameAndPath,UltraHD) | String.Contains(ListItem.FileNameAndPath,Ultra-HD) | String.Contains(ListItem.FileNameAndPath,4K)] + [String.Contains(ListItem.FileNameAndPath,web-dl) | String.Contains(ListItem.FileNameAndPath,webdl) | String.Contains(ListItem.FileNameAndPath,WEBRip)]">flags/$INFO[Skin.String(Icons)]/other/web-dl.png</value>
         <value>$INFO[Skin.String(FallbackSourceFlag)]</value>
     </variable>
-
-    <variable name="Image_AudioCodec">
-        <value condition="String.Contains(ListItem.FileNameAndPath,atmos)">flags/$INFO[Skin.String(Icons)]/audio/atmos.png</value>
-        <value condition="String.Contains(ListItem.FileNameAndPath,dtsx) | String.Contains(ListItem.FileNameAndPath,dts-x) | String.Contains(ListItem.FileNameAndPath,dts:x)">flags/$INFO[Skin.String(Icons)]/audio/dtsx.png</value>
-        <value>flags/$INFO[Skin.String(Icons)]/audio/$INFO[ListItem.AudioCodec].png</value>
-    </variable>
-
     <variable name="Image_VideoPlayer_RipSource">
         <value condition="[String.Contains(Player.FileNameAndPath,2160p) | String.Contains(Player.FileNameAndPath,UHD) | String.Contains(Player.FileNameAndPath,UltraHD) | String.Contains(Player.FileNameAndPath,Ultra-HD) | String.Contains(Player.FileNameAndPath,4K)] + String.Contains(Player.FileNameAndPath,web-dl) | String.Contains(Player.FileNameAndPath,webdl) | String.Contains(Player.FileNameAndPath,WEBRip)">flags/$INFO[Skin.String(Icons)]/other/4K.png</value>
         <value condition="String.Contains(Player.FileNameAndPath,blu-ray) | String.Contains(Player.FileNameAndPath,bluray) | String.Contains(Player.FileNameAndPath,bdrip) | String.Contains(Player.FileNameAndPath,bd25) | String.Contains(Player.FileNameAndPath,bd50)">flags/$INFO[Skin.String(Icons)]/other/bluray.png</value>
@@ -69,27 +62,43 @@
         <value>$INFO[Skin.String(FallbackSourceFlag)]</value>
     </variable>
 
+    <variable name="Image_HDRCodec">
+        <value condition="String.IsEqual(ListItem.HdrType,dolbyvision)">flags/$INFO[Skin.String(Icons)]/other/dolbyvision.png</value>
+        <value condition="String.Contains(ListItem.FileNameAndPath,hdr10plus)">flags/$INFO[Skin.String(Icons)]/other/hdr10plus.png</value>
+        <value condition="String.IsEqual(ListItem.HdrType,hdr10)">flags/$INFO[Skin.String(Icons)]/other/hdr10.png</value>
+        <value condition="String.IsEqual(ListItem.HdrType,hlg)">flags/$INFO[Skin.String(Icons)]/other/hlg.png</value>
+        <value condition="String.Contains(ListItem.FileNameAndPath,hdr)">flags/$INFO[Skin.String(Icons)]/other/HDR.png</value>
+    </variable>
+    <variable name="Image_VideoPlayer_HDRCodec">
+        <value condition="String.IsEqual(VideoPlayer.HdrType,dolbyvision)">flags/$INFO[Skin.String(Icons)]/other/dolbyvision.png</value>
+        <value condition="String.Contains(Player.FileNameAndPath,hdr10plus)">flags/$INFO[Skin.String(Icons)]/other/hdr10plus.png</value>
+        <value condition="String.IsEqual(VideoPlayer.HdrType,hdr10)">flags/$INFO[Skin.String(Icons)]/other/hdr10.png</value>
+        <value condition="String.IsEqual(VideoPlayer.HdrType,hlg)">flags/$INFO[Skin.String(Icons)]/other/hlg.png</value>
+        <value condition="String.Contains(Player.FileNameAndPath,hdr)">flags/$INFO[Skin.String(Icons)]/other/HDR.png</value>
+    </variable>
+
+    <variable name="Image_AudioCodec">
+        <value condition="[String.IsEqual(ListItem.AudioCodec,truehd) | String.IsEqual(ListItem.AudioCodec,eac3)] + String.Contains(ListItem.FileNameAndPath,atmos)">flags/$INFO[Skin.String(Icons)]/audio/atmos.png</value>
+        <value condition="[String.IsEqual(ListItem.AudioCodec,dtshd_ma) | String.IsEqual(ListItem.AudioCodec,dtsma)] + [String.Contains(ListItem.FileNameAndPath,dts-x) | String.Contains(ListItem.FileNameAndPath,dtsx)]">flags/$INFO[Skin.String(Icons)]/audio/dtsx.png</value>
+        <value>flags/$INFO[Skin.String(Icons)]/audio/$INFO[ListItem.AudioCodec].png</value>
+    </variable>
     <variable name="Image_VideoPlayer_AudioCodec">
-        <value condition="String.Contains(Player.FileNameAndPath,atmos)">flags/$INFO[Skin.String(Icons)]/audio/atmos.png</value>
-        <value condition="String.Contains(Player.FileNameAndPath,dtsx) | String.Contains(Player.FileNameAndPath,dts-x) | String.Contains(Player.FileNameAndPath,dts:x)">flags/$INFO[Skin.String(Icons)]/audio/dtsx.png</value>
+        <value condition="[String.IsEqual(VideoPlayer.AudioCodec,truehd) | String.IsEqual(VideoPlayer.AudioCodec,eac3)] + String.Contains(Player.FileNameAndPath,atmos)">flags/$INFO[Skin.String(Icons)]/audio/atmos.png</value>
+        <value condition="[String.IsEqual(VideoPlayer.AudioCodec,dtshd_ma) | String.IsEqual(VideoPlayer.AudioCodec,dtsma)] + [String.Contains(Player.FileNameAndPath,dts-x) | String.Contains(Player.FileNameAndPath,dtsx)]">flags/$INFO[Skin.String(Icons)]/audio/dtsx.png</value>
         <value>flags/$INFO[Skin.String(Icons)]/audio/$INFO[VideoPlayer.AudioCodec].png</value>
     </variable>
 
-    <variable name="Image_VideoPlayer_HDRCodec">
-        <value condition="String.IsEqual(ListItem.HdrType,dolbyvision)">flags/$INFO[Skin.String(Icons)]/other/dolbyvision.png</value>
-        <value condition="String.IsEqual(ListItem.HdrType,hdr10)">flags/$INFO[Skin.String(Icons)]/other/hdr10.png</value>
-        <value condition="String.IsEqual(ListItem.HdrType,hlg)">flags/$INFO[Skin.String(Icons)]/other/hlg.png</value>
-        <value>flags/$INFO[Skin.String(Icons)]/other/HDR.png</value>
-    </variable>
-
     <variable name="Image_OSD_Artwork">
-        <value condition="!String.IsEmpty(Player.Art(tvshow.poster))">$INFO[Player.Art(tvshow.poster)]</value>
+        <value condition="!String.IsEmpty(VideoPlayer.Art(poster))">$INFO[VideoPlayer.Art(poster)]</value>
+        <value condition="!String.IsEmpty(VideoPlayer.Art(tvshow.poster))">$INFO[VideoPlayer.Art(tvshow.poster)]</value>
         <value condition="!String.IsEmpty(Player.Art(poster))">$INFO[Player.Art(poster)]</value>
+        <value condition="!String.IsEmpty(Player.Art(tvshow.poster))">$INFO[Player.Art(tvshow.poster)]</value>
         <value>$INFO[VideoPlayer.Cover]</value>
     </variable>
 
     <variable name="Image_ArtistFanartVis">
-        <value condition="String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image)) + !Skin.HasSetting(ArtistSlideShow.Disabled)">$INFO[Player.Art(fanart)]</value>
+        <value condition="System.HasAddon(script.artistslideshow) + !Skin.HasSetting(ArtistSlideShow.Disabled) + !String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image))">$INFO[Window(Visualisation).Property(ArtistSlideshow.Image)]</value>
+        <value condition="[!System.HasAddon(script.artistslideshow) | Skin.HasSetting(ArtistSlideShow.Disabled) | String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image))] + !String.IsEmpty(Player.Art(fanart))">$INFO[Player.Art(fanart)]</value>
         <value>common/null.png</value>
     </variable>
 
@@ -110,14 +119,17 @@
         <value condition="!String.IsEmpty(Player.Art(clearlogo))">$INFO[Player.Art(clearlogo)]</value>
     </variable>
 
-    <variable name="Image_ClearLogo">
-        <value condition="!String.IsEmpty(ListItem.Art(clearlogo))">$INFO[ListItem.Art(clearlogo)]</value>
-        <value condition="!String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + !String.IsEqual(Container.ShowTitle,ListItem.TvShowTitle)">$INFO[ListItem.Art(tvshow.clearlogo)]</value>
-    </variable>
-
-    <variable name="Image_TopBar_ClearLogo">
+    <variable name="Image_Clearlogo">
+        <value condition="Skin.HasSetting(TMDBhCrop) + !String.IsEmpty(Window(Home).Property(TMDBHelper.ListItem.CropImage))">$INFO[Window(Home).Property(TMDbHelper.ListItem.CropImage)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(clearlogo))">$INFO[ListItem.Art(clearlogo)]</value>
         <value condition="!String.IsEmpty(ListItem.Art(tvshow.clearlogo))">$INFO[ListItem.Art(tvshow.clearlogo)]</value>
+        <value condition="!String.IsEmpty(ListItem.Art(artist.clearlogo))">$INFO[ListItem.Art(artist.clearlogo)]</value>
+    </variable>
+    <variable name="Image_Player_Clearlogo">
+        <value condition="Skin.HasSetting(TMDBhCrop) + !String.IsEmpty(Window(Home).Property(TMDBHelper.Player.CropImage))">$INFO[Window(Home).Property(TMDbHelper.Player.CropImage)]</value>
+        <value condition="!String.IsEmpty(Player.Art(clearlogo))">$INFO[Player.Art(clearlogo)]</value>
+        <value condition="!String.IsEmpty(Player.Art(tvshow.clearlogo))">$INFO[Player.Art(tvshow.clearlogo)]</value>
+        <value condition="!String.IsEmpty(Player.Art(artist.clearlogo))">$INFO[Player.Art(artist.clearlogo)]</value>
     </variable>
 
     <variable name="Image_Watched">
@@ -142,11 +154,10 @@
         <value condition="ListItem.IsPlaying">indicator/play.png</value>
         <value condition="ListItem.IsResumable + Integer.IsGreater(ListItem.PercentPlayed,66)">indicator/inprogress-75.png</value>
         <value condition="ListItem.IsResumable + Integer.IsGreater(ListItem.PercentPlayed,33)">indicator/inprogress-50.png</value>
-        <value condition="[ListItem.IsResumable + !Integer.IsEqual(ListItem.PercentPlayed,0) + !Integer.IsEqual(ListItem.PercentPlayed,100)] | [!String.IsEmpty(ListItem.Property(WatchedProgress)) + !Integer.IsEqual(ListItem.Property(WatchedProgress),0) + !Integer.IsEqual(ListItem.Property(WatchedProgress),100)] | [!Integer.IsEqual(ListItem.Progress,0) + !Integer.IsEqual(ListItem.Progress,100)]">indicator/inprogress-25.png</value>
+        <value condition="[ListItem.IsResumable + !Integer.IsEqual(ListItem.PercentPlayed,100)] | [!String.IsEmpty(ListItem.Property(WatchedProgress)) + !Integer.IsEqual(ListItem.Property(WatchedProgress),0) + !Integer.IsEqual(ListItem.Property(WatchedProgress),100)] | [!Integer.IsEqual(ListItem.Progress,0) + !Integer.IsEqual(ListItem.Progress,100)]">indicator/inprogress-25.png</value>
         <value condition="String.IsEqual(ListItem.Overlay,OverlayWatched.png) | Integer.IsGreater(ListItem.PlayCount,0)">indicator/checkmark-fo.png</value>
-        <value condition="[String.StartsWith(ListItem.Overlay,OverlayUnwatched.png) + [[String.IsEqual(ListItem.DBType,movie) + [String.IsEqual(Window(Home).Property(LatestMovie.1.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.2.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.3.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.4.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.5.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.6.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.7.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.8.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.9.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.10.Title),ListItem.Label)]] | [[String.IsEqual(ListItem.DBType,tvshow)] + [String.IsEqual(Window(Home).Property(LatestEpisode.1.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.2.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.3.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.4.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.5.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.6.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.7.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.8.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.9.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.10.ShowTitle),ListItem.TvShowTitle)]] | [String.IsEqual(ListItem.DBType,episode) + [String.IsEqual(Window(Home).Property(LatestEpisode.1.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.2.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.3.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.4.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.5.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.6.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.7.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.8.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.9.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.10.EpisodeTitle),ListItem.Title)]]]]">indicator/new-fo.png</value>
         <value condition="[Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(1190) | Window.IsVisible(1140)] + !String.IsEmpty(ListItem.DBID)">indicator/library.png</value>
-        <value condition="ListItem.IsCollection">indicator/movieset.png</value>
+        <value condition="ListItem.IsCollection | ListItem.HasVideoVersions">indicator/movieset.png</value>
         <value condition="ListItem.IsFolder">indicator/folder.png</value>
         <value>indicator/library.png</value>
     </variable>
@@ -155,23 +166,21 @@
         <value condition="ListItem.IsPlaying">indicator/play.png</value>
         <value condition="ListItem.IsResumable + Integer.IsGreater(ListItem.PercentPlayed,66)">indicator/inprogress-75.png</value>
         <value condition="ListItem.IsResumable + Integer.IsGreater(ListItem.PercentPlayed,33)">indicator/inprogress-50.png</value>
-        <value condition="[ListItem.IsResumable + !Integer.IsEqual(ListItem.PercentPlayed,0) + !Integer.IsEqual(ListItem.PercentPlayed,100)] | [!String.IsEmpty(ListItem.Property(WatchedProgress)) + !Integer.IsEqual(ListItem.Property(WatchedProgress),0) + !Integer.IsEqual(ListItem.Property(WatchedProgress),100)] | [!Integer.IsEqual(ListItem.Progress,0) + !Integer.IsEqual(ListItem.Progress,100)]">indicator/inprogress-25.png</value>
-        <value condition="[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !Integer.IsEqual(ListItem.Property(UnWatchedEpisodes),0) + !ListItem.IsResumable">common/null.png</value>
+        <value condition="[ListItem.IsResumable + !Integer.IsEqual(ListItem.PercentPlayed,100)] | [!String.IsEmpty(ListItem.Property(WatchedProgress)) + !Integer.IsEqual(ListItem.Property(WatchedProgress),0) + !Integer.IsEqual(ListItem.Property(WatchedProgress),100)] | [!Integer.IsEqual(ListItem.Progress,0) + !Integer.IsEqual(ListItem.Progress,100)]">indicator/inprogress-25.png</value>
+        <value condition="[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !Integer.IsEqual(ListItem.Property(UnWatchedEpisodes),0) + !Integer.IsEqual(ListItem.Property(WatchedEpisodes),0) + !ListItem.IsResumable">common/null.png</value>
         <value condition="String.IsEqual(ListItem.Overlay,OverlayWatched.png) | Integer.IsGreater(ListItem.PlayCount,0)">indicator/checkmark.png</value>
-        <value condition="[String.StartsWith(ListItem.Overlay,OverlayUnwatched.png) + [[String.IsEqual(ListItem.DBType,movie) + [String.IsEqual(Window(Home).Property(LatestMovie.1.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.2.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.3.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.4.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.5.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.6.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.7.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.8.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.9.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.10.Title),ListItem.Label)]] | [[String.IsEqual(ListItem.DBType,tvshow)] + [String.IsEqual(Window(Home).Property(LatestEpisode.1.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.2.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.3.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.4.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.5.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.6.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.7.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.8.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.9.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.10.ShowTitle),ListItem.TvShowTitle)]] | [String.IsEqual(ListItem.DBType,episode) + [String.IsEqual(Window(Home).Property(LatestEpisode.1.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.2.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.3.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.4.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.5.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.6.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.7.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.8.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.9.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.10.EpisodeTitle),ListItem.Title)]]]]">indicator/new.png</value>
         <value condition="[Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(1190) | Window.IsVisible(1140)]+ !String.IsEmpty(ListItem.DBID)">indicator/library.png</value>
-        <value condition="ListItem.IsCollection">indicator/movieset.png</value>
+        <value condition="ListItem.IsCollection | ListItem.HasVideoVersions">indicator/movieset.png</value>
     </variable>
     <variable name="Image_Overlay_Focus">
         <value condition="ListItem.IsPlaying">indicator/play.png</value>
         <value condition="ListItem.IsResumable + Integer.IsGreater(ListItem.PercentPlayed,66)">indicator/inprogress-75.png</value>
         <value condition="ListItem.IsResumable + Integer.IsGreater(ListItem.PercentPlayed,33)">indicator/inprogress-50.png</value>
-        <value condition="[ListItem.IsResumable + !Integer.IsEqual(ListItem.PercentPlayed,0) + !Integer.IsEqual(ListItem.PercentPlayed,100)] | [!String.IsEmpty(ListItem.Property(WatchedProgress)) + !Integer.IsEqual(ListItem.Property(WatchedProgress),0) + !Integer.IsEqual(ListItem.Property(WatchedProgress),100)] | [!Integer.IsEqual(ListItem.Progress,0) + !Integer.IsEqual(ListItem.Progress,100)]">indicator/inprogress-25.png</value>
-        <value condition="[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !Integer.IsEqual(ListItem.Property(UnWatchedEpisodes),0) + !ListItem.IsResumable">common/null.png</value>
+        <value condition="[ListItem.IsResumable + !Integer.IsEqual(ListItem.PercentPlayed,100)] | [!String.IsEmpty(ListItem.Property(WatchedProgress)) + !Integer.IsEqual(ListItem.Property(WatchedProgress),0) + !Integer.IsEqual(ListItem.Property(WatchedProgress),100)] | [!Integer.IsEqual(ListItem.Progress,0) + !Integer.IsEqual(ListItem.Progress,100)]">indicator/inprogress-25.png</value>
+        <value condition="[String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)] + !Integer.IsEqual(ListItem.Property(UnWatchedEpisodes),0) + !Integer.IsEqual(ListItem.Property(WatchedEpisodes),0) + !ListItem.IsResumable">common/null.png</value>
         <value condition="String.IsEqual(ListItem.Overlay,OverlayWatched.png) | Integer.IsGreater(ListItem.PlayCount,0)">indicator/checkmark.png</value>
-        <value condition="[String.StartsWith(ListItem.Overlay,OverlayUnwatched.png) + [[String.IsEqual(ListItem.DBType,movie) + [String.IsEqual(Window(Home).Property(LatestMovie.1.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.2.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.3.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.4.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.5.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.6.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.7.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.8.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.9.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.10.Title),ListItem.Label)]] | [[String.IsEqual(ListItem.DBType,tvshow)] + [String.IsEqual(Window(Home).Property(LatestEpisode.1.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.2.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.3.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.4.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.5.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.6.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.7.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.8.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.9.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.10.ShowTitle),ListItem.TvShowTitle)]] | [String.IsEqual(ListItem.DBType,episode) + [String.IsEqual(Window(Home).Property(LatestEpisode.1.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.2.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.3.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.4.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.5.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.6.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.7.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.8.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.9.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.10.EpisodeTitle),ListItem.Title)]]]]">indicator/new-fo.png</value>
         <value condition="[Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(1190) | Window.IsVisible(1140)]+ !String.IsEmpty(ListItem.DBID)">indicator/library.png</value>
-        <value condition="ListItem.IsCollection">indicator/movieset.png</value>
+        <value condition="ListItem.IsCollection | ListItem.HasVideoVersions">indicator/movieset.png</value>
     </variable>
     <variable name="Image_Overlay_Corner">
         <value condition="[Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(1190) | Window.IsVisible(1140)]+ !String.IsEmpty(ListItem.DBID)">indicator/corner.png</value>
@@ -184,134 +193,20 @@
     </variable>
 
     <variable name="Image_Overlay_CircleBG">
-        <value condition="[Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(1190) | Window.IsVisible(1140)]+ !String.IsEmpty(ListItem.DBID)">indicator/circle-bg.png</value>
+        <value condition="[Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(1190) | Window.IsVisible(1140)] + !String.IsEmpty(ListItem.DBID)">indicator/circle-bg.png</value>
         <value condition="ListItem.IsPlaying">indicator/circle-bg.png</value>
-        <value condition="[ListItem.IsResumable + !Integer.IsEqual(ListItem.PercentPlayed,0) + !Integer.IsEqual(ListItem.PercentPlayed,100)] | [!String.IsEmpty(ListItem.Property(WatchedProgress)) + !Integer.IsEqual(ListItem.Property(WatchedProgress),0) + !Integer.IsEqual(ListItem.Property(WatchedProgress),100)] | [!Integer.IsEqual(ListItem.Progress,0) + !Integer.IsEqual(ListItem.Progress,100)]">indicator/circle-bg.png</value>
+        <value condition="[ListItem.IsResumable + !Integer.IsEqual(ListItem.PercentPlayed,100)] | [!String.IsEmpty(ListItem.Property(WatchedProgress)) + !Integer.IsEqual(ListItem.Property(WatchedProgress),0) + !Integer.IsEqual(ListItem.Property(WatchedProgress),100)] | [!Integer.IsEqual(ListItem.Progress,0) + !Integer.IsEqual(ListItem.Progress,100)]">indicator/circle-bg.png</value>
         <value condition="String.IsEqual(ListItem.Overlay,OverlayWatched.png) | Integer.IsGreater(ListItem.PlayCount,0)">indicator/circle-bg.png</value>
-        <value condition="[String.StartsWith(ListItem.Overlay,OverlayUnwatched.png) + [[String.IsEqual(ListItem.DBType,movie) + [String.IsEqual(Window(Home).Property(LatestMovie.1.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.2.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.3.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.4.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.5.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.6.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.7.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.8.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.9.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.10.Title),ListItem.Label)]] | [[String.IsEqual(ListItem.DBType,tvshow)] + [String.IsEqual(Window(Home).Property(LatestEpisode.1.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.2.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.3.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.4.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.5.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.6.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.7.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.8.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.9.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.10.ShowTitle),ListItem.TvShowTitle)]] | [String.IsEqual(ListItem.DBType,episode) + [String.IsEqual(Window(Home).Property(LatestEpisode.1.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.2.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.3.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.4.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.5.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.6.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.7.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.8.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.9.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.10.EpisodeTitle),ListItem.Title)]]]]">indicator/circle-bg.png</value>
-        <value condition="ListItem.IsCollection">indicator/circle-bg.png</value>
-        <value condition="Integer.IsGreater(ListItem.Property(UnWatchedEpisodes),0) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)]">indicator/circle-bg.png</value>
+        <value condition="ListItem.IsCollection | ListItem.HasVideoVersions">indicator/circle-bg.png</value>
+        <value condition="Integer.IsGreater(ListItem.Property(UnWatchedEpisodes),0) + [!Integer.IsEqual(ListItem.Property(WatchedEpisodes),0) | Skin.HasSetting(UnwatchedCountIndicator)] + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)]">indicator/circle-bg.png</value>
     </variable>
     <variable name="Image_Overlay_CircleFO">
-        <value condition="[Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(1190) | Window.IsVisible(1140)]+ !String.IsEmpty(ListItem.DBID)">indicator/circle-fo.png</value>
+        <value condition="[Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(1190) | Window.IsVisible(1140)] + !String.IsEmpty(ListItem.DBID)">indicator/circle-fo.png</value>
         <value condition="ListItem.IsPlaying">indicator/circle-fo.png</value>
-        <value condition="[ListItem.IsResumable + !Integer.IsEqual(ListItem.PercentPlayed,0) + !Integer.IsEqual(ListItem.PercentPlayed,100)] | [!String.IsEmpty(ListItem.Property(WatchedProgress)) + !Integer.IsEqual(ListItem.Property(WatchedProgress),0) + !Integer.IsEqual(ListItem.Property(WatchedProgress),100)] | [!Integer.IsEqual(ListItem.Progress,0) + !Integer.IsEqual(ListItem.Progress,100)]">indicator/circle-fo.png</value>
+        <value condition="[ListItem.IsResumable + !Integer.IsEqual(ListItem.PercentPlayed,100)] | [!String.IsEmpty(ListItem.Property(WatchedProgress)) + !Integer.IsEqual(ListItem.Property(WatchedProgress),0) + !Integer.IsEqual(ListItem.Property(WatchedProgress),100)] | [!Integer.IsEqual(ListItem.Progress,0) + !Integer.IsEqual(ListItem.Progress,100)]">indicator/circle-fo.png</value>
         <value condition="String.IsEqual(ListItem.Overlay,OverlayWatched.png) | Integer.IsGreater(ListItem.PlayCount,0)">indicator/circle-fo.png</value>
-        <value condition="[String.StartsWith(ListItem.Overlay,OverlayUnwatched.png) + [[String.IsEqual(ListItem.DBType,movie) + [String.IsEqual(Window(Home).Property(LatestMovie.1.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.2.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.3.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.4.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.5.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.6.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.7.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.8.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.9.Title),ListItem.Label) | String.IsEqual(Window(Home).Property(LatestMovie.10.Title),ListItem.Label)]] | [[String.IsEqual(ListItem.DBType,tvshow)] + [String.IsEqual(Window(Home).Property(LatestEpisode.1.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.2.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.3.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.4.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.5.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.6.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.7.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.8.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.9.ShowTitle),ListItem.TvShowTitle) | String.IsEqual(Window(Home).Property(LatestEpisode.10.ShowTitle),ListItem.TvShowTitle)]] | [String.IsEqual(ListItem.DBType,episode) + [String.IsEqual(Window(Home).Property(LatestEpisode.1.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.2.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.3.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.4.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.5.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.6.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.7.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.8.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.9.EpisodeTitle),ListItem.Title) | String.IsEqual(Window(Home).Property(LatestEpisode.10.EpisodeTitle),ListItem.Title)]]]]">indicator/circle-fo.png</value>
-        <value condition="ListItem.IsCollection">indicator/circle-fo.png</value>
-        <value condition="Integer.IsGreater(ListItem.Property(UnWatchedEpisodes),0) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)]">indicator/circle-fo.png</value>
-    </variable>
-
-    <variable name="Defs_PercentPlayed">
-        <value condition="Window.IsVisible(AddonBrowser.xml) + String.EndsWith(ListItem.Label2,%)">$INFO[ListItem.Label2]</value>
-        <value condition="!String.IsEmpty(ListItem.Property(WatchedProgress)) + !Integer.IsEqual(ListItem.Property(WatchedProgress),0) + !Integer.IsEqual(ListItem.Property(WatchedProgress),100)">$INFO[ListItem.Property(WatchedProgress)]</value>
-        <value condition="!String.IsEmpty(ListItem.PercentPlayed) + [!Integer.IsEqual(ListItem.PercentPlayed,0) | ListItem.IsResumable]">$INFO[ListItem.PercentPlayed]</value>
-        <value condition="!Integer.IsEqual(ListItem.Progress,0) + String.IsEmpty(ListItem.ChannelName)">$VAR[Defs_PercentPlayed_Progress]</value>
-        <value condition="String.IsEqual(ListItem.Overlay,OverlayWatched.png)">100</value>
-        <value condition="Integer.IsGreater(ListItem.PlayCount,0) + !String.IsEqual(ListItem.DBType,song) + !String.IsEqual(ListItem.DBType,album) + !String.IsEqual(ListItem.DBType,artist) + !String.IsEqual(ListItem.DBType,image) + !String.IsEqual(ListItem.DBType,addon)">100</value>
-    </variable>
-
-    <variable name="Defs_PercentPlayed_Progress">
-        <value condition="Integer.IsEqual(ListItem.Progress,1)">$NUMBER[1]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,2)">$NUMBER[2]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,3)">$NUMBER[3]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,4)">$NUMBER[4]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,5)">$NUMBER[5]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,6)">$NUMBER[6]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,7)">$NUMBER[7]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,8)">$NUMBER[8]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,9)">$NUMBER[9]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,10)">$NUMBER[10]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,11)">$NUMBER[11]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,12)">$NUMBER[12]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,13)">$NUMBER[13]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,14)">$NUMBER[14]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,15)">$NUMBER[15]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,16)">$NUMBER[16]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,17)">$NUMBER[17]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,18)">$NUMBER[18]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,19)">$NUMBER[19]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,20)">$NUMBER[20]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,21)">$NUMBER[21]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,22)">$NUMBER[22]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,23)">$NUMBER[23]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,24)">$NUMBER[24]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,25)">$NUMBER[25]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,26)">$NUMBER[26]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,27)">$NUMBER[27]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,28)">$NUMBER[28]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,29)">$NUMBER[29]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,30)">$NUMBER[30]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,31)">$NUMBER[31]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,32)">$NUMBER[32]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,33)">$NUMBER[33]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,34)">$NUMBER[34]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,35)">$NUMBER[35]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,36)">$NUMBER[36]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,37)">$NUMBER[37]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,38)">$NUMBER[38]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,39)">$NUMBER[39]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,40)">$NUMBER[40]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,41)">$NUMBER[41]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,42)">$NUMBER[42]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,43)">$NUMBER[43]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,44)">$NUMBER[44]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,45)">$NUMBER[45]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,46)">$NUMBER[46]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,47)">$NUMBER[47]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,48)">$NUMBER[48]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,49)">$NUMBER[49]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,50)">$NUMBER[50]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,51)">$NUMBER[51]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,52)">$NUMBER[52]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,53)">$NUMBER[53]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,54)">$NUMBER[54]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,55)">$NUMBER[55]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,56)">$NUMBER[56]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,57)">$NUMBER[57]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,58)">$NUMBER[58]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,59)">$NUMBER[59]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,60)">$NUMBER[60]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,61)">$NUMBER[61]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,62)">$NUMBER[62]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,63)">$NUMBER[63]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,64)">$NUMBER[64]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,65)">$NUMBER[65]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,66)">$NUMBER[66]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,67)">$NUMBER[67]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,68)">$NUMBER[68]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,69)">$NUMBER[69]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,70)">$NUMBER[70]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,71)">$NUMBER[71]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,72)">$NUMBER[72]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,73)">$NUMBER[73]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,74)">$NUMBER[74]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,75)">$NUMBER[75]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,76)">$NUMBER[76]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,77)">$NUMBER[77]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,78)">$NUMBER[78]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,79)">$NUMBER[79]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,80)">$NUMBER[80]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,81)">$NUMBER[81]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,82)">$NUMBER[82]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,83)">$NUMBER[83]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,84)">$NUMBER[84]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,85)">$NUMBER[85]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,86)">$NUMBER[86]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,87)">$NUMBER[87]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,88)">$NUMBER[88]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,89)">$NUMBER[89]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,90)">$NUMBER[90]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,91)">$NUMBER[91]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,92)">$NUMBER[92]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,93)">$NUMBER[93]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,94)">$NUMBER[94]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,95)">$NUMBER[95]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,96)">$NUMBER[96]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,97)">$NUMBER[97]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,98)">$NUMBER[98]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,99)">$NUMBER[99]</value>
-        <value condition="Integer.IsEqual(ListItem.Progress,100)">$NUMBER[100]</value>
+        <value condition="ListItem.IsCollection | ListItem.HasVideoVersions">indicator/circle-fo.png</value>
+        <value condition="Integer.IsGreater(ListItem.Property(UnWatchedEpisodes),0) + [!Integer.IsEqual(ListItem.Property(WatchedEpisodes),0) | Skin.HasSetting(UnwatchedCountIndicator)] + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)]">indicator/circle-fo.png</value>
     </variable>
 
     <variable name="Image_Poster">
@@ -386,5 +281,27 @@
         <value condition="!String.IsEmpty(Container.Art(fanart))">$INFO[Container.Art(fanart)]</value>
         <value condition="!String.IsEmpty(Container.Art(tvshow.fanart))">$INFO[Container.Art(tvshow.fanart)]</value>
         <value>$INFO[ListItem.Icon]</value>
+    </variable>
+
+    <variable name="Image_DiscArt">
+        <value condition="!String.IsEmpty(ListItem.Art(discart))">$INFO[ListItem.Art(discart)]</value>
+        <value condition="!String.IsEmpty(ListItem.Art(album.discart))">$INFO[ListItem.Art(album.discart)]</value>
+        <value condition="!String.IsEmpty(Player.Art(discart))">$INFO[Player.Art(discart)]</value>
+        <value condition="!String.IsEmpty(Player.Art(album.discart))">$INFO[Player.Art(album.discart)]</value>
+        <value>$INFO[Player.Art(albumartist.thumb)]</value>
+    </variable>
+
+    <variable name="Image_IsCurrentStream">
+        <value condition="!String.IsEmpty(ListItem.Property(iscurrent))">buttons/check-on.png</value>
+        <value>buttons/check-off.png</value>
+    </variable>
+
+    <variable name="Image_Foreground">
+        <value>$INFO[Window(Home).Property(TMDbHelper.ListItem.BlurImage.Original)]</value>
+    </variable>
+
+    <variable name="Image_SimpleBackground">
+        <value condition="!String.IsEmpty(Skin.String(fanart.fallback))">$INFO[Skin.String(fanart.fallback)]</value>
+        <value>special://skin/extras/backgrounds/bg2.jpg</value>
     </variable>
 </includes>

@@ -5,13 +5,12 @@
     <onload>ClearProperty(Header_Left_Text)</onload>
     <onload>ClearProperty(Header_Center_Text)</onload>
     <onload>ClearProperty(OSD_Menu,Home)</onload>
-    <onload condition="Skin.HasSetting(HomeMultiFlixView)">PlayerControl(Stop)</onload>
     <onunload>ClearProperty(FilePath,home)</onunload>
     <onunload>ClearProperty(OSD_Menu,Home)</onunload>
     <onunload>ClearProperty(HasTrailer,Home)</onunload>
     <onload>SetProperty(TMDBHelper.Info.OriginalPath,$INFO[ListItem.FolderPath],Home)</onload>
+    <onload>ClearProperty(TMDbHelper.WidgetContainer)</onload>
     <controls>
-        <include>Defs_TMDbHelper_Loader</include>
 
         <!-- Top Info -->
         <control type="group">

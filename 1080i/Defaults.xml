@@ -221,7 +221,6 @@
 
     <expression name="Exp_InfoVisible">[Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml) | Window.IsVisible(DialogAddonInfo.xml) | Window.IsVisible(1140) | Window.IsVisible(DialogPVRInfo.xml)]</expression>
 
-    <expression name="Exp_IsPluginAdvancedLauncher">[String.StartsWith(Container.FolderPath,plugin://plugin.program.advanced.launcher/) | String.StartsWith(Container.FolderPath,plugin://plugin.program.advanced.emulator.launcher/) | String.StartsWith(Container.FolderPath,plugin://plugin.program.advanced.MAME.launcher/)]</expression>
     <expression name="InGameMode">
        [ String.Contains(Container.FolderPath,plugin://plugin.program.ael) 
        | String.Contains(Container.FolderPath,plugin://plugin.program.advanced.launcher) 
@@ -232,6 +231,7 @@
        | Window.IsActive(games) 
        | Container.Content(games) ]
     </expression>
+    <expression name="InGameAEL">String.Contains(Container.FolderPath,plugin://plugin.program.ael) | String.Contains(Container.FolderPath,plugin://plugin.program.advanced.launcher) | String.Contains(Container.FolderPath,plugin://plugin.program.advanced.emulator.launcher) | String.Contains(Container.FolderPath,plugin://plugin.program.akl) | String.Contains(Container.FolderPath,plugin://plugin.program.advanced.MAME.launcher) | String.Contains(Container.FolderPath,plugin://plugin.program.iagl)</expression>
 
     <expression name="Exp_ShowPlotOverlay">[Control.HasFocus(9601) | [System.IdleTime(4) + Skin.HasSetting(AutoPlotOverlay) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.DBType,artist) | String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)] + ![Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(DialogMusicInfo.xml) | Window.IsVisible(DialogAddonInfo.xml) | Window.IsVisible(1190) | Window.IsVisible(1140)]]]</expression>
 
@@ -248,6 +248,22 @@
     <expression name="FontSetIsMediumOrLarger">String.Contains(Skin.Font,Roboto Regular)</expression>
 
     <expression name="Exp_HasAutoCompletion">[System.HasAddon(plugin.program.autocompletion) + System.AddonIsEnabled(plugin.program.autocompletion)]</expression>
+
+    <expression name="Exp_HasClearlogo">!String.IsEmpty(ListItem.Art(clearlogo)) | !String.IsEmpty(ListItem.Art(tvshow.clearlogo)) | !String.IsEmpty(ListItem.Art(artist.clearlogo)) | [Skin.HasSetting(TMDBhCrop) + !String.IsEmpty(Window(Home).Property(TMDBHelper.ListItem.CropImage))]</expression>
+    <expression name="Exp_Player_HasClearlogo">!String.IsEmpty(Player.Art(clearlogo)) | !String.IsEmpty(Player.Art(tvshow.clearlogo)) | !String.IsEmpty(Player.Art(artist.clearlogo)) | [Skin.HasSetting(TMDBhCrop) + !String.IsEmpty(Window(Home).Property(TMDBHelper.Player.CropImage))]</expression>
+
+    <expression name="Exp_OSD_HasPlaylist">[VideoPlayer.Content(episodes) | VideoPlayer.Content(livetv) | [VideoPlayer.Content(movies) + !Integer.IsEqual(VideoPlayer.PlaylistLength,1) + !Integer.IsEqual(VideoPlayer.PlaylistLength,0)]]</expression>
+
+    <expression name="RatingsVisiblity">
+        [[!String.IsEmpty(ListItem.Rating) | !String.IsEmpty(VideoPlayer.Rating)] + !Skin.HasSetting(DisableStarRating)] |
+        [!String.IsEmpty(ListItem.UserRating) + !Skin.HasSetting(Ratings.User)] |
+        [[!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.TMDb_Rating)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.Player.TMDb_Rating))] + !Skin.HasSetting(Ratings.TheMovieDB)] |
+        [[!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Trakt_Rating)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.Player.Trakt_Rating))] + !Skin.HasSetting(Ratings.Trakt)] |
+        [[!String.IsEmpty(Window(home).Property(TMDbHelper.ListItem.IMDb_Rating)) | !String.IsEmpty(Window(home).Property(TMDbHelper.Player.IMDb_Rating))] + [!Skin.HasSetting(Ratings.IMDB) | !Skin.HasSetting(Ratings.IMDB.Votes)] |
+        [[!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Metacritic_Rating)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.Player.Metacritic_Rating))] + !Skin.HasSetting(Ratings.Metacritic)] |
+        [[!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.RottenTomatoes_Rating)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.Player.RottenTomatoes_Rating))] + !Skin.HasSetting(Ratings.RottenTomatoes)] |
+        [String.Contains(Window(Home).Property(TMDbHelper.ListItem.Awards),Oscar) + String.Contains(Window(Home).Property(TMDbHelper.ListItem.Awards),Won) + !Skin.HasSetting(Ratings.Oscars)]]
+    </expression>
 
     <include name="Defaults_FauneFonts">
         <!-- Plot Font -->

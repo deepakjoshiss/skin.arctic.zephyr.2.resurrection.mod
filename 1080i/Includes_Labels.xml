@@ -117,15 +117,192 @@
         <value>$LOCALIZE[30057]</value>
     </variable>
 
-    <variable name="Label_AudioChannels">
-        <value condition="String.IsEqual(ListItem.AudioChannels,8)">7.1</value>
-        <value condition="String.IsEqual(ListItem.AudioChannels,7)">6.1</value>
-        <value condition="String.IsEqual(ListItem.AudioChannels,6)">5.1</value>
-        <value condition="String.IsEqual(ListItem.AudioChannels,5)">4.1</value>
-        <value condition="String.IsEqual(ListItem.AudioChannels,4)">3.1</value>
-        <value condition="String.IsEqual(ListItem.AudioChannels,3)">2.1</value>
-        <value condition="String.IsEqual(ListItem.AudioChannels,2)">2.0</value>
-        <value condition="String.IsEqual(ListItem.AudioChannels,1)">1.0</value>
+    <variable name="Label_ListItem_AudioChannels">
+        <value condition="Integer.IsEqual(ListItem.AudioChannels,10)">9.1</value>
+        <value condition="Integer.IsEqual(ListItem.AudioChannels,9)">8.1</value>
+        <value condition="Integer.IsEqual(ListItem.AudioChannels,8)">7.1</value>
+        <value condition="Integer.IsEqual(ListItem.AudioChannels,7)">6.1</value>
+        <value condition="Integer.IsEqual(ListItem.AudioChannels,6)">5.1</value>
+        <value condition="Integer.IsEqual(ListItem.AudioChannels,5)">4.1</value>
+        <value condition="Integer.IsEqual(ListItem.AudioChannels,4)">4.0</value>
+        <value condition="Integer.IsEqual(ListItem.AudioChannels,3)">2.1</value>
+        <value condition="Integer.IsEqual(ListItem.AudioChannels,2)">2.0</value>
+        <value condition="Integer.IsEqual(ListItem.AudioChannels,1)">Mono</value>
+        <value>$INFO[ListItem.AudioChannels,,.0]</value>
+    </variable>
+    <variable name="Label_VideoPlayer_AudioChannels">
+        <value condition="Integer.IsEqual(VideoPlayer.AudioChannels,10)">9.1</value>
+        <value condition="Integer.IsEqual(VideoPlayer.AudioChannels,9)">8.1</value>
+        <value condition="Integer.IsEqual(VideoPlayer.AudioChannels,8)">7.1</value>
+        <value condition="Integer.IsEqual(VideoPlayer.AudioChannels,7)">6.1</value>
+        <value condition="Integer.IsEqual(VideoPlayer.AudioChannels,6)">5.1</value>
+        <value condition="Integer.IsEqual(VideoPlayer.AudioChannels,5)">4.1</value>
+        <value condition="Integer.IsEqual(VideoPlayer.AudioChannels,4)">4.0</value>
+        <value condition="Integer.IsEqual(VideoPlayer.AudioChannels,3)">2.1</value>
+        <value condition="Integer.IsEqual(VideoPlayer.AudioChannels,2)">2.0</value>
+        <value condition="Integer.IsEqual(VideoPlayer.AudioChannels,1)">Mono</value>
+        <value>$INFO[VideoPlayer.AudioChannels,,.0]</value>
+    </variable>
+
+    <variable name="Label_ListItem_AudioCodec">
+        <value condition="String.IsEqual(ListItem.AudioCodec,aac)">AAC</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,aac_latm)">AAC</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,ac3)">Dolby D</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,aif)">AIFF</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,aifc)">AIFF</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,aiff)">AIFF</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,alac)">ALAC</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,ape)">APE</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,avc)">AVC</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,cdda)">CDDA</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,dca)">DTS</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,dolbydigital)">Dolby D</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,dts)">DTS</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,dtshd_hra)">DTSHD-HRA</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,dtshd_ma) + String.Contains(ListItem.FileNameAndPath,DTSX)">DTS-X</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,dtshd_ma) + String.Contains(ListItem.FileNameAndPath,DTS-X)">DTS-X</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,dtshd_ma)">DTSHD-MA</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,dtsma) + String.Contains(ListItem.FileNameAndPath,DTSX)">DTS-X</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,dtsma) + String.Contains(ListItem.FileNameAndPath,DTS-X)">DTS-X</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,dtsma)">DTSHD-MA</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,eac3)">Dolby D+</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,flac)">FLAC</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,mp1)">MP1</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,mp3)">MP3</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,mp3float)">MP3</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,ogg)">OGG</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,opus)">OPUS</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,pcm)">PCM</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,pcm_bluray)">PCM</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,pcm_s16le)">PCM</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,pcm_s24le)">PCM</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,truehd) + String.Contains(ListItem.FileNameAndPath,atmos)">Dolby Atmos</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,truehd)">TrueHD</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,vorbis)">Vorbis</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,wav)">WAV</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,wavpack)">WAVP</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,wmapro)">WMA-PRO</value>
+        <value condition="String.IsEqual(ListItem.AudioCodec,wmav2)">WMA</value>
+        <value>$INFO[ListItem.AudioCodec]</value>
+    </variable>
+    <variable name="Label_VideoPlayer_AudioCodec">
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,aac)">AAC</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,aac_latm)">AAC</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,ac3)">Dolby D</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,aif)">AIFF</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,aifc)">AIFF</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,aiff)">AIFF</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,alac)">ALAC</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,ape)">APE</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,avc)">AVC</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,cdda)">CDDA</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,dca)">DTS</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,dolbydigital)">Dolby D</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,dts)">DTS</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,dtshd_hra)">DTSHD-HRA</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,dtshd_ma) + [String.Contains(Player.FileNameAndPath,DTS-X) | String.Contains(Player.FileNameAndPath,DTSX)]">DTS-X</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,dtsma) + [String.Contains(Player.FileNameAndPath,DTS-X) | String.Contains(Player.FileNameAndPath,DTSX)]">DTS-X</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,dtshd_ma)">DTSHD-MA</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,dtsma)">DTSHD-MA</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,eac3)">Dolby D+</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,flac)">FLAC</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,mp1)">MP1</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,mp3)">MP3</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,mp3float)">MP3</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,ogg)">OGG</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,opus)">OPUS</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,pcm)">PCM</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,pcm_bluray)">PCM</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,pcm_s16le)">PCM</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,pcm_s24le)">PCM</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,truehd) + String.Contains(Player.FileNameAndPath,atmos)">Dolby Atmos</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,truehd)">TrueHD</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,vorbis)">Vorbis</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,wav)">WAV</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,wavpack)">WAVP</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,wmapro)">WMA-PRO</value>
+        <value condition="String.IsEqual(VideoPlayer.AudioCodec,wmav2)">WMA</value>
+        <value>$INFO[VideoPlayer.AudioCodec]</value>
+    </variable>
+
+    <variable name="Label_ListItem_VideoCodec">
+        <value condition="String.IsEqual(ListItem.VideoCodec,av1)">AV1</value>
+        <value condition="String.IsEqual(ListItem.VideoCodec,avc1)">AVC-1</value>
+        <value condition="String.IsEqual(ListItem.VideoCodec,div3)">DivX</value>
+        <value condition="String.IsEqual(ListItem.VideoCodec,divx)">DivX</value>
+        <value condition="String.IsEqual(ListItem.VideoCodec,dx50)">DivX</value>
+        <value condition="String.IsEqual(ListItem.VideoCodec,flv)">FLV</value>
+        <value condition="String.IsEqual(ListItem.VideoCodec,h264)">H.264</value>
+        <value condition="String.IsEqual(ListItem.VideoCodec,hev1)">H.265</value>
+        <value condition="String.IsEqual(ListItem.VideoCodec,hevc)">H.265</value>
+        <value condition="String.IsEqual(ListItem.VideoCodec,hvc1)">H.265</value>
+        <value condition="String.IsEqual(ListItem.VideoCodec,mpeg1)">MPEG-1</value>
+        <value condition="String.IsEqual(ListItem.VideoCodec,mpeg2)">MPEG-2</value>
+        <value condition="String.IsEqual(ListItem.VideoCodec,mpeg2video)">MPEG-2</value>
+        <value condition="String.IsEqual(ListItem.VideoCodec,mp4v)">MPEG-4</value>
+        <value condition="String.IsEqual(ListItem.VideoCodec,mpeg4)">MPEG-4</value>
+        <value condition="String.IsEqual(ListItem.VideoCodec,theora)">Theora</value>
+        <value condition="String.IsEqual(ListItem.VideoCodec,vc1)">VC-1</value>
+        <value condition="String.IsEqual(ListItem.VideoCodec,vc-1)">VC-1</value>
+        <value condition="String.IsEqual(ListItem.VideoCodec,vp8)">VP8</value>
+        <value condition="String.IsEqual(ListItem.VideoCodec,vp9)">VP9</value>
+        <value condition="String.IsEqual(ListItem.VideoCodec,wmv)">WMV</value>
+        <value condition="String.IsEqual(ListItem.VideoCodec,wmv3)">WMV</value>
+        <value condition="String.IsEqual(ListItem.VideoCodec,wvc1)">VC-1</value>
+        <value condition="String.IsEqual(ListItem.VideoCodec,xvid)">XviD</value>
+        <value>$INFO[ListItem.VideoCodec]</value>
+    </variable>
+    <variable name="Label_VideoPlayer_VideoCodec">
+        <value condition="String.IsEqual(VideoPlayer.VideoCodec,av1)">AV1</value>
+        <value condition="String.IsEqual(VideoPlayer.VideoCodec,avc1)">AVC-1</value>
+        <value condition="String.IsEqual(VideoPlayer.VideoCodec,div3)">DivX</value>
+        <value condition="String.IsEqual(VideoPlayer.VideoCodec,divx)">DivX</value>
+        <value condition="String.IsEqual(VideoPlayer.VideoCodec,dx50)">DivX</value>
+        <value condition="String.IsEqual(VideoPlayer.VideoCodec,flv)">FLV</value>
+        <value condition="String.IsEqual(VideoPlayer.VideoCodec,h264)">H.264</value>
+        <value condition="String.IsEqual(VideoPlayer.VideoCodec,hev1)">H.265</value>
+        <value condition="String.IsEqual(VideoPlayer.VideoCodec,hevc)">H.265</value>
+        <value condition="String.IsEqual(VideoPlayer.VideoCodec,hvc1)">H.265</value>
+        <value condition="String.IsEqual(VideoPlayer.VideoCodec,mpeg1)">MPEG-1</value>
+        <value condition="String.IsEqual(VideoPlayer.VideoCodec,mpeg2)">MPEG-2</value>
+        <value condition="String.IsEqual(VideoPlayer.VideoCodec,mpeg2video)">MPEG-2</value>
+        <value condition="String.IsEqual(VideoPlayer.VideoCodec,mp4v)">MPEG-4</value>
+        <value condition="String.IsEqual(VideoPlayer.VideoCodec,mpeg4)">MPEG-4</value>
+        <value condition="String.IsEqual(VideoPlayer.VideoCodec,theora)">Theora</value>
+        <value condition="String.IsEqual(VideoPlayer.VideoCodec,vc1)">VC-1</value>
+        <value condition="String.IsEqual(VideoPlayer.VideoCodec,vc-1)">VC-1</value>
+        <value condition="String.IsEqual(VideoPlayer.VideoCodec,vp8)">VP8</value>
+        <value condition="String.IsEqual(VideoPlayer.VideoCodec,vp9)">VP9</value>
+        <value condition="String.IsEqual(VideoPlayer.VideoCodec,wmv)">WMV</value>
+        <value condition="String.IsEqual(VideoPlayer.VideoCodec,wmv3)">WMV</value>
+        <value condition="String.IsEqual(VideoPlayer.VideoCodec,wvc1)">VC-1</value>
+        <value condition="String.IsEqual(VideoPlayer.VideoCodec,xvid)">XviD</value>
+        <value>$INFO[VideoPlayer.VideoCodec]</value>
+    </variable>
+
+    <variable name="Label_ListItem_HDRType">
+        <value condition="String.IsEqual(ListItem.HdrType,dolbyvision)">Dolby Vision</value>
+        <value condition="String.IsEqual(ListItem.HdrType,hdr10) + String.Contains(ListItem.FileNameAndPath,hdr10plus)">HDR10+</value>
+        <value condition="String.IsEqual(ListItem.HdrType,hdr10)">HDR10</value>
+        <value condition="String.IsEqual(ListItem.HdrType,hlg)">HLG</value>
+        <value>$INFO[ListItem.HdrType]</value>
+    </variable>
+    <variable name="Label_VideoPlayer_HDRType">
+        <value condition="String.IsEqual(VideoPlayer.HdrType,dolbyvision)">DV</value>
+        <value condition="String.IsEqual(VideoPlayer.HdrType,hdr10) + String.Contains(Player.FileNameAndPath,hdr10plus)">HDR10+</value>
+        <value condition="String.IsEqual(VideoPlayer.HdrType,hdr10)">HDR10</value>
+        <value condition="String.IsEqual(VideoPlayer.HdrType,hlg)">HLG</value>
+        <value>$INFO[VideoPlayer.HdrType]</value>
+    </variable>
+
+    <variable name="Label_ListItem_VideoResolution">
+        <value condition="String.IsEqual(ListItem.VideoResolution,480)">SD</value>
+        <value condition="String.IsEqual(ListItem.VideoResolution,540)">SD</value>
+        <value condition="String.IsEqual(ListItem.VideoResolution,576)">SD</value>
+        <value condition="String.IsEqual(ListItem.VideoResolution,720)">HD</value>
+        <value condition="String.IsEqual(ListItem.VideoResolution,1080)">HD</value>
+        <value condition="String.IsEqual(ListItem.VideoResolution,4K)">UHD</value>
+        <value condition="String.IsEqual(ListItem.VideoResolution,8K)">UHD</value>
     </variable>
 
     <variable name="Label_SkinShortcuts_SubmenuWidget">
@@ -154,8 +331,8 @@
         <value>$INFO[ListItem.Label]</value>
     </variable>
     <variable name="Label_List_Right">
-        <value condition="[String.IsEqual(Container.SortMethod,$LOCALIZE[562]) | String.IsEqual(Container.SortMethod,$LOCALIZE[556]) | String.IsEqual(Container.SortMethod,$LOCALIZE[552])] + !Skin.HasSetting(ItemDuration_ListView)">$INFO[ListItem.Rating]</value>
-        <value condition="[String.IsEqual(Container.SortMethod,$LOCALIZE[562]) | String.IsEqual(Container.SortMethod,$LOCALIZE[556]) | String.IsEqual(Container.SortMethod,$LOCALIZE[552])] + Skin.HasSetting(ItemDuration_ListView)">$INFO[ListItem.Duration]</value>
+        <value condition="!Skin.HasSetting(ItemDuration_ListView) + !String.IsEmpty(ListItem.Rating)">$INFO[ListItem.Rating]</value>
+        <value condition="Skin.HasSetting(ItemDuration_ListView) + !String.IsEmpty(ListItem.Duration)">$INFO[ListItem.Duration]</value>
         <value>$INFO[ListItem.Label2]</value>
     </variable>
 
@@ -190,6 +367,7 @@
         <value condition="Window.IsVisible(Home) + !Skin.HasSetting(HomeMulti) + [Control.HasFocus(302) | Control.HasFocus(5610) | Control.HasFocus(301)]">$INFO[Container(301).ListItem.Label]</value>
         <value condition="Window.IsVisible(MyWeather.xml)">$LOCALIZE[8]</value>
         <value condition="Window.IsVisible(MyPlaylist.xml)">$LOCALIZE[559]</value>
+        <value condition="!String.IsEmpty(Container.PluginCategory)">$INFO[Container.PluginCategory]</value>
         <value condition="String.Contains(Container.FolderPath,/movies/) | Container.Content(movies)">$LOCALIZE[342]</value>
         <value condition="String.Contains(Container.FolderPath,/tvshows/) | String.Contains(Container.FolderPath,videodb://inprogresstvshows/) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)">$LOCALIZE[20343]</value>
         <value condition="String.Contains(Container.FolderPath,sources://video)">$LOCALIZE[31159]</value>
@@ -222,6 +400,7 @@
 
     <variable name="Label_OSD_Duration">
         <value condition="PVR.IsPlayingTV + !String.IsEmpty(PVR.EpgEventDuration)">$INFO[PVR.EpgEventDuration]</value>
+        <value condition="Skin.HasSetting(ShowTimeRemaining2) + !String.IsEmpty(Player.TimeRemaining)">$INFO[Player.TimeRemaining]</value>
         <value>$INFO[Player.Duration]</value>
     </variable>
     
@@ -236,66 +415,64 @@
     </variable>
 
     <variable name="Label_OSD_Title">
-        <value>$INFO[Player.Title]</value>
+        <value condition="!String.IsEmpty(MusicPlayer.Album)">$INFO[MusicPlayer.Album]</value>
+        <value condition="!String.IsEmpty(VideoPlayer.TvShowTitle)">$INFO[VideoPlayer.TvShowTitle]</value>
+        <value condition="!String.IsEmpty(VideoPlayer.Title)">$INFO[VideoPlayer.Title]</value>
+        <value condition="!String.IsEmpty(VideoPlayer.Label)">$INFO[VideoPlayer.Label]</value>
+        <value condition="!String.IsEmpty(Player.Title)">$INFO[Player.Title]</value>
+        <value condition="!String.IsEmpty(Player.Label)">$INFO[Player.Label]</value>
+        <value condition="!String.IsEmpty(VideoPlayer.ChannelName)">$INFO[VideoPlayer.ChannelName]</value>
     </variable>
 
     <variable name="Label_OSD_InfoLine">
         <value condition="[!String.IsEmpty(VideoPlayer.EpgEventTitle) | !String.IsEmpty(VideoPlayer.EpisodeName)] + VideoPlayer.Content(livetv)">$INFO[VideoPlayer.EpisodeName,[COLOR=panel_fg_100],[/COLOR]  |  ]$INFO[VideoPlayer.EpgEventTitle,[COLOR=panel_fg_100],[/COLOR]  |  ]$INFO[VideoPlayer.Year,[COLOR=panel_fg_100],[/COLOR]  |  ]$INFO[VideoPlayer.MPAA,[COLOR=panel_fg_100],[/COLOR]  |  ]$INFO[VideoPlayer.Genre,[COLOR=panel_fg_100],[/COLOR]]</value>
-        <value condition="!String.IsEmpty(VideoPlayer.Season) + !String.IsEmpty(VideoPlayer.Episode)">$INFO[VideoPlayer.TvShowTitle,[COLOR=panel_fg_100],[/COLOR]]$INFO[VideoPlayer.Season,  |  [COLOR=panel_fg_100]S,[/COLOR]]$INFO[VideoPlayer.Episode,[COLOR=panel_fg_100]E,[/COLOR]]$INFO[VideoPlayer.Premiered,  |  [COLOR=panel_fg_100],[/COLOR]]$INFO[VideoPlayer.MPAA,  |  [COLOR=panel_fg_100],[/COLOR]]$INFO[VideoPlayer.Genre,  |  [COLOR=panel_fg_100],[/COLOR]]</value>
-        <value>$INFO[VideoPlayer.TvShowTitle,[COLOR=panel_fg_100],[/COLOR]  |  ]$INFO[VideoPlayer.Year,[COLOR=panel_fg_100],[/COLOR]  |  ]$INFO[VideoPlayer.MPAA,[COLOR=panel_fg_100],[/COLOR]  |  ]$INFO[VideoPlayer.Genre,[COLOR=panel_fg_100],[/COLOR]]</value>
+        <value condition="!String.IsEmpty(VideoPlayer.Season) + !String.IsEmpty(VideoPlayer.Episode) + !Integer.IsGreater(VideoPlayer.Episode,9)">$INFO[VideoPlayer.Title,[COLOR=panel_fg_100],[/COLOR]]$INFO[VideoPlayer.Season,  |  [COLOR=panel_fg_100],x[/COLOR]]$INFO[VideoPlayer.Episode,[COLOR=panel_fg_100]0,[/COLOR]]$INFO[VideoPlayer.Premiered,  |  [COLOR=panel_fg_100],[/COLOR]]$INFO[VideoPlayer.MPAA,  |  [COLOR=panel_fg_100],[/COLOR]]$INFO[VideoPlayer.Genre,  |  [COLOR=panel_fg_100],[/COLOR]]</value>
+        <value condition="!String.IsEmpty(VideoPlayer.Season) + !String.IsEmpty(VideoPlayer.Episode) + Integer.IsGreater(VideoPlayer.Episode,9)">$INFO[VideoPlayer.Title,[COLOR=panel_fg_100],[/COLOR]]$INFO[VideoPlayer.Season,  |  [COLOR=panel_fg_100],x[/COLOR]]$INFO[VideoPlayer.Episode,[COLOR=panel_fg_100],[/COLOR]]$INFO[VideoPlayer.Premiered,  |  [COLOR=panel_fg_100],[/COLOR]]$INFO[VideoPlayer.MPAA,  |  [COLOR=panel_fg_100],[/COLOR]]$INFO[VideoPlayer.Genre,  |  [COLOR=panel_fg_100],[/COLOR]]</value>
+        <value>$INFO[VideoPlayer.Year,[COLOR=panel_fg_100],[/COLOR]  |  ]$INFO[VideoPlayer.MPAA,[COLOR=panel_fg_100],[/COLOR]  |  ]$INFO[VideoPlayer.Genre,[COLOR=panel_fg_100],[/COLOR]]</value>
     </variable>
 
     <variable name="Label_Info_NextAired_Status">
-        <value condition="!String.IsEmpty(Container(99950).ListItem.Status)">$INFO[Container(99950).ListItem.Status]</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),Canceled)">$LOCALIZE[31488]</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),Ended)">$LOCALIZE[31489]</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),Released)">$LOCALIZE[31490]</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),In Production) | String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),Post Production)">$LOCALIZE[31491]</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),Planned)">$LOCALIZE[31492]</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),Returning Series) + Integer.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Next_Aired.Episode),1) + Integer.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Next_Aired.Season),1)">$LOCALIZE[31493]</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),Returning Series) + Integer.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Next_Aired.Episode),1)">$LOCALIZE[31494]</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),Returning Series) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired.Days_Until_Aired)) + Integer.IsLess(Window(Home).Property(TMDbHelper.ListItem.Next_Aired.Days_Until_Aired),7) + Integer.IsLess(Window(Home).Property(TMDbHelper.ListItem.Last_Aired.Days_From_Aired),8)">$LOCALIZE[31495]</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),Returning Series) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired))">$LOCALIZE[31494]</value>
+        <value condition="String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Status),Returning Series)">$LOCALIZE[31496]</value>
+        <value>$LOCALIZE[13205]</value>
     </variable>
 
     <variable name="Label_Info_NextAired_Date">
-        <value condition="!String.IsEmpty(Container(99950).ListItem.Property(Next_Aired))">$INFO[Container(99950).ListItem.Property(Next_Aired)] ($INFO[Container(99950).ListItem.Property(Next_Aired.Season)]x$INFO[Container(99950).ListItem.Property(Next_Aired.Episode)])</value>
-        <value condition="!String.IsEmpty(Container(99950).ListItem.Property(Last_Aired))">$INFO[Container(99950).ListItem.Property(Last_Aired)] ($INFO[Container(99950).ListItem.Property(Last_Aired.Season)]x$INFO[Container(99950).ListItem.Property(Last_Aired.Episode)])</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Next_Aired)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Last_Aired))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Last_Aired)]</value>
+        <!-- <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Next_Aired))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Next_Aired)] ($INFO[Window(Home).Property(TMDbHelper.ListItem.Next_Aired.Season)]x$INFO[Window(Home).Property(TMDbHelper.ListItem.Next_Aired.Episode)])</value> -->
+        <!-- <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Last_Aired))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Last_Aired)] ($INFO[Window(Home).Property(TMDbHelper.ListItem.Last_Aired.Season)]x$INFO[Window(Home).Property(TMDbHelper.ListItem.Last_Aired.Episode)])</value> -->
     </variable>
 
     <variable name="Label_Oscars">
-        <value condition="System.HasAddon(plugin.video.themoviedb.helper) + String.Contains(Container(99950).ListItem.Property(Awards),20 Oscar)">x20</value>
-        <value condition="System.HasAddon(plugin.video.themoviedb.helper) + String.Contains(Container(99950).ListItem.Property(Awards),19 Oscar)">x19</value>
-        <value condition="System.HasAddon(plugin.video.themoviedb.helper) + String.Contains(Container(99950).ListItem.Property(Awards),18 Oscar)">x18</value>
-        <value condition="System.HasAddon(plugin.video.themoviedb.helper) + String.Contains(Container(99950).ListItem.Property(Awards),17 Oscar)">x17</value>
-        <value condition="System.HasAddon(plugin.video.themoviedb.helper) + String.Contains(Container(99950).ListItem.Property(Awards),16 Oscar)">x16</value>
-        <value condition="System.HasAddon(plugin.video.themoviedb.helper) + String.Contains(Container(99950).ListItem.Property(Awards),15 Oscar)">x15</value>
-        <value condition="System.HasAddon(plugin.video.themoviedb.helper) + String.Contains(Container(99950).ListItem.Property(Awards),14 Oscar)">x14</value>
-        <value condition="System.HasAddon(plugin.video.themoviedb.helper) + String.Contains(Container(99950).ListItem.Property(Awards),13 Oscar)">x13</value>
-        <value condition="System.HasAddon(plugin.video.themoviedb.helper) + String.Contains(Container(99950).ListItem.Property(Awards),12 Oscar)">x12</value>
-        <value condition="System.HasAddon(plugin.video.themoviedb.helper) + String.Contains(Container(99950).ListItem.Property(Awards),11 Oscar)">x11</value>
-        <value condition="System.HasAddon(plugin.video.themoviedb.helper) + String.Contains(Container(99950).ListItem.Property(Awards),10 Oscar)">x10</value>
-        <value condition="System.HasAddon(plugin.video.themoviedb.helper) + String.Contains(Container(99950).ListItem.Property(Awards),9 Oscar)">x9</value>
-        <value condition="System.HasAddon(plugin.video.themoviedb.helper) + String.Contains(Container(99950).ListItem.Property(Awards),8 Oscar)">x8</value>
-        <value condition="System.HasAddon(plugin.video.themoviedb.helper) + String.Contains(Container(99950).ListItem.Property(Awards),7 Oscar)">x7</value>
-        <value condition="System.HasAddon(plugin.video.themoviedb.helper) + String.Contains(Container(99950).ListItem.Property(Awards),6 Oscar)">x6</value>
-        <value condition="System.HasAddon(plugin.video.themoviedb.helper) + String.Contains(Container(99950).ListItem.Property(Awards),5 Oscar)">x5</value>
-        <value condition="System.HasAddon(plugin.video.themoviedb.helper) + String.Contains(Container(99950).ListItem.Property(Awards),4 Oscar)">x4</value>
-        <value condition="System.HasAddon(plugin.video.themoviedb.helper) + String.Contains(Container(99950).ListItem.Property(Awards),3 Oscar)">x3</value>
-        <value condition="System.HasAddon(plugin.video.themoviedb.helper) + String.Contains(Container(99950).ListItem.Property(Awards),2 Oscar)">x2</value>
-        <value condition="System.HasAddon(plugin.video.themoviedb.helper) + String.Contains(Container(99950).ListItem.Property(Awards),1 Oscar)">x1</value>
-        
-        <value condition="String.Contains(Container(99950).ListItem.Property(Awards),20 Oscar)">x20</value>
-        <value condition="String.Contains(Container(99950).ListItem.Property(Awards),19 Oscar)">x19</value>
-        <value condition="String.Contains(Container(99950).ListItem.Property(Awards),18 Oscar)">x18</value>
-        <value condition="String.Contains(Container(99950).ListItem.Property(Awards),17 Oscar)">x17</value>
-        <value condition="String.Contains(Container(99950).ListItem.Property(Awards),16 Oscar)">x16</value>
-        <value condition="String.Contains(Container(99950).ListItem.Property(Awards),15 Oscar)">x15</value>
-        <value condition="String.Contains(Container(99950).ListItem.Property(Awards),14 Oscar)">x14</value>
-        <value condition="String.Contains(Container(99950).ListItem.Property(Awards),13 Oscar)">x13</value>
-        <value condition="String.Contains(Container(99950).ListItem.Property(Awards),12 Oscar)">x12</value>
-        <value condition="String.Contains(Container(99950).ListItem.Property(Awards),11 Oscar)">x11</value>
-        <value condition="String.Contains(Container(99950).ListItem.Property(Awards),10 Oscar)">x10</value>
-        <value condition="String.Contains(Container(99950).ListItem.Property(Awards),9 Oscar)">x9</value>
-        <value condition="String.Contains(Container(99950).ListItem.Property(Awards),8 Oscar)">x8</value>
-        <value condition="String.Contains(Container(99950).ListItem.Property(Awards),7 Oscar)">x7</value>
-        <value condition="String.Contains(Container(99950).ListItem.Property(Awards),6 Oscar)">x6</value>
-        <value condition="String.Contains(Container(99950).ListItem.Property(Awards),5 Oscar)">x5</value>
-        <value condition="String.Contains(Container(99950).ListItem.Property(Awards),4 Oscar)">x4</value>
-        <value condition="String.Contains(Container(99950).ListItem.Property(Awards),3 Oscar)">x3</value>
-        <value condition="String.Contains(Container(99950).ListItem.Property(Awards),2 Oscar)">x2</value>
-        <value condition="String.Contains(Container(99950).ListItem.Property(Awards),1 Oscar)">x1</value>
+        <value condition="String.Contains(Window(Home).Property(TMDbHelper.ListItem.Awards),20 Oscar)">x20</value>
+        <value condition="String.Contains(Window(Home).Property(TMDbHelper.ListItem.Awards),19 Oscar)">x19</value>
+        <value condition="String.Contains(Window(Home).Property(TMDbHelper.ListItem.Awards),18 Oscar)">x18</value>
+        <value condition="String.Contains(Window(Home).Property(TMDbHelper.ListItem.Awards),17 Oscar)">x17</value>
+        <value condition="String.Contains(Window(Home).Property(TMDbHelper.ListItem.Awards),16 Oscar)">x16</value>
+        <value condition="String.Contains(Window(Home).Property(TMDbHelper.ListItem.Awards),15 Oscar)">x15</value>
+        <value condition="String.Contains(Window(Home).Property(TMDbHelper.ListItem.Awards),14 Oscar)">x14</value>
+        <value condition="String.Contains(Window(Home).Property(TMDbHelper.ListItem.Awards),13 Oscar)">x13</value>
+        <value condition="String.Contains(Window(Home).Property(TMDbHelper.ListItem.Awards),12 Oscar)">x12</value>
+        <value condition="String.Contains(Window(Home).Property(TMDbHelper.ListItem.Awards),11 Oscar)">x11</value>
+        <value condition="String.Contains(Window(Home).Property(TMDbHelper.ListItem.Awards),10 Oscar)">x10</value>
+        <value condition="String.Contains(Window(Home).Property(TMDbHelper.ListItem.Awards),9 Oscar)">x9</value>
+        <value condition="String.Contains(Window(Home).Property(TMDbHelper.ListItem.Awards),8 Oscar)">x8</value>
+        <value condition="String.Contains(Window(Home).Property(TMDbHelper.ListItem.Awards),7 Oscar)">x7</value>
+        <value condition="String.Contains(Window(Home).Property(TMDbHelper.ListItem.Awards),6 Oscar)">x6</value>
+        <value condition="String.Contains(Window(Home).Property(TMDbHelper.ListItem.Awards),5 Oscar)">x5</value>
+        <value condition="String.Contains(Window(Home).Property(TMDbHelper.ListItem.Awards),4 Oscar)">x4</value>
+        <value condition="String.Contains(Window(Home).Property(TMDbHelper.ListItem.Awards),3 Oscar)">x3</value>
+        <value condition="String.Contains(Window(Home).Property(TMDbHelper.ListItem.Awards),2 Oscar)">x2</value>
+        <value condition="String.Contains(Window(Home).Property(TMDbHelper.ListItem.Awards),1 Oscar)">x1</value>
     </variable>
 
     <variable name="Label_Filtered">
@@ -378,8 +555,6 @@
         <value condition="[Window.IsVisible(DialogPVRInfo.xml) | Window.IsVisible(MyPVRTimers.xml) | Window.IsVisible(MyPVRGuide.xml)]">$VAR[Label_SeasonEpisodeLabel_NoColon,[COLOR=main_fg_100],[/COLOR]  |  ]$INFO[ListItem.EpisodeName,[COLOR=main_fg_100],[/COLOR]  |  ]$INFO[ListItem.Genre,[COLOR=main_fg_100],[/COLOR]]</value>
 
         <value condition="!String.IsEmpty(ListItem.Genre)">$INFO[ListItem.Genre,[COLOR=main_fg_100],[/COLOR]]</value>
-
-        <value>[COLOR=main_fg_100]$LOCALIZE[19055][/COLOR]</value>
     </variable>
 
     <variable name="Label_Title">
@@ -446,5 +621,69 @@
     <variable name="Label_VideoHWDecoder">
         <value condition="Player.Process(videohwdecoder)">HW</value>
         <value>SW</value>
+    </variable>
+
+    <variable name="Label_Setting_TitleLogo">
+        <value condition="!Skin.HasSetting(ShowClearlogo)">$LOCALIZE[31486]</value>
+        <value>$LOCALIZE[31487]</value>
+    </variable>
+    <variable name="Label_Setting_TitleLogo2">
+        <value condition="!Skin.HasSetting(EI_Clearlogo)">$LOCALIZE[31486]</value>
+        <value>$LOCALIZE[31487]</value>
+    </variable>
+
+    <variable name="MediaInfoListLabelVar">
+        <value condition="Window.IsVisible(selectvideoversion)">$INFO[ListItem.VideoVersionName]</value>
+        <value>$INFO[ListItem.Label]</value>
+    </variable>
+    <variable name="MediaInfoListLabel2Var">
+        <value condition="ListItem.IsStereoscopic">$INFO[ListItem.Duration,$LOCALIZE[180]: ][CR]$VAR[Label_ListItem_VideoCodec,, ]$INFO[ListItem.VideoResolution,| , ]$VAR[Label_ListItem_VideoResolution,, ]$VAR[Label_ListItem_HDRType,| , ]| 3D $INFO[ListItem.VideoAspect,| ,:1 ]$VAR[Label_ListItem_AudioCodec,| , ]$VAR[Label_ListItem_AudioChannels]</value>
+        <value>$INFO[ListItem.Duration,$LOCALIZE[180]: ][CR]$VAR[Label_ListItem_VideoCodec,, ]$INFO[ListItem.VideoResolution,| , ]$VAR[Label_ListItem_VideoResolution,, ]$VAR[Label_ListItem_HDRType,| , ]$INFO[ListItem.VideoAspect,| ,:1 ]$VAR[Label_ListItem_AudioCodec,| , ]$VAR[Label_ListItem_AudioChannels]</value>
+    </variable>
+
+    <variable name="Label_OSD_SubtitlesLanguage">
+        <value condition="VideoPlayer.SubtitlesEnabled">$INFO[VideoPlayer.SubtitlesLanguage,[UPPERCASE],[/UPPERCASE]]</value>
+    </variable>
+    <variable name="Label_StreamLanguage">
+        <value condition="!String.IsEmpty(ListItem.Label)">$INFO[ListItem.Label]</value>
+        <value>UNK</value>
+    </variable>
+    <variable name="Label_PlayerStream_IsForced">
+        <value condition="ListItem.Property(IsForced)">$LOCALIZE[39106]</value>
+    </variable>
+    <variable name="Label_PlayerStream_IsDefault">
+        <value condition="ListItem.Property(IsDefault)">$LOCALIZE[39105]</value>
+    </variable>
+    <variable name="Label_PlayerStream_IsOriginal">
+        <value condition="ListItem.Property(IsOriginal)">$LOCALIZE[39111]</value>
+    </variable>
+
+    <variable name="Label_DialogInfo_Biography">
+        <value condition="!String.IsEmpty(ListItem.Property(biography))">$INFO[ListItem.Property(biography)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.biography))">$INFO[Window(Home).Property(TMDbHelper.ListItem.biography)]</value>
+    </variable>
+
+    <variable name="Label_FromStudio">
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.1.Name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.1.Name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.2.Name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.2.Name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Network.3.Name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Network.3.Name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.1.Name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.1.Name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.2.Name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.2.Name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Studio.3.Name))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Studio.3.Name)]</value>
+        <value condition="!String.IsEmpty(ListItem.Studio)">$INFO[ListItem.Studio]</value>
+    </variable>
+
+    <variable name="Label_FromDirector">
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.1.Name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.1.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.1.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.1.Name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.2.Name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.2.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.2.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.2.Name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.3.Name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.3.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.3.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.3.Name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.4.Name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.4.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.4.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.4.Name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.5.Name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.5.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.5.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.5.Name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.6.Name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.6.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.6.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.6.Name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.7.Name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.7.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.7.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.7.Name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.8.Name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.8.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.8.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.8.Name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.9.Name)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director.9.job)) + String.IsEqual(Window(Home).Property(TMDbHelper.ListItem.Director.9.job),Director)">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director.9.Name)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Director))">$INFO[Window(Home).Property(TMDbHelper.ListItem.Director)]</value>
+        <value>$INFO[ListItem.Director]</value>
     </variable>
 </includes>

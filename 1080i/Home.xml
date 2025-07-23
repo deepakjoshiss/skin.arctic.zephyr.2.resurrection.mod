@@ -10,13 +10,17 @@
     <onload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=301&amp;levels=1&amp;group=mainmenu|powermenu|searchmenu)</onload>
 
     <onunload condition="!Control.HasFocus(301) + [Window.Next(VideoFullScreen.xml) | Window.Next(MusicVisualisation.xml)]">SetFocus(301)</onunload>
-    <onload condition="Window.Previous(VideoFullScreen.xml) | Window.Previous(MusicVisualisation.xml)">SetFocus(301)</onload>
+    <!-- <onload condition="Window.Previous(VideoFullScreen.xml) | Window.Previous(MusicVisualisation.xml)">SetFocus(301)</onload> -->
 
-    <onload>SetProperty(TMDbHelper.Blur.SourceImage,Art(fanart)|Art(poster),Home)</onload>
+    <onload>RunScript(script.skinvariables,action=buildviews,no_reload)</onload>
+    <onload>Skin.Reset(TMDbHelper.MonitorContainer)</onload>
+    <onload>SetProperty(TMDbHelper.Blur.SourceImage,Art(fanart),Home)</onload>
+    <onload>SetProperty(TMDbHelper.Blur.Fallback,$VAR[Image_SimpleBackground],Home)</onload>
+    <onload condition="String.IsEqual(Skin.String(HomeBackgroundImage),special://skin/media/common/bg2.jpg)">Skin.Reset(HomeBackgroundImage)</onload>
+    <onload condition="String.IsEqual(Skin.String(fanart.fallback),special://skin/media/common/bg2.jpg)">Skin.Reset(fanart.fallback)</onload>
     <onunload>ClearProperty(TMDbHelper.WidgetContainer,Home)</onunload>
 
     <controls>
-        <include>Defs_TMDbHelper_Loader</include>
         <control type="button" id="6000">
             <description>Weather Jump</description>
             <include>Defs_Hidden_Button</include>
@@ -73,6 +77,7 @@
             <include condition="Skin.HasSetting(HomeMultiVertical) | ![Skin.HasSetting(HomeMultiFlixView) | Skin.HasSetting(HomeMultiNetflix) | Skin.HasSetting(HomeMultiHorizontal) | Skin.HasSetting(HomeBasic)]">Home_Multi_Vertical</include>
             <include condition="Skin.HasSetting(HomeMultiHorizontal)">Home_Multi_Horizontal</include>
             <include condition="Skin.HasSetting(HomeBasic)">Home_Simple</include>
+            <include condition="System.GetBool(lookandfeel.enablerssfeeds) + [!Window.IsVisible(screencalibration) + !Window.IsVisible(screensaver) + !Window.IsVisible(startup) + !Window.IsVisible(fullscreenvideo) + !Window.IsVisible(visualisation) + !Window.IsVisible(slideshow)]">RSS_Feeds</include>
         </control>
         <include>Object_PlotOverlay</include>
 
@@ -81,7 +86,7 @@
             <visible>!Skin.HasSetting(DisplaySplashOnStartup)</visible>
             <control type="image" description="Background">
                 <include>Dimensions_Fullscreen</include>
-                <texture colordiffuse="Background">common/bg.jpg</texture>
+                <texture colordiffuse="Background">special://skin/extras/backgrounds/bg.jpg</texture>
                 <visible>String.IsEmpty(Skin.String(StartupPlaylist))</visible>
                 <visible>String.IsEmpty(Window(Home).Property(SkinSplashStarted)) | Integer.IsEqual(Container(301).NumItems,0) | Container(301).IsUpdating | Window.IsVisible(1151)</visible>
                 <animation effect="fade" start="100" end="0" delay="1000" time="1000" tween="cubic">Hidden</animation>

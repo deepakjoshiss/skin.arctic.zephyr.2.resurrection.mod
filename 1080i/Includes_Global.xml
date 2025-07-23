@@ -31,7 +31,7 @@
         </control>
         <!-- <control type="image" description="Background">
             <include>Dimensions_TrailerScreen</include>
-            <texture colordiffuse="HomePanel">common/bg.jpg</texture>
+            <texture colordiffuse="HomePanel">special://skin/extras/backgrounds/bg.jpg</texture>
             <visible>!Window.IsVisible(Home) | [Window.IsVisible(Home) + [Skin.HasSetting(HomeMulti) | $EXP[Exp_InfoVisible]]]</visible>
         </control> -->
     </include>
@@ -54,15 +54,9 @@
         </control>
         <control type="image" description="Background">
             <include>Dimensions_Fullscreen</include>
-            <texture colordiffuse="HomePanel">common/bg.jpg</texture>
+            <texture colordiffuse="HomePanel">special://skin/extras/backgrounds/bg.jpg</texture>
             <visible>Skin.HasSetting(global.showvideo)</visible>
             <visible>!Window.IsVisible(Home) | [Window.IsVisible(Home) + [Skin.HasSetting(HomeMulti) | $EXP[Exp_InfoVisible]]]</visible>
-        </control>
-        <control type="image" description="Background">
-            <include>Dimensions_Fullscreen</include>
-            <include>Animation_Alpha_Value</include>
-            <texture colordiffuse="HomePanel">common/bg.jpg</texture>
-            <visible>Skin.HasSetting(EI_HideBG) + Window.IsActive(DialogVideoInfo.xml)</visible>
         </control>
     </include>
 
@@ -70,6 +64,25 @@
         <control type="videowindow">
             <visible>Player.HasVideo</visible>
             <include>Dimensions_Fullscreen</include>
+        </control>
+    </include>
+
+    <include name="OSD_ExtendedInfo_Background">
+        <control type="group">
+            <control type="image">
+                <texture colordiffuse="black">common/white.png</texture>
+            </control>
+            <control type="videowindow">
+                <height>100%</height>
+                <width>100%</width>
+            </control>
+            <control type="image">
+                <texture colordiffuse="7f000000">common/white.png</texture>
+            </control>
+            <control type="image">
+                <include>Animation_Alpha_Value</include>
+                <texture colordiffuse="HomePanel">special://skin/extras/backgrounds/bg.jpg</texture>
+            </control>
         </control>
     </include>
 
@@ -104,13 +117,14 @@
     </include>
 
     <include name="Global_Background">
-        <include condition="Skin.HasSetting(global.showvideo) + !Skin.HasSetting(HomeMultiFlixView)">Global_Videowindow</include>
+        <include condition="Skin.HasSetting(global.showvideo) + !Skin.HasSetting(HomeMultiFlixView) | [Skin.HasSetting(HomeMultiFlixView) + !Window.IsVisible(Home.xml)]">Global_Videowindow</include>
         <include condition="!Skin.HasSetting(global.showvideo) + !Skin.HasSetting(HomeMultiFlixView)">Global_Videowindow_Hidden</include>
         <include condition="Skin.HasSetting(global.showvisualisation)">Global_Visualisation</include>
         <control type="group">
             <visible>$EXP[Exp_GlobalBackground]</visible>
+            <visible>[!Skin.HasSetting(HomeMultiFlixView) | [Skin.HasSetting(HomeMultiFlixView) + !Window.IsVisible(Home.xml)]]</visible>
             <control type="image">
-                <texture colordiffuse="Background">common/bg.jpg</texture>
+                <texture colordiffuse="Background">special://skin/extras/backgrounds/bg.jpg</texture>
             </control>
             <control type="multiimage">
                 <visible>[[!Control.IsVisible(528) + !Control.IsVisible(529) + !Control.IsVisible(501)] | [Window.IsActive(DialogVideoInfo.xml) | Window.IsActive(DialogMusicInfo.xml) | Window.IsActive(DialogAddonInfo.xml)]]</visible>
@@ -120,44 +134,20 @@
                 <height>1080</height>
                 <aspectratio>scale</aspectratio>
                 <fadetime>600</fadetime>
-                <animation effect="fade" start="60" end="45" reversible="false" condition="!Skin.HasSetting(DisableBackgroundOverlay) + [Skin.HasSetting(TMDbHelper.EnableBlur) | [Window.IsActive(DialogVideoInfo.xml) | Window.IsActive(DialogMusicInfo.xml) | Window.IsActive(DialogAddonInfo.xml)]]">Conditional</animation>
-                <animation effect="fade" start="10" end="15" reversible="false" condition="!Skin.HasSetting(DisableBackgroundOverlay) + !Skin.HasSetting(TMDbHelper.EnableBlur)">Conditional</animation>
+                <animation effect="fade" start="10" end="15" reversible="false" condition="true">Conditional</animation>
                 <imagepath background="true">$VAR[Global_Background_Image]</imagepath>
                 <animation effect="zoom" start="110" end="130" center="auto" time="10000" tween="sine" easing="inout" pulse="true" condition="Skin.HasSetting(KenBurnsEffect)">Conditional</animation>
                 <animation effect="slide" start="-30,-30" end="30,30" time="6000" tween="sine" easing="inout" pulse="true" condition="Skin.HasSetting(KenBurnsEffect)">Conditional</animation>
             </control>
         </control>
 
-        <include condition="Skin.HasSetting(global.showvideo) + Skin.HasSetting(HomeMultiFlixView) + Window.IsVisible(Home.xml)">Flix_Global_Videowindow</include>
-        <include condition="!Skin.HasSetting(global.showvideo) + Skin.HasSetting(HomeMultiFlixView) + Window.IsVisible(Home.xml)">Flix_Global_Videowindow_Hidden</include>
+        <include condition="Skin.HasSetting(global.showvideo) + Skin.HasSetting(HomeMultiFlixView) + !Skin.HasSetting(EnableBlur.FlixViews) + Window.IsVisible(Home.xml)">Flix_Global_Videowindow</include>
+        <include condition="!Skin.HasSetting(global.showvideo) + Skin.HasSetting(HomeMultiFlixView) + !Skin.HasSetting(EnableBlur.FlixViews) + Window.IsVisible(Home.xml)">Flix_Global_Videowindow_Hidden</include>
 
         <control type="group">
-            <control type="multiimage">
-                <include>Defs_TimePerImage</include>
-                <randomize>true</randomize>
-                <top>0</top>
-                <left>560</left>
-                <width>1366</width>
-                <height>768</height>
-                <aspectratio>scale</aspectratio>
-                <fadetime>600</fadetime>
-                <imagepath background="true">$VAR[Global_Background_Image]</imagepath>
-                <animation effect="zoom" start="110" end="130" center="auto" time="10000" tween="sine" easing="inout" pulse="true" condition="Skin.HasSetting(KenBurnsEffect)">Conditional</animation>
-                <animation effect="slide" start="-30,-30" end="30,30" time="6000" tween="sine" easing="inout" pulse="true" condition="Skin.HasSetting(KenBurnsEffect)">Conditional</animation>
-                <visible>Skin.HasSetting(HomeMultiFlixView) + Window.IsVisible(Home.xml) + !Player.HasVideo</visible>
-            </control>
-            <control type="multiimage">
-                <include>Defs_TimePerImage</include>
-                <randomize>true</randomize>
-                <width>1920</width>
-                <height>1080</height>
-                <aspectratio>scale</aspectratio>
-                <fadetime>600</fadetime>
-                <imagepath background="true">common/vignette-flix-basic.png</imagepath>
-                <animation effect="zoom" start="110" end="130" center="auto" time="10000" tween="sine" easing="inout" pulse="true" condition="Skin.HasSetting(KenBurnsEffect)">Conditional</animation>
-                <animation effect="slide" start="-30,-30" end="30,30" time="6000" tween="sine" easing="inout" pulse="true" condition="Skin.HasSetting(KenBurnsEffect)">Conditional</animation>
-                <visible>Skin.HasSetting(HomeMultiFlixView) + Window.IsVisible(Home.xml)</visible>
-            </control>
+            <visible>Skin.HasSetting(HomeMultiFlixView) + Window.IsVisible(Home.xml)</visible>
+            <include condition="Skin.HasSetting(EnableBlur.FlixViews) + Skin.HasSetting(HomeMultiFlixView) + Window.IsVisible(Home.xml)">Background_Main</include>
+            <include condition="!Skin.HasSetting(EnableBlur.FlixViews) + Skin.HasSetting(HomeMultiFlixView) + Window.IsVisible(Home.xml)">Background_FlixArt_Basic_Home</include>
         </control>
 
         <control type="group">
@@ -190,7 +180,7 @@
         </control>
 
         <include>Object_NowPlaying</include>
-        <include condition="!Skin.HasSetting(HomeMultiFlixView)">Object_Codecs</include>
+        <include condition="!Skin.HasSetting(HomeMultiFlixView) | [Skin.HasSetting(HomeMultiFlixView) + !Window.IsVisible(Home.xml)]">Object_Codecs</include>
         <include>Object_Languages</include>
     </include>
 
@@ -198,16 +188,18 @@
         <value condition="[Window.IsVisible(home) | Window.IsVisible(1135)] + !String.IsEmpty(Container(301).ListItem.Property(backgroundPlaylist))">$INFO[Container(9988).ListItem.Art(fanart)]</value>
         <value condition="[Window.IsVisible(home) | Window.IsVisible(1135)] + !String.IsEmpty(Container(301).ListItem.Property(Background))">$INFO[Container(301).ListItem.Property(Background)]</value>
         <value condition="!String.IsEmpty(Skin.String(fanart.fallback))">$INFO[Skin.String(fanart.fallback)]</value>
-        <value>common/null.png</value>
+        <value>special://skin/extras/backgrounds/bg2.jpg</value>
     </variable>
 
     <variable name="Global_Background_Blur_Var">
-        <value>$INFO[Container(99950).ListItem.Art(blurimage)]</value>
+        <value condition="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.BlurImage))">$INFO[Window(Home).Property(TMDbHelper.ListItem.BlurImage)]</value>
+        <value condition="!String.IsEmpty(Skin.String(fanart.fallback))">$INFO[Skin.String(fanart.fallback)]</value>
+        <value>special://skin/extras/backgrounds/bg2.jpg</value>
     </variable>
 
     <variable name="Global_Background_Image">
         <value condition="Skin.HasSetting(NoFanart)">$VAR[Global_Background_Image_NoFanart]</value>
-        <value condition="Skin.HasSetting(TMDbHelper.EnableBlur)">$VAR[Global_Background_Blur_Var]</value>
+        <value condition="Skin.HasSetting(EnableBlur.Background)">$VAR[Global_Background_Blur_Var]</value>
         <value>$VAR[Global_Background_Image_Var]</value>
     </variable>
 
@@ -231,9 +223,6 @@
         <!-- Home Fanart Widgets -->
         <value condition="!String.IsEmpty(Container.ListItem.Art(fanart)) + Window.IsVisible(Home)">$INFO[Container.ListItem.Art(fanart)]</value>
 
-        <!-- Home Fanart Fallbacks -->
-        <value condition="!String.IsEmpty(Container.ListItem.Art(fanart)) + Window.IsVisible(Home)">$INFO[Container.ListItem.Art(fanart)]</value>
-
         <!-- Home Fanart Menu -->
         <value condition="Window.IsVisible(home) + !String.IsEmpty(Skin.String(HomeBackgroundImage)) + String.IsEmpty(Container(301).ListItem.Property(Background)) + String.IsEmpty(Container(301).ListItem.Property(backgroundPlaylist))">$INFO[Skin.String(HomeBackgroundImage)]</value>
 
@@ -246,4 +235,12 @@
         <!-- Default -->
         <value>$VAR[Global_Background_Image_NoFanart]</value>
     </variable>
+
+    <include name="Action_Blur_Onload">
+        <param name="sourceimage">Art(fanart)</param>
+        <definition>
+            <onload>SetProperty(TMDbHelper.Blur.SourceImage,$PARAM[sourceimage],Home)</onload>
+            <onload>SetProperty(TMDbHelper.Blur.Fallback,$VAR[Image_SimpleBackground],Home)</onload>
+        </definition>
+    </include>
 </includes>

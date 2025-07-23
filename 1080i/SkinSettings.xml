@@ -130,6 +130,14 @@
                             <onclick>ActivateWindow(1150)</onclick>
                         </control>
 
+                        <control type="radiobutton" id="19112" description="Disable profile info in main menu">
+                            <include>Defs_Settings_Button</include>
+                            <label> - $LOCALIZE[30108]</label>
+                            <visible>Skin.HasSetting(HomeMultiFlixView)</visible>
+                            <selected>Skin.HasSetting(DisabledProfileInfo)</selected>
+                            <onclick>Skin.ToggleSetting(DisabledProfileInfo)</onclick>
+                        </control>
+
                         <control type="button" id="19109" description="Home Menu Style">
                             <include>Defs_Settings_Button</include>
                             <label>$LOCALIZE[30046]</label>
@@ -148,6 +156,22 @@
                             <onclick>SetProperty(CustomDialogWindow.items,MenuStyle2,home)</onclick>
                             <onclick>ActivateWindow(1150)</onclick>
                             <visible>[!Skin.HasSetting(HomeMulti) | Skin.HasSetting(HomeMultiHorizontal)]</visible>
+                        </control>
+
+                        <control type="radiobutton" id="19947" description="Hide menu when focus is on widgets">
+                            <include>Defs_Settings_Button</include>
+                            <label> - $LOCALIZE[31481]</label>
+                            <selected>Skin.HasSetting(FlixHideMenu)</selected>
+                            <onclick>Skin.ToggleSetting(FlixHideMenu)</onclick>
+                            <visible>Skin.HasSetting(HomeMultiFlixView) + [Skin.HasSetting(VerticalIconsOnly) | Skin.HasSetting(HomeIcons)]</visible>
+                        </control>
+
+                        <control type="radiobutton" id="19536" description="Home menu header">
+                            <include>Defs_Settings_Button</include>
+                            <label> - $LOCALIZE[31509]</label>
+                            <selected>Skin.HasSetting(Home.HideHeader)</selected>
+                            <onclick>Skin.ToggleSetting(Home.HideHeader)</onclick>
+                            <visible>Skin.HasSetting(HomeMultiFlixView) + Skin.HasSetting(VerticalIconsOnly)</visible>
                         </control>
 
                         <control type="button" id="19119" description="Corner Icon">
@@ -197,14 +221,6 @@
                             <selected>Skin.HasSetting(DisplaySplashOnStartup)</selected>
                             <onclick>Skin.ToggleSetting(DisplaySplashOnStartup)</onclick>
                         </control>
-
-                        <control type="radiobutton" id="19112" description="Disable profile info in main menu">
-                            <include>Defs_Settings_Button</include>
-                            <label>$LOCALIZE[30108]</label>
-                            <enable>Skin.HasSetting(HomeMultiFlixView)</enable>
-                            <selected>Skin.HasSetting(DisabledProfileInfo)</selected>
-                            <onclick>Skin.ToggleSetting(DisabledProfileInfo)</onclick>
-                        </control>
                     </control>
 
                     <!-- ========== -->
@@ -236,20 +252,24 @@
                             <onclick>Skin.ToggleSetting(NoFanart)</onclick>
                         </control>
 
-                        <control type="radiobutton" id="19201" description="Enable blur">
+                        <control type="radiobutton" id="19201" description="Enable background blur">
                             <include>Defs_Settings_Button</include>
                             <label>$LOCALIZE[31275]</label>
-                            <selected>Skin.HasSetting(TMDbHelper.EnableBlur)</selected>
-                            <onclick>Skin.ToggleSetting(TMDbHelper.EnableBlur)</onclick>
+                            <selected>Skin.HasSetting(EnableBlur.Background)</selected>
+                            <onclick>Skin.ToggleSetting(EnableBlur.Background)</onclick>
+                            <onclick condition="!Skin.HasSetting(TMDbHelper.EnableBlur)">Skin.SetBool(TMDbHelper.EnableBlur)</onclick>
+                            <onclick condition="Skin.HasSetting(TMDbHelper.EnableBlur) + [!Skin.HasSetting(EnableBlur.FlixViews) + Skin.HasSetting(EnableBlur.Background)]">Skin.Reset(TMDbHelper.EnableBlur)</onclick>
                             <enable>!Skin.HasSetting(NoFanart)</enable>
                         </control>
 
-                        <control type="radiobutton" id="19207" description="Disable overlay">
+                        <control type="radiobutton" id="19535" description="Enable blur for Flix views">
                             <include>Defs_Settings_Button</include>
-                            <label>$LOCALIZE[30099]</label>
-
-                            <onclick>Skin.ToggleSetting(DisableBackgroundOverlay)</onclick>
-                            <selected>Skin.HasSetting(DisableBackgroundOverlay)</selected>
+                            <label>$LOCALIZE[31508]</label>
+                            <selected>Skin.HasSetting(EnableBlur.FlixViews)</selected>
+                            <onclick>Skin.ToggleSetting(EnableBlur.FlixViews)</onclick>
+                            <onclick condition="!Skin.HasSetting(TMDbHelper.EnableBlur)">Skin.SetBool(TMDbHelper.EnableBlur)</onclick>
+                            <onclick condition="Skin.HasSetting(TMDbHelper.EnableBlur) + [Skin.HasSetting(EnableBlur.FlixViews) + !Skin.HasSetting(EnableBlur.Background)]">Skin.Reset(TMDbHelper.EnableBlur)</onclick>
+                            <enable>!Skin.HasSetting(NoFanart)</enable>
                         </control>
 
                         <control type="button" id="19106" description="Set home background image">
@@ -305,13 +325,6 @@
                             <onclick>SetProperty(CustomDialogWindow.header,$LOCALIZE[31128],home)</onclick>
                             <onclick>SetProperty(CustomDialogWindow.items,TimePerImage,home)</onclick>
                             <onclick>ActivateWindow(1150)</onclick>
-                        </control>
-
-                        <control type="radiobutton" id="19206" description="Animate background ken burns">
-                            <include>Defs_Settings_Button</include>
-                            <label>$LOCALIZE[31205]</label>
-                            <selected>Skin.HasSetting(KenBurnsEffect)</selected>
-                            <onclick>Skin.ToggleSetting(KenBurnsEffect)</onclick>
                         </control>
                     </control>
 
@@ -525,6 +538,12 @@
                             <label>$LOCALIZE[31152]</label>
                         </control>
 
+                        <control type="button" id="19948" description="Configure viewtypes">
+                            <include>Defs_Settings_Button</include>
+                            <label>$LOCALIZE[31482]</label>
+                            <onclick>runscript(script.skinvariables,action=buildviews,configure)</onclick>
+                        </control>
+
                         <control type="radiobutton" id="19405" description="Flip sides">
                             <include>Defs_Settings_Button</include>
                             <label>$LOCALIZE[31016]</label>
@@ -532,11 +551,28 @@
                             <onclick>Skin.ToggleSetting(FlipSide)</onclick>
                         </control>
 
-                        <control type="radiobutton" id="19406" description="Show clearlogo if available">
+                        <control type="button" id="19406" description="Show clearlogo if available">
                             <include>Defs_Settings_Button</include>
                             <label>$LOCALIZE[31019]</label>
-                            <selected>Skin.HasSetting(ShowClearlogo)</selected>
+                            <label2>$VAR[Label_Setting_TitleLogo]</label2>
                             <onclick>Skin.ToggleSetting(ShowClearlogo)</onclick>
+                        </control>
+
+                        <control type="button" id="19951" description="Clearlogo in extended info dialog">
+                            <include>Defs_Settings_Button</include>
+                            <label>$LOCALIZE[31485]</label>
+                            <label2>$VAR[Label_Setting_TitleLogo2]</label2>
+                            <onclick>Skin.ToggleSetting(EI_Clearlogo)</onclick>
+                        </control>
+
+                        <control type="radiobutton" id="19956" description="Use TMDBh to crop clearlogo">
+                            <include>Defs_Settings_Button</include>
+                            <label> - $LOCALIZE[31501]</label>
+                            <selected>Skin.HasSetting(TMDBhCrop)</selected>
+                            <onclick>Skin.ToggleSetting(TMDBhCrop)</onclick>
+                            <onclick condition="!Skin.HasSetting(TMDbHelper.EnableCrop)">Skin.SetBool(TMDbHelper.EnableCrop)</onclick>
+                            <onclick condition="Skin.HasSetting(TMDbHelper.EnableCrop)">Skin.Reset(TMDbHelper.EnableCrop)</onclick>
+                            <enable>Skin.HasSetting(ShowClearlogo) | Skin.HasSetting(EI_Clearlogo) | Skin.HasSetting(EnableClearlogo)</enable>
                         </control>
 
                         <control type="radiobutton" id="19408" description="Default list labels">
@@ -560,20 +596,6 @@
                             <onclick>Skin.ToggleSetting(UseTrackNamingTemplate)</onclick>
                         </control>
 
-                        <control type="radiobutton" id="19402" description="Disable watched indicators">
-                            <include>Defs_Settings_Button</include>
-                            <label>$LOCALIZE[31317]</label>
-                            <selected>!Skin.HasSetting(DisableWatchedOverlay)</selected>
-                            <onclick>Skin.ToggleSetting(DisableWatchedOverlay)</onclick>
-                        </control>
-
-                        <control type="radiobutton" id="19940" description="Premiere and finale indicators">
-                            <include>Defs_Settings_Button</include>
-                            <label>$LOCALIZE[31471]</label>
-                            <selected>Skin.HasSetting(SeriesIndicators)</selected>
-                            <onclick>Skin.ToggleSetting(SeriesIndicators)</onclick>
-                        </control>
-
                         <control type="radiobutton" id="19941" description="Disable infoline genre">
                             <include>Defs_Settings_Button</include>
                             <label>$LOCALIZE[31473]</label>
@@ -594,6 +616,32 @@
                             <selected>Skin.HasSetting(Infoline.DisableMatch)</selected>
                             <onclick>Skin.ToggleSetting(Infoline.DisableMatch)</onclick>
                             <visible>Skin.HasSetting(HomeMultiFlixView)</visible>
+                        </control>
+
+                        <control type="label" id="19950" description="LABEL">
+                            <include>Dialog_Standard_HintLabel</include>
+                            <label>$LOCALIZE[31484]</label>
+                        </control>
+
+                        <control type="radiobutton" id="19402" description="Disable watched indicators">
+                            <include>Defs_Settings_Button</include>
+                            <label>$LOCALIZE[31317]</label>
+                            <selected>!Skin.HasSetting(DisableWatchedOverlay)</selected>
+                            <onclick>Skin.ToggleSetting(DisableWatchedOverlay)</onclick>
+                        </control>
+
+                        <control type="radiobutton" id="19949" description="Unwatched episodes count indicator">
+                            <include>Defs_Settings_Button</include>
+                            <label>$LOCALIZE[31483]</label>
+                            <selected>Skin.HasSetting(UnwatchedCountIndicator)</selected>
+                            <onclick>Skin.ToggleSetting(UnwatchedCountIndicator)</onclick>
+                        </control>
+
+                        <control type="radiobutton" id="19940" description="Premiere and finale indicators">
+                            <include>Defs_Settings_Button</include>
+                            <label>$LOCALIZE[31471]</label>
+                            <selected>Skin.HasSetting(SeriesIndicators)</selected>
+                            <onclick>Skin.ToggleSetting(SeriesIndicators)</onclick>
                         </control>
 
                         <control type="label" id="19482" description="LABEL">
@@ -670,17 +718,27 @@
                             <include>Dialog_Standard_HintLabel</include>
                             <label>$LOCALIZE[31346]</label>
                         </control>
+
                         <control type="radiobutton" id="19502" description="Show detailed info on pause">
                             <include>Defs_Settings_Button</include>
                             <label>$LOCALIZE[31145]</label>
                             <selected>Skin.HasSetting(ShowInfoPaused)</selected>
                             <onclick>Skin.ToggleSetting(ShowInfoPaused)</onclick>
                         </control>
-                        <control type="radiobutton" id="19503" description="Only show seekbar on pressing info">
+
+                        <control type="radiobutton" id="19503" description="Simple on-screen info">
                             <include>Defs_Settings_Button</include>
                             <label>$LOCALIZE[31201]</label>
                             <selected>Skin.HasSetting(DisableOSDInfo)</selected>
                             <onclick>Skin.ToggleSetting(DisableOSDInfo)</onclick>
+                        </control>
+
+                        <control type="radiobutton" id="19534" description="Simple on-screen info - Hide info panel">
+                            <include>Defs_Settings_Button</include>
+                            <label> - $LOCALIZE[31507]</label>
+                            <selected>Skin.HasSetting(HideOSDInfoPanel)</selected>
+                            <onclick>Skin.ToggleSetting(HideOSDInfoPanel)</onclick>
+                            <enable>Skin.HasSetting(DisableOSDInfo)</enable>
                         </control>
 
                         <control type="radiobutton" id="19504" description="Dont pause on information">
@@ -690,18 +748,25 @@
                             <onclick>Skin.ToggleSetting(DontPauseOSD)</onclick>
                         </control>
 
-                        <control type="radiobutton" id="19505" description="Subs button opens subtitle settings">
+                        <control type="radiobutton" id="19505" description="Auto pop-up OSD dialogs">
                             <include>Defs_Settings_Button</include>
                             <label>$LOCALIZE[31409]</label>
-                            <selected>Skin.HasSetting(OSDSubtitleSettings)</selected>
-                            <onclick>Skin.ToggleSetting(OSDSubtitleSettings)</onclick>
+                            <selected>Skin.HasSetting(OSD.DisablePopUpDialogs)</selected>
+                            <onclick>Skin.ToggleSetting(OSD.DisablePopUpDialogs)</onclick>
                         </control>
 
-                        <control type="radiobutton" id="19528" description="Audio button opens audio settings">
+                        <control type="radiobutton" id="19957" description="Disable OSD Cast dialog">
                             <include>Defs_Settings_Button</include>
-                            <label>$LOCALIZE[31455]</label>
-                            <selected>Skin.HasSetting(OSDAudioSettings)</selected>
-                            <onclick>Skin.ToggleSetting(OSDAudioSettings)</onclick>
+                            <label>$LOCALIZE[31504]</label>
+                            <selected>Skin.HasSetting(OSD.DisableCastDialog)</selected>
+                            <onclick>Skin.ToggleSetting(OSD.DisableCastDialog)</onclick>
+                        </control>
+
+                        <control type="radiobutton" id="19958" description="Disable OSD Episodes dialog">
+                            <include>Defs_Settings_Button</include>
+                            <label>$LOCALIZE[31505]</label>
+                            <selected>Skin.HasSetting(OSD.DisableEpisodesDialog)</selected>
+                            <onclick>Skin.ToggleSetting(OSD.DisableEpisodesDialog)</onclick>
                         </control>
 
                         <control type="radiobutton" id="19523" description="Scroll seekbar instead of showing info panel">
@@ -738,7 +803,14 @@
                             <selected>Skin.HasSetting(HideChaptersButton)</selected>
                             <onclick>Skin.ToggleSetting(HideChaptersButton)</onclick>
                         </control>
-                
+
+                        <control type="radiobutton" id="19538" description="Hide chapters mark">
+                            <include>Defs_Settings_Button</include>
+                            <label>$LOCALIZE[31511]</label>
+                            <selected>Skin.HasSetting(HideChaptersMark)</selected>
+                            <onclick>Skin.ToggleSetting(HideChaptersMark)</onclick>
+                        </control>
+
                         <control type="radiobutton" id="19526" description="Hide settings button">
                             <include>Defs_Settings_Button</include>
                             <label>$LOCALIZE[31453]</label>
@@ -760,18 +832,18 @@
                             <onclick>Skin.ToggleSetting(HidePlayerInfoButton)</onclick>
                         </control>
 
-                        <control type="radiobutton" id="19517" description="Show player tempo controls">
-                            <include>Defs_Settings_Button</include>
-                            <label>$LOCALIZE[30110]</label>
-                            <selected>Skin.HasSetting(PlayerTempoControls)</selected>
-                            <onclick>Skin.ToggleSetting(PlayerTempoControls)</onclick>
-                        </control>
-
-                        <control type="radiobutton" id="19529" description="Show remaining time instead of end time">
+                        <control type="radiobutton" id="19529" description="Show time remaining instead of end time">
                             <include>Defs_Settings_Button</include>
                             <label>$LOCALIZE[31456]</label>
                             <selected>Skin.HasSetting(ShowTimeRemaining)</selected>
                             <onclick>Skin.ToggleSetting(ShowTimeRemaining)</onclick>
+                        </control>
+
+                        <control type="radiobutton" id="19533" description="Show time remaining instead of duration">
+                            <include>Defs_Settings_Button</include>
+                            <label>$LOCALIZE[31506]</label>
+                            <selected>Skin.HasSetting(ShowTimeRemaining2)</selected>
+                            <onclick>Skin.ToggleSetting(ShowTimeRemaining2)</onclick>
                         </control>
 
                         <control type="radiobutton" id="19937" description="Hide extra info background">
@@ -779,6 +851,13 @@
                             <label>$LOCALIZE[31462]</label>
                             <selected>Skin.HasSetting(EI_HideBG)</selected>
                             <onclick>Skin.ToggleSetting(EI_HideBG)</onclick>
+                        </control>
+
+                        <control type="radiobutton" id="19955" description="Hide CD Spin VideoOSD">
+                            <include>Defs_Settings_Button</include>
+                            <label>$LOCALIZE[31500]</label>
+                            <selected>Skin.HasSetting(Video.HideCD)</selected>
+                            <onclick>Skin.ToggleSetting(Video.HideCD)</onclick>
                         </control>
 
                         <control type="label" id="19507" description="LABEL MUSIC OSD">
@@ -814,8 +893,8 @@
                         <control type="radiobutton" id="19512" description="Scrolling Text">
                             <include>Defs_Settings_Button</include>
                             <label>$LOCALIZE[31088]</label>
-                            <selected>!Skin.HasSetting(HideOSDScrollingText)</selected>
-                            <onclick>Skin.ToggleSetting(HideOSDScrollingText)</onclick>
+                            <selected>Skin.HasSetting(Visualisation.EnableScrollingText)</selected>
+                            <onclick>Skin.ToggleSetting(Visualisation.EnableScrollingText)</onclick>
                         </control>
                         <control type="radiobutton" id="19514" description="Animate Artist slideshow">
                             <include>Defs_Settings_Button</include>
@@ -857,6 +936,12 @@
                             <enable>!Skin.HasSetting(DisableMusicOSDArtistImage) + !Skin.HasSetting(UseLongMusicOSD)</enable>
                             <selected>Skin.HasSetting(MusicOSDSquareArtist)</selected>
                             <onclick>Skin.ToggleSetting(MusicOSDSquareArtist)</onclick>
+                        </control>
+                        <control type="radiobutton" id="19952" description="Hide CD Spin">
+                            <include>Defs_Settings_Button</include>
+                            <label>$LOCALIZE[31497]</label>
+                            <selected>Skin.HasSetting(Music.HideCD)</selected>
+                            <onclick>Skin.ToggleSetting(Music.HideCD)</onclick>
                         </control>
                     </control>
 
@@ -966,8 +1051,16 @@
                             <include>Defs_Settings_Button</include>
                             <label>$LOCALIZE[30066]</label>
                             <label2>$INFO[Skin.String(FocusBorderSize)]</label2>
+                            <onclick>SetProperty(CustomDialogWindow.header,$LOCALIZE[30066],home)</onclick>
                             <onclick>SetProperty(CustomDialogWindow.items,FocusBorder,home)</onclick>
                             <onclick>ActivateWindow(1150)</onclick>
+                        </control>
+
+                        <control type="radiobutton" id="19206" description="Animate background ken burns">
+                            <include>Defs_Settings_Button</include>
+                            <label>$LOCALIZE[31205]</label>
+                            <selected>Skin.HasSetting(KenBurnsEffect)</selected>
+                            <onclick>Skin.ToggleSetting(KenBurnsEffect)</onclick>
                         </control>
 
                         <control type="label" id="19781" description="LABEL">
@@ -1010,6 +1103,13 @@
                             <onclick>Skin.ToggleSetting(DisableClock)</onclick>
                         </control>
 
+                        <control type="radiobutton" id="19537" description="Clock home window">
+                            <include>Defs_Settings_Button</include>
+                            <label>$LOCALIZE[31510]</label>
+                            <selected>!Skin.HasSetting(DisableClockHome)</selected>
+                            <onclick>Skin.ToggleSetting(DisableClockHome)</onclick>
+                        </control>
+
                         <control type="radiobutton" id="19945" description="Show date">
                             <include>Defs_Settings_Button</include>
                             <label>$LOCALIZE[31477]</label>
@@ -1027,6 +1127,22 @@
                             <label>$LOCALIZE[31025]</label>
                             <selected>!Skin.HasSetting(DisableCodecs)</selected>
                             <onclick>Skin.ToggleSetting(DisableCodecs)</onclick>
+                        </control>
+
+                        <control type="radiobutton" id="19953" description="Codecs as text">
+                            <include>Defs_Settings_Button</include>
+                            <label> - $LOCALIZE[31498]</label>
+                            <selected>Skin.HasSetting(TextCodecs)</selected>
+                            <onclick>Skin.ToggleSetting(TextCodecs)</onclick>
+                            <enable>!Skin.HasSetting(DisableCodecs)</enable>
+                        </control>
+
+                        <control type="radiobutton" id="19954" description="Codecs as text in OSD">
+                            <include>Defs_Settings_Button</include>
+                            <label> - $LOCALIZE[31499]</label>
+                            <selected>Skin.HasSetting(TextCodecs_OSD)</selected>
+                            <onclick>Skin.ToggleSetting(TextCodecs_OSD)</onclick>
+                            <enable>!Skin.HasSetting(DisableCodecs)</enable>
                         </control>
 
                         <control type="radiobutton" id="19705" description="Now Playing">
@@ -1147,19 +1263,11 @@
                             <include>Defs_Settings_Button</include>
                         </control>
                         <control type="radiobutton" id="19822">
-                            <label>script.artwork.beef</label>
-                            <label2>$INFO[System.AddonVersion(script.artwork.beef)]        </label2>
-                            <onclick>Addon.OpenSettings(script.artwork.beef)</onclick>
-                            <onclick condition="!System.HasAddon(script.artwork.beef)">InstallAddon(script.artwork.beef)</onclick>
-                            <selected>System.HasAddon(script.artwork.beef)</selected>
-                            <include>Defs_Settings_Button</include>
-                        </control>
-                        <control type="radiobutton" id="19823">
-                            <label>script.artwork.helper</label>
-                            <label2>$INFO[System.AddonVersion(script.artwork.helper)]        </label2>
-                            <onclick>Addon.OpenSettings(script.artwork.helper)</onclick>
-                            <onclick condition="!System.HasAddon(script.artwork.helper)">InstallAddon(script.artwork.helper)</onclick>
-                            <selected>System.HasAddon(script.artwork.helper)</selected>
+                            <label>script.artwork.dump</label>
+                            <label2>$INFO[System.AddonVersion(script.artwork.dump)]        </label2>
+                            <onclick>Addon.OpenSettings(script.artwork.dump)</onclick>
+                            <onclick condition="!System.HasAddon(script.artwork.dump)">InstallAddon(script.artwork.dump)</onclick>
+                            <selected>System.HasAddon(script.artwork.dump)</selected>
                             <include>Defs_Settings_Button</include>
                         </control>
                     </control>

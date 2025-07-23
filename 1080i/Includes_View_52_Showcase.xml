@@ -32,7 +32,7 @@
                     <aligny>top</aligny>
                     <font>font_tiny</font>
                     <textcolor>$VAR[ColorHighlight]</textcolor>
-                    <label>$INFO[Container(99950).ListItem.Year,[COLOR=main_fg_100],[/COLOR]  | ]$VAR[Label_Duration,[COLOR=main_fg_100],[/COLOR]]</label>
+                    <label>$INFO[Window(Home).Property(TMDbHelper.ListItem.Year),[COLOR=main_fg_100],[/COLOR]  | ]$VAR[Label_Duration,[COLOR=main_fg_100],[/COLOR]]</label>
                     <height>60</height>
                     <visible>ListItem.IsCollection</visible>
                 </control>
@@ -55,7 +55,7 @@
                 <control type="textbox">
                     <left>view_pad</left>
                     <right>view_pad</right>
-                    <label fallback="19055">$VAR[Label_Plot]</label>
+                    <label>$VAR[Label_Plot]</label>
                     <height>$PARAM[plotheight]</height>
                     <aligny>center</aligny>
                     <align>center</align>
@@ -100,7 +100,7 @@
                     <right>50</right>
                     <width>200</width>
                     <height>390</height>
-                    <texture background="true">$VAR[Image_ClearLogo]</texture>
+                    <texture background="true">$VAR[Image_Clearlogo]</texture>
                     <aspectratio align="right" aligny="bottom">keep</aspectratio>
                     <visible>!$EXP[InGameMode] + ![String.IsEmpty(ListItem.Art(clearlogo)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEqual(Container.ShowTitle,ListItem.TvShowTitle)] + [[String.IsEmpty(Container.Art(landscape)) + Skin.HasSetting(LandscapeArt)] + [String.IsEmpty(Container.Art(tvshow.landscape)) + Skin.HasSetting(LandscapeArt)]]</visible>
                 </control>
@@ -135,15 +135,15 @@
                             <param name="label" value="$INFO[Container($PARAM[id]).ListItem.MPAA]" />
                             <param name="container" value="Container($PARAM[id])." />
                         </include>
-                        <include content="Object_Info_Ratings">
-                            <param name="top" value="-30" />
+                        <include content="Object_Ratings_Content">
+                            <param name="top" value="10" />
                             <param name="imdbvotes" value="false" />
                             <param name="top250" value="false" />
                             <param name="oscars" value="false" />
                         </include>
                         <control type="textbox">
                             <visible>!$PARAM[isView2]</visible>
-                            <top>5</top>
+                            <top>8</top>
                             <font>font_plotbox</font>
                             <textcolor>main_fg_70</textcolor>
                             <align>left</align>
@@ -229,19 +229,19 @@
                 <usecontrolcoords>true</usecontrolcoords>
                 <itemgap>0</itemgap>
                 <control type="group">
-                    <height>220</height>
+                    <height>200</height>
                     <include content="Flix_Object_Info_Title">
                         <param name="font" value="font_title_large" />
                         <param name="shadowcolor" value="ff000000" />
                         <param name="titleheight" value="$PARAM[titleheight]" />
                         <param name="top" value="80" />
-                        <param name="visible" value="String.IsEmpty(ListItem.Art(clearlogo))" />
+                        <param name="visible" value="!$EXP[Exp_HasClearlogo]" />
                     </include>
                     <control type="image">
-                        <width>480</width>
-                        <aspectratio>keep</aspectratio>
-                        <texture background="true">$VAR[Image_ClearLogo]</texture>
-                        <visible>!String.IsEmpty(ListItem.Art(clearlogo))</visible>
+                        <width>620</width>
+                        <aspectratio align="left" aligny="center">keep</aspectratio>
+                        <texture background="true">$VAR[Image_Clearlogo]</texture>
+                        <visible>$EXP[Exp_HasClearlogo]</visible>
                     </control>
                 </control>
                 <include>Flix_Object_Info_Line</include>
@@ -294,13 +294,16 @@
             <control type="group">
                 <width>1770</width>
                 <top>532.5</top>
-                <include>Flix_Object_Info_Ratings</include>
+                <include content="Object_Ratings_Content">
+                    <param name="top" value="15" />
+                    <param name="align" value="right" />
+                </include>
             </control>
         </definition>
     </include>
 
     <include name="Flix_View_52_Showcase_Info2">
-        <param name="plotheight" default="160" />
+        <param name="plotheight" default="200" />
         <definition>
             <control type="grouplist">
                 <orientation>vertical</orientation>
@@ -308,7 +311,7 @@
                 <itemgap>0</itemgap>
                 <top>-50</top>
                 <control type="group">
-                    <visible>String.IsEmpty(ListItem.Art(clearlogo)) | !Skin.HasSetting(ShowClearlogo)</visible>
+                    <visible>!$EXP[Exp_HasClearlogo] | !Skin.HasSetting(ShowClearlogo)</visible>
                     <height>90</height>
                     <include content="Flix_Object_Info_Title">
                         <param name="font" value="font_title_medium" />
@@ -318,8 +321,9 @@
                     </include>
                 </control>
                 <control type="group">
-                    <visible>!String.IsEmpty(ListItem.Art(clearlogo)) + Skin.HasSetting(ShowClearlogo)</visible>
-                    <height>220</height>
+                    <visible>$EXP[Exp_HasClearlogo] + Skin.HasSetting(ShowClearlogo)</visible>
+                    <height>160</height>
+                    <width>660</width>
                     <control type="image">
                         <width>480</width>
                         <aspectratio>keep</aspectratio>
@@ -330,7 +334,7 @@
                     <param name="percentrating" value="false" />
                 </include>
                 <control type="group">
-                    <visible>!String.IsEmpty(ListItem.Art(clearlogo)) + Skin.HasSetting(ShowClearlogo)</visible>
+                    <visible>$EXP[Exp_HasClearlogo] + Skin.HasSetting(ShowClearlogo)</visible>
                     <include content="Flix_Object_Info_Plot">
                         <param name="height" value="$PARAM[plotheight]" />
                         <param name="top" value="10" />
@@ -338,7 +342,7 @@
                     </include>
                 </control>
                 <control type="group">
-                    <visible>String.IsEmpty(ListItem.Art(clearlogo)) | !Skin.HasSetting(ShowClearlogo)</visible>
+                    <visible>!$EXP[Exp_HasClearlogo] | !Skin.HasSetting(ShowClearlogo)</visible>
                     <include content="Flix_Object_Info_Plot">
                         <param name="height" value="320" />
                         <param name="top" value="10" />
@@ -349,7 +353,10 @@
             <control type="group">
                 <width>1770</width>
                 <top>395</top>
-                <include>Flix_Object_Info_Ratings</include>
+                <include content="Object_Ratings_Content">
+                    <param name="top" value="15" />
+                    <param name="align" value="right" />
+                </include>
             </control>
         </definition>
     </include>
@@ -367,29 +374,31 @@
                 <include content="Flix_Object_Info_Title">
                     <param name="font" value="$PARAM[font]" />
                     <param name="titleheight" value="$PARAM[titleheight]" />
-                    <param name="visible" value="String.IsEmpty(ListItem.Art(clearlogo)) | !Skin.HasSetting(ShowClearlogo)" />
+                    <param name="visible" value="!$EXP[Exp_HasClearlogo] | !Skin.HasSetting(ShowClearlogo)" />
                 </include>
                 <control type="group">
-                    <visible>!String.IsEmpty(ListItem.Art(clearlogo)) + Skin.HasSetting(ShowClearlogo)</visible>
+                    <visible>$EXP[Exp_HasClearlogo] + Skin.HasSetting(ShowClearlogo)</visible>
                     <height>140</height>
                     <control type="image">
-                        <width>460</width>
-                        <aspectratio>keep</aspectratio>
-                        <texture background="true">$VAR[Image_ClearLogo]</texture>
+                        <width>640</width>
+                        <aspectratio align="left" aligny="center">keep</aspectratio>
+                        <texture background="true">$VAR[Image_Clearlogo]</texture>
                     </control>
                 </control>
                 <include content="Object_Info_Line">
                     <param name="fullgenre" value="true" />
                 </include>
-                <include>Object_Info_Ratings</include>
+                <include content="Object_Ratings_Content">
+                    <param name="top" value="10" />
+                </include>
                 <control type="group">
-                    <visible>String.IsEmpty(ListItem.Art(clearlogo)) | !Skin.HasSetting(ShowClearlogo)</visible>
+                    <visible>!$EXP[Exp_HasClearlogo] | !Skin.HasSetting(ShowClearlogo)</visible>
                     <include content="Object_Info_Plot">
                         <param name="maxheight" value="$PARAM[plotheight]" />
                     </include>
                 </control>
                 <control type="group">
-                    <visible>!String.IsEmpty(ListItem.Art(clearlogo)) + Skin.HasSetting(ShowClearlogo)</visible>
+                    <visible>$EXP[Exp_HasClearlogo] + Skin.HasSetting(ShowClearlogo)</visible>
                     <include content="Object_Info_Plot">
                         <param name="maxheight" value="$PARAM[plotheight_clearlogo]" />
                     </include>
@@ -476,7 +485,9 @@
         <param name="visible" default="[Container.Content(movies) | Container.Content(sets) | !$EXP[InGameMode]] + !Container.Content(tvshows) + !Container.Content(seasons)" />
         <definition>
             <control type="group">
-                <include>View_Group</include>
+                <include content="View_Group">
+                    <param name="animation" value="Defs_Null" />
+                </include>
                 <visible>Control.IsVisible($PARAM[id])</visible>
                 <include content="View_51_Wall_Container">
                     <param name="id" value="$PARAM[id]" />
@@ -506,7 +517,9 @@
 
     <include name="View_520_Showcase_Square">
         <control type="group">
-            <include>View_Group</include>
+            <include content="View_Group">
+                <param name="animation" value="Defs_Null" />
+            </include>
             <visible>Control.IsVisible(520)</visible>
             <include content="View_51_Wall_Container">
                 <param name="id" value="520" />
@@ -517,10 +530,9 @@
                 <param name="orientation" value="horizontal" />
                 <param name="controltype" value="fixedlist" />
                 <param name="controllayout" value="View_520_Showcase_Layout" />
-                <param name="visible" value="Container.Content(artists) | Container.Content(albums) | $EXP[InGameMode]" />
+                <param name="visible" value="$EXP[Exp_View_520] | $EXP[InGameAEL]" />
                 <param name="viewtype" value="Square Showcase" />
                 <param name="viewtypename" value="wrap" />
-                <param name="forced" value="true" />
                 <include>View_Horizontal_Movement</include>
             </include>
             <include content="View_52_Showcase_Header">
@@ -537,7 +549,9 @@
 
     <include name="View_527_Showcase_Square2">
         <control type="group">
-            <include>View_Group</include>
+            <include content="View_Group">
+                <param name="animation" value="Defs_Null" />
+            </include>
             <visible>Control.IsVisible(527)</visible>
             <include content="View_51_Wall_Container">
                 <param name="id" value="527" />
@@ -548,10 +562,9 @@
                 <param name="orientation" value="horizontal" />
                 <param name="controltype" value="fixedlist" />
                 <param name="controllayout" value="View_52_Showcase_Aura_Layout" />
-                <param name="visible" value="Container.Content(artists) | Container.Content(albums) | Container.Content(addons) | $EXP[InGameMode]" />
+                <param name="visible" value="$EXP[Exp_View_527]" />
                 <param name="viewtype" value="Square Showcase2" />
                 <param name="viewtypename" value="wrap" />
-                <param name="forced" value="true" />
                 <movement>4</movement>
                 <include>View_Horizontal_Movement</include>
             </include>
@@ -561,7 +574,9 @@
 
     <include name="View_525_Showcase_Flix">
         <control type="group">
-            <include>View_Group</include>
+            <include content="View_Group">
+                <param name="animation" value="Defs_Null" />
+            </include>
             <visible>Control.IsVisible(525)</visible>
 
             <include content="View_51_Flix_Container">
@@ -577,10 +592,9 @@
                 <param name="icon" value="$VAR[Image_Landscape]" />
                 <param name="clearlogo" value="![String.IsEmpty(ListItem.Art(clearlogo)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEqual(Container.ShowTitle,ListItem.TvShowTitle)] + [[String.IsEmpty(Container.Art(landscape)) + Skin.HasSetting(LandscapeArt)] + [String.IsEmpty(Container.Art(tvshow.landscape)) + Skin.HasSetting(LandscapeArt)]]" />
                 <param name="iconheight" value="item_icon_height" />
-                <param name="visible" value="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(videos) | $EXP[InGameMode]" />
+                <param name="visible" value="$EXP[Exp_View_525] | $EXP[InGameAEL]" />
                 <param name="viewtype" value="Showcase Flix View" />
                 <param name="viewtypename" value="wrap" />
-                <param name="forced" value="true" />
                 <movement>2</movement>
                 <include>View_Horizontal_Movement</include>
             </include>
@@ -590,7 +604,9 @@
 
     <include name="View_526_Flix_Poster">
         <control type="group">
-            <include>View_Group</include>
+            <include content="View_Group">
+                <param name="animation" value="Defs_Null" />
+            </include>
             <visible>Control.IsVisible(526)</visible>
             <include content="View_51_Wall_Container">
                 <param name="id" value="526" />
@@ -599,10 +615,9 @@
                 <param name="labelinclude" value="Defs_Null" />
                 <param name="controltype" value="fixedlist" />
                 <param name="controllayout" value="View_52_Showcase_Aura_Layout" />
-                <param name="visible" value="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)" />
+                <param name="visible" value="$EXP[Exp_View_526]" />
                 <param name="viewtype" value="Flix Poster" />
                 <param name="viewtypename" value="wrap" />
-                <param name="forced" value="true" />
                 <include>View_Horizontal_Movement</include>
             </include>
             <include>View_52_Showcase_Aura_Info</include>
@@ -611,7 +626,9 @@
 
     <include name="View_528_Flix_Poster2">
         <control type="group">
-            <include>View_Group</include>
+            <include content="View_Group">
+                <param name="animation" value="Defs_Null" />
+            </include>
             <visible>Control.IsVisible(528)</visible>
             <include content="View_51_Wall_Container">
                 <param name="id" value="528" />
@@ -620,10 +637,9 @@
                 <param name="labelinclude" value="Defs_Null" />
                 <param name="controltype" value="fixedlist" />
                 <param name="controllayout" value="View_52_Showcase_Aura_Layout" />
-                <param name="visible" value="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)" />
+                <param name="visible" value="$EXP[Exp_View_528]" />
                 <param name="viewtype" value="Flix Poster2" />
                 <param name="viewtypename" value="wrap" />
-                <param name="forced" value="true" />
                 <include>View_Horizontal_Movement</include>
             </include>
             <include>Flix_View_52_Showcase_Info2</include>
@@ -637,6 +653,8 @@
         <definition>
             <control type="group">
                 <include>View_Group</include>
+                    <param name="animation" value="Defs_Null" />
+                </include>
                 <visible>Control.IsVisible($PARAM[id])</visible>
                 <include content="View_51_Flix_Container">
                     <param name="id" value="$PARAM[id]" />
@@ -668,7 +686,9 @@
 
     <include name="View_521_Showcase_Landscape">
         <control type="group">
-            <include>View_Group</include>
+            <include content="View_Group">
+                <param name="animation" value="Defs_Null" />
+            </include>
             <visible>Control.IsVisible(521)</visible>
             <include content="View_51_Wall_Container">
                 <param name="id" value="521" />
@@ -683,10 +703,9 @@
                 <param name="icon" value="$VAR[Image_Landscape]" />
                 <param name="clearlogo" value="![String.IsEmpty(ListItem.Art(clearlogo)) + String.IsEmpty(ListItem.Art(tvshow.clearlogo)) + String.IsEqual(Container.ShowTitle,ListItem.TvShowTitle)] + [[String.IsEmpty(Container.Art(landscape)) + Skin.HasSetting(LandscapeArt)] + [String.IsEmpty(Container.Art(tvshow.landscape)) + Skin.HasSetting(LandscapeArt)]]" />
                 <param name="iconheight" value="item_icon_height" />
-                <param name="visible" value="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(episodes) | Container.Content(videos) | $EXP[InGameMode]" />
+                <param name="visible" value="$EXP[Exp_View_521] | $EXP[InGameAEL]" />
                 <param name="viewtype" value="Landscape Showcase" />
                 <param name="viewtypename" value="wrap" />
-                <param name="forced" value="true" />
                 <include>View_Horizontal_Movement</include>
             </include>
             <include content="View_52_Showcase_Header">
@@ -700,7 +719,9 @@
 
     <include name="View_522_Showcase_Seasons">
         <control type="group">
-            <include>View_Group</include>
+            <include content="View_Group">
+                <param name="animation" value="Defs_Null" />
+            </include>
             <visible>Control.IsVisible(522)</visible>
 
             <include content="View_51_Wall_Container">
@@ -708,8 +729,7 @@
                 <param name="height" value="item_row_height" />
                 <param name="viewtype" value="Season Info" />
                 <param name="viewtypename" value="biglist" />
-                <param name="forced" value="true" />
-                <param name="visible" value="Container.Content(seasons)" />
+                <param name="visible" value="$EXP[Exp_View_522]" />
                 <param name="orientation" value="horizontal" />
                 <param name="controllayout" value="View_514_Wall_Info_Layout" />
                 <width>1028.56</width>
@@ -742,7 +762,6 @@
                 <param name="height" value="390" />
                 <param name="right" value="771.44" />
                 <param name="id" value="5229" />
-                <param name="forced" value="false" />
                 <param name="visible" value="Control.IsVisible(522) + !Container(522).ListItem.IsParentFolder" />
                 <param name="controllayout" value="Defs_Null" />
                 <param name="controltype" value="fixedlist" />
@@ -765,7 +784,9 @@
 
     <include name="View_524_Showcase_Seasons">
         <control type="group">
-            <include>View_Group</include>
+            <include content="View_Group">
+                <param name="animation" value="Defs_Null" />
+            </include>
             <visible>Control.IsVisible(524)</visible>
 
             <control type="group">
@@ -775,8 +796,7 @@
                     <param name="height" value="view_height" />
                     <param name="viewtype" value="Season Info 2" />
                     <param name="viewtypename" value="biglist" />
-                    <param name="forced" value="true" />
-                    <param name="visible" value="Container.Content(seasons)" />
+                    <param name="visible" value="$EXP[Exp_View_524]" />
                     <param name="orientation" value="vertical" />
                     <param name="controltype" value="fixedlist" />
                     <param name="controllayout" value="View_514_Wall_Info_Layout" />
@@ -814,7 +834,6 @@
                     <param name="height" value="view_list_height" />
                     <param name="right" value="771.44" />
                     <param name="id" value="5249" />
-                    <param name="forced" value="false" />
                     <param name="visible" value="Control.IsVisible(524) + !Container(524).ListItem.IsParentFolder" />
                     <param name="controllayout" value="Defs_Null" />
                     <param name="controltype" value="list" />
@@ -903,13 +922,11 @@
             </control>
             <control type="wraplist" id="523">
                 <viewtype label="$LOCALIZE[31231]">bigwrap</viewtype>
-                <include content="View_Forced">
-                    <param name="string" value="$LOCALIZE[31231]" />
-                </include>
-                <visible>Container.Content(movies) | Container.Content(tvshows)</visible>
+                <visible>$EXP[Exp_View_523]</visible>
                 <onleft>523</onleft>
                 <onright>523</onright>
                 <onup>300</onup>
+                <ondown>62</ondown>
                 <centerleft>50%</centerleft>
                 <orientation>horizontal</orientation>
                 <width>1760</width>

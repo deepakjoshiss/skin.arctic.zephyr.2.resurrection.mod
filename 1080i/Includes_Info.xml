@@ -1,22 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
-    <variable name="info_query">
-        <value condition="String.IsEqual(ListItem.DBTYPE,movie) + !String.IsEmpty(ListItem.Property(imdb_id))">imdb_id=$INFO[ListItem.Property(imdb_id)]</value>
-        <value condition="String.IsEqual(ListItem.DBTYPE,movie) + !String.IsEmpty(ListItem.IMDBNumber) + String.StartsWith(ListItem.IMDBNumber,tt)">imdb_id=$INFO[ListItem.IMDBNumber]</value>
-        <value condition="[String.IsEqual(ListItem.DBTYPE,season) | String.IsEqual(ListItem.DBTYPE,episode) | String.StartsWith(ListItem.Label,Season)] + !String.IsEmpty(ListItem.TvShowTitle)">query=$INFO[ListItem.TvShowTitle]</value>
-        <value condition="!String.IsEmpty(ListItem.Title) + !String.IsEmpty(ListItem.Year)">query=$INFO[ListItem.Title]&amp;year=$INFO[ListItem.Year]</value>
-        <value condition="!String.IsEmpty(ListItem.Title)">query=$INFO[ListItem.Title]</value>
-        <value>query=$INFO[ListItem.Label]</value>
-    </variable>
-
     <variable name="tmdb_type">
         <value condition="String.IsEqual(ListItem.DBTYPE,movie) | ListItem.IsCollection | String.IsEqual(ListItem.DBTYPE,set)">movie</value>
         <value condition="String.IsEqual(ListItem.DBTYPE,tvshow) | String.IsEqual(ListItem.DBTYPE,season) | String.IsEqual(ListItem.DBTYPE,episode)">tv</value>
-    </variable>
-
-    <variable name="Info_Keywords">
-        <value condition="[String.IsEqual(ListItem.DBTYPE,movie)] + !Skin.HasSetting(DisableExtendedInfo) + System.HasAddon(plugin.video.themoviedb.helper)">plugin://plugin.video.themoviedb.helper/?info=movie_keywords&amp;type=$VAR[tmdb_type]&amp;$VAR[info_query]&amp;nextpage=false</value>
     </variable>
 
     <variable name="Info_Cast_List01">
@@ -40,26 +27,22 @@
         <value>videodb://</value>
     </variable>
 
-    <variable name="Path_Param_Widget">
-        <value>&amp;nextpage=false&amp;fanarttv=false&amp;cacheonly=true&amp;length=1</value>
-    </variable>
-
     <include name="Info_Widget_Poster">
-        <param name="includecondition" default="true" />
         <param name="id" default="5001" />
         <param name="groupid" default="7001" />
-        <param name="minnumitems" default="1" />
         <param name="label" default="$INFO[ListItem.Title]" />
         <param name="labelinclude" default="Defs_Null" />
+        <param name="movement" default="6" />
         <definition>
-            <include content="View_Cast_Toplabel" condition="$PARAM[includecondition]">
+            <include content="View_Cast_Toplabel">
                 <param name="groupid" value="$PARAM[groupid]" />
                 <param name="id" value="$PARAM[id]" />
                 <param name="label" value="$PARAM[label]" />
                 <visible>Control.IsVisible($PARAM[id])</visible>
             </include>
-            <include content="View_51_Wall_Container" condition="$PARAM[includecondition]">
+            <include content="View_51_Wall_Container">
                 <param name="controllayout" value="View_Cast" />
+                <param name="controltype" value="fixedlist" />
                 <param name="id" value="$PARAM[id]" />
                 <param name="height" value="item_cast_height" />
                 <param name="orientation" value="horizontal" />
@@ -68,8 +51,10 @@
                 <param name="diffuse" value="$PARAM[diffuse]" />
                 <param name="icon" value="$PARAM[icon]" />
                 <param name="labelinclude" value="$PARAM[labelinclude]" />
-                <param name="visible" value="Integer.IsGreater(Container($PARAM[id]).NumItems,$PARAM[minnumitems]) | Container($PARAM[id]).IsUpdating" />
-                <animation effect="fade" start="100" end="0" condition="!Integer.IsGreater(Container($PARAM[id]).NumItems,$PARAM[minnumitems]) | Container($PARAM[id]).IsUpdating">Conditional</animation>
+                <param name="visible" value="[Container($PARAM[id]).IsUpdating | !Integer.IsEqual(Container($PARAM[id]).NumItems,0)]" />
+                <animation effect="fade" start="100" end="0" condition="[!Integer.IsGreater(Container($PARAM[id]).NumItems,0) | Container($PARAM[id]).IsUpdating]">Conditional</animation>
+                <animation effect="fade" start="100" end="30" time="200" condition="![Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])]">Conditional</animation>
+                <movement>$PARAM[movement]</movement>
                 <nested />
             </include>
         </definition>
@@ -201,12 +186,12 @@
                 <param name="width" value="auto" />
                 <param name="label" value="$LOCALIZE[30102]" />
                 <param name="icon" value="special://skin/extras/icons/video.png" />
-                <param name="visible" value="!Window.IsVisible(1140) + [!String.IsEmpty(ListItem.Trailer) | !String.IsEmpty(Container(99950).ListItem.Trailer)]" />
+                <param name="visible" value="!Window.IsVisible(1140) + [!String.IsEmpty(ListItem.Trailer) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Trailer))]" />
 
                 <onclick condition="!String.IsEmpty(ListItem.Trailer)">SetProperty(HasTrailer,$INFO[ListItem.Trailer],Home)</onclick>
                 <onclick condition="!String.IsEmpty(ListItem.Trailer)">PlayMedia($ESCINFO[ListItem.Trailer]),False</onclick>
-                <onclick condition="String.IsEmpty(ListItem.Trailer)">SetProperty(HasTrailer,$INFO[Container(99950).ListItem.Trailer],Home)</onclick>
-                <onclick condition="String.IsEmpty(ListItem.Trailer)">PlayMedia($ESCINFO[Container(99950).ListItem.Trailer]),False</onclick>
+                <onclick condition="String.IsEmpty(ListItem.Trailer)">SetProperty(HasTrailer,$INFO[Window(Home).Property(TMDbHelper.ListItem.Trailer)],Home)</onclick>
+                <onclick condition="String.IsEmpty(ListItem.Trailer)">PlayMedia($ESCINFO[Window(Home).Property(TMDbHelper.ListItem.Trailer)]),False</onclick>
                 <onclick>Dialog.Close(all,true)</onclick>
             </include>
 
@@ -227,10 +212,10 @@
                 <param name="label" value="30041" />
                 <param name="width" value="auto" />
                 <param name="icon" value="special://skin/extras/icons/trakttv.png" />
-                <param name="visible" value="[!String.IsEmpty(ListItem.Property(tmdb_id)) | !String.IsEmpty(Container(99950).ListItem.Property(TMDb_ID))] + [String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,tvshow)] + !String.IsEmpty(Window(Home).Property(TMDbHelper.TraktIsAuth))" />
+                <param name="visible" value="[!String.IsEmpty(ListItem.Property(tmdb_id)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.TMDb_ID))] + [String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,tvshow)] + !String.IsEmpty(Window(Home).Property(TMDbHelper.TraktIsAuth))" />
 
                 <onclick condition="!String.IsEmpty(ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,sync_trakt=watchlist,tmdb_id=$INFO[ListItem.Property(tmdb_id)],type=$VAR[tmdb_type],cache_refresh)</onclick>
-                <onclick condition="String.IsEmpty(ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,sync_trakt=watchlist,tmdb_id=$INFO[Container(99950).ListItem.Property(TMDb_ID)],type=$VAR[tmdb_type],cache_refresh)</onclick>
+                <onclick condition="String.IsEmpty(ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,sync_trakt=watchlist,tmdb_id=$INFO[Window(Home).Property(TMDbHelper.ListItem.TMDb_ID)],type=$VAR[tmdb_type],cache_refresh)</onclick>
             </include>
 
             <include content="Object_Info_Button">
@@ -240,6 +225,24 @@
                 <param name="label" value="$LOCALIZE[30104]" />
                 <param name="icon" value="special://skin/extras/icons/userrating.png" />
                 <param name="visible" value="Control.IsEnabled(7)" />
+            </include>
+
+            <include content="Object_Info_Button">
+                <param name="id" value="14" />
+                <param name="groupid" value="8052" />
+                <param name="icon" value="special://skin/extras/icons/versions.png" />
+                <param name="label" value="$LOCALIZE[40000]" />
+                <param name="width" value="auto" />
+                <param name="visible" value="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.VideoVersionName)" />
+            </include>
+
+            <include content="Object_Info_Button">
+                <param name="id" value="15" />
+                <param name="groupid" value="8053" />
+                <param name="icon" value="special://skin/extras/icons/favourites.png" />
+                <param name="label" value="$LOCALIZE[40211]" />
+                <param name="width" value="auto" />
+                <param name="visible" value="String.IsEqual(ListItem.DBType,movie) + !String.IsEmpty(ListItem.VideoVersionName)" />
             </include>
 
             <include content="Object_Info_Button">
@@ -260,7 +263,7 @@
                 <param name="width" value="auto" />
                 <param name="label" value="Fanart" />
                 <param name="icon" value="special://skin/extras/icons/pictures.png" />
-                <param name="visible" value="!Container(6000).IsUpdating" />
+                <param name="visible" value="!Container(6000).IsUpdating + !Skin.HasSetting(DisableInfoListFanarts)" />
 
                 <onclick>SetProperty(fanart,$INFO[Container(6000).ListItem(0).Thumb],home)</onclick>
                 <onclick>SetProperty(fanart1,$INFO[Container(6000).ListItem(1).Thumb],home)</onclick>

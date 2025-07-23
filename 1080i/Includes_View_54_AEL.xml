@@ -162,17 +162,18 @@
     <include name="View_540_List_ROM_Info">
         <control type="group">
             <visible>Control.IsVisible(540)</visible>
-            <include>View_Group</include>
+            <include content="View_Group">
+                <param name="animation" value="Defs_Null" />
+            </include>
             <include content="View_50_List_Control">
                 <param name="left" value="-20" />
                 <param name="right" value="1038.53" />
                 <param name="id" value="540" />
                 <param name="viewtype" value="$LOCALIZE[31435]" />
                 <param name="viewtypename" value="biginfo" />
-                <param name="forced" value="true" />
                 <param name="flipsides" value="Skin.HasSetting(FlipSide)" />
                 <param name="focustrailer" value="true" />
-                <param name="visible" value="$EXP[InGameMode]" />
+                <param name="visible" value="$EXP[Exp_View_540] | $EXP[InGameAEL]" />
             </include>
             <include>View_540_List_Info</include>
         </control>
@@ -180,7 +181,9 @@
 
     <include name="View_541_Wall_Info">
         <control type="group">
-            <include>View_Group</include>
+            <include content="View_Group">
+                <param name="animation" value="Defs_Null" />
+            </include>
             <visible>Control.IsVisible(541)</visible>
             <include content="View_51_Wall_Container">
                 <param name="id" value="541" />
@@ -188,8 +191,7 @@
                 <param name="viewtype" value="$LOCALIZE[31440]" />
                 <param name="viewtypename" value="icon" />
                 <param name="controllayout" value="View_514_Wall_Info_Layout" />
-                <param name="forced" value="true" />
-                <param name="visible" value="$EXP[InGameMode]" />
+                <param name="visible" value="$EXP[Exp_View_541] | $EXP[InGameAEL]" />
                 <param name="focustrailer" value="true" />
                 <param name="aspectratio" value="keep" />
                 <width>1028.56</width>

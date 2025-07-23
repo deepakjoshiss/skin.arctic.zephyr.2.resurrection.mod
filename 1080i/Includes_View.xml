@@ -106,8 +106,9 @@
 
     <include name="View_PVR_Guide_Info">
         <control type="image">
-            <top>-545</top>
+            <top>-5</top>
             <width>395</width>
+            <height>222</height>
             <aspectratio align="center" aligny="center">keep</aspectratio>
             <texture>$INFO[ListItem.Icon]</texture>
         </control>
@@ -208,7 +209,12 @@
                         <right>4</right>
                         <top>4</top>
                         <control type="image">
-                            <texture colordiffuse="main_fg_100" border="10">diffuse/box.png</texture>
+                            <include condition="Skin.HasSetting(HighlightTransparency)">Alpha_Value_Highlight</include>
+                            <texture colordiffuse="$VAR[ColorFG_Highlight]" border="10">diffuse/box.png</texture>
+                        </control>
+                        <control type="image">
+                            <visible>Skin.HasSetting(HighlightTransparency) + Integer.IsGreater(Skin.String(AlphaValue_Highlight),0)</visible>
+                            <texture colordiffuse="$VAR[ColorFG_Highlight]" border="10">common/selectbox2.png</texture>
                         </control>
                         <control type="image">
                             <texture colordiffuse="main_bg_12">common/selected.png</texture>
@@ -227,8 +233,8 @@
             </itemlayout>
             <focusedlayout height="item_pvr_height" width="521">
                 <include content="View_50_EPG_Itemlayout">
-                    <param name="panelcolor" value="main_fg_100" />
-                    <param name="fgcolor" value="main_bg_100" />
+                    <param name="panelcolor" value="$VAR[ColorFG_Highlight]" />
+                    <param name="fgcolor" value="$VAR[ColorSelected_100]" />
                     <param name="visible" value="Control.HasFocus(10)" />
                 </include>
                 <include content="View_50_EPG_Itemlayout">
@@ -361,7 +367,12 @@
                         <right>4</right>
                         <top>4</top>
                         <control type="image">
-                            <texture colordiffuse="main_fg_100" border="10">diffuse/box.png</texture>
+                            <include condition="Skin.HasSetting(HighlightTransparency)">Alpha_Value_Highlight</include>
+                            <texture colordiffuse="$VAR[ColorFG_Highlight]" border="10">diffuse/box.png</texture>
+                        </control>
+                        <control type="image">
+                            <visible>Skin.HasSetting(HighlightTransparency) + Integer.IsGreater(Skin.String(AlphaValue_Highlight),0)</visible>
+                            <texture colordiffuse="$VAR[ColorFG_Highlight]" border="10">common/selectbox2.png</texture>
                         </control>
                         <control type="image">
                             <texture colordiffuse="main_bg_12">common/selected.png</texture>
@@ -372,8 +383,8 @@
                             <left>15</left>
                             <right>110</right>
                             <font>font_tiny_bold</font>
-                            <textcolor>main_bg_100</textcolor>
-                            <selectedcolor>main_bg_100</selectedcolor>
+                            <textcolor>$VAR[ColorSelected_100]</textcolor>
+                            <selectedcolor>$VAR[ColorSelected_100]</selectedcolor>
                             <label>$VAR[Label_PVRGuide_ChannelNumber,,. ]$INFO[ListItem.ChannelName]</label>
                             <visible>!Skin.HasSetting(DisableChannelLabel) + !Skin.HasSetting(HideChannelsIcon)</visible>
                         </control>
@@ -381,8 +392,8 @@
                             <left>15</left>
                             <right>15</right>
                             <font>font_tiny_bold</font>
-                            <textcolor>main_bg_100</textcolor>
-                            <selectedcolor>main_bg_100</selectedcolor>
+                            <textcolor>$VAR[ColorSelected_100]</textcolor>
+                            <selectedcolor>$VAR[ColorSelected_100]</selectedcolor>
                             <label>$VAR[Label_PVRGuide_ChannelNumber,,. ]$INFO[ListItem.ChannelName]</label>
                             <visible>!Skin.HasSetting(DisableChannelLabel) + Skin.HasSetting(HideChannelsIcon)</visible>
                         </control>
@@ -413,8 +424,8 @@
             <focusedlayout height="item_list_height" width="521">
                 <include content="View_50_EPG_Itemlayout">
                     <param name="sublabel" value="false" />
-                    <param name="panelcolor" value="main_fg_100" />
-                    <param name="fgcolor" value="main_bg_100" />
+                    <param name="panelcolor" value="$VAR[ColorFG_Highlight]" />
+                    <param name="fgcolor" value="$VAR[ColorSelected_100]" />
                     <param name="visible" value="Control.HasFocus(10)" />
                 </include>
                 <include content="View_50_EPG_Itemlayout">
@@ -487,7 +498,7 @@
                         <visible>Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])</visible>
                         <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Label)</visible>
                         <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,0) + !Container($PARAM[id]).IsUpdating</visible>
-                        <visible>!Skin.HasSetting(HomeMultiFlixView)</visible>
+                        <visible>[!Skin.HasSetting(HomeMultiFlixView) | [Skin.HasSetting(HomeMultiFlixView) + !Window.IsVisible(Home)]]</visible>
                     </control>
                     <control type="label">
                         <top>20</top>
@@ -502,7 +513,7 @@
                         <visible>!String.StartsWith(ListItem.FolderPath,pvr://)</visible>
                         <visible>!String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode)</visible>
                         <visible>!$PARAM[uselabel2]</visible>
-                        <visible>!Skin.HasSetting(HomeMultiFlixView)</visible>
+                        <visible>[!Skin.HasSetting(HomeMultiFlixView) | [Skin.HasSetting(HomeMultiFlixView) + !Window.IsVisible(Home)]]</visible>
                     </control>
                     <control type="label">
                         <top>20</top>
@@ -519,7 +530,7 @@
                         <visible>!String.IsEqual(Container($PARAM[id]).ListItem.DBType,episode)</visible>
                         <visible>!String.IsEmpty(Container($PARAM[id]).ListItem.Year)</visible>
                         <visible>!$PARAM[uselabel2]</visible>
-                        <visible>!Skin.HasSetting(HomeMultiFlixView)</visible>
+                        <visible>[!Skin.HasSetting(HomeMultiFlixView) | [Skin.HasSetting(HomeMultiFlixView) + !Window.IsVisible(Home)]]</visible>
                     </control>
                     <control type="group">
                         <include>Defs_SmallBusySpinner</include>
@@ -553,7 +564,20 @@
                         <height>24</height>
                         <visible>Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])</visible>
                         <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,0) + !Container($PARAM[id]).IsUpdating</visible>
-                        <visible>String.StartsWith(ListItem.FolderPath,pvr://)</visible>
+                        <visible>String.StartsWith(ListItem.FolderPath,pvr://) + !String.IsEmpty(ListItem.ChannelName)</visible>
+                        <visible>!$PARAM[uselabel2]</visible>
+                    </control>
+                    <control type="label">
+                        <top>20</top>
+                        <width>auto</width>
+                        <label>$INFO[Container($PARAM[id]).ListItem.Label]</label>
+                        <aligny>center</aligny>
+                        <textcolor>main_fg_100</textcolor>
+                        <font>font_tiny</font>
+                        <height>24</height>
+                        <visible>Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])</visible>
+                        <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,0) + !Container($PARAM[id]).IsUpdating</visible>
+                        <visible>String.StartsWith(ListItem.FolderPath,pvr://) + String.IsEmpty(ListItem.ChannelName)</visible>
                         <visible>!$PARAM[uselabel2]</visible>
                     </control>
                     <control type="label">
@@ -602,6 +626,7 @@
                     <right>25</right>
                     <font>font_statusbar</font>
                     <textcolor>panel_fg_100</textcolor>
+                    <selectedcolor>panel_fg_100</selectedcolor>
                     <bottom>45</bottom>
                     <height>30</height>
                     <aligny>center</aligny>
@@ -614,6 +639,7 @@
                     <right>25</right>
                     <font>font_statusbar</font>
                     <textcolor>panel_fg_70</textcolor>
+                    <selectedcolor>panel_fg_70</selectedcolor>
                     <height>30</height>
                     <bottom>20</bottom>
                     <aligny>center</aligny>
@@ -656,6 +682,61 @@
                 <param name="label2" value="$PARAM[label2]" />
                 <param name="iconheight" value="$PARAM[iconheight]" />
             </include>
+        </definition>
+    </include>
+
+    <include name="View_Inside_Label">
+        <param name="bordersize" default="15" />
+        <param name="visible" default="true" />
+        <definition>
+            <control type="group">
+                <visible>$PARAM[visible]</visible>
+                <height>$PARAM[iconheight]</height>
+                <control type="image">
+                    <height>200</height>
+                    <bottom>0</bottom>
+                    <bordersize>$PARAM[bordersize]</bordersize>
+                    <texture colordiffuse="bf000000" diffuse="$PARAM[diffuse]">common/gradient-actor.png</texture>
+                </control>
+                <control type="label">
+                    <left>25</left>
+                    <right>25</right>
+                    <font>font_statusbar</font>
+                    <textcolor>panel_fg_100</textcolor>
+                    <selectedcolor>panel_fg_100</selectedcolor>
+                    <bottom>45</bottom>
+                    <height>30</height>
+                    <aligny>center</aligny>
+                    <align>left</align>
+                    <label>$INFO[ListItem.Label]</label>
+                    <visible>!String.IsEmpty(ListItem.Rating) | !String.IsEmpty(ListItem.Duration) | !String.IsEmpty(ListItem.Label2)</visible>
+                </control>
+                <control type="label">
+                    <left>25</left>
+                    <right>25</right>
+                    <font>font_statusbar</font>
+                    <textcolor>panel_fg_70</textcolor>
+                    <selectedcolor>panel_fg_70</selectedcolor>
+                    <height>30</height>
+                    <bottom>20</bottom>
+                    <aligny>center</aligny>
+                    <align>left</align>
+                    <label>$VAR[Label_List_Right]</label>
+                    <visible>!String.IsEmpty(ListItem.Rating) | !String.IsEmpty(ListItem.Duration) | !String.IsEmpty(ListItem.Label2)</visible>
+                </control>
+                <control type="label">
+                    <left>25</left>
+                    <right>25</right>
+                    <font>font_statusbar</font>
+                    <textcolor>panel_fg_100</textcolor>
+                    <bottom>20</bottom>
+                    <height>30</height>
+                    <aligny>center</aligny>
+                    <align>left</align>
+                    <label>$INFO[ListItem.Label]</label>
+                    <visible>String.IsEmpty(ListItem.Rating) + String.IsEmpty(ListItem.Duration) + String.IsEmpty(ListItem.Label2)</visible>
+                </control>
+            </control>
         </definition>
     </include>
 
@@ -892,7 +973,6 @@
                         <param name="itemheight" value="230" />
                         <param name="iconheight" value="230" />
                         <param name="diffuse" value="diffuse/icon-wall.png" />
-                        <param name="forced" value="false" />
                         <param name="visible" value="true" />
                         <param name="orientation" value="horizontal" />
                         <onup condition="Window.IsVisible(Home)">301</onup>
@@ -927,7 +1007,6 @@
                         <param name="itemheight" value="230" />
                         <param name="iconheight" value="230" />
                         <param name="diffuse" value="diffuse/icon-wall.png" />
-                        <param name="forced" value="false" />
                         <param name="visible" value="true" />
                         <param name="orientation" value="vertical" />
                         <onback condition="Window.IsVisible(Home)">301</onback>
@@ -968,70 +1047,6 @@
             <right>view_pad</right>
         </definition>
     </include>
-
-    <!-- <include name="View_WatchedOverlay">
-        <control type="group">
-            <visible>!Skin.HasSetting(DisableWatchedOverlay)</visible>
-            <control type="image">
-                <top>15</top>
-                <right>15</right>
-                <width>48</width>
-                <height>48</height>
-                <texture colordiffuse="ff000000" border="10">$VAR[Image_Overlay_Corner]</texture>
-            </control>
-            <control type="image">
-                <top>16</top>
-                <right>16</right>
-                <width>24</width>
-                <height>24</height>
-                <texture colordiffuse="ffffffff">$VAR[Image_Overlay]</texture>
-                <visible>!Integer.IsGreater(ListItem.Property(UnWatchedEpisodes),0) | ![String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season)]</visible>
-            </control>
-            <control type="label">
-                <top>15</top>
-                <right>15</right>
-                <width>28</width>
-                <height>28</height>
-                <font>font_unwatched</font>
-                <align>center</align>
-                <textcolor>ffededed</textcolor>
-                <label>$INFO[ListItem.Property(UnWatchedEpisodes)]</label>
-                <include>View_UnwatchedEpisodes_Visible</include>
-            </control>
-        </control>
-    </include>
-
-    <include name="View_WatchedOverlay_Focus">
-        <control type="group">
-            <visible>!Skin.HasSetting(DisableWatchedOverlay)</visible>
-            <control type="image">
-                <top>15</top>
-                <right>15</right>
-                <width>48</width>
-                <height>48</height>
-                <texture colordiffuse="$VAR[ColorHighlight2]" border="10">$VAR[Image_Overlay_Corner]</texture>
-            </control>
-            <control type="image">
-                <top>16</top>
-                <right>16</right>
-                <width>24</width>
-                <height>24</height>
-                <texture colordiffuse="panel_bg">$VAR[Image_Overlay_Focus]</texture>
-                <visible>!Integer.IsGreater(ListItem.Property(UnWatchedEpisodes),0) | ![Container.Content(tvshows) | Container.Content(seasons) | Window.IsVisible(Home)]</visible>
-            </control>
-            <control type="label">
-                <top>15</top>
-                <right>15</right>
-                <width>28</width>
-                <height>28</height>
-                <font>font_unwatched</font>
-                <align>center</align>
-                <textcolor>panel_bg</textcolor>
-                <label>$INFO[ListItem.Property(UnWatchedEpisodes)]</label>
-                <include>View_UnwatchedEpisodes_Visible</include>
-            </control>
-        </control>
-    </include> -->
 
     <include name="View_Folder_Overlay_Icon">
         <param name="pad" default="8" />
@@ -1111,12 +1126,12 @@
 
     <include name="View_WatchedOverlay_Focus">
         <control type="group">
-            <visible>!Skin.HasSetting(DisableWatchedOverlay)</visible>
+            <visible>!Skin.HasSetting(DisableWatchedOverlay) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,video)]</visible>
+            <bottom>-16</bottom>
+            <right>25</right>
+            <width>64</width>
+            <height>64</height>
             <control type="image">
-                <bottom>-15</bottom>
-                <right>20</right>
-                <width>64</width>
-                <height>64</height>
                 <bordersize>5</bordersize>
                 <texture colordiffuse="$VAR[ColorHighlightOverlay]">$VAR[Image_Overlay_CircleFO]</texture>
             </control>
@@ -1125,43 +1140,27 @@
 
     <include name="View_WatchedOverlay_Focus_Full">
         <control type="group">
-            <visible>!Skin.HasSetting(DisableWatchedOverlay)</visible>
+            <visible>!Skin.HasSetting(DisableWatchedOverlay) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,video)]</visible>
+            <bottom>-16</bottom>
+            <right>25</right>
+            <width>64</width>
+            <height>64</height>
             <control type="image">
-                <bottom>-15</bottom>
-                <right>20</right>
-                <width>64</width>
-                <height>64</height>
                 <bordersize>5</bordersize>
                 <texture colordiffuse="$VAR[ColorHighlightOverlay]">$VAR[Image_Overlay_CircleFO]</texture>
             </control>
             <control type="image">
-                <bottom>-15</bottom>
-                <right>20</right>
-                <width>64</width>
-                <height>64</height>
                 <texture colordiffuse="ff333333">$VAR[Image_Overlay_CircleBG]</texture>
             </control>
             <control type="image">
-                <bottom>-15</bottom>
-                <right>20</right>
-                <width>64</width>
-                <height>64</height>
                 <texture flipx="true" flipy="true" colordiffuse="ff00dd44">$VAR[Defs_PercentPlayed,progress/circle/p,.png]</texture>
             </control>
             <control type="image">
-                <bottom>6</bottom>
-                <right>41</right>
-                <width>24</width>
-                <height>24</height>
-                <align>center</align>
+                <bordersize>20</bordersize>
                 <texture colordiffuse="ffffffff">$VAR[Image_Overlay_Focus]</texture>
-                <visible>!Integer.IsGreater(ListItem.Property(UnWatchedEpisodes),0) | ![Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Window.IsVisible(Home)]</visible>
+                <visible>![Integer.IsGreater(ListItem.Property(UnWatchedEpisodes),0) + [!Integer.IsEqual(ListItem.Property(WatchedEpisodes),0) | Skin.HasSetting(UnwatchedCountIndicator)] + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)]]</visible>
             </control>
             <control type="label">
-                <bottom>3</bottom>
-                <right>38</right>
-                <width>28</width>
-                <height>28</height>
                 <font>font_unwatched</font>
                 <align>center</align>
                 <textcolor>ffffffff</textcolor>
@@ -1172,7 +1171,7 @@
     </include>
 
     <include name="View_UnwatchedEpisodes_Visible">
-        <visible>Integer.IsGreater(ListItem.Property(UnWatchedEpisodes),0) + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)]</visible>
+        <visible>Integer.IsGreater(ListItem.Property(UnWatchedEpisodes),0) + [!Integer.IsEqual(ListItem.Property(WatchedEpisodes),0) | Skin.HasSetting(UnwatchedCountIndicator)] + [String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode)]</visible>
         <visible>!ListItem.IsCollection</visible>
     </include>
 

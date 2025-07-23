@@ -47,8 +47,8 @@ msgstr "Kolekcja"
 
 #: /1080i/Custom_1119_EnableInfoLists.xml
 msgctxt "#31007"
-msgid "Don't use online information"
-msgstr "Nie korzystaj z informacji online"
+msgid "Use local library info for recommendations"
+msgstr "Pobieraj dane tylko z lokalnej biblioteki"
 
 #: /1080i/SkinSettings.xml
 msgctxt "#31008"
@@ -87,8 +87,8 @@ msgstr "Dodatkowy fanart"
 
 #: /1080i/SkinSettings.xml
 msgctxt "#31015"
-msgid "Choose info-dialog lists"
-msgstr "Wybierz liste info-dialog"
+msgid "Customise recommendations window"
+msgstr "Dostosuj okno informacji"
 
 #: /1080i/SkinSettings.xml
 msgctxt "#31016"
@@ -107,8 +107,8 @@ msgstr "Podstawowe skróty"
 
 #: /1080i/SkinSettings.xml
 msgctxt "#31019"
-msgid "Show clearlogo instead of text title"
-msgstr "Pokazuj clearlogo zamiast tytułu tekstowego"
+msgid "Title label as"
+msgstr "Pokazuj tytuł jako"
 
 #: /1080i/script-globalsearch-main.xml
 msgctxt "#31020"
@@ -272,13 +272,13 @@ msgstr "Podobne do"
 
 #: /1080i/DialogVideoInfo.xml
 msgctxt "#31052"
-msgid "By Director"
-msgstr "Po reżyserach"
+msgid "Directed by"
+msgstr "Wyreżyserowane przez"
 
 #: /1080i/DialogVideoInfo.xml
 msgctxt "#31053"
-msgid "Films from"
-msgstr "Filmy z"
+msgid "Premiered in"
+msgstr "Premiera w"
 
 #: /1080i/DialogVideoInfo.xml
 msgctxt "#31054"
@@ -294,11 +294,6 @@ msgstr "Obsada występowała w"
 msgctxt "#31056"
 msgid "Special Features and Extras"
 msgstr "Cechy i funkcje specialne"
-
-#: /1080i/DialogVideoInfo.xml
-msgctxt "#31057"
-msgid "Films in the"
-msgstr "Filmy w"
 
 #: /1080i/DialogVideoInfo.xml
 msgctxt "#31058"
@@ -673,22 +668,22 @@ msgstr "Potrójny-Panel"
 #: /1080i/Custom_1119_EnableInfoLists.xml
 msgctxt "#31135"
 msgid "Similar"
-msgstr "Podobny"
+msgstr "Podobne"
 
 #: /1080i/Custom_1119_EnableInfoLists.xml
 msgctxt "#31136"
 msgid "Next-up episodes"
-msgstr "Kolejne sezony"
+msgstr "Następne odcinki"
 
 #: /1080i/Custom_1119_EnableInfoLists.xml
 msgctxt "#31137"
 msgid "Featuring cast-members"
-msgstr "Członkowie obsady"
+msgstr "Z udziałem członków obsady"
 
 #: /1080i/Custom_1119_EnableInfoLists.xml
 msgctxt "#31138"
 msgid "Extras and special features"
-msgstr "Dodatkowe i specialne funkcje"
+msgstr "Dodatki i funkcje specjalne"
 
 #: /1080i/SkinSettings.xml
 msgctxt "#31139"
@@ -721,8 +716,8 @@ msgstr "Czcionki i grafiki"
 
 #: /1080i/SkinSettings.xml
 msgctxt "#31145"
-msgid "Display concise information about the currently playing video"
-msgstr "Wyświetlaj zwięzłe informacje o odtwarzanym materiale"
+msgid "Always show info panel with seekbar"
+msgstr "Zawsze pokazuj panel informacji nad paskiem postępu"
 
 #: /1080i/SkinSettings.xml
 msgctxt "#31146"
@@ -741,8 +736,8 @@ msgstr "Nazwa sekcji"
 
 #: /1080i/SkinSettings.xml
 msgctxt "#31149"
-msgid "Clock and weather"
-msgstr "Zegar i pogoda"
+msgid "Clock and weather in all windows (except home)"
+msgstr "Zegar i pogoda we wszystkich oknach (oprócz głównego)"
 
 msgctxt "#31150"
 msgid "Home background image"
@@ -756,7 +751,7 @@ msgstr "Tagi języka i studio"
 #: /1080i/SkinSettings.xml
 msgctxt "#31152"
 msgid "Viewtypes"
-msgstr "Typy widoków"
+msgstr "Ustawienia widoków"
 
 #: /1080i/SkinSettings.xml
 msgctxt "#31153"
@@ -1389,8 +1384,8 @@ msgstr "Ustawienia napisów"
 
 #: /1080i/SkinSettings.xml
 msgctxt "#31409"
-msgid "Subtitles button opens subtitle settings"
-msgstr "Przycisk do napisów otwiera ustawienia napisów"
+msgid "Disable auto pop-up OSD dialogs"
+msgstr "Wyłącz wyskakujące okna dialogowe w OSD"
 
 #: /1080i/DialogPVRChannelManager.xml
 msgctxt "#31412"
@@ -1640,13 +1635,23 @@ msgid "Choose between focus border sizes"
 msgstr "Wybierz pomiędzy rozmiarami obramowania"
 
 #: /1080i/Custom_1119_EnableInfoLists.xml
+msgctxt "#30070"
+msgid "Year"
+msgstr "Rok"
+
+#: /1080i/Custom_1119_EnableInfoLists.xml
+msgctxt "#30071"
+msgid "Genre"
+msgstr "Gatunek"
+
+#: /1080i/Custom_1119_EnableInfoLists.xml
 msgctxt "#30072"
 msgid "Crew"
-msgstr "Zespół"
+msgstr "Ekipa"
 
 #: /1080i/Custom_1119_EnableInfoLists.xml
 msgctxt "#30042"
-msgid "Recommended"
+msgid "Recommendations"
 msgstr "Rekomendacje"
 
 #: /1080i/Custom_1119_EnableInfoLists.xml
@@ -1785,11 +1790,6 @@ msgid "Color Highlight"
 msgstr "Kolor podświetlenia"
 
 #: /1080i/SkinSettings.xml
-msgctxt "#30099"
-msgid "Disable background overlay"
-msgstr "Wyłącz nakładkę na tło"
-
-#: /1080i/SkinSettings.xml
 msgctxt "#30100"
 msgid "Disable skin splash art on startup"
 msgstr "Wyłącz ekran ładowania skórki"
@@ -1831,18 +1831,13 @@ msgstr "Odtwarzaj zwiastun w tle w widoku Flix"
 
 #: /1080i/SkinSettings.xml
 msgctxt "#30108"
-msgid "Disable profile info in narrow menu"
-msgstr "Wyłącz informacje o profilu w wysuwanym menu"
+msgid "Hide profile info in menu"
+msgstr "Ukryj informacje o profilu w menu"
 
 #: /1080i/SkinSettings.xml
 msgctxt "#30109"
 msgid "Enable zoom on hover"
 msgstr "Włącz przybliżenie po najechaniu"
-
-#: /1080i/SkinSettings.xml
-msgctxt "#30110"
-msgid "Show player tempo controls in OSD"
-msgstr "Pokaż kontrolki do zmiany tempa odtwarzania na OSD"
 
 #: /1080i/SkinSettings.xml
 msgctxt "#30111"
@@ -1940,13 +1935,8 @@ msgid "Hide player process info button"
 msgstr "Ukryj przycisk informacji o procesie odtwarzacza"
 
 #: /1080i/SkinSettings.xml
-msgctxt "#31455"
-msgid "Audio button opens audio settings"
-msgstr "Przycisk od dźwięku otwiera ustawienia dźwięku"
-
-#: /1080i/SkinSettings.xml
 msgctxt "#31456"
-msgid "Show remaining time instead of end time"
+msgid "Show time remaining instead of end time"
 msgstr "Pokaż pozostały czas zamiast godzinę zakończenia"
 
 #: /1080i/Includes_OSD.xml
@@ -1976,7 +1966,7 @@ msgstr "Wartość alpha dla niektórych dialogów"
 
 #: /1080i/SkinSettings.xml
 msgctxt "#31462"
-msgid "Hide extra info background"
+msgid "Hide extended info background"
 msgstr "Ukryj tło w oknie rozszerzonych informacji"
 
 #: /1080i/SkinSettings.xml
@@ -2063,3 +2053,161 @@ msgstr "Ukryj info o trafności w widgetach"
 msgctxt "#31479"
 msgid "Hide bookmarks button"
 msgstr "Ukryj przycisk zakładek"
+
+#: /1080i/Custom_1119_EnableInfoLists.xml
+msgctxt "#31480"
+msgid "Lists"
+msgstr "Listy"
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31481"
+msgid "Hide menu when focus is on widgets"
+msgstr "Ukryj menu gdy focus jest na widgetach"
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31482"
+msgid "Configure viewtypes"
+msgstr "Konfiguracja widoków"
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31483"
+msgid "Show episodes count"
+msgstr "Pokazuj ilość odcinków"
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31484"
+msgid "Indicators"
+msgstr "Oznaczenia"
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31485"
+msgid "Title label in extended info dialog as"
+msgstr "Pokazuj tytuł w oknie rozszerzonych informacji jako"
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31486"
+msgid "Text"
+msgstr "Tekst"
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31487"
+msgid "Clearlogo"
+msgstr "Clearlogo"
+
+#: /1080i/Includes_Labels.xml
+msgctxt "#31488"
+msgid "Cancelled"
+msgstr "Anulowany"
+
+#: /1080i/Includes_Labels.xml
+msgctxt "#31489"
+msgid "Ended"
+msgstr "Zakończony"
+
+#: /1080i/Includes_Labels.xml
+msgctxt "#31490"
+msgid "Released"
+msgstr "Wydany"
+
+#: /1080i/Includes_Labels.xml
+msgctxt "#31491"
+msgid "In-Production"
+msgstr "W produkcji"
+
+#: /1080i/Includes_Labels.xml
+msgctxt "#31492"
+msgid "Planned"
+msgstr "Planowany"
+
+#: /1080i/Includes_Labels.xml
+msgctxt "#31493"
+msgid "Premiering"
+msgstr "Premiera"
+
+#: /1080i/Includes_Labels.xml
+msgctxt "#31494"
+msgid "Returning"
+msgstr "Powraca"
+
+#: /1080i/Includes_Labels.xml
+msgctxt "#31495"
+msgid "Airing"
+msgstr "Emisja"
+
+#: /1080i/Includes_Labels.xml
+msgctxt "#31496"
+msgid "Last aired"
+msgstr "Ostatnia emisja"
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31497"
+msgid "Hide CD Spin"
+msgstr "Ukryj CD"
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31498"
+msgid "Show codecs as text"
+msgstr "Wyświetlaj kodeki w formie tekstu"
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31499"
+msgid "Show codecs as text in OSD"
+msgstr "Wyświetlaj kodeki w formie tekstu w OSD"
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31500"
+msgid "Hide CD Spin in VideoOSD"
+msgstr "Nie wyświetlaj płyty CD w VideoOSD"
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31501"
+msgid "Use TMDBHelper to crop clearlogo"
+msgstr "Użyj TMDBHelper do przycinania clearlogo"
+
+msgctxt "#31502"
+msgid "Playback Speed"
+msgstr "Prędkość odtwarzania"
+
+msgctxt "#31503"
+msgid "Codecs"
+msgstr "Kodeki"
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31504"
+msgid "Disable cast dialog in VideoOSD"
+msgstr "Wyłącz okno z obsadą w VideoOSD"
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31505"
+msgid "Disable playlist/episodes dialog in VideoOSD"
+msgstr "Wyłącz okno z playlistą/odcinkami w VideoOSD"
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31506"
+msgid "Show time remaining instead of duration"
+msgstr "Pokaż pozostały czas zamiast czas trwania"
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31507"
+msgid "Hide info panel"
+msgstr "Ukryj panel z informacjami"
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31508"
+msgid "Blur background for some Flix views only"
+msgstr "Rozmycie tła tylko dla niektórych widoków flix"
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31509"
+msgid "Hide header"
+msgstr "Ukryj nagłówek"
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31510"
+msgid "Clock and weather in home window"
+msgstr "Zegar i pogoda w oknie głównym"
+
+#: /1080i/SkinSettings.xml
+msgctxt "#31511"
+msgid "Hide chapters mark"
+msgstr "Ukryj znaczniki rozdziałów"
