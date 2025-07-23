@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Foundation -->
+<window id="1161">
+    <defaultcontrol always="false">1001</defaultcontrol>
+    <!-- <onunload>Notification(unload window, unload)</onunload> -->
+
+    <controls>
+        <control type="multiimage">
+            <include>Defs_TimePerImage</include>
+            <randomize>true</randomize>
+            <width>1920</width>
+            <height>1080</height>
+            <aspectratio>scale</aspectratio>
+            <fadetime>600</fadetime>
+            <animation effect="fade" start="10" end="15" reversible="false" condition="!Skin.HasSetting(DisableBackgroundOverlay)">Conditional</animation>
+            <imagepath background="true">$VAR[Global_Background_Image]</imagepath>
+        </control>
+        <control type="group">
+            <include>Animation_ZoomIn</include>
+            <include>Animation_FadeOut</include>
+            <height>100%</height>
+            <width>100%</width>
+
+            <control type="group">
+                <animation effect="slide" start="0" end="-450" time="200" condition="ControlGroup(8500).HasFocus()" easing="inout">Conditional</animation>
+                <width>700</width>
+                <control type="image">
+                    <aspectratio>stretch</aspectratio>
+                    <texture border="5" colordiffuse="dialog_bg_100">common/box.png</texture>
+                </control>
+                <control type="group">
+                    <top>36</top>
+                    <left>36</left>
+                    <include content="Defs_SectionHeaderIconLabel">
+                        <param name="label" value="Search Jellyfin" />
+                        <param name="focused" value="true" />
+                    </include>
+                </control>
+                <control type="label" id="652">
+                    <scroll>false</scroll>
+                    <left>30</left>
+                    <height>74</height>
+                    <align>left</align>
+                    <aligny>center</aligny>
+                    <textcolor>00FFFFFF</textcolor>
+                    <font>font13</font>
+                    <label>Search</label>
+                </control>
+                <control type="group" id="8499">
+                    <left>36</left>
+                    <right>36</right>
+                    <top>256</top>
+                    <bottom>24</bottom>
+
+                    <control type="edit" id="650">
+                        <description>Edit Text</description>
+                        <height>74</height>
+                        <align>right</align>
+                        <aligny>center</aligny>
+                        <ondown>3101</ondown>
+                        <onup>8000</onup>
+                        <onright>8500</onright>
+                        <label> </label>
+                        <textcolor>00000000</textcolor>
+                        <focusedcolor>$VAR[ColorHighlight]</focusedcolor>
+                        <hinttext> </hinttext>
+                        <textcolor>dialog_fg_70</textcolor>
+                        <texturefocus border="5" colordiffuse="$VAR[ColorHighlight]">common/box22.png</texturefocus>
+                        <texturenofocus border="5" colordiffuse="main_fg_30">common/box22.png</texturenofocus>
+                    </control>
+                    <control type="label" id="651">
+                        <scroll>false</scroll>
+                        <left>30</left>
+                        <right>30</right>
+                        <height>74</height>
+                        <align>right</align>
+                        <aligny>center</aligny>
+                        <textcolor>FFFFFFFF</textcolor>
+                        <font>font13</font>
+                        <label> </label>
+                        <visible>!Control.HasFocus(650)</visible>
+                    </control>
+                    <control type="grouplist" description="toprow" id="3101">
+                        <orientation>horizontal</orientation>
+                        <top>106</top>
+                        <itemgap>10</itemgap>
+                        <onright>1062</onright>
+                        <control type="button" id="1001">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1002">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1003">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1004">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1005">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1006">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1061">
+                            <description>Layout</description>
+                            <visible>false</visible>
+                            <label></label>
+                            <include>Defs_Keyboard_Btn_Large_Search</include>
+                        </control>
+                    </control>
+                    <control type="grouplist" description="secondrow" id="3102">
+                        <orientation>horizontal</orientation>
+                        <top>190</top>
+                        <itemgap>10</itemgap>
+                        <onright>8500</onright>
+                        <control type="button" id="1007">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1008">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1009">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1010">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1011">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1012">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1062">
+                            <description>Layout</description>
+                            <onup>3101</onup>
+                            <ondown>1063</ondown>
+                            <label>clear</label>
+                            <include>Defs_Keyboard_Btn_Large_Search</include>
+                        </control>
+                    </control>
+                    <control type="grouplist" description="thirddrow" id="3103">
+                        <orientation>horizontal</orientation>
+                        <top>274</top>
+                        <itemgap>10</itemgap>
+                        <onright>8500</onright>
+                        <control type="button" id="1013">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1014">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1015">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1016">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1017">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1018">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1063">
+                            <description>Layout</description>
+                            <onup>1062</onup>
+                            <ondown>1064</ondown>
+                            <label>del</label>
+                            <include>Defs_Keyboard_Btn_Large_Search</include>
+                        </control>
+                    </control>
+                    <control type="grouplist" description="fourthrow" id="3104">
+                        <orientation>horizontal</orientation>
+                        <top>358</top>
+                        <itemgap>10</itemgap>
+                        <onright>8500</onright>
+                        <control type="button" id="1019">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1020">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1021">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1022">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1023">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1024">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1064">
+                            <description>Layout</description>
+                            <onup>1063</onup>
+                            <ondown>1065</ondown>
+                            <label>space</label>
+                            <include>Defs_Keyboard_Btn_Large_Search</include>
+                        </control>
+                    </control>
+                    <control type="grouplist" description="fifthrow" id="3105">
+                        <orientation>horizontal</orientation>
+                        <top>442</top>
+                        <itemgap>10</itemgap>
+                        <onright>8500</onright>
+                        <control type="button" id="1025">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1026">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1027">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1028">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1029">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1030">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1065">
+                            <description>Layout</description>
+                            <onup>1064</onup>
+                            <ondown>3106</ondown>
+                            <label>del word</label>
+                            <include>Defs_Keyboard_Btn_Large_Search</include>
+                        </control>
+                    </control>
+                    <control type="grouplist" description="lastrow" id="3106">
+                        <orientation>horizontal</orientation>
+                        <top>526</top>
+                        <itemgap>10</itemgap>
+                        <onright>8500</onright>
+                        <control type="button" id="1031">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1032">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1033">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1034">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1035">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1036">
+                            <description>Layout</description>
+                            <include>Defs_Keyboard_Btn_Search</include>
+                        </control>
+                        <control type="button" id="1066">
+                            <description>Layout</description>
+                            <visible>false</visible>
+                            <label>del word</label>
+                            <include>Defs_Keyboard_Btn_Large_Search</include>
+                        </control>
+                    </control>
+                </control>
+            </control>
+            <!-- <control type="label">
+                <scroll>false</scroll>
+                <align>center</align>
+                <aligny>top</aligny>
+                <textcolor>FFFFFFFF</textcolor>
+                <font>font13</font>
+                <label> ^$INFO[Container(8501).NumItems] $INFO[Window(Home).Property(plugin.video.jellycon-togglevisible)]^ </label>
+            </control> -->
+            <control type="group">
+                <animation effect="slide" start="0" end="-450" time="200" condition="ControlGroup(8500).HasFocus()" easing="inout">Conditional</animation>
+                <left>736</left>
+                <right>-300</right>
+                <bottom>36</bottom>
+                <top>48</top>
+                <control type="label">
+                    <animation effect="fade" start="0" end="100" time="180">VisibleChange</animation>
+                    <animation effect="zoom" start="0" end="130" center="16,20" time="0" condition="true">Conditional</animation>
+                    <font>font_submenu</font>
+                    <left>16</left>
+                    <textcolor>main_fg_70</textcolor>
+                    <aligny>top</aligny>
+                    <label>Search: $INFO[Window(home).Property(plugin.video.jellycon-currentsearchquery)]</label>
+                    <visible>!ControlGroup(8500).HasFocus()</visible>
+                </control>
+                <control type="label">
+                    <font>font_status_bar</font>
+                    <left>22</left>
+                    <top>60</top>
+                    <textcolor>main_fg_70</textcolor>
+                    <aligny>top</aligny>
+                    <label>No Results</label>
+                    <visible>!Control.isVisible(8501) + !Control.isVisible(8510) + !Control.isVisible(8502)</visible>
+                </control>
+                <include content="View_Search_Item_Info">
+                    <param name="visible" value="ControlGroup(8500).HasFocus()" />
+                    <param name="title" value="$VAR[Label_List_Title]" />
+                </include>
+                <control type="grouplist" id="8500">
+                    <visible>!String.IsEqual(Container(9989).ListItemAbsolute(0).Property(list),Settings) + !String.IsEqual(Container(9989).ListItemAbsolute(0).Property(list),Weather)</visible>
+                    <onup>8499</onup>
+                    <ondown>8499</ondown>
+                    <bottom>0</bottom>
+                    <onleft>8499</onleft>
+                    <top>96</top>
+                    <scrolltime tween="quadratic">400</scrolltime>
+                    <width>100%</width>
+                    <orientation>vertical</orientation>
+                    <usecontrolcoords>true</usecontrolcoords>
+                    <include content="Defs_SectionHeaderProgress">
+                        <param name="id" value="8501" />
+                        <param name="label" value="Movies and Shows" />
+                        <param name="groupid" value="8601" />
+                    </include>
+                    <include content="Object_Widget_Spotlight">
+                        <param name="controltype" value="list" />
+                        <param name="id" value="8501" />
+                        <param name="top" value="-10" />
+                        <param name="left" value="0" />
+                        <param name="right" value="0" />
+                        <param name="height" value="item_height_Portrait" />
+                        <param name="orientation" value="horizontal" />
+                        <param name="labelinclude" value="Defs_Null" />
+                        <param name="landscapelabelinclude" value="View_Widget_LandscapeLabel" />
+                        <param name="label2" value="ListItem.TvShowTitle" />
+                        <param name="content" value="$INFO[Window(home).Property(plugin.video.jellycon-moviesearchpath)]" />
+                        <param name="target" value="videos" />
+                        <param name="limit" value="" />
+                        <param name="sortby" value="" />
+                        <param name="sortorder" value="" />
+                        <param name="portraitcondition" value="true" />
+                        <onback>SetFocus(8501)</onback>
+                        <onback>301</onback>
+                        <visible>Integer.IsGreater(Container(8501).NumItems,0) | Container(8501).IsUpdating | !String.IsEmpty(Window(Home).Property(plugin.video.jellycon-togglevisible))</visible>
+                    </include>
+                    <include content="Defs_SectionHeaderProgress">
+                        <param name="id" value="8510" />
+                        <param name="label" value="Videos and Collections" />
+                        <param name="groupid" value="8610" />
+                    </include>
+                    <include content="Object_Widget_Spotlight">
+                        <param name="controltype" value="list" />
+                        <param name="id" value="8510" />
+                        <param name="top" value="-10" />
+                        <param name="left" value="0" />
+                        <param name="right" value="0" />
+                        <param name="height" value="item_height_Titlecard" />
+                        <param name="orientation" value="horizontal" />
+                        <param name="labelinclude" value="Defs_Null" />
+                        <param name="landscapelabelinclude" value="View_Widget_LandscapeLabel" />
+                        <param name="label2" value="ListItem.TvShowTitle" />
+                        <param name="content" value="$INFO[Window(home).Property(plugin.video.jellycon-currentsearchpath)]" />
+                        <param name="target" value="videos" />
+                        <param name="limit" value="" />
+                        <param name="sortby" value="" />
+                        <param name="sortorder" value="" />
+                        <param name="portraitcondition" value="false" />
+                        <param name="titlecardcondition" value="true" />
+                        <param name="landscapecondition" value="false" />
+                        <param name="billboardcondition" value="false" />
+                        <param name="iconcondition" value="false" />
+                        <param name="bannercondition" value="false" />
+                        <onback>SetFocus(8510)</onback>
+                        <onback>301</onback>
+                        <visible>Integer.IsGreater(Container(8510).NumItems,0) | Container(8510).IsUpdating | !String.IsEmpty(Window(Home).Property(plugin.video.jellycon-togglevisible))</visible>
+                    </include>
+                    <include content="Defs_SectionHeaderProgress">
+                        <param name="id" value="8502" />
+                        <param name="label" value="Episodes" />
+                        <param name="groupid" value="8602" />
+                    </include>
+                    <include content="Object_Widget_Spotlight">
+                        <param name="controltype" value="list" />
+                        <param name="id" value="8502" />
+                        <param name="top" value="-10" />
+                        <param name="left" value="0" />
+                        <param name="right" value="0" />
+                        <param name="height" value="item_height_Titlecard" />
+                        <param name="orientation" value="horizontal" />
+                        <param name="labelinclude" value="Defs_Null" />
+                        <param name="landscapelabelinclude" value="View_Widget_LandscapeLabel" />
+                        <param name="label2" value="ListItem.TvShowTitle" />
+                        <param name="content" value="$INFO[Window(home).Property(plugin.video.jellycon-episodesearchpath)]" />
+                        <param name="target" value="videos" />
+                        <param name="limit" value="" />
+                        <param name="sortby" value="" />
+                        <param name="sortorder" value="" />
+                        <param name="portraitcondition" value="false" />
+                        <param name="titlecardcondition" value="true" />
+                        <param name="landscapecondition" value="false" />
+                        <param name="billboardcondition" value="false" />
+                        <param name="iconcondition" value="false" />
+                        <param name="bannercondition" value="false" />
+                        <onback>SetFocus(8502)</onback>
+                        <onback>301</onback>
+                        <visible>Integer.IsGreater(Container(8502).NumItems,0) | Container(8502).IsUpdating | !String.IsEmpty(Window(Home).Property(plugin.video.jellycon-togglevisible))</visible>
+                    </include>
+                </control>
+            </control>
+        </control>
+    </controls>
+
+</window>

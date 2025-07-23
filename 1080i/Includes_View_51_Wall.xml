@@ -172,8 +172,8 @@
                 <animation effect="fade" end="$PARAM[textfade_start]" start="$PARAM[textfade_end]" condition="!Control.HasFocus($PARAM[id]) + $PARAM[selectbox]">Conditional</animation>
                 <animation effect="fade" end="$PARAM[textfade_end]" start="$PARAM[textfade_end]" condition="!$PARAM[selectbox]">Conditional</animation>
                 <control type="label">
-                    <left>25</left>
-                    <right>35</right>
+                    <left>20</left>
+                    <right>20</right>
                     <font>font_statusbar_xxs</font>
                     <selectedcolor>panel_fg_100</selectedcolor>
                     <textcolor>panel_fg_100</textcolor>
@@ -328,7 +328,7 @@
         <definition>
             <control type="group">
                 <right>0</right>
-                <animation effect="zoom" time="120" end="104,104" center="120,120" ease="inout" condition="Skin.HasSetting(EnableZoomOnHover)">Focus</animation>
+                <animation effect="zoom" time="150" end="104,104" center="120,120" ease="inout" condition="Skin.HasSetting(EnableZoomOnHover)">Focus</animation>
                 <control type="group">
                     <height>$PARAM[iconheight]</height>
                     <include condition="$PARAM[circle]" content="View_51_Wall_Circle">

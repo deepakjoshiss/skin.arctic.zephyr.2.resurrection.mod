@@ -617,7 +617,7 @@
 
     <include name="Object_Codecs">
         <param name="infohide" default="true" />
-        <param name="video_type" default="| String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.DBType,musicvideo)"/>
+        <param name="video_type" default="String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,video) | String.IsEqual(ListItem.DBType,musicvideo)"/>
         <definition>
             <control type="grouplist">
                 <visible>!Skin.HasSetting(DisableCodecs)</visible>
@@ -666,7 +666,7 @@
                     </include>
                     <aspectratio align="left">keep</aspectratio>
                     <texture colordiffuse="main_fg_100">$VAR[Image_VideoPlayer_HDRCodec]</texture>
-                    <visible>>$PARAM[video_type]</visible>
+                    <visible>$PARAM[video_type]</visible>
                     <visible>String.Contains(ListItem.FileNameAndPath,HDR) | String.IsEqual(ListItem.HdrType,hdr10) | String.IsEqual(ListItem.HdrType,dolbyvision) | String.IsEqual(ListItem.HdrType,hlg)</visible>
                 </control>
                 <control type="image" id="77881">
@@ -684,7 +684,7 @@
                     </include>
                     <aspectratio align="left">keep</aspectratio>
                     <texture colordiffuse="main_fg_100">$VAR[Image_RipSource]</texture>
-                    <visible>>$PARAM[video_type]</visible>
+                    <visible>$PARAM[video_type]</visible>
                     <visible>!String.IsEmpty(Control.GetLabel(77881))</visible>
                 </control>
                 <control type="image" id="77882">
@@ -702,7 +702,7 @@
                     </include>
                     <aspectratio>keep</aspectratio>
                     <texture colordiffuse="main_fg_100">flags/$INFO[Skin.String(Icons)]/resolution/$INFO[ListItem.VideoResolution].png</texture>
-                    <visible>>$PARAM[video_type]</visible>
+                    <visible>$PARAM[video_type]</visible>
                     <visible>!String.IsEmpty(Control.GetLabel(77882))</visible>
                 </control>
                 <control type="image" id="77883">
@@ -720,7 +720,7 @@
                     </include>
                     <aspectratio>keep</aspectratio>
                     <texture colordiffuse="main_fg_100">flags/$INFO[Skin.String(Icons)]/source/$INFO[ListItem.VideoCodec].png</texture>
-                    <visible>>$PARAM[video_type]</visible>
+                    <visible>$PARAM[video_type]</visible>
                     <visible>!String.IsEmpty(Control.GetLabel(77883))</visible>
                 </control>
                 <control type="image" id="77884">
@@ -738,7 +738,7 @@
                     </include>
                     <aspectratio>keep</aspectratio>
                     <texture colordiffuse="main_fg_100">flags/$INFO[Skin.String(Icons)]/aspectratio/$INFO[ListItem.VideoAspect].png</texture>
-                    <visible>>$PARAM[video_type]</visible>
+                    <visible>$PARAM[video_type]</visible>
                     <visible>!String.IsEmpty(Control.GetLabel(77884))</visible>
                 </control>
                 <control type="image" id="77885">
@@ -756,7 +756,7 @@
                     </include>
                     <aspectratio>keep</aspectratio>
                     <texture colordiffuse="main_fg_100">$VAR[Image_AudioCodec]</texture>
-                    <visible>>$PARAM[video_type]</visible>
+                    <visible>$PARAM[video_type]</visible>
                     <visible>!String.IsEmpty(Control.GetLabel(77885))</visible>
                 </control>
                 <control type="image" id="77886">

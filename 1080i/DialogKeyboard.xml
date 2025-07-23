@@ -64,7 +64,7 @@
                     <control type="button" id="309">
                         <description>Layout</description>
                         <onup>312</onup>
-                        <ondown>302</ondown>
+                        <ondown>304</ondown>
                         <width>370</width>
                         <textoffsetx>20</textoffsetx>
                         <include>Defs_Keyboard_Button</include>
@@ -146,13 +146,25 @@
                     <top>85</top>
                     <orientation>horizontal</orientation>
                     <itemgap>10</itemgap>
-                    <control type="radiobutton" id="302">
-                        <description>Shift</description>
-                        <width>370</width>
-                        <label>20178</label>
-                        <include>Defs_Keyboard_Button</include>
+                    <control type="button" id="307">
+                        <description>IP</description>
+                        <width>180</width>
+                        <label>IP</label>
                         <onup>309</onup>
                         <ondown>303</ondown>
+                        <include>Defs_Keyboard_Button</include>
+                    </control>
+                    <control type="radiobutton" id="304">
+                        <description>Symbols</description>
+                        <width>180</width>
+                        <label>@#!*</label>
+                        <onup>309</onup>
+                        <ondown>302</ondown>
+                        <textureradioofffocus/>
+                        <textureradiooffnofocus/>
+                        <textureradioonfocus/>
+                        <textureradioonnofocus/>
+                        <include>Defs_Keyboard_Button</include>
                     </control>
                     <control type="button" id="120">
                         <description>Layout</description>
@@ -233,11 +245,19 @@
                     <itemgap>10</itemgap>
                     <control type="radiobutton" id="303">
                         <description>Caps</description>
-                        <width>370</width>
-                        <label>20179</label>
+                        <width>180</width>
+                        <label>Caps</label>
                         <include>Defs_Keyboard_Button</include>
-                        <onup>302</onup>
-                        <ondown>307</ondown>
+                        <onup>307</onup>
+                        <ondown>301</ondown>
+                    </control>
+                    <control type="radiobutton" id="302">
+                        <description>Shift</description>
+                        <width>180</width>
+                        <label>20178</label>
+                        <include>Defs_Keyboard_Button</include>
+                        <onup>304</onup>
+                        <ondown>301</ondown>
                     </control>
                     <control type="button" id="140">
                         <description>Layout</description>
@@ -316,25 +336,14 @@
                     <top>255</top>
                     <orientation>horizontal</orientation>
                     <itemgap>10</itemgap>
-                    <control type="button" id="307">
-                        <description>IP</description>
-                        <width>180</width>
-                        <label>IP</label>
-                        <onup>303</onup>
-                        <ondown>300</ondown>
+                    <control type="button" id="301">
+                        <width>370</width>
+                        <description>Layout</description>
                         <include>Defs_Keyboard_Button</include>
-                    </control>
-                    <control type="radiobutton" id="304">
-                        <description>Symbols</description>
-                        <width>180</width>
-                        <label>@#!*</label>
-                        <onup>303</onup>
+                        <onup>302</onup>
                         <ondown>300</ondown>
-                        <textureradioofffocus/>
-                        <textureradiooffnofocus/>
-                        <textureradioonfocus/>
-                        <textureradioonnofocus/>
-                        <include>Defs_Keyboard_Button</include>
+                        <label>Cancel</label>
+                        <ondown>160</ondown>
                     </control>
                     <control type="button" id="160">
                         <description>Layout</description>
@@ -417,7 +426,7 @@
                         <description>Done</description>
                         <width>370</width>
                         <label>20177</label>
-                        <onup>307</onup>
+                        <onup>301</onup>
                         <ondown>8000</ondown>
                         <include>Defs_Keyboard_Button</include>
                     </control>
