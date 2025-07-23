@@ -16,7 +16,7 @@
         "513":  "Circle Wall",
         "514":  "Info Wall",
         "515":  "Landscape Wall Small",
-        "516":  "Info Wall 2",
+        "516":  "Landscape Info",
         "517":  "Square Wall2",
         "520":  "Showcase Square",
         "521":  "Landscape Showcase",
@@ -46,9 +46,9 @@
         },
         "movies": {
             "rule": "Container.Content(movies)",
-            "viewtypes": ["50", "526", "528", "521", "529", "501", "502", "504", "503", "51", "511", "514", "516", "515", "52", "521", "53", "523"],
-            "library": "50",
-            "plugins": "50"
+            "viewtypes": ["50", "51", "516", "52", "529", "526", "528", "521", "501", "502", "504", "503", "511", "514", "515", "521", "53", "523"],
+            "library": "51",
+            "plugins": "51"
         },
         "sets": {
             "rule": "Container.Content(sets)",
@@ -172,7 +172,7 @@
         },
         "files": {
             "rule": "Container.Content(files)",
-            "viewtypes": ["50", "500", "510", "517"],
+            "viewtypes": ["50", "500", "529", "510", "517"],
             "library": "500",
             "plugins": "500"
         },
@@ -184,7 +184,7 @@
         },
         "addons": {
             "rule": "Container.Content(addons)",
-            "viewtypes": ["50", "500", "512", "510", "517", "527"],
+            "viewtypes": ["50", "500", "529", "510", "517", "527"],
             "library": "500",
             "plugins": "500"
         },

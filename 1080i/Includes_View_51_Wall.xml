@@ -388,8 +388,8 @@
                         <param name="selectbox" value="$PARAM[selectbox]" />
                     </include>
 
-                    <include content="View_Folder_Overlay_Icon"/>
-                    
+                    <include content="View_Folder_Overlay_Icon" />
+
                     <control type="group">
                         <visible>!$PARAM[circle]</visible>
                         <visible>Control.HasFocus($PARAM[id]) | Control.HasFocus($PARAM[altid])</visible>
@@ -540,8 +540,8 @@
                         <visible>String.IsEqual(ListItem.DBType,country) | String.IsEqual(ListItem.DBType,director) | String.IsEqual(ListItem.DBType,year) | [String.IsEmpty(ListItem.DBType) + String.IsEmpty(ListItem.Icon)]</visible>
                     </control>
                 </control>
-                
-                <include content="View_Folder_Overlay_Icon"/>
+
+                <include content="View_Folder_Overlay_Icon" />
 
                 <include content="View_WatchedOverlay">
                     <param name="prbottom" value="15" />
@@ -692,13 +692,23 @@
             <visible>Control.IsVisible(51)</visible>
             <include content="View_51_Wall_Container">
                 <param name="id" value="51" />
-                <param name="height" value="view_height" />
+                <param name="height" value="view_wall_info_height" />
+                <param name="itemheight" value="item_height_wall_poster" />
                 <param name="itemwidth" value="item_width_portrait" />
                 <param name="iconheight" value="item_cardheight_portrait" />
                 <param name="viewtype" value="Poster Wall" />
-                <param name="viewtypename" value="icon" />
+                <param name="viewtypename" value="list" />
+                <param name="controllayout" value="View_518_Wall_Info_Layout" />
+                <param name="forced" value="true" />
                 <param name="visible" value="$EXP[Exp_View_51] | $EXP[InGameAEL]" />
                 <include>View_Vertical_Movement</include>
+            </include>
+            <include content="View_518_Showcase_Seasons_Info">
+                <param name="visible" value="true" />
+                <param name="icon" value="$VAR[Image_Landscape]" />
+                <param name="title" value="$VAR[Label_List_Title]" />
+                <param name="plot" value="$INFO[ListItem.Plot]" />
+                <param name="isView2" value="true" />
             </include>
         </control>
     </include>
@@ -989,8 +999,7 @@
 
     <include name="View_516_Landscape_Info">
         <param name="id" default="516" />
-        <param name="viewtypename" default="wrap" />
-        <param name="visible" default="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(videos) | Container.Content(files) | Container.Content(musicvideos) | $EXP[InGameMode]" />
+        <param name="viewtypename" default="list" />
         <definition>
             <control type="group">
                 <include>View_Group</include>
@@ -1006,7 +1015,7 @@
                     <param name="itemheight" value="item_height_flix_landscape" />
                     <param name="icon" value="$VAR[Image_Landscape]" />
                     <param name="iconheight" value="item_cardheight_banner" />
-                    <param name="visible" value="$PARAM[visible]" />
+                    <param name="visible" value="$EXP[Exp_View_516]" />
                     <param name="viewtype" value="Landscape Info" />
                     <param name="viewtypename" value="$PARAM[viewtypename]" />
                     <param name="forced" value="true" />

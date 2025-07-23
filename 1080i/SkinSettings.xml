@@ -1068,7 +1068,7 @@
                             <label>$LOCALIZE[31147]</label>
                         </control>
 
-                        <control type="radiobutton" id="19701" description="Header">
+                        <control type="radiobutton" id="19700" description="Header">
                             <include>Defs_Settings_Button</include>
                             <label>Debug Breadcrumbs</label>
                             <selected>Skin.HasSetting(DebugBreadcrumbs)</selected>
