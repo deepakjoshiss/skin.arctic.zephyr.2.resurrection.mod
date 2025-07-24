@@ -375,7 +375,7 @@
                         <visible>$PARAM[circle]</visible>
                     </control>
 
-                    <include content="$PARAM[labelinclude]">
+                    <!-- <include content="$PARAM[labelinclude]">
                         <param name="bordersize" value="$PARAM[bordersize]" />
                         <param name="diffuse" value="$PARAM[diffuse]" />
                         <param name="iconheight" value="$PARAM[iconheight]" />
@@ -386,7 +386,7 @@
                         <param name="textfade_start" value="$PARAM[textfade_start]" />
                         <param name="id" value="$PARAM[id]" />
                         <param name="selectbox" value="$PARAM[selectbox]" />
-                    </include>
+                    </include> -->
 
                     <include content="View_Folder_Overlay_Icon" />
 
@@ -405,7 +405,7 @@
                         <param name="prbottom" value="15" />
                     </include>
                 </control>
-                <!-- <include content="$PARAM[labelinclude]" condition="!Window.IsVisible(DialogVideoInfo.xml) + !Window.IsVisible(1143)">
+                <include content="$PARAM[labelinclude]">
                     <param name="bordersize" value="$PARAM[bordersize]" />
                     <param name="diffuse" value="$PARAM[diffuse]" />
                     <param name="iconheight" value="$PARAM[iconheight]" />
@@ -416,7 +416,7 @@
                     <param name="textfade_start" value="$PARAM[textfade_start]" />
                     <param name="id" value="$PARAM[id]" />
                     <param name="selectbox" value="$PARAM[selectbox]" />
-                </include> -->
+                </include>
 
                 <control type="group">
                     <height>$PARAM[iconheight]</height>
@@ -687,7 +687,7 @@
     <include name="View_51_Wall">
         <control type="group">
             <include content="View_Group">
-                <param name="animation" value="Defs_Null" />
+                <param name="animation" value="Animation_Nav_Fast" />
             </include>
             <visible>Control.IsVisible(51)</visible>
             <include content="View_51_Wall_Container">
@@ -735,7 +735,7 @@
     <include name="View_517_Wall_Square2">
         <control type="group">
             <include content="View_Group">
-                <param name="animation" value="Defs_Null" />
+                <param name="animation" value="Animation_Nav_Fast" />
             </include>
             <visible>Control.IsVisible(517)</visible>
             <include content="View_51_Wall_Container">
@@ -781,7 +781,7 @@
     <include name="View_512_Wall_Icons">
         <control type="group">
             <include content="View_Group">
-                <param name="animation" value="Defs_Null" />
+                <param name="animation" value="Animation_Nav_Fast" />
             </include>
             <visible>Control.IsVisible(512)</visible>
             <include content="View_51_Wall_Container">
@@ -793,7 +793,7 @@
                 <param name="iconheight" value="220" />
                 <param name="diffuse" value="diffuse/icon-wall.png" />
                 <param name="viewtype" value="Icon Wall" />
-                <param name="viewtypename" value="icon" />
+                <param name="viewtypename" value="list" />
                 <param name="visible" value="$EXP[Exp_View_512] | $EXP[InGameAEL]" />
                 <include>View_Vertical_Movement</include>
             </include>
@@ -1002,7 +1002,9 @@
         <param name="viewtypename" default="list" />
         <definition>
             <control type="group">
-                <include>View_Group</include>
+                <include content="View_Group">
+                    <param name="animation" value="Animation_Nav_Fast" />
+                </include>
                 <visible>Control.IsVisible($PARAM[id])</visible>
                 <include content="View_51_Wall_Container">
                     <param name="id" value="$PARAM[id]" />

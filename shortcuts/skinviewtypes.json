@@ -4,20 +4,21 @@
         "50":   "List",
         "51":   "Poster Wall",
         "52":   "Poster Showcase",
-        "53":   "Poster",
+        "516":  "Landscape Info",
+        "517":  "Square Wall2",
+        "529":  "Flix Landscape",
         "500":  "List Square",
+        "512":  "Icon Wall",
+        "53":   "Poster",
         "501":  "MediaInfo",
         "502":  "MediaInfo Extended",
         "503":  "Banners",
         "504":  "Tri Panel",
         "510":  "Square Wall",
         "511":  "Landscape Wall",
-        "512":  "Icon Wall",
         "513":  "Circle Wall",
         "514":  "Info Wall",
         "515":  "Landscape Wall Small",
-        "516":  "Landscape Info",
-        "517":  "Square Wall2",
         "520":  "Showcase Square",
         "521":  "Landscape Showcase",
         "522":  "Showcase Seasons",
@@ -27,7 +28,6 @@
         "526":  "Flix Poster",
         "527":  "Showcase Square2",
         "528":  "Flix Poster2",
-        "529":  "Flix Landscape",
         "540":  "ROM Trailer",
         "541":  "ROM Info Wall Trailer"
     },
@@ -40,39 +40,39 @@
         },
         "videos": {
             "rule": "Container.Content(videos)",
-            "viewtypes": ["52", "500", "501", "502", "504", "511", "515", "525", "526", "528", "529", "521"],
+            "viewtypes": ["500", "529"],
             "library": "500",
             "plugins": "500"
         },
         "movies": {
             "rule": "Container.Content(movies)",
-            "viewtypes": ["50", "51", "516", "52", "529", "526", "528", "521", "501", "502", "504", "503", "511", "514", "515", "521", "53", "523"],
+            "viewtypes": ["50", "51", "516", "52", "529"],
             "library": "51",
             "plugins": "51"
         },
         "sets": {
             "rule": "Container.Content(sets)",
-            "viewtypes": ["50", "51", "52", "53", "500", "501", "502", "503", "504", "511", "514", "515", "516", "510", "517", "521", "525", "526", "528", "529"],
-            "library": "50",
-            "plugins": "50"
+            "viewtypes": ["50", "51", "52", "500", "516", "517", "529"],
+            "library": "516",
+            "plugins": "516"
         },
         "tvshows": {
             "rule": "Container.Content(tvshows)",
-            "viewtypes": ["50", "525", "526", "528", "529", "501", "502", "504", "503", "51", "511", "514", "516", "515", "52", "521", "53", "523"],
-            "library": "50",
-            "plugins": "50"
+            "viewtypes": ["50", "51", "516", "52", "529"],
+            "library": "516",
+            "plugins": "516"
         },
         "seasons": {
             "rule": "Container.Content(seasons)",
-            "viewtypes": ["50", "51", "52", "53", "503", "514", "516", "522", "524", "526", "528"],
-            "library": "50",
-            "plugins": "50"
+            "viewtypes": ["50", "51", "516", "52", "529"],
+            "library": "52",
+            "plugins": "52"
         },
         "episodes": {
             "rule": "Container.Content(episodes)",
-            "viewtypes": ["50", "500", "501", "502", "503", "504", "511", "515", "521", "525", "529"],
-            "library": "50",
-            "plugins": "50"
+            "viewtypes": ["50", "51", "516", "52", "529"],
+            "library": "516",
+            "plugins": "516"
         },
         "videoversions": {
             "rule": "Container.Content(videoversions)",
@@ -172,9 +172,9 @@
         },
         "files": {
             "rule": "Container.Content(files)",
-            "viewtypes": ["50", "500", "529", "510", "517"],
-            "library": "500",
-            "plugins": "500"
+            "viewtypes": ["512", "50", "500", "529", "517"],
+            "library": "512",
+            "plugins": "512"
         },
         "sources": {
             "rule": "Container.Content(sources)",
@@ -184,7 +184,7 @@
         },
         "addons": {
             "rule": "Container.Content(addons)",
-            "viewtypes": ["50", "500", "529", "510", "517", "527"],
+            "viewtypes": ["50", "500", "529", "517", "512"],
             "library": "500",
             "plugins": "500"
         },

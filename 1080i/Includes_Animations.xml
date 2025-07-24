@@ -360,4 +360,11 @@
         <animation effect="fade" time="0" end="95" condition="String.IsEqual(Skin.String(AlphaValue_Highlight),5)">Conditional</animation>
         <animation effect="fade" time="0" end="100" condition="String.IsEmpty(Skin.String(AlphaValue_Highlight)) | String.IsEqual(Skin.String(AlphaValue_Highlight),0)">Conditional</animation>
     </include>
+
+    <include name="Animation_Nav_Fast">
+        <animation type="Visible" reversible="false">
+            <effect type="fade" start="90" end="100" time="100" delay="10" tween="sine" easing="in" />
+            <effect type="zoom" start="103" end="100" time="150" delay="10" center="auto" tween="sine" easing="out" />
+        </animation>
+    </include>
 </includes>

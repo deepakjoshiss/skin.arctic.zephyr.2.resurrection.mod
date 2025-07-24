@@ -484,7 +484,7 @@
         <definition>
             <control type="group">
                 <include content="View_Group">
-                    <param name="animation" value="Defs_Null" />
+                    <param name="animation" value="Animation_Nav_Fast" />
                 </include>
                 <visible>Control.IsVisible($PARAM[id])</visible>
                 <include content="View_51_Wall_Container">
@@ -650,7 +650,7 @@
         <definition>
             <control type="group">
                 <include content="View_Group">
-                    <param name="animation" value="Defs_Null" />
+                    <param name="animation" value="Animation_Nav_Fast" />
                 </include>
                 <visible>Control.IsVisible($PARAM[id])</visible>
                 <include content="View_51_Flix_Container">

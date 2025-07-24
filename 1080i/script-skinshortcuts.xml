@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
     <defaultcontrol always="true">313</defaultcontrol>
-    <onunload condition="String.IsEmpty(Window(home).Property(skinshortcuts-widgets-clicked))">RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=301&amp;levels=1&amp;group=mainmenu|powermenu|searchmenu)</onunload>
-    <onunload condition="!String.IsEmpty(Window(home).Property(skinshortcuts-widgets-clicked))">ClearProperty(skinshortcuts-widgets-clicked,Home)</onunload>
+    <!-- <onunload condition="String.IsEmpty(Window(home).Property(skinshortcuts-widgets-clicked))">RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=301&amp;levels=1&amp;group=mainmenu|powermenu|searchmenu)</onunload> -->
+    <!-- <onunload condition="!String.IsEmpty(Window(home).Property(skinshortcuts-widgets-clicked))">ClearProperty(skinshortcuts-widgets-clicked,Home)</onunload> -->
     <controls>
         <include>Global_Overlay</include>
 
