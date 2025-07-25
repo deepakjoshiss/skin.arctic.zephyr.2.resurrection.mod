@@ -4,7 +4,7 @@
         "50":   "List",
         "51":   "Poster Wall",
         "52":   "Poster Showcase",
-        "516":  "Landscape Info",
+        "516":  "Banner Wall",
         "517":  "Square Wall2",
         "529":  "Flix Landscape",
         "500":  "List Square",
@@ -40,7 +40,7 @@
         },
         "videos": {
             "rule": "Container.Content(videos)",
-            "viewtypes": ["500", "529"],
+            "viewtypes": ["500", "529", "512"],
             "library": "500",
             "plugins": "500"
         },
@@ -52,9 +52,9 @@
         },
         "sets": {
             "rule": "Container.Content(sets)",
-            "viewtypes": ["50", "51", "52", "500", "516", "517", "529"],
-            "library": "516",
-            "plugins": "516"
+            "viewtypes": ["50", "51", "52", "512", "500", "516", "517", "529"],
+            "library": "512",
+            "plugins": "512"
         },
         "tvshows": {
             "rule": "Container.Content(tvshows)",

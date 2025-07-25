@@ -2415,6 +2415,7 @@
         <param name="numericstarrating" default="!Skin.HasSetting(DisableStarRating)" />
         <param name="top250" default="true" />
         <param name="rt_rating" default="ListItem.Property(RottenTomatoes_Rating)" />
+        <param name="imdb_ranking" default="ListItem.Property(IMDB_Ranking)" />
         <param name="imdb_rating" default="ListItem.Rating(imdb)" />
 
         <definition>
@@ -2441,6 +2442,19 @@
                     <visible>!Skin.HasSetting(Ratings.IMDB)</visible>
                     <visible>$PARAM[top250]</visible>
                     <visible>!Skin.HasSetting(Ratings.Top250)</visible>
+                </control>
+
+                <control type="label">
+                    <textcolor>main_fg_100</textcolor>
+                    <top>0</top>
+                    <width>auto</width>
+                    <height>30</height>
+                    <align>right</align>
+                    <font>font_submenu</font>
+                    <label>$INFO[$PARAM[imdb_ranking],#, ]</label>
+                    <visible>!String.IsEmpty($PARAM[imdb_ranking])</visible>
+                    <visible>$PARAM[imdb]</visible>
+                    <visible>!Skin.HasSetting(Ratings.IMDB)</visible>
                 </control>
 
                 <control type="image">
@@ -2488,8 +2502,7 @@
                 <control type="image" description="remove the rtfresh texture line for certified logo">
                     <width>32</width>
                     <height>32</height>
-                    <!-- <texture colordiffuse="$PARAM[colordiffuse]">flags/$PARAM[directory]/ratings/rtfresh.png</texture> -->
-                    <texture colordiffuse="$PARAM[colordiffuse]">flags/$PARAM[directory]/ratings/certified.png</texture>
+                    <texture colordiffuse="$PARAM[colordiffuse]">flags/$PARAM[directory]/ratings/certifiedo.png</texture>
                     <visible>!String.IsEmpty($PARAM[rt_rating])</visible>
                     <visible>Integer.IsGreater($PARAM[rt_rating],74)</visible>
                     <visible>$PARAM[rottentomatoes]</visible>
@@ -2671,7 +2684,7 @@
                     <visible>$PARAM[usermeter]</visible>
                     <visible>!Skin.HasSetting(Ratings.RottenTomatoes)</visible>
                 </control>
-                <control type="image">
+                <!-- <control type="image">
                     <width>32</width>
                     <height>32</height>
                     <texture colordiffuse="$PARAM[colordiffuse]">flags/$PARAM[directory]/ratings/rtrotten.png</texture>
@@ -2679,8 +2692,8 @@
                     <visible>Integer.IsGreater(Container(99950).ListItem.Property(RottenTomatoes_Rating),0) + !Integer.IsGreater(Container(99950).ListItem.Property(RottenTomatoes_Rating),59)</visible>
                     <visible>$PARAM[rottentomatoes]</visible>
                     <visible>!Skin.HasSetting(Ratings.RottenTomatoes)</visible>
-                </control>
-                <control type="image">
+                </control> -->
+                <!-- <control type="image">
                     <width>32</width>
                     <height>32</height>
                     <texture colordiffuse="$PARAM[colordiffuse]">flags/$PARAM[directory]/ratings/rtfresh.png</texture>
@@ -2688,8 +2701,8 @@
                     <visible>Integer.IsGreater(Container(99950).ListItem.Property(RottenTomatoes_Rating),59) + !Integer.IsGreater(Container(99950).ListItem.Property(RottenTomatoes_Rating),74)</visible>
                     <visible>$PARAM[rottentomatoes]</visible>
                     <visible>!Skin.HasSetting(Ratings.RottenTomatoes)</visible>
-                </control>
-                <control type="image" description="remove the rtfresh texture line for certified logo">
+                </control> -->
+                <!-- <control type="image" description="remove the rtfresh texture line for certified logo">
                     <width>32</width>
                     <height>32</height>
                     <texture colordiffuse="$PARAM[colordiffuse]">flags/$PARAM[directory]/ratings/rtfresh.png</texture>
@@ -2698,7 +2711,7 @@
                     <visible>Integer.IsGreater(Container(99950).ListItem.Property(RottenTomatoes_Rating),74)</visible>
                     <visible>$PARAM[rottentomatoes]</visible>
                     <visible>!Skin.HasSetting(Ratings.RottenTomatoes)</visible>
-                </control>
+                </control> -->
                 <control type="label">
                     <textcolor>main_fg_100</textcolor>
                     <top>2</top>
