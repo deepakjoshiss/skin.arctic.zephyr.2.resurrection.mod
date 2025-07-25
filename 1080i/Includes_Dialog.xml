@@ -653,16 +653,19 @@
 
     <include name="Dialog_Background_Standard">
         <param name="border">20</param>
-        <param name="transparency">false</param>
+        <param name="diffuse">special://skin/extras/backgrounds/dialogs/coal_blur.png</param>
+        <param name="diffuse_color">dialog_bg_90</param> />
         <definition>
             <control type="group">
-                <include condition="$PARAM[transparency]">Dialog_Background_Transparency</include>
                 <control type="image">
-                    <texture border="20">special://skin/extras/backgrounds/dialogs/coal_blur.png</texture>
+                    <texture colordiffuse="$PARAM[diffuse_color]" border="20">$PARAM[diffuse]</texture>
                 </control>
-                <control type="image">
+                <!-- <control type="image">
+                    <texture colordiffuse="$PARAM[diffuse_color]" border="20">special://skin/extras/backgrounds/dialogs/coal_blur.png</texture>
+                </control> -->
+                <!-- <control type="image">
                     <texture colordiffuse="dialog_overlay" border="20">common/dialog.png</texture>
-                </control>
+                </control> -->
             </control>
         </definition>
     </include>

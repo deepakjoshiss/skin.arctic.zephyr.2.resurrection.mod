@@ -114,17 +114,12 @@
         <font>
             <name>font_statusbar_s_bold</name>
             <filename>RobotoCondensed-Bold.ttf</filename>
-            <size>24</size>
+            <size>22</size>
         </font>
         <font>
             <name>font_statusbar_medium</name>
             <filename>RobotoCondensed-Medium.ttf</filename>
             <size>24</size>
-        </font>
-        <font>
-            <name>font_statusbar_s</name>
-            <filename>RobotoCondensed-Regular.ttf</filename>
-            <size>22</size>
         </font>
         <font>
             <name>font_statusbar_xs</name>
@@ -193,9 +188,10 @@
         <!-- Big weather temp -->        
         <font>
             <name>font_weather_currenttemp</name>
-            <filename>RobotoCondensed-Bold.ttf</filename>
-            <size>150</size>
-            <style>bold</style>
+            <filename>RobotoCondensed-Regular.ttf</filename>
+            <aspect>1.1</aspect>
+            <style>lighten</style>            
+            <size>100</size>
         </font>
         <font>
             <name>font_weather_bold</name>

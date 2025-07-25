@@ -222,14 +222,17 @@
         </animation>
     </include>
     <include name="Animation_FadeIn_SlideUp">
-        <animation type="Visible" reversible="false">
-            <effect type="fade" start="0" end="100" time="300" delay="150"/>
-            <effect type="slide" start="0,48" end="0" center="auto" tween="back" easing="out" time="450" delay="150"/>
-        </animation>
-        <animation type="WindowOpen" reversible="false">
-            <effect type="fade" start="0" end="100" time="300" delay="150"/>
-            <effect type="slide" start="0,48" end="0" center="auto" tween="back" easing="out" time="450" delay="150"/>
-        </animation>
+        <param name="fade_end" default="100" />
+        <definition>
+            <animation type="Visible" reversible="false">
+                <effect type="fade" start="0" end="$PARAM[fade_end]" time="300" delay="150" />
+            <effect type="slide" start="0,48" end="0" center="auto" tween="back" easing="out" time="450" delay="150" />
+            </animation>
+            <animation type="WindowOpen" reversible="false">
+                <effect type="fade" start="0" end="$PARAM[fade_end]" time="300" delay="150" />
+            <effect type="slide" start="0,48" end="0" center="auto" tween="back" easing="out" time="450" delay="150" />
+            </animation>
+        </definition>
     </include>
 
     <include name="Animation_FadeOut">

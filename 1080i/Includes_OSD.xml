@@ -938,7 +938,7 @@
             <include>OSD_Clock</include>
             <include>OSD_Progress_Text</include>
             <include>OSD_Progress_Bar</include>
-            <include>OSD_Video_Codec_Info</include>
+            <!-- <include>OSD_Video_Codec_Info</include> -->
         </control>
     </include>
 
@@ -1912,59 +1912,59 @@
                 <right>20</right>
                 <include content="Object_Control" condition="$PARAM[selected]">
                     <param name="control">image</param>
-                    <texture border="40" colordiffuse="$VAR[ColorHighlight]">common/white.png</texture>
+                    <texture border="30" colordiffuse="$VAR[ColorHighlight]">common/white.png</texture>
                 </include>
+                <control type="image">
+                    <left>20</left>
+                    <width>60</width>
+                    <bordersize>18</bordersize>
+                    <aspectratio align="right">keep</aspectratio>
+                    <texture colordiffuse="$PARAM[color_fg]">$VAR[Image_IsCurrentStream]</texture>
+                    <visible>$PARAM[enabled]</visible>
+                </control>
+                <control type="image">
+                    <left>20</left>
+                    <width>60</width>
+                    <bordersize>18</bordersize>
+                    <aspectratio align="right">keep</aspectratio>
+                    <texture colordiffuse="$PARAM[color_fg]">buttons/check-off.png</texture>
+                    <visible>!$PARAM[enabled]</visible>
+                </control>
                 <control type="group">
-                    <left>40</left>
+                    <left>80</left>
                     <right>20</right>
                     <control type="label">
                         <textcolor>$PARAM[color_fg]</textcolor>
-                        <label>$VAR[Label_StreamLanguage,[UPPERCASE],[/UPPERCASE]]$INFO[ListItem.Label2, | ,]</label>
+                        <font>font_statusbar_s_bold</font>
+                        <label>$VAR[Label_StreamLanguage,[UPPERCASE],[/UPPERCASE]]$INFO[ListItem.Label2, | ,]$INFO[ListItem.Property(codec), - ,]$VAR[Label_PlayerStream_IsForced,  ,]$VAR[Label_PlayerStream_IsDefault,  ,]$VAR[Label_PlayerStream_IsOriginal,  ,]</label>
                     </control>
-                    <control type="label">
-                        <right>240</right>
+                    <!-- <control type="label">
+                        <right>180</right>
                         <align>right</align>
                         <label>$VAR[Label_PlayerStream_IsForced,  ,]$VAR[Label_PlayerStream_IsDefault,  ,]$VAR[Label_PlayerStream_IsOriginal,  ,]$INFO[ListItem.Property(codec),  ,]$INFO[ListItem.Property(channels),  , $LOCALIZE[10127]]$INFO[ListItem.Property(bitrate),  , bps]</label>
                         <bottom>2</bottom>
-                        <font>font_tiny_bold</font>
+                        <font>font_statusbar_s</font>
                         <textcolor>$PARAM[color_fg]</textcolor>
-                    </control>
+                    </control> -->
 
-                    <control type="image">
-                        <right>120</right>
+                    <!-- <control type="image">
+                        <right>90</right>
                         <top>-1</top>
                         <bottom>1</bottom>
-                        <width>80</width>
-                        <bordersize>22</bordersize>
+                        <width>60</width>
+                        <bordersize>16</bordersize>
                         <aspectratio align="right">keep</aspectratio>
                         <texture colordiffuse="$PARAM[color_fg]">flags/cc.png</texture>
                         <animation effect="fade" end="33" condition="String.IsEmpty(ListItem.Property(isimpaired))">Conditional</animation>
-                    </control>
+                    </control> -->
 
-                    <control type="image">
-                        <right>60</right>
-                        <width>80</width>
-                        <bordersize>28</bordersize>
-                        <aspectratio align="right">keep</aspectratio>
-                        <texture colordiffuse="$PARAM[color_fg]">$VAR[Image_IsCurrentStream]</texture>
-                        <visible>$PARAM[enabled]</visible>
-                    </control>
-                    <control type="image">
-                        <right>60</right>
-                        <width>80</width>
-                        <bordersize>28</bordersize>
-                        <aspectratio align="right">keep</aspectratio>
-                        <texture colordiffuse="$PARAM[color_fg]">buttons/check-off.png</texture>
-                        <visible>!$PARAM[enabled]</visible>
-                    </control>
-
-                    <control type="image">
+                    <!-- <control type="image">
                         <right>0</right>
-                        <width>80</width>
-                        <bordersize>18</bordersize>
+                        <width>60</width>
+                        <bordersize>12</bordersize>
                         <aspectratio align="right">keep</aspectratio>
                         <texture>$INFO[ListItem.Property(language),flags/colorful/language/,.png]</texture>
-                    </control>
+                    </control> -->
                 </control>
             </control>
         </definition>
@@ -1990,7 +1990,7 @@
                 <param name="transparency">true</param>
             </include>
             <include>OSD_Stream_Selector_Divider</include>
-            <height>760</height>
+            <height>570</height>
             <visible>Integer.IsGreater(Container($PARAM[id]).NumItems,6)</visible>
         </control>
         <control type="group">
@@ -1999,7 +1999,7 @@
                 <param name="transparency">true</param>
             </include>
             <include>OSD_Stream_Selector_Divider</include>
-            <height>680</height>
+            <height>540</height>
             <visible>Integer.IsEqual(Container($PARAM[id]).NumItems,6)</visible>
         </control>
         <control type="group">
@@ -2008,7 +2008,7 @@
                 <param name="transparency">true</param>
             </include>
             <include>OSD_Stream_Selector_Divider</include>
-            <height>600</height>
+            <height>480</height>
             <visible>Integer.IsEqual(Container($PARAM[id]).NumItems,5)</visible>
         </control>
         <control type="group">
@@ -2017,7 +2017,7 @@
                 <param name="transparency">true</param>
             </include>
             <include>OSD_Stream_Selector_Divider</include>
-            <height>520</height>
+            <height>420</height>
             <visible>Integer.IsEqual(Container($PARAM[id]).NumItems,4)</visible>
         </control>
         <control type="group">
@@ -2026,7 +2026,7 @@
                 <param name="transparency">true</param>
             </include>
             <include>OSD_Stream_Selector_Divider</include>
-            <height>440</height>
+            <height>360</height>
             <visible>Integer.IsEqual(Container($PARAM[id]).NumItems,3)</visible>
         </control>
         <control type="group">
@@ -2035,7 +2035,7 @@
                 <param name="transparency">true</param>
             </include>
             <include>OSD_Stream_Selector_Divider</include>
-            <height>360</height>
+            <height>300</height>
             <visible>Integer.IsEqual(Container($PARAM[id]).NumItems,2)</visible>
         </control>
         <control type="group">
@@ -2044,33 +2044,35 @@
                 <param name="transparency">true</param>
             </include>
             <include>OSD_Stream_Selector_Divider</include>
-            <height>280</height>
+            <height>240</height>
             <visible>Integer.IsLess(Container($PARAM[id]).NumItems,2)</visible>
         </control>
     </include>
 
     <include name="OSD_Stream_Selector">
-        <param name="width">960</param>
+        <param name="width">640</param>
         <param name="enabled">true</param>
         <param name="toggle">false</param>
         <definition>
             <control type="group">
                 <visible>!Window.IsVisible(DialogSettings.xml)</visible>
                 <visible>Control.HasFocus($PARAM[buttonid]) | Control.HasFocus($PARAM[id])</visible>
-                <include>Animation_FadeIn_SlideUp</include>
+                <include content="Animation_FadeIn_SlideUp">
+                    <param name="fade_end" value="100"/>
+                </include>
                 <visible>!Integer.IsEqual(Container($PARAM[id]).NumItems,0) | Container($PARAM[id]).IsUpdating</visible>
                 <animation effect="fade" start="100" end="0" condition="Integer.IsEqual(Container($PARAM[id]).NumItems,0)">Conditional</animation>
                 <right>40</right>
                 <width>$PARAM[width]</width>
                 <bottom>150</bottom>
-                <height>760</height>
+                <height>570</height>
                 <control type="group">
-                    <animation effect="slide" start="0" end="0,80" condition="Integer.IsEqual(Container($PARAM[id]).NumItems,6)">Conditional</animation>
-                    <animation effect="slide" start="0" end="0,160" condition="Integer.IsEqual(Container($PARAM[id]).NumItems,5)">Conditional</animation>
-                    <animation effect="slide" start="0" end="0,240" condition="Integer.IsEqual(Container($PARAM[id]).NumItems,4)">Conditional</animation>
-                    <animation effect="slide" start="0" end="0,320" condition="Integer.IsEqual(Container($PARAM[id]).NumItems,3)">Conditional</animation>
-                    <animation effect="slide" start="0" end="0,400" condition="Integer.IsEqual(Container($PARAM[id]).NumItems,2)">Conditional</animation>
-                    <animation effect="slide" start="0" end="0,480" condition="Integer.IsLess(Container($PARAM[id]).NumItems,2)">Conditional</animation>
+                    <animation effect="slide" start="0" end="60" condition="Integer.IsEqual(Container($PARAM[id]).NumItems,6)">Conditional</animation>
+                    <animation effect="slide" start="0" end="0,120" condition="Integer.IsEqual(Container($PARAM[id]).NumItems,5)">Conditional</animation>
+                    <animation effect="slide" start="0" end="0,180" condition="Integer.IsEqual(Container($PARAM[id]).NumItems,4)">Conditional</animation>
+                    <animation effect="slide" start="0" end="0,240" condition="Integer.IsEqual(Container($PARAM[id]).NumItems,3)">Conditional</animation>
+                    <animation effect="slide" start="0" end="0,300" condition="Integer.IsEqual(Container($PARAM[id]).NumItems,2)">Conditional</animation>
+                    <animation effect="slide" start="0" end="0,360" condition="Integer.IsLess(Container($PARAM[id]).NumItems,2)">Conditional</animation>
                     <include content="OSD_Stream_Selector_BackgroundResizer">
                         <param name="id">$PARAM[id]</param>
                     </include>
@@ -2079,18 +2081,18 @@
                         <param name="icon">$PARAM[icon]</param>
                     </include>
                     <control type="panel" id="$PARAM[id]">
-                        <top>140</top>
+                        <top>130</top>
                         <bottom>40</bottom>
                         <ondown>$PARAM[buttonid]</ondown>
                         <onleft>$PARAM[buttonid]</onleft>
                         <onright>$PARAM[buttonid]</onright>
                         <onup>noop</onup>
-                        <itemlayout height="80">
+                        <itemlayout height="60">
                             <include content="OSD_Stream_Selector_Layout">
                                 <param name="enabled">$PARAM[enabled]</param>
                             </include>
                         </itemlayout>
-                        <focusedlayout height="80">
+                        <focusedlayout height="60">
                             <include content="OSD_Stream_Selector_Layout">
                                 <param name="selected">true</param>
                                 <param name="color_fg">$VAR[ColorSelected]</param>
