@@ -220,11 +220,18 @@ def cmd_shot(args):
         found = {f for f in found if f.lower().endswith('.png')}
         if found:
             new = os.path.join(SHOT_DIR, sorted(found)[-1])
-            # Wait for the write to settle.
-            size = -1
-            while size != os.path.getsize(new):
-                size = os.path.getsize(new)
-                time.sleep(0.2)
+            # Wait for the write to settle. The file appears before Kodi has
+            # written anything, so a zero size is "not ready", not "stable".
+            size, stable_until = -1, time.time() + 10
+            while time.time() < stable_until:
+                cur = os.path.getsize(new)
+                if cur > 0 and cur == size:
+                    break
+                size = cur
+                time.sleep(0.25)
+            if os.path.getsize(new) == 0:
+                print('screenshot file never got written: %s' % new)
+                return 1
             break
     if not new:
         print('no screenshot appeared in %s' % SHOT_DIR)

@@ -12,26 +12,26 @@
     <menu name="mainmenu" container="301">
         <item name="jellyfin" submenu="jellyfin">
             <label>Jellyfin</label>
-            <action>ActivateWindow(Videos,"plugin://plugin.video.jellycon/?mode=SHOW_ADDON_MENU&amp;type=library",return)</action>
+            <action>ActivateWindow(Videos,plugin://plugin.video.jellycon/?mode=SHOW_ADDON_MENU&amp;type=library,return)</action>
             <icon>special://skin/extras/icons/jellyfin.png</icon>
             <visible>System.HasAddon(plugin.video.jellycon)</visible>
         </item>
         <item name="media" submenu="media">
             <label>Media</label>
-            <action>ActivateWindow(Videos,"plugin://plugin.video.jellycon/?url=/Users/%7Buserid%7D/Items%3FParentId%3D031407224d13e5276604635a9769cd97%26Recursive%3DFalse%26ImageTypeLimit%3D1%26IsMissing%3DFalse%26Fields%3DDateCreated%252CEpisodeCount%252CSeasonCount%252CPath%252CGenres%252CStudios%252CEtag%252CTaglines%252CSortName%252CRecursiveItemCount%252CChildCount%252CProductionLocations%252CCriticRating%252COfficialRating%252CCommunityRating%252CPremiereDate%252CProductionYear%252CAirTime%252CStatus%252CTags%252CMediaStreams%252COverview%26format%3Djson&amp;mode=GET_CONTENT&amp;media_type=musicvideos",return)</action>
+            <action>ActivateWindow(Videos,plugin://plugin.video.jellycon/?url=/Users/%7Buserid%7D/Items%3FParentId%3D031407224d13e5276604635a9769cd97%26Recursive%3DFalse%26ImageTypeLimit%3D1%26IsMissing%3DFalse%26Fields%3DDateCreated%252CEpisodeCount%252CSeasonCount%252CPath%252CGenres%252CStudios%252CEtag%252CTaglines%252CSortName%252CRecursiveItemCount%252CChildCount%252CProductionLocations%252CCriticRating%252COfficialRating%252CCommunityRating%252CPremiereDate%252CProductionYear%252CAirTime%252CStatus%252CTags%252CMediaStreams%252COverview%26format%3Djson&amp;mode=GET_CONTENT&amp;media_type=musicvideos,return)</action>
             <icon>special://skin/extras/icons/video.png</icon>
             <visible>System.HasAddon(plugin.video.jellycon)</visible>
         </item>
         <item name="movies" submenu="movies">
             <label>$LOCALIZE[20342]</label>
-            <action condition="System.HasAddon(plugin.video.jellycon)">ActivateWindow(Videos,"plugin://plugin.video.jellycon/?url=/Users/%7Buserid%7D/Items%3FIncludeItemTypes%3DMovie%26CollapseBoxSetItems%3DTrue%26GroupItemsIntoCollections%3DTrue%26Recursive%3DTrue%26IsMissing%3DFalse%26Fields%3DDateCreated%252CEpisodeCount%252CSeasonCount%252CPath%252CGenres%252CStudios%252CEtag%252CTaglines%252CSortName%252CRecursiveItemCount%252CChildCount%252CProductionLocations%252CCriticRating%252COfficialRating%252CCommunityRating%252CPremiereDate%252CProductionYear%252CAirTime%252CStatus%252CTags%252CMediaStreams%252COverview%26ImageTypeLimit%3D1%26ParentId%3Df137a2dd21bbc1b99aa5c0f6bf02a805%26format%3Djson&amp;mode=GET_CONTENT&amp;media_type=movies",return)</action>
+            <action condition="System.HasAddon(plugin.video.jellycon)">ActivateWindow(Videos,plugin://plugin.video.jellycon/?url=/Users/%7Buserid%7D/Items%3FIncludeItemTypes%3DMovie%26CollapseBoxSetItems%3DTrue%26GroupItemsIntoCollections%3DTrue%26Recursive%3DTrue%26IsMissing%3DFalse%26Fields%3DDateCreated%252CEpisodeCount%252CSeasonCount%252CPath%252CGenres%252CStudios%252CEtag%252CTaglines%252CSortName%252CRecursiveItemCount%252CChildCount%252CProductionLocations%252CCriticRating%252COfficialRating%252CCommunityRating%252CPremiereDate%252CProductionYear%252CAirTime%252CStatus%252CTags%252CMediaStreams%252COverview%26ImageTypeLimit%3D1%26ParentId%3Df137a2dd21bbc1b99aa5c0f6bf02a805%26format%3Djson&amp;mode=GET_CONTENT&amp;media_type=movies,return)</action>
             <action condition="Library.HasContent(movies)">ActivateWindow(Videos,videodb://movies/titles/,return)</action>
             <action condition="!Library.HasContent(movies)">ActivateWindow(Videos,files,return)</action>
             <icon>special://skin/extras/icons/film.png</icon>
         </item>
         <item name="tvshows" submenu="tvshows">
             <label>$LOCALIZE[20343]</label>
-            <action condition="System.HasAddon(plugin.video.jellycon)">ActivateWindow(Videos,"plugin://plugin.video.jellycon/?url=/Users/%7Buserid%7D/Items%3FFields%3DDateCreated%252CEpisodeCount%252CSeasonCount%252CPath%252CGenres%252CStudios%252CEtag%252CTaglines%252CSortName%252CRecursiveItemCount%252CChildCount%252CProductionLocations%252CCriticRating%252COfficialRating%252CCommunityRating%252CPremiereDate%252CProductionYear%252CAirTime%252CStatus%252CTags%252CMediaStreams%252COverview%26ImageTypeLimit%3D1%26IsMissing%3DFalse%26IncludeItemTypes%3DSeries%26Recursive%3DTrue%26format%3Djson&amp;mode=GET_CONTENT&amp;media_type=tvshows",return)</action>
+            <action condition="System.HasAddon(plugin.video.jellycon)">ActivateWindow(Videos,plugin://plugin.video.jellycon/?url=/Users/%7Buserid%7D/Items%3FFields%3DDateCreated%252CEpisodeCount%252CSeasonCount%252CPath%252CGenres%252CStudios%252CEtag%252CTaglines%252CSortName%252CRecursiveItemCount%252CChildCount%252CProductionLocations%252CCriticRating%252COfficialRating%252CCommunityRating%252CPremiereDate%252CProductionYear%252CAirTime%252CStatus%252CTags%252CMediaStreams%252COverview%26ImageTypeLimit%3D1%26IsMissing%3DFalse%26IncludeItemTypes%3DSeries%26Recursive%3DTrue%26format%3Djson&amp;mode=GET_CONTENT&amp;media_type=tvshows,return)</action>
             <action condition="Library.HasContent(tvshows)">ActivateWindow(Videos,videodb://tvshows/titles/,return)</action>
             <action condition="!Library.HasContent(tvshows)">ActivateWindow(Videos,files,return)</action>
             <icon>special://skin/extras/icons/tv.png</icon>
