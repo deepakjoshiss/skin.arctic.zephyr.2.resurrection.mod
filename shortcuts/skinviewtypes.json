@@ -40,9 +40,9 @@
         },
         "videos": {
             "rule": "Container.Content(videos)",
-            "viewtypes": ["500", "529", "512"],
-            "library": "500",
-            "plugins": "500"
+            "viewtypes": ["50", "516", "500", "529"],
+            "library": "516",
+            "plugins": "516"
         },
         "movies": {
             "rule": "Container.Content(movies)",

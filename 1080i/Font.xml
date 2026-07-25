@@ -195,9 +195,8 @@
         </font>
         <font>
             <name>font_weather_bold</name>
-            <filename>RobotoCondensed-Bold.ttf</filename>
+            <filename>RobotoCondensed-Regular.ttf</filename>
             <size>38</size>
-            <style>bold</style>
         </font>
 
         <!-- Plot info overlay -->
