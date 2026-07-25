@@ -12,75 +12,63 @@
     <menu name="mainmenu" container="301">
         <item name="jellyfin" submenu="jellyfin">
             <label>Jellyfin</label>
-            <action>ActivateWindow(Videos,plugin://plugin.video.jellycon/?mode=SHOW_ADDON_MENU&amp;type=library,return)</action>
+            <action>ActivateWindow(Videos,plugin://plugin.video.jellycon/?mode=SHOW_ADDON_MENU&amp;type=global_list_library,return)</action>
             <icon>special://skin/extras/icons/jellyfin.png</icon>
-            <visible>System.HasAddon(plugin.video.jellycon)</visible>
         </item>
-        <item name="media" submenu="media">
+        <item name="media">
             <label>Media</label>
-            <action>ActivateWindow(Videos,plugin://plugin.video.jellycon/?url=/Users/%7Buserid%7D/Items%3FParentId%3D031407224d13e5276604635a9769cd97%26Recursive%3DFalse%26ImageTypeLimit%3D1%26IsMissing%3DFalse%26Fields%3DDateCreated%252CEpisodeCount%252CSeasonCount%252CPath%252CGenres%252CStudios%252CEtag%252CTaglines%252CSortName%252CRecursiveItemCount%252CChildCount%252CProductionLocations%252CCriticRating%252COfficialRating%252CCommunityRating%252CPremiereDate%252CProductionYear%252CAirTime%252CStatus%252CTags%252CMediaStreams%252COverview%26format%3Djson&amp;mode=GET_CONTENT&amp;media_type=musicvideos,return)</action>
-            <icon>special://skin/extras/icons/video.png</icon>
-            <visible>System.HasAddon(plugin.video.jellycon)</visible>
+            <action>ActivateWindow(Videos,plugin://plugin.video.jellycon/?url=/Users/%7Buserid%7D/Items%3FParentId%3De2c00f297a5f80af390f52f72e782147%26Recursive%3DFalse%26ImageTypeLimit%3D1%26IsMissing%3DFalse%26Fields%3DDateCreated%252CEpisodeCount%252CSeasonCount%252CPath%252CGenres%252CStudios%252CEtag%252CTaglines%252CSortName%252CRecursiveItemCount%252CChildCount%252CProductionLocations%252CCriticRating%252COfficialRating%252CCommunityRating%252CPremiereDate%252CProductionYear%252CAirTime%252CStatus%252CTags%252CParentId%252CMediaStreams%252COverview%26format%3Djson&amp;mode=GET_CONTENT&amp;media_type=musicvideos,return)</action>
+            <icon>special://skin/extras/icons/sets.png</icon>
         </item>
-        <item name="movies" submenu="movies">
+        <item name="20342" submenu="20342">
             <label>$LOCALIZE[20342]</label>
-            <action condition="System.HasAddon(plugin.video.jellycon)">ActivateWindow(Videos,plugin://plugin.video.jellycon/?url=/Users/%7Buserid%7D/Items%3FIncludeItemTypes%3DMovie%26CollapseBoxSetItems%3DTrue%26GroupItemsIntoCollections%3DTrue%26Recursive%3DTrue%26IsMissing%3DFalse%26Fields%3DDateCreated%252CEpisodeCount%252CSeasonCount%252CPath%252CGenres%252CStudios%252CEtag%252CTaglines%252CSortName%252CRecursiveItemCount%252CChildCount%252CProductionLocations%252CCriticRating%252COfficialRating%252CCommunityRating%252CPremiereDate%252CProductionYear%252CAirTime%252CStatus%252CTags%252CMediaStreams%252COverview%26ImageTypeLimit%3D1%26ParentId%3Df137a2dd21bbc1b99aa5c0f6bf02a805%26format%3Djson&amp;mode=GET_CONTENT&amp;media_type=movies,return)</action>
-            <action condition="Library.HasContent(movies)">ActivateWindow(Videos,videodb://movies/titles/,return)</action>
-            <action condition="!Library.HasContent(movies)">ActivateWindow(Videos,files,return)</action>
+            <action>ActivateWindow(Videos,plugin://plugin.video.jellycon/?url=/Users/%7Buserid%7D/Items%3FIncludeItemTypes%3DMovie%26CollapseBoxSetItems%3DFalse%26GroupItemsIntoCollections%3DFalse%26Recursive%3DTrue%26IsMissing%3DFalse%26Fields%3DDateCreated%252CEpisodeCount%252CSeasonCount%252CPath%252CGenres%252CStudios%252CEtag%252CTaglines%252CSortName%252CRecursiveItemCount%252CProviderIds%252CChildCount%252CProductionLocations%252CCriticRating%252COfficialRating%252CCommunityRating%252CPremiereDate%252CProductionYear%252CAirTime%252CStatus%252CTags%252CParentId%252CMediaStreams%252COverview%26ImageTypeLimit%3D1%26format%3Djson&amp;mode=GET_CONTENT&amp;media_type=movies,return)</action>
             <icon>special://skin/extras/icons/film.png</icon>
         </item>
         <item name="tvshows" submenu="tvshows">
             <label>$LOCALIZE[20343]</label>
-            <action condition="System.HasAddon(plugin.video.jellycon)">ActivateWindow(Videos,plugin://plugin.video.jellycon/?url=/Users/%7Buserid%7D/Items%3FFields%3DDateCreated%252CEpisodeCount%252CSeasonCount%252CPath%252CGenres%252CStudios%252CEtag%252CTaglines%252CSortName%252CRecursiveItemCount%252CChildCount%252CProductionLocations%252CCriticRating%252COfficialRating%252CCommunityRating%252CPremiereDate%252CProductionYear%252CAirTime%252CStatus%252CTags%252CMediaStreams%252COverview%26ImageTypeLimit%3D1%26IsMissing%3DFalse%26IncludeItemTypes%3DSeries%26Recursive%3DTrue%26format%3Djson&amp;mode=GET_CONTENT&amp;media_type=tvshows,return)</action>
-            <action condition="Library.HasContent(tvshows)">ActivateWindow(Videos,videodb://tvshows/titles/,return)</action>
-            <action condition="!Library.HasContent(tvshows)">ActivateWindow(Videos,files,return)</action>
+            <action>ActivateWindow(Videos,plugin://plugin.video.jellycon/?url=/Users/%7Buserid%7D/Items%3FFields%3DDateCreated%252CEpisodeCount%252CSeasonCount%252CPath%252CGenres%252CStudios%252CEtag%252CTaglines%252CSortName%252CRecursiveItemCount%252CChildCount%252CProductionLocations%252CCriticRating%252COfficialRating%252CCommunityRating%252CPremiereDate%252CProductionYear%252CAirTime%252CStatus%252CTags%252CMediaStreams%252COverview%26ImageTypeLimit%3D1%26IsMissing%3DFalse%26IncludeItemTypes%3DSeries%26Recursive%3DTrue%26format%3Djson&amp;mode=GET_CONTENT&amp;media_type=tvshows,return)</action>
             <icon>special://skin/extras/icons/tv.png</icon>
         </item>
-        <item name="music" submenu="music">
-            <label>$LOCALIZE[2]</label>
-            <action condition="Library.HasContent(music)">ActivateWindow(Music,musicdb://,return)</action>
-            <action condition="!Library.HasContent(music)">ActivateWindow(Music,files)</action>
-            <icon>special://skin/extras/icons/songs.png</icon>
-        </item>
-        <item name="livetv" submenu="livetv">
-            <label>$LOCALIZE[31103]</label>
-            <action condition="System.HasPVRAddon">ActivateWindow(TVChannels)</action>
-            <action condition="!System.HasPVRAddon">ActivateWindow(addonbrowser,addons://default_binary_addons_source/kodi.pvrclient,return)</action>
-            <icon>special://skin/extras/icons/livetv.png</icon>
-        </item>
-        <item name="addons">
+        <item name="24001" submenu="24001">
             <label>$LOCALIZE[24001]</label>
             <action>ActivateWindow(AddonBrowser)</action>
             <icon>special://skin/extras/icons/addons.png</icon>
         </item>
-        <item name="search" submenu="search">
+        <item name="137">
             <label>$LOCALIZE[137]</label>
-            <action>Skin.Reset(SearchTerm)</action>
-            <action>Skin.SetString(SearchTerm)</action>
-            <action>ActivateWindow(1138)</action>
+            <action>RunScript(plugin.video.jellycon,0,?mode=SEARCH_ALL)</action>
             <icon>special://skin/extras/icons/search.png</icon>
         </item>
-        <item name="videos" submenu="videos">
-            <label>$LOCALIZE[3]</label>
-            <action>ActivateWindow(Videos,root)</action>
-            <icon>DefaultVideo.png</icon>
-        </item>
-        <item name="playdisc" submenu="playdisc" visible="System.HasMediaDVD | System.HasMediaAudioCD">
-            <label>$LOCALIZE[341]</label>
-            <action>PlayDisc</action>
-            <icon>DefaultDVDFull.png</icon>
-            <visible>System.HasMediaDVD</visible>
-        </item>
-        <item name="settings" submenu="settings">
+        <item name="5" submenu="5">
             <label>$LOCALIZE[5]</label>
             <action>ActivateWindow(Settings)</action>
             <icon>special://skin/extras/icons/settings.png</icon>
-            <protect type="all" heading="$LOCALIZE[19098]" message="$LOCALIZE[31177]"/>
         </item>
-        <item name="power" submenu="power">
+        <item name="13012">
             <label>$LOCALIZE[13012]</label>
             <action>ActivateWindow(shutdownmenu)</action>
             <icon>special://skin/extras/icons/power.png</icon>
+        </item>
+        <item name="music" submenu="music">
+            <label>$LOCALIZE[2]</label>
+            <action>ActivateWindow(Videos,library://video/musicvideos/titles.xml/,return)</action>
+            <icon>special://skin/extras/icons/songs.png</icon>
+        </item>
+        <item name="31103" submenu="31103">
+            <label>$LOCALIZE[31103]</label>
+            <action>ActivateWindow(TVChannels)</action>
+            <icon>special://skin/extras/icons/livetv.png</icon>
+        </item>
+        <item name="videos" submenu="videos">
+            <label>$LOCALIZE[3]</label>
+            <action>ActivateWindow(Videos)</action>
+            <icon>DefaultVideo.png</icon>
+        </item>
+        <item name="dvd" submenu="dvd">
+            <label>$LOCALIZE[341]</label>
+            <action>PlayDVD()</action>
+            <icon>DefaultDVDFull.png</icon>
         </item>
     </menu>
     <!-- Movies Submenu -->
@@ -893,4 +881,387 @@
         </shortcut>
         <input label="$ADDON[script.skinshortcuts 32024]" type="text" for="action" />
     </groupings>
+
+    <!-- Ported from the live v2 menu -->
+    <submenu name="jellyfin">
+        <item name="home-settings">
+            <label>Home Settings</label>
+            <action>RunScript(script.skinshortcuts,type=manage&amp;group=mainmenu)</action>
+        </item>
+        <item name="restart-jellyfin">
+            <label>Restart Jellyfin</label>
+            <action>RunScript(skin.vinelec,generatefonts=true)</action>
+        </item>
+        <item name="jellyfin-search">
+            <label>Jellyfin Search</label>
+            <action>RunScript(plugin.video.jellycon,0,?mode=SEARCH_ALL)</action>
+        </item>
+        <item name="20077">
+            <label>$LOCALIZE[20077]</label>
+            <action>ActivateWindow(SkinSettings)</action>
+            <icon>special://skin/extras/icons/paintbrush2.png</icon>
+        </item>
+        <item name="jellyvin-settings">
+            <label>Jellyvin Settings</label>
+            <action>ActivateWindow(Videos,plugin://plugin.video.jellycon/?mode=SHOW_SETTINGS,return)</action>
+            <icon>special://home/addons/plugin.video.jellycon/icon.png</icon>
+        </item>
+        <item name="12600">
+            <label>$LOCALIZE[12600]</label>
+            <action>ActivateWindow(Weather)</action>
+        </item>
+    </submenu>
+
+    <submenu name="jellyfin.widgets" type="widgets">
+        <item name="recently-added">
+            <label>Recently Added</label>
+            <icon>special://home/addons/plugin.video.jellycon/icon.png</icon>
+            <property name="widgetPath">plugin://plugin.video.jellycon/?mode=WIDGET_CONTENT&amp;type=recently_added</property>
+            <property name="widgetTarget">videos</property>
+        </item>
+        <item name="continue-watching">
+            <label>Continue Watching</label>
+            <icon>special://home/addons/plugin.video.jellycon/icon.png</icon>
+            <property name="widgetPath">plugin://plugin.video.jellycon/?mode=WIDGET_CONTENT&amp;type=continue_watching</property>
+            <property name="widgetTarget">videos</property>
+        </item>
+        <item name="episodes-next-up-10">
+            <label>Episodes - Next Up (10)</label>
+            <icon>special://home/addons/plugin.video.jellycon/icon.png</icon>
+            <property name="widgetPath">plugin://plugin.video.jellycon/?mode=WIDGET_CONTENT&amp;type=nextup_episodes</property>
+            <property name="widgetTarget">videos</property>
+        </item>
+    </submenu>
+
+    <submenu name="media.widgets" type="widgets">
+        <item name="media-recently-added-10">
+            <label>Media - Recently Added (10)</label>
+            <icon>special://home/addons/plugin.video.jellycon/icon.png</icon>
+            <property name="widgetPath">plugin://plugin.video.jellycon/?url=/Users/%7Buserid%7D/Items%3FParentId%3D031407224d13e5276604635a9769cd97%26Recursive%3DFalse%26ImageTypeLimit%3D1%26IsMissing%3DFalse%26Fields%3DDateCreated%252CEpisodeCount%252CSeasonCount%252CPath%252CGenres%252CStudios%252CEtag%252CTaglines%252CSortName%252CRecursiveItemCount%252CChildCount%252CProductionLocations%252CCriticRating%252COfficialRating%252CCommunityRating%252CPremiereDate%252CProductionYear%252CAirTime%252CStatus%252CTags%252CParentId%252CMediaStreams%252COverview%26format%3Djson%26SortBy%3DDateCreated%26SortOrder%3DDescending%26Limit%3D10&amp;mode=GET_CONTENT&amp;media_type=musicvideos&amp;sort=none</property>
+            <property name="widgetTarget">videos</property>
+        </item>
+    </submenu>
+
+    <submenu name="20342">
+        <item name="localize-31173">
+            <label>$LOCALIZE[31173]</label>
+            <action>ActivateWindow(Videos,videodb://recentlyaddedmovies/,return)</action>
+            <icon>DefaultRecentlyAddedMovies.png</icon>
+        </item>
+        <item name="20434">
+            <label>$LOCALIZE[20434]</label>
+            <action>ActivateWindow(1133)</action>
+            <icon>DefaultSets.png</icon>
+        </item>
+        <item name="369">
+            <label>$LOCALIZE[369]</label>
+            <action>ActivateWindow(Videos,videodb://movies/titles/,return)</action>
+            <icon>DefaultMovieTitle.png</icon>
+        </item>
+        <item name="135">
+            <label>$LOCALIZE[135]</label>
+            <action>ActivateWindow(1132)</action>
+            <icon>DefaultGenre.png</icon>
+        </item>
+        <item name="localize-20451">
+            <label>$LOCALIZE[20451]</label>
+            <action>ActivateWindow(Videos,videodb://movies/countries/,return)</action>
+            <icon>special://skin/extras/icons/world.png</icon>
+        </item>
+        <item name="localize-20348">
+            <label>$LOCALIZE[20348]</label>
+            <action>ActivateWindow(Videos,videodb://movies/directors/,return)</action>
+            <icon>special://skin/extras/icons/director.png</icon>
+        </item>
+        <item name="562">
+            <label>$LOCALIZE[562]</label>
+            <action>ActivateWindow(1131)</action>
+            <icon>DefaultYear.png</icon>
+        </item>
+        <item name="344">
+            <label>$LOCALIZE[344]</label>
+            <action>ActivateWindow(Videos,videodb://movies/actors/,return)</action>
+            <icon>DefaultActor.png</icon>
+        </item>
+    </submenu>
+
+    <submenu name="20342.widgets" type="widgets">
+        <item name="continue-watching">
+            <label>Continue Watching</label>
+            <icon>special://home/addons/plugin.video.jellycon/icon.png</icon>
+            <property name="widgetPath">plugin://plugin.video.jellycon/?url=/Users/%7Buserid%7D/Items%3FIncludeItemTypes%3DMovie%26CollapseBoxSetItems%3DFalse%26GroupItemsIntoCollections%3DFalse%26Recursive%3DTrue%26IsMissing%3DFalse%26Fields%3DDateCreated%252CEpisodeCount%252CSeasonCount%252CPath%252CGenres%252CStudios%252CEtag%252CTaglines%252CSortName%252CRecursiveItemCount%252CChildCount%252CProductionLocations%252CCriticRating%252COfficialRating%252CCommunityRating%252CPremiereDate%252CProductionYear%252CAirTime%252CStatus%252CTags%252CParentId%252CMediaStreams%252COverview%26ImageTypeLimit%3D1%26format%3Djson%26Filters%3DIsResumable%26SortBy%3DDatePlayed%26SortOrder%3DDescending%26Limit%3D10&amp;mode=GET_CONTENT&amp;media_type=movies&amp;sort=none</property>
+            <property name="widgetTarget">videos</property>
+        </item>
+        <item name="recently-added">
+            <label>Recently Added</label>
+            <icon>special://home/addons/plugin.video.jellycon/icon.png</icon>
+            <property name="widgetPath">plugin://plugin.video.jellycon/?url=/Users/%7Buserid%7D/Items%3FIncludeItemTypes%3DMovie%26CollapseBoxSetItems%3DFalse%26GroupItemsIntoCollections%3DFalse%26Recursive%3DTrue%26IsMissing%3DFalse%26Fields%3DDateCreated%252CEpisodeCount%252CSeasonCount%252CPath%252CGenres%252CStudios%252CEtag%252CTaglines%252CSortName%252CRecursiveItemCount%252CProviderIds%252CChildCount%252CProductionLocations%252CCriticRating%252COfficialRating%252CCommunityRating%252CPremiereDate%252CProductionYear%252CAirTime%252CStatus%252CTags%252CParentId%252CMediaStreams%252COverview%26ImageTypeLimit%3D1%26format%3Djson%26IsPlayed%3DFalse%26SortBy%3DDateCreated%26SortOrder%3DDescending%26Filters%3DIsNotFolder%26Limit%3D10&amp;mode=GET_CONTENT&amp;media_type=movies&amp;sort=none</property>
+            <property name="widgetTarget">videos</property>
+        </item>
+        <item name="random">
+            <label>Random</label>
+            <icon>special://home/addons/plugin.video.jellycon/icon.png</icon>
+            <property name="widgetPath">plugin://plugin.video.jellycon/?mode=WIDGET_CONTENT&amp;type=random_movies</property>
+            <property name="widgetTarget">videos</property>
+        </item>
+    </submenu>
+
+    <submenu name="tvshows">
+        <item name="localize-31173">
+            <label>$LOCALIZE[31173]</label>
+            <action>ActivateWindow(Videos,videodb://recentlyaddedepisodes/,return)</action>
+            <icon>DefaultRecentlyAddedEpisodes.png</icon>
+        </item>
+        <item name="localize-626">
+            <label>$LOCALIZE[626]</label>
+            <action>ActivateWindow(Videos,videodb://inprogresstvshows/,return)</action>
+            <icon>special://skin/extras/icons/timer.png</icon>
+        </item>
+        <item name="369">
+            <label>$LOCALIZE[369]</label>
+            <action>ActivateWindow(Videos,videodb://tvshows/titles/,return)</action>
+            <icon>DefaultTVShowTitle.png</icon>
+        </item>
+        <item name="localize-20388">
+            <label>$LOCALIZE[20388]</label>
+            <action>ActivateWindow(Videos,videodb://tvshows/studios/,return)</action>
+            <icon>special://skin/extras/icons/musicvideo.png</icon>
+        </item>
+        <item name="135">
+            <label>$LOCALIZE[135]</label>
+            <action>ActivateWindow(Videos,videodb://tvshows/genres/,return)</action>
+            <icon>DefaultGenre.png</icon>
+        </item>
+        <item name="562">
+            <label>$LOCALIZE[562]</label>
+            <action>ActivateWindow(Videos,videodb://tvshows/years/,return)</action>
+            <icon>DefaultYear.png</icon>
+        </item>
+        <item name="344">
+            <label>$LOCALIZE[344]</label>
+            <action>ActivateWindow(Videos,videodb://tvshows/actors/,return)</action>
+            <icon>DefaultActor.png</icon>
+        </item>
+    </submenu>
+
+    <submenu name="tvshows.widgets" type="widgets">
+        <item name="tv-shows-in-progress-10">
+            <label>TV Shows - In Progress (10)</label>
+            <icon>special://home/addons/plugin.video.jellycon/icon.png</icon>
+            <property name="widgetPath">plugin://plugin.video.jellycon/?url=/Users/%7Buserid%7D/Items%3FFields%3DDateCreated%252CEpisodeCount%252CSeasonCount%252CPath%252CGenres%252CStudios%252CEtag%252CTaglines%252CSortName%252CRecursiveItemCount%252CChildCount%252CProductionLocations%252CCriticRating%252COfficialRating%252CCommunityRating%252CPremiereDate%252CProductionYear%252CAirTime%252CStatus%252CTags%252CParentId%252CMediaStreams%252COverview%26ImageTypeLimit%3D1%26IsMissing%3DFalse%26IncludeItemTypes%3DEpisode%26Recursive%3DTrue%26format%3Djson%26Limit%3D10%26SortBy%3DDatePlayed%26SortOrder%3DDescending%26Filters%3DIsResumable&amp;mode=GET_CONTENT&amp;media_type=Episodes&amp;sort=none&amp;name_format=Episode%7Cepisode_name_format</property>
+            <property name="widgetTarget">videos</property>
+        </item>
+        <item name="shows-next-up-20">
+            <label>Shows - Next Up (20)</label>
+            <icon>special://home/addons/plugin.video.jellycon/icon.png</icon>
+            <property name="widgetPath">plugin://plugin.video.jellycon/?url=/Shows/NextUp%3FFields%3DDateCreated%252CEpisodeCount%252CSeasonCount%252CPath%252CGenres%252CStudios%252CEtag%252CTaglines%252CSortName%252CRecursiveItemCount%252CChildCount%252CProductionLocations%252CCriticRating%252COfficialRating%252CCommunityRating%252CPremiereDate%252CProductionYear%252CAirTime%252CStatus%252CTags%252CMediaStreams%252COverview%26ImageTypeLimit%3D1%26IsMissing%3DFalse%26IncludeItemTypes%3DEpisode%26Recursive%3DTrue%26ParentId%3Da656b907eb3a73532e40e44b968d0225%26format%3Djson%26Limit%3D20%26Userid%3D%257Buserid%257D%26SortBy%3DDateCreated%26SortOrder%3DDescending%26Filters%3DIsNotFolder&amp;mode=GET_CONTENT&amp;media_type=Episodes&amp;sort=none&amp;name_format=Episode%7Cepisode_name_format</property>
+            <property name="widgetTarget">videos</property>
+        </item>
+        <item name="episodes-next-up-20">
+            <label>Episodes - Next Up (20)</label>
+            <icon>special://home/addons/plugin.video.jellycon/icon.png</icon>
+            <property name="widgetPath">plugin://plugin.video.jellycon/?mode=WIDGET_CONTENT&amp;type=nextup_episodes</property>
+            <property name="widgetTarget">videos</property>
+        </item>
+    </submenu>
+
+    <submenu name="24001">
+        <item name="localize-1037">
+            <label>$LOCALIZE[1037]</label>
+            <action>ActivateWindow(Videos,addons://sources/video,return)</action>
+            <icon>special://skin/extras/icons/video-addons.png</icon>
+        </item>
+        <item name="localize-1038">
+            <label>$LOCALIZE[1038]</label>
+            <action>ActivateWindow(Music,addons://sources/audio,return)</action>
+            <icon>special://skin/extras/icons/songs.png</icon>
+        </item>
+        <item name="localize-1043">
+            <label>$LOCALIZE[1043]</label>
+            <action>ActivateWindow(Programs,addons://sources/executable,return)</action>
+            <icon>special://skin/extras/icons/addons.png</icon>
+        </item>
+        <item name="localize-1039">
+            <label>$LOCALIZE[1039]</label>
+            <action>ActivateWindow(Pictures,addons://sources/image,return)</action>
+            <icon>special://skin/extras/icons/pictures.png</icon>
+        </item>
+        <item name="localize-24032">
+            <label>$LOCALIZE[24032]</label>
+            <action>ActivateWindow(AddonBrowser,addons://user/all,return)</action>
+            <icon>special://skin/extras/icons/database.png</icon>
+        </item>
+        <item name="localize-1">
+            <label>$LOCALIZE[1]</label>
+            <action>ActivateWindow(Pictures)</action>
+            <icon>special://skin/extras/icons/pictures.png</icon>
+        </item>
+        <item name="localize-8">
+            <label>$LOCALIZE[8]</label>
+            <action>ActivateWindow(Weather)</action>
+            <icon>special://skin/extras/icons/sun.png</icon>
+        </item>
+    </submenu>
+
+    <submenu name="24001.widgets" type="widgets">
+        <item name="1037">
+            <label>$LOCALIZE[1037]</label>
+            <icon>special://skin/extras/icons/video-addons.png</icon>
+            <property name="widgetPath">addons://sources/video/</property>
+            <property name="widgetTarget">videos</property>
+        </item>
+        <item name="10001">
+            <label>$LOCALIZE[10001]</label>
+            <icon>special://skin/extras/icons/addons.png</icon>
+            <property name="widgetPath">addons://sources/executable/</property>
+            <property name="widgetTarget">videos</property>
+        </item>
+    </submenu>
+
+    <submenu name="137.widgets" type="widgets">
+        <item name="weather">
+            <label>Weather</label>
+            <icon>special://skin/extras/icons/sun.png</icon>
+            <property name="widgetPath">Weather</property>
+            <property name="widgetTarget">videos</property>
+        </item>
+        <item name="jellyfin-libraries">
+            <label>Jellyfin Libraries</label>
+            <icon>special://home/addons/plugin.video.jellycon/icon.png</icon>
+            <property name="widgetPath">plugin://plugin.video.jellycon/?mode=SHOW_ADDON_MENU&amp;type=library</property>
+            <property name="widgetTarget">videos</property>
+        </item>
+    </submenu>
+
+    <submenu name="5">
+        <item name="7">
+            <label>$LOCALIZE[7]</label>
+            <action>ActivateWindow(FileManager)</action>
+            <icon>DefaultFolder.png</icon>
+        </item>
+        <item name="13200">
+            <label>$LOCALIZE[13200]</label>
+            <action>ActivateWindow(Profiles)</action>
+            <icon>DefaultUser.png</icon>
+        </item>
+        <item name="10007">
+            <label>$LOCALIZE[10007]</label>
+            <action>ActivateWindow(SystemInfo)</action>
+        </item>
+        <item name="14111">
+            <label>$LOCALIZE[14111]</label>
+            <action>ActivateWindow(EventLog,events://,return)</action>
+            <icon>DefaultUser.png</icon>
+        </item>
+    </submenu>
+
+    <submenu name="5.widgets" type="widgets">
+        <item name="settings">
+            <label>Settings</label>
+            <icon>special://skin/extras/icons/settings.png</icon>
+            <property name="widgetPath">Settings</property>
+            <property name="widgetTarget">videos</property>
+        </item>
+    </submenu>
+
+    <submenu name="13012.widgets" type="widgets">
+        <item name="system-info">
+            <label>System Info</label>
+            <icon>special://skin/extras/icons/sysinfo.png</icon>
+            <property name="widgetPath">Systeminfo</property>
+            <property name="widgetTarget">videos</property>
+        </item>
+    </submenu>
+
+    <submenu name="music">
+        <item name="133">
+            <label>$LOCALIZE[133]</label>
+            <action>ActivateWindow(Music,musicdb://artists/,return)</action>
+            <icon>DefaultMusicArtists.png</icon>
+        </item>
+        <item name="132">
+            <label>$LOCALIZE[132]</label>
+            <action>ActivateWindow(Music,musicdb://albums/,return)</action>
+            <icon>DefaultMusicAlbums.png</icon>
+        </item>
+        <item name="359">
+            <label>$LOCALIZE[359]</label>
+            <action>ActivateWindow(Music,musicdb://recentlyaddedalbums/,return)</action>
+            <icon>special://skin/extras/icons/recentlyadded.png</icon>
+        </item>
+        <item name="517">
+            <label>$LOCALIZE[517]</label>
+            <action>ActivateWindow(Music,musicdb://recentlyplayedalbums/,return)</action>
+            <icon>special://skin/extras/icons/recent.png</icon>
+        </item>
+        <item name="localize-10505">
+            <label>$LOCALIZE[10505]</label>
+            <action>ActivateWindow(Music,library://music/top100/top100albums.xml,return)</action>
+            <icon>special://skin/extras/icons/top100.png</icon>
+        </item>
+        <item name="744">
+            <label>$LOCALIZE[744]</label>
+            <action>ActivateWindow(Music,sources://music/,Return)</action>
+            <icon>DefaultFolder.png</icon>
+        </item>
+        <item name="15100">
+            <label>$LOCALIZE[15100]</label>
+            <action>ActivateWindow(Music,musicdb://,return)</action>
+            <icon>special://skin/extras/icons/database.png</icon>
+        </item>
+    </submenu>
+
+    <submenu name="31103">
+        <item name="localize-19023">
+            <label>$LOCALIZE[19023]</label>
+            <action>ActivateWindow(TVChannels)</action>
+            <icon>special://skin/extras/icons/tv.png</icon>
+        </item>
+        <item name="22020">
+            <label>$LOCALIZE[22020]</label>
+            <action>ActivateWindow(TVGuide)</action>
+            <icon>special://skin/extras/icons/tvguide.png</icon>
+        </item>
+        <item name="19163">
+            <label>$LOCALIZE[19163]</label>
+            <action>ActivateWindow(TVRecordings)</action>
+            <icon>special://skin/extras/icons/bookmark-star.png</icon>
+        </item>
+        <item name="19040">
+            <label>$LOCALIZE[19040]</label>
+            <action>ActivateWindow(TVTimers)</action>
+            <icon>special://skin/extras/icons/timer.png</icon>
+        </item>
+        <item name="137">
+            <label>$LOCALIZE[137]</label>
+            <action>ActivateWindow(TVSearch)</action>
+            <icon>special://skin/extras/icons/search.png</icon>
+        </item>
+    </submenu>
+
+    <submenu name="videos">
+        <item name="20389">
+            <label>$LOCALIZE[20389]</label>
+            <action>ActivateWindow(Videos,videodb://musicvideos/titles/,return)</action>
+            <icon>DefaultMusicVideos.png</icon>
+        </item>
+        <item name="744">
+            <label>$LOCALIZE[744]</label>
+            <action>ActivateWindow(Videos,Files,return)</action>
+            <icon>DefaultFolder.png</icon>
+        </item>
+        <item name="1037">
+            <label>$LOCALIZE[1037]</label>
+            <action>ActivateWindow(Videos,Addons,return)</action>
+            <icon>DefaultAddonVideo.png</icon>
+        </item>
+    </submenu>
+
+    <submenu name="dvd">
+        <item name="32033">
+            <label>$LOCALIZE[32033]</label>
+            <action>EjectTray()</action>
+            <icon>DefaultDVDFull.png</icon>
+        </item>
+    </submenu>
 </menus>
