@@ -39,6 +39,26 @@
             <size>30</size>
         </font>
         <font>
+            <name>font_small_29</name>
+            <filename>RobotoCondensed-Regular.ttf</filename>
+            <size>29</size>
+        </font>
+        <font>
+            <name>font_small_bold_29</name>
+            <filename>RobotoCondensed-Bold.ttf</filename>
+            <size>29</size>
+        </font>
+        <font>
+            <name>font_small_28</name>
+            <filename>RobotoCondensed-Regular.ttf</filename>
+            <size>28</size>
+        </font>
+        <font>
+            <name>font_small_bold_28</name>
+            <filename>RobotoCondensed-Bold.ttf</filename>
+            <size>28</size>
+        </font>
+        <font>
             <name>font_tiny</name>
             <filename>RobotoCondensed-Regular.ttf</filename>
             <size>26</size>
@@ -185,7 +205,7 @@
             <size>80</size>
             <style>bold</style>
         </font>
-        <!-- Big weather temp -->        
+        <!-- Big weather temp -->
         <font>
             <name>font_weather_currenttemp</name>
             <filename>RobotoCondensed-Regular.ttf</filename>
@@ -306,10 +326,36 @@
 
         <!-- Required for system -->
         <font>
+            <name>font10</name>
+            <filename>RobotoCondensed-Regular.ttf</filename>
+            <size>23</size>
+        </font>
+        <font>
+            <name>font12</name>
+            <filename>RobotoCondensed-Regular.ttf</filename>
+            <size>26</size>
+        </font>
+        <font>
             <name>font13</name>
             <filename>RobotoCondensed-Regular.ttf</filename>
             <size>30</size>
         </font>
+        <font>
+            <name>font14</name>
+            <filename>RobotoCondensed-Regular.ttf</filename>
+            <size>34</size>
+        </font>
+        <font>
+            <name>font45</name>
+            <filename>RobotoCondensed-Regular.ttf</filename>
+            <size>45</size>
+        </font>
+        <font>
+            <name>font60</name>
+            <filename>RobotoCondensed-Regular.ttf</filename>
+            <size>60</size>
+        </font>
+
         <font>
             <name>Clock</name>
             <filename>RobotoCondensed-Bold.ttf</filename>

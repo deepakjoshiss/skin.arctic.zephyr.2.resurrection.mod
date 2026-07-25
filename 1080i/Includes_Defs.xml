@@ -302,19 +302,12 @@
     </variable>
 
     <variable name="Def_Cast_List">
-        <value condition="!String.IsEmpty(ListItem.Cast)">plugin://plugin.video.themoviedb.helper?info=cast&amp;type=movie&amp;imdb_id=$INFO[ListItem.IMDBNumber]</value>
+        <value condition="!String.IsEmpty(ListItem.Cast)">plugin://plugin.video.themoviedb.helper?info=cast&amp;tmdb_type=movie&amp;imdb_id=$INFO[ListItem.IMDBNumber]</value>
     </variable>
 
     <variable name="Def_Set_List">
         <value condition="!String.IsEmpty(ListItem.SetID)">$INFO[ListItem.SetID,videodb://movies/sets/,/]</value>
         <value>-</value>
-    </variable>
-
-    <variable name="Def_Similar_List">
-        <value condition="!Skin.HasSetting(DisableExtendedInfo) + String.IsEqual(ListItem.DBType,tvshow)">plugin://plugin.video.themoviedb.helper?info=similar&amp;type=tv$VAR[Path_Param_Query]$VAR[Path_Param_Widget]</value>
-        <value condition="!Skin.HasSetting(DisableExtendedInfo) + String.IsEqual(ListItem.DBType,movie)">plugin://plugin.video.themoviedb.helper?info=similar&amp;type=movie$VAR[Path_Param_Query]$VAR[Path_Param_Widget]</value>
-        <value condition="String.IsEqual(ListItem.DBType,movie)">plugin://plugin.video.themoviedb.helper?info=similar&amp;type=movie&amp;imdb_id=$INFO[ListItem.IMDBNumber]$VAR[Path_Param_Widget]</value>
-        <value condition="String.IsEqual(ListItem.DBType,tvshow)">plugin://plugin.video.themoviedb.helper?info=similar&amp;type=tv&amp;imdb_id=$INFO[ListItem.IMDBNumber]$VAR[Path_Param_Widget]</value>
     </variable>
 
     <variable name="Def_Percentage_Rating">
@@ -432,8 +425,8 @@
     </variable>
 
     <variable name="Def_Trailer_Delay">
-        <value condition="String.IsEqual(Skin.String(Trailer_Delay),00:03)">$LOCALIZE[30112]</value>
-        <value condition="String.IsEqual(Skin.String(Trailer_Delay),00:06)">$LOCALIZE[30113]</value>
+        <value condition="String.IsEqual(Skin.String(Trailer_Delay),00:03)">$LOCALIZE[31594]</value>
+        <value condition="String.IsEqual(Skin.String(Trailer_Delay),00:06)">$LOCALIZE[31595]</value>
         <value condition="String.IsEqual(Skin.String(Trailer_Delay),00:09)">$LOCALIZE[31117]</value>
         <value condition="String.IsEqual(Skin.String(Trailer_Delay),00:14)">$LOCALIZE[31123]</value>
         <value condition="String.IsEqual(Skin.String(Trailer_Delay),00:19)">$LOCALIZE[31124]</value>
@@ -489,7 +482,7 @@
             <bottom>-16</bottom>
             <bordertexture border="32">common/dark-shadow-24.png</bordertexture>
             <bordersize>24</bordersize>
-            <texture border="16" colordiffuse="dialog_bg_100">common/rounded-dialog.png</texture>
+            <texture border="16" colordiffuse="dialog_bg_100">common/dialog.png</texture>
         </control>
     </include>
     <include name="Defs_Options_Grouplist">
@@ -543,6 +536,13 @@
         <texturefocus />
         <texturenofocus />
         <font />
+    </include>
+
+    <include name="Defs_Hidden_List">
+        <width>1</width>
+        <height>1</height>
+        <itemlayout width="1" height="1" />
+        <focusedlayout width="1" height="1" />
     </include>
 
     <!-- Keyboard and Numeric Keys -->
@@ -761,6 +761,14 @@
         <textureradiooffnofocus />
     </include>
     <!-- Shadows -->
+    <include name="Defs_Shadow_20">
+        <left>-20</left>
+        <right>-20</right>
+        <top>-20</top>
+        <bottom>-20</bottom>
+        <bordersize>20</bordersize>
+        <bordertexture border="32" colordiffuse="80000000">shadows/shadow-20.png</bordertexture>
+    </include>
     <include name="Defs_Shadow_24">
         <left>-24</left>
         <right>-24</right>
@@ -956,4 +964,9 @@
             </control>
         </definition>
     </include>
+
+    <variable name="Defs_Widgets_Browse">
+        <value condition="Skin.HasSetting(Widgets_Browse)">auto</value>
+        <value>never</value>
+    </variable>
 </includes>
