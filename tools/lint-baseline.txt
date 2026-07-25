@@ -1,0 +1,28 @@
+# Pre-existing lint findings, accepted as of this commit.
+# Regenerate: python3 tools/lint.py --update-baseline
+# Anything NOT listed here is a regression.
+missing-font-file|1080i/Defaults.xml|font file "arialbd.ttf" not found in fonts/ or Kodi's own font dir
+missing-font-file|1080i/Font.xml|font file "arialbd.ttf" not found in fonts/ or Kodi's own font dir
+missing-string|1080i/Custom_1120_EnableInfoButtons.xml|$LOCALIZE[31250] has no msgctxt "#31250" in language/resource.language.en_gb/strings.po
+missing-texture|1080i/ActionMenu.xml|texture "common/shadow-dialog-24.png" not found in media/, themes/ or any .xbt bundle
+missing-texture|1080i/Custom_1126_ExtraFanart.xml|texture "icons/spin-left.png" not found in media/, themes/ or any .xbt bundle
+missing-texture|1080i/Custom_1160_MediaInfo.xml|texture "common/box22.png" not found in media/, themes/ or any .xbt bundle
+missing-texture|1080i/Custom_1160_MediaInfo.xml|texture "common/shadow-dialog-24.png" not found in media/, themes/ or any .xbt bundle
+missing-texture|1080i/Custom_1161_SearchScreen.xml|texture "common/box22.png" not found in media/, themes/ or any .xbt bundle
+missing-texture|1080i/Includes_OSD.xml|texture "common/box22.png" not found in media/, themes/ or any .xbt bundle
+missing-texture|1080i/Includes_Systeminfo.xml|texture "common/box21.png" not found in media/, themes/ or any .xbt bundle
+missing-texture|1080i/Includes_View.xml|texture "common/box21.png" not found in media/, themes/ or any .xbt bundle
+missing-texture|shortcuts/jellyfin-1.DATA.xml|texture "DefaultShortcut.png" not found in media/, themes/ or any .xbt bundle
+missing-texture|shortcuts/jellyfin.DATA.xml|texture "DefaultShortcut.png" not found in media/, themes/ or any .xbt bundle
+missing-texture|shortcuts/mainmenu.DATA.xml|texture "DefaultShortcut.png" not found in media/, themes/ or any .xbt bundle
+unknown-font|1080i/Custom_1161_SearchScreen.xml|font "font_status_bar" is not defined in any fontset
+unknown-font|1080i/Includes_Object.xml|font "font_mini_bold" is not defined in any fontset
+unknown-include|1080i/MyMusicPlaylistEditor.xml|no <include name="Topbar_Info"> anywhere
+unknown-include|1080i/MyPVRTimers.xml|no <include name="View_500_List_PVR"> anywhere
+unknown-variable|1080i/Custom_1126_ExtraFanart.xml|no variable named "HighlightColor"
+unknown-variable|1080i/Includes_Object.xml|no variable named "Image_ClearLogo"
+unknown-variable|1080i/Includes_Object.xml|no variable named "Label_InfoLine_01"
+unknown-variable|1080i/Includes_View.xml|no variable named "ColorHighlight2"
+unknown-variable|1080i/Includes_View_52_Showcase.xml|no variable named "Image_ClearLogo"
+xml-parse|1080i/DialogPlayerProcessInfo.xml|not well-formed XML: not well-formed (invalid token): line 58, column 118
+xml-parse|1080i/Startup.xml|not well-formed XML: not well-formed (invalid token): line 54, column 6

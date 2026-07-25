@@ -3,3 +3,6 @@
 .DS_Store
 .idea/
 __pycache__
+
+# Screenshots captured by tools/kodi.py
+.dev/
