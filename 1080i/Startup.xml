@@ -3,10 +3,21 @@
     <onload>SetProperty(SkinInitStarted,1,home)</onload>
     <onload>ClearProperty(SkinSplashStarted,home)</onload>
 
-    <!-- Start TMDbH service -->
-    <onload condition="String.IsEmpty(Window.Property(ReloadDone))">Skin.SetBool(TMDbHelper.Service)</onload>
-    <onload condition="String.IsEmpty(Window.Property(ReloadDone))">Skin.SetBool(TMDbHelper.UseLocalWidgetContainer)</onload>
-    <onload condition="String.IsEmpty(Window.Property(ReloadDone))">Skin.SetBool(TMDbHelper.DirectCallAuto)</onload>
+    <!-- The skin no longer talks to TMDb. Skin.SetBool(TMDbHelper.Service) is
+         what STARTED TMDbHelper's background monitor: it watched the focused
+         list item and looked it up against TMDb, which is where every
+         TMDbHelper.ListItem.* / .Player.* property came from. Resetting it is
+         the actual off-switch, and it has to be an explicit Reset rather than
+         just deleting the line, because the skin setting persists in userdata.
+
+         DisableExtendedProperties stays SET deliberately: it is belt and braces
+         so that if anything ever re-enables the service, it still will not fetch
+         the heavy per-item detail properties.
+
+         TMDbHelper.WidgetContainer is NOT touched here - despite the name it is
+         the skin's own state, read by Includes_Animations.xml:65-77. See
+         docs/tmdbhelper.md. -->
+    <onload condition="String.IsEmpty(Window.Property(ReloadDone))">Skin.Reset(TMDbHelper.Service)</onload>
     <onload condition="String.IsEmpty(Window.Property(ReloadDone))">Skin.SetBool(TMDbHelper.DisableExtendedProperties)</onload>
     <onload condition="String.IsEmpty(Window.Property(ReloadDone))">Skin.Reset(TMDbHelper.MonitorContainer)</onload>
 
@@ -54,6 +65,13 @@
     <onload condition="!Skin.HasSetting(SkinInit)">Skin.SetBool(EnhancedAddonLabels)</onload>
     <onload condition="!Skin.HasSetting(SkinInit)">Skin.SetString(OSD_Timeout,4 Seconds)</onload>
     <onload condition="!Skin.HasSetting(SkinInit)">Skin.SetString(AlphaValue_Highlight,40)</onload>
+
+    <!-- Closes the init block above. Nothing ever set SkinInit, so every one of
+         those defaults was re-asserted on EVERY skin load — including the
+         gradient RunScript — and any change made in the settings UI silently
+         reverted on the next reload. Onloads run in document order, so this must
+         stay last in the block. -->
+    <onload condition="!Skin.HasSetting(SkinInit)">Skin.SetBool(SkinInit)</onload>
 
     <!-- 
     === Boolean true ===

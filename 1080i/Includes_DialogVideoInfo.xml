@@ -68,6 +68,9 @@
                 </control>
 
                 <control type="group" id="4000">
+                    <!-- Without this, grouplist 9000 always has a page 2 and the
+                         down-chevron always draws, even when every row is empty. -->
+                    <visible>$EXP[Exp_InfoPage2_HasContent]</visible>
                     <height>view_height</height>
                     <control type="grouplist" id="4100">
                         <top>-5</top>
@@ -126,7 +129,13 @@
                             <onclick condition="Skin.HasSetting(DisableExtendedInfo)">SetFocus(50)</onclick>
                             <onclick>SetFocus(5000)</onclick>
                             <onclick>SetFocus(300)</onclick>
-                            <onclick>RunScript(plugin.video.themoviedb.helper,add_query=$INFO[Container(5077).ListItem.Label],type=person,call_auto=1190)</onclick>
+                            <!-- Removed a RunScript(...,add_query=...,type=person,
+                                 call_auto=1190) that opened a TMDb person page.
+                                 Doubly unreachable now - this row's content is
+                                 Def_Cast_List (emptied) and its <visible> needs
+                                 Container(5001).ListItem.Property(tmdb_id), which
+                                 JellyCon never sets - but removed anyway so it
+                                 cannot reactivate if either changes. -->
                             <include>Defs_InfoList_OnBack</include>
                             <visible>!String.IsEmpty(Container(5001).ListItem.Property(tmdb_id)) + !Container(5001).IsUpdating</visible>
                             <content limit="25" target="videos">$VAR[Def_Cast_List]</content>
@@ -172,8 +181,8 @@
                             <param name="icon" value="$VAR[Image_Poster_ListItem]" />
                             <include>Defs_InfoList_OnClick</include>
                             <include>Defs_InfoList_OnBack</include>
-                            <content limit="1">$VAR[Path_FromDirector,plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=person&amp;nextpage=false&amp;cacheonly=true&amp;length=1]</content>
-                            <content>$VAR[Path_FromDirector,plugin://plugin.video.themoviedb.helper/?info=crew_in_both&amp;tmdb_type=person&amp;filter_key=job&amp;filter_value=Director&amp;sort_by=premiered&amp;tmdb_id=,&amp;nextpage=false&amp;cacheonly=true&amp;length=1]</content>
+                            <content limit="1">special://skin/extras/playlists/Null.xsp</content>
+                            <content>special://skin/extras/playlists/Null.xsp</content>
                         </include>
 
                         <!-- Crew -->
@@ -267,7 +276,9 @@
                             <param name="diffuse" value="diffuse/landscape-wall.png" />
                             <param name="labelinclude" value="View_Cast_Video_Label" />
                             <param name="icon" value="$INFO[ListItem.Icon]" />
-                            <onclick>RunScript(plugin.video.themoviedb.helper,close_dialog=1190)</onclick>
+                            <!-- Dropped a RunScript(...,close_dialog=1190): a pure
+                                 decoration before the real action below, and 1190
+                                 is no longer routed to. -->
                             <onclick>PlayMedia($INFO[Container(5049).ListItem.FileNameAndPath])</onclick>
                             <include>Defs_InfoList_OnBack</include>
                             <content limit="10" target="videos" sortby="file" condition="!String.IsEmpty(ListItem.TvShowTitle) + System.HasAddon(plugin.video.youtube)">$INFO[ListItem.TvShowTitle,plugin://plugin.video.youtube/search/?q=,]</content>
@@ -407,6 +418,9 @@
                     </control>
                 </control>
                 <control type="group" id="4000">
+                    <!-- Without this, grouplist 9000 always has a page 2 and the
+                         down-chevron always draws, even when every row is empty. -->
+                    <visible>$EXP[Exp_InfoPage2_HasContent]</visible>
                     <height>view_height</height>
                     <control type="grouplist" id="4100">
                         <top>-5</top>
@@ -428,7 +442,7 @@
                             <include>Defs_InfoList_OnBack</include>
                             <onclick condition="Window.IsActive(videoosd)">Dialog.Close(videoosd,true)</onclick>
                             <onclick condition="Window.IsActive(1142)">Dialog.Close(1142,true)</onclick>
-                            <content>$INFO[ListItem.UniqueID(tmdb),plugin://plugin.video.themoviedb.helper/?info=stars_in_movies&amp;tmdb_type=person&amp;tmdb_id=,&amp;limit=250&amp;sort_by=premiered&amp;nextpage=false&amp;cacheonly=true&amp;length=1]</content>
+                            <content>special://skin/extras/playlists/Null.xsp</content>
                         </include>
                         <!-- List 02 -->
                         <include content="Info_Widget_Poster">
@@ -440,7 +454,7 @@
                             <include>Defs_InfoList_OnBack</include>
                             <onclick condition="Window.IsActive(videoosd)">Dialog.Close(videoosd,true)</onclick>
                             <onclick condition="Window.IsActive(1142)">Dialog.Close(1142,true)</onclick>
-                            <content>$INFO[ListItem.UniqueID(tmdb),plugin://plugin.video.themoviedb.helper/?info=stars_in_tvshows&amp;tmdb_type=person&amp;tmdb_id=,&amp;limit=250&amp;sort_by=premiered&amp;nextpage=false&amp;cacheonly=true&amp;length=1]</content>
+                            <content>special://skin/extras/playlists/Null.xsp</content>
                         </include>
                         <!-- List 03 -->
                         <include content="Info_Widget_Poster">
@@ -452,7 +466,7 @@
                             <include>Defs_InfoList_OnBack</include>
                             <onclick condition="Window.IsActive(videoosd)">Dialog.Close(videoosd,true)</onclick>
                             <onclick condition="Window.IsActive(1142)">Dialog.Close(1142,true)</onclick>
-                            <content>$INFO[ListItem.UniqueID(tmdb),plugin://plugin.video.themoviedb.helper/?info=crew_in_both&amp;tmdb_type=person&amp;tmdb_id=,&amp;limit=250&amp;sort_by=premiered&amp;nextpage=false&amp;cacheonly=true&amp;length=1]</content>
+                            <content>special://skin/extras/playlists/Null.xsp</content>
                         </include>
                         <!-- List 04 -->
                         <include content="Info_Widget_Poster">
@@ -461,7 +475,7 @@
                             <param name="label" value="Images" />
                             <onclick>SetFocus(9506)</onclick>
                             <include>Defs_InfoList_OnBack</include>
-                            <content target="images" limit="20" browse="never">$INFO[ListItem.UniqueID(tmdb),plugin://plugin.video.themoviedb.helper/?info=images&amp;tmdb_type=person&amp;tmdb_id=,&amp;limit=100&amp;nextpage=false&amp;cacheonly=true&amp;length=1]</content>
+                            <content target="images" limit="20" browse="never">special://skin/extras/playlists/Null.xsp</content>
                         </include>
                     </control>
                 </control>

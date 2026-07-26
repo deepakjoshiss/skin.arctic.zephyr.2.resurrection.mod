@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    VinELEC-owned definitions. Two jobs:
+
+      1. Skin-local helpers that have no upstream counterpart.
+      2. SHADOWS of definitions owned by upstream files, so we can override them
+         without editing upstream text and inheriting a merge conflict forever.
+
+    LOAD ORDER IS LOAD-BEARING. Kodi resolves duplicate variable/expression
+    names first-registration-wins, so this file MUST be included BEFORE the files
+    it shadows (Includes_Expressions.xml, Includes_Images.xml, Includes_Labels.xml
+    at Includes.xml lines 16, 26, 27). It is pulled in immediately after
+    Defaults.xml. Moving it later silently disables every shadow below — the
+    override just stops applying, with no error anywhere.
+
+    Note this cannot shadow anything defined INLINE in Includes.xml (e.g. the
+    Path_* variables, ColorOverlay): inline definitions register before any
+    <include file> recursion and always win. See NOTES.md.
+
+    Shadowed names are listed in tools/lint.py SHADOW_FILES so their
+    duplicate-definition findings are reported without an upstream line number.
+-->
+<includes>
+
+    <!-- Does page 2 of DialogVideoInfo have anything to show?
+         group id="4000" (Includes_DialogVideoInfo.xml:70 and :409) has no
+         <visible> of its own, so grouplist 9000 always reported a second page
+         and Object_Info_Arrows always drew the down-chevron - inviting a press
+         onto a blank screen with no focusable control once the TMDb-backed rows
+         empty out.
+
+         Covers the union of both group-4000 variants: the main info dialog
+         (cast/sets/nextup/seasons/director/crew/extras/recommended/similar/
+         year/genre/studio/youtube/posters/fanart) and the person page
+         (5001-5003, 5006). Container(N).NumItems is 0 for a container that does
+         not exist in the current window, so the over-inclusion is harmless.
+
+         Self-referential NumItems gating is safe here: Kodi still loads content
+         for containers whose <visible> is false, which is exactly what
+         Info_Widget_Poster (Includes_Info.xml:54) and Info_Gallery
+         (Includes_DialogVideoInfo.xml:303) already rely on. -->
+    <expression name="Exp_InfoPage2_HasContent">
+        Integer.IsGreater(Container(50).NumItems,0) |
+        Integer.IsGreater(Container(5001).NumItems,0) |
+        Integer.IsGreater(Container(5002).NumItems,0) |
+        Integer.IsGreater(Container(5003).NumItems,0) |
+        Integer.IsGreater(Container(5004).NumItems,0) |
+        Integer.IsGreater(Container(5005).NumItems,0) |
+        Integer.IsGreater(Container(5006).NumItems,0) |
+        Integer.IsGreater(Container(5007).NumItems,0) |
+        Integer.IsGreater(Container(5008).NumItems,0) |
+        Integer.IsGreater(Container(5011).NumItems,0) |
+        Integer.IsGreater(Container(5047).NumItems,0) |
+        Integer.IsGreater(Container(5048).NumItems,0) |
+        Integer.IsGreater(Container(5049).NumItems,0) |
+        Integer.IsGreater(Container(5059).NumItems,0) |
+        Integer.IsGreater(Container(5077).NumItems,0) |
+        Integer.IsGreater(Container(6000).NumItems,0)
+    </expression>
+
+    <!-- Do the OSD side dialogs have a list to show?
+         Windows 1142 and 1143 each draw a full-width 730px common/osd-dim.png
+         OUTSIDE the group that holds their list, so the strip stayed visible
+         over playing video even when the list collapsed. The list itself already
+         self-hides via Info_Widget_Poster; only the dim needed gating.
+         IsUpdating keeps the dim from flickering while the list loads. -->
+    <expression name="Exp_OSD_Cast_HasContent">Integer.IsGreater(Container(6501).NumItems,0) | Container(6501).IsUpdating</expression>
+    <expression name="Exp_OSD_Episodes_HasContent">Integer.IsGreater(Container(7000).NumItems,0) | Container(7000).IsUpdating</expression>
+
+</includes>

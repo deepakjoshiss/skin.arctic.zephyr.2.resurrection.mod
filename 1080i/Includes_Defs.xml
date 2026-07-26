@@ -255,9 +255,20 @@
         <definition>
             <onclick>SetFocus(50)</onclick>
             <onclick>SetFocus(300)</onclick>
-            <onclick condition="String.IsEmpty(ListItem.DBID) | [!String.IsEqual(ListItem.DBType,movie) + !String.IsEqual(ListItem.DBType,tvshow)]">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[ListItem.FolderPath],call_auto=1190,return)</onclick>
-            <onclick condition="!String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBType,movie)">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[ListItem.Label,videodb://movies/titles/?xsp=%7B%22order%22%3A%7B%22direction%22%3A%22ascending%22%2C%22ignorefolders%22%3A0%2C%22method%22%3A%22sorttitle%22%7D%2C%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22,%22%5D%7D%5D%7D%2C%22type%22%3A%22movies%22%7D],call_auto=1190)</onclick>
-            <onclick condition="!String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBType,tvshow)">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[ListItem.Label,videodb://tvshows/titles/?xsp=%7B%22order%22%3A%7B%22direction%22%3A%22ascending%22%2C%22ignorefolders%22%3A0%2C%22method%22%3A%22sorttitle%22%7D%2C%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22,%22%5D%7D%5D%7D%2C%22type%22%3A%22tvshows%22%7D],call_auto=1190)</onclick>
+            <!-- Three RunScript(...,call_auto=1190) calls removed. They opened
+                 TMDbHelper's own info window for the clicked row item, and 1190 is
+                 no longer routed to at all.
+
+                 Unlike the widget-spotlight equivalents these were NOT gated on a
+                 TMDb path - only on DBID/DBType - so they would fire for any row
+                 item that existed. Every consumer row is empty today, but that is a
+                 property of the current data, not a guarantee: a future
+                 Jellyfin-backed row added to this dialog would have started
+                 invoking TMDbHelper again. Removed rather than left to that.
+
+                 Clicking a row item now just refocuses, pending a Jellyfin-backed
+                 replacement. -->
+            <onclick>noop</onclick>
         </definition>
     </include>
 
@@ -302,7 +313,13 @@
     </variable>
 
     <variable name="Def_Cast_List">
-        <value condition="!String.IsEmpty(ListItem.Cast)">plugin://plugin.video.themoviedb.helper?info=cast&amp;tmdb_type=movie&amp;imdb_id=$INFO[ListItem.IMDBNumber]</value>
+        <!-- Was a TMDb cast lookup gated on !String.IsEmpty(ListItem.Cast).
+             That gate is only false today because JellyCon's include_people
+             setting is off; turning it on - which is on our own list of planned
+             JellyCon changes - would have silently resumed TMDb requests from
+             here. Neutralised explicitly rather than left to depend on an addon
+             setting. -->
+        <value>special://skin/extras/playlists/Null.xsp</value>
     </variable>
 
     <variable name="Def_Set_List">

@@ -6,6 +6,11 @@
     <include>Animation_FadeOut</include>
     <controls>
         <control type="image">
+            <!-- Sits outside the group below, so without this the dim strip
+                 stayed over playing video after the episode list collapsed.
+                 Path_OSD_Episodes has no unconditional value, so an empty list
+                 is reachable today with one Down-press from the OSD. -->
+            <visible>$EXP[Exp_OSD_Episodes_HasContent]</visible>
             <height>730</height>
             <bottom>0</bottom>
             <texture>common/osd-dim.png</texture>

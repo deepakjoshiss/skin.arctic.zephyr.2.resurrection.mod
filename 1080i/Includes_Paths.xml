@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Container content paths, extracted verbatim from Includes.xml (block was
+    lines 137-256) at origin/main cbc1f2b.
+
+    Moved here because they were defined INLINE in Includes.xml, and Kodi
+    registers inline definitions ahead of every <include file> - so they could
+    not be shadowed, only edited in place. Upstream commits to that range a few
+    times a year, which would have meant re-resolving the same conflict forever.
+    Owning the file turns that into a single delete/modify conflict whose
+    resolution is always: keep ours, skim theirs.
+
+    This is also where Jellyfin-backed paths will go, so it is the right long-term
+    home rather than a temporary parking spot.
+
+    ===========================================================================
+    THE TMDb PATHS ARE GONE. This is the change that stops the skin reaching out
+    to TMDb on demand.
+
+    Switching the service off (Startup.xml) only stopped the background property
+    monitor. These are different: a <content> of
+    plugin://plugin.video.themoviedb.helper/... makes Kodi invoke the addon every
+    time that container loads, which is a live TMDb request whether or not the
+    service is running.
+
+    Every variable below is KEPT, name unchanged, because ~20 controls reference
+    them and deleting them would break those references. Only the values changed:
+
+      * Feeds a <content> directly  ->  special://skin/extras/playlists/Null.xsp
+        An empty <content> is not obviously safe, whereas Null.xsp is the guard
+        value upstream already used inside these same variables, so it is proven
+        to yield an empty container. Those containers then self-collapse
+        (Info_Widget_Poster, Includes_Info.xml:54), and the OSD dim strips that
+        sat outside them are gated in Includes_Vinelec_Meta.xml.
+
+      * Is a URL *fragment* concatenated by its caller  ->  emptied entirely.
+        Callers use the $VAR[name,prefix] form, where an empty variable suppresses
+        the prefix too - so the whole TMDb URL disappears instead of being left as
+        a bare stub.
+
+    Path_OSD_Episodes keeps its two local values; only the TMDb third one was
+    replaced. Note the videodb:// value needs VideoPlayer.TvShowDBID, which is
+    always empty here because the Jellyfin library is not in Kodi's database
+    (docs/jellycon.md) - so in practice only the playlist value ever matches.
+-->
+<includes>
+
+    <!-- Fragments. Emptied: the caller's $VAR[name,prefix] collapses with them.
+         An explicit unconditional empty <value> rather than no children at all,
+         so "resolves to empty" is stated rather than inferred. -->
+    <variable name="Path_VideoOSD_TMDbType">
+        <value></value>
+    </variable>
+
+    <variable name="Path_VideoOSD_TMDbQuery">
+        <value></value>
+    </variable>
+
+    <variable name="Path_FromDirector">
+        <value></value>
+    </variable>
+
+    <!-- Feeds container 6501 in Custom_1142_OSD_Cast.xml. -->
+    <variable name="Path_OSD_Cast">
+        <value>special://skin/extras/playlists/Null.xsp</value>
+    </variable>
+
+    <!-- Feeds container 7000 in Custom_1143_OSD_Playlist.xml. Local values kept. -->
+    <variable name="Path_OSD_Episodes">
+        <value condition="!Integer.IsEqual(VideoPlayer.PlaylistLength,1) + !Integer.IsEqual(VideoPlayer.PlaylistLength,0) + Integer.IsLess(VideoPlayer.PlaylistPosition,VideoPlayer.PlaylistLength)">playlistvideo://?reload=$INFO[VideoPlayer.Season,,_]$INFO[VideoPlayer.Episode,,_]$INFO[VideoPlayer.PlaylistPosition,,_]</value>
+        <value condition="VideoPlayer.Content(episodes) + !String.IsEmpty(VideoPlayer.TvShowDBID) + !String.IsEmpty(VideoPlayer.Season)">videodb://tvshows/titles/$INFO[VideoPlayer.TvShowDBID]/$INFO[VideoPlayer.Season]/?tvshowid=$INFO[VideoPlayer.TvShowDBID]</value>
+        <value>special://skin/extras/playlists/Null.xsp</value>
+    </variable>
+
+    <!-- DialogVideoInfo page-2 rows. All were TMDb detail/discover queries. -->
+    <variable name="Path_VideoInfo_OnlineCast">
+        <value>special://skin/extras/playlists/Null.xsp</value>
+    </variable>
+
+    <variable name="Path_VideoInfo_OnlineCollection">
+        <value>special://skin/extras/playlists/Null.xsp</value>
+    </variable>
+
+    <variable name="Path_VideoInfo_OnlineCrew">
+        <value>special://skin/extras/playlists/Null.xsp</value>
+    </variable>
+
+    <variable name="Path_VideoInfo_OnlineRecommendations">
+        <value>special://skin/extras/playlists/Null.xsp</value>
+    </variable>
+
+    <variable name="Path_VideoInfo_OnlineSimilar">
+        <value>special://skin/extras/playlists/Null.xsp</value>
+    </variable>
+
+    <variable name="Path_VideoInfo_OnlineYear">
+        <value>special://skin/extras/playlists/Null.xsp</value>
+    </variable>
+
+    <variable name="Path_VideoInfo_OnlineGenre">
+        <value>special://skin/extras/playlists/Null.xsp</value>
+    </variable>
+
+    <!-- This one had an UNCONDITIONAL final value emitting a discover query with
+         an empty with_companies=, so the "From <studio>" row had been showing
+         unrelated popular titles under a locally-sourced label. -->
+    <variable name="Path_VideoInfo_OnlineStudio">
+        <value>special://skin/extras/playlists/Null.xsp</value>
+    </variable>
+
+    <variable name="Path_VideoInfo_OnlinePoster">
+        <value>special://skin/extras/playlists/Null.xsp</value>
+    </variable>
+
+    <variable name="Path_VideoInfo_OnlineFanart">
+        <value>special://skin/extras/playlists/Null.xsp</value>
+    </variable>
+
+</includes>

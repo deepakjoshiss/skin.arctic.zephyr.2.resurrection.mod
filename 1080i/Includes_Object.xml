@@ -263,9 +263,13 @@
                 <right>$PARAM[right]</right>
                 <left>$PARAM[left]</left>
                 <onfocus>SetProperty(TMDbHelper.WidgetContainer,$PARAM[id],Home)</onfocus>
-                <onclick condition="[Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(1190)] + String.StartsWith(ListItem.FolderPath,plugin://plugin.video.themoviedb.helper) + [String.IsEmpty(ListItem.DBID) | [!String.IsEqual(ListItem.DBType,movie) + !String.IsEqual(ListItem.DBType,tvshow)]]">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[ListItem.FolderPath],call_auto=1190)</onclick>
-                <onclick condition="[Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(1190)] + String.StartsWith(ListItem.FolderPath,plugin://plugin.video.themoviedb.helper) + !String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBType,movie)">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[ListItem.Label,videodb://movies/titles/?xsp=%7B%22order%22%3A%7B%22direction%22%3A%22ascending%22%2C%22ignorefolders%22%3A0%2C%22method%22%3A%22sorttitle%22%7D%2C%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22,%22%5D%7D%5D%7D%2C%22type%22%3A%22movies%22%7D],call_auto=1190)</onclick>
-                <onclick condition="[Window.IsVisible(DialogVideoInfo.xml) | Window.IsVisible(1190)] + String.StartsWith(ListItem.FolderPath,plugin://plugin.video.themoviedb.helper) + !String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBType,tvshow)">RunScript(plugin.video.themoviedb.helper,add_path=$INFO[ListItem.Label,videodb://tvshows/titles/?xsp=%7B%22order%22%3A%7B%22direction%22%3A%22ascending%22%2C%22ignorefolders%22%3A0%2C%22method%22%3A%22sorttitle%22%7D%2C%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22title%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%5B%22,%22%5D%7D%5D%7D%2C%22type%22%3A%22tvshows%22%7D],call_auto=1190)</onclick>
+                <!-- Three RunScript(...,call_auto=1190) onclicks removed here.
+                     They were gated on the focused item's FolderPath starting
+                     with plugin://plugin.video.themoviedb.helper, which no
+                     container in the skin produces any more - so they were
+                     already unreachable rather than being the normal widget
+                     click handler. Removed so a stray TMDb path could not
+                     silently reactivate them. -->
                 <preloaditems>2</preloaditems>
                 <orientation>horizontal</orientation>
 
@@ -1365,9 +1369,13 @@
                 </include>
                 <include content="Flix_Object_Info_Line_Label" condition="!Skin.HasSetting(Infoline.DisableGenre)">
                     <param name="id" value="$PARAM[uid]11" />
-                    <param name="label" value="$INFO[Window(Home).Property(TMDbHelper.ListItem.base_genre)]" />
+                    <!-- Was TMDbHelper.ListItem.base_genre, which is empty now the
+                         TMDb service is off - and this include had no local
+                         fallback, so genre rendered nowhere. JellyCon supplies
+                         ListItem.Genre (e.g. "Science Fiction / Drama"). -->
+                    <param name="label" value="$INFO[$PARAM[container]ListItem.Genre]" />
                     <param name="textcolor" value="$PARAM[textcolor]" />
-                    <param name="visible" value="!String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.base_genre))  + [String.IsEqual($PARAM[container]ListItem.DBType,tvshow) | String.IsEqual($PARAM[container]ListItem.DBType,movie)]" />
+                    <param name="visible" value="!String.IsEmpty($PARAM[container]ListItem.Genre) + [String.IsEqual($PARAM[container]ListItem.DBType,tvshow) | String.IsEqual($PARAM[container]ListItem.DBType,movie)]" />
                 </include>
                 <include content="Flix_Object_Info_Line_Label">
                     <param name="id" value="$PARAM[uid]04" />
@@ -1517,7 +1525,15 @@
                     <param name="id" value="$PARAM[uid]12" />
                     <param name="label" value="$INFO[ListItem.Genre]" />
                     <param name="textcolor" value="$PARAM[textcolor]" />
-                    <param name="visible" value="!String.IsEmpty(ListItem.Genre)  + [String.IsEqual($PARAM[container]ListItem.DBType,tvshow) | String.IsEqual($PARAM[container]ListItem.DBType,movie)] + $PARAM[fullgenre]" />
+                    <!-- Dropped "+ $PARAM[fullgenre]". That param defaults to false
+                         and only Includes_View_52_Showcase.xml:386 overrides it, so
+                         this local genre was suppressed nearly everywhere while the
+                         sibling entry above supplied it from TMDb. With the TMDb
+                         service off that sibling is permanently empty, which left
+                         genre rendering in Showcase only. The sibling stays (it is
+                         harmlessly inert) and cannot double up, because its own
+                         condition still requires the now-always-empty base_genre. -->
+                    <param name="visible" value="!String.IsEmpty(ListItem.Genre) + [String.IsEqual($PARAM[container]ListItem.DBType,tvshow) | String.IsEqual($PARAM[container]ListItem.DBType,movie)]" />
                 </include>
                 <include content="Object_Info_Line_Label">
                     <param name="id" value="$PARAM[uid]04" />
@@ -2069,6 +2085,14 @@
 
         <definition>
             <control type="grouplist">
+                <!-- Fixed 32px with no <visible> left a blank band at every call
+                     site that does not wrap this in a gated group. Gated on the
+                     five sources that can actually draw: the other ~41 reads in
+                     here are Container(99950), which does not exist.
+                     $EXP[RatingsVisiblity] is NOT usable here - JellyCon sets
+                     both Rating and UserRating on every item, so it is always
+                     true. See docs/jellycon.md. -->
+                <visible>!String.IsEmpty($PARAM[imdb_rating]) | !String.IsEmpty($PARAM[rt_rating]) | !String.IsEmpty($PARAM[imdb_ranking]) | !String.IsEmpty(ListItem.Rating) | !String.IsEmpty(ListItem.UserRating)</visible>
                 <left>0</left>
                 <top>$PARAM[top]</top>
                 <height>32</height>

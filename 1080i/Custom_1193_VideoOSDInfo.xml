@@ -22,7 +22,12 @@
 
         <include content="Object_Hidden_List">
             <param name="id">50</param>
-            <content limit="1">$VAR[Path_VideoOSD_TMDbType,plugin://plugin.video.themoviedb.helper/?info=details&amp;tmdb_type=,]$VAR[Path_VideoOSD_TMDbQuery]</content>
+            <!-- Was a TMDb details lookup. Written out explicitly rather than
+                 relying on $VAR[name,prefix] collapsing when the variable is
+                 empty: that would leave correctness resting on unverified Kodi
+                 behaviour, and a bare "?info=details&tmdb_type=" stub would
+                 still invoke the addon. -->
+            <content limit="1">special://skin/extras/playlists/Null.xsp</content>
             <onfocus>Action(Info)</onfocus>
             <onfocus>Dialog.Close(1193,force)</onfocus>
         </include>

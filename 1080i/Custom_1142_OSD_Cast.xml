@@ -8,6 +8,12 @@
     <include>Animation_FadeOut</include>
     <controls>
         <control type="image">
+            <!-- As in Custom_1143: the dim sits outside the group holding the
+                 list, so it has to be gated separately or it lingers over
+                 playing video once the cast list collapses. This window is
+                 unreachable while OSD.DisableCastDialog is set, but it is the
+                 same latent bug. -->
+            <visible>$EXP[Exp_OSD_Cast_HasContent]</visible>
             <height>730</height>
             <bottom>0</bottom>
             <texture>common/osd-dim.png</texture>

@@ -144,8 +144,17 @@
                 <param name="icon" value="$VAR[Image_Info_PlayButton]" />
                 <param name="visible" value="Control.IsEnabled(3101) + !ListItem.IsFolder + !ListItem.IsCollection" />
 
-                <onclick condition="!String.IsEmpty(ListItem.FileNameAndPath)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,playmedia='$ESCINFO[ListItem.FileNameAndPath]')</onclick>
-                <onclick condition="String.IsEmpty(ListItem.FileNameAndPath)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,playmedia='$ESCINFO[ListItem.FolderPath]')</onclick>
+                <!-- Was RunScript(...,close_dialog=1190,playmedia=...). The
+                     RunScript WAS the play action, not a decoration, so this had
+                     to be replaced rather than dropped.
+
+                     Order matters: play first, close last. Closing first would
+                     discard the ListItem context and leave $ESCINFO[...] empty,
+                     so PlayMedia would silently play nothing. Same idiom as the
+                     trailer button below (8899). -->
+                <onclick condition="!String.IsEmpty(ListItem.FileNameAndPath)">PlayMedia($ESCINFO[ListItem.FileNameAndPath])</onclick>
+                <onclick condition="String.IsEmpty(ListItem.FileNameAndPath)">PlayMedia($ESCINFO[ListItem.FolderPath])</onclick>
+                <onclick>Dialog.Close(all,true)</onclick>
             </include>
 
             <include content="Object_Info_Button">
@@ -156,14 +165,19 @@
                 <param name="icon" value="special://skin/extras/icons/folder.png" />
                 <param name="visible" value="[ListItem.IsFolder | ListItem.IsCollection]" />
 
-                <onclick>Dialog.Close(1140)</onclick>
-                <onclick condition="Window.IsVisible(MyVideoNav.xml) + String.IsEmpty(ListItem.DBID)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,call_update=$INFO[ListItem.FolderPath])</onclick>
-                <onclick condition="Window.IsVisible(MyVideoNav.xml) + !String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBType,tvshow)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,call_update=$INFO[ListItem.DBID,videodb://tvshows/titles/,/])</onclick>
-                <onclick condition="Window.IsVisible(MyVideoNav.xml) + !String.IsEmpty(ListItem.DBID) + ListItem.IsCollection">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,call_update=$INFO[ListItem.DBID,videodb://movies/sets/,/])</onclick>
+                <!-- Was six RunScript calls: TMDbHelper's call_update= when
+                     already in MyVideoNav, call_path= otherwise, each also
+                     closing 1190. Again the RunScript WAS the action.
 
-                <onclick condition="!Window.IsVisible(MyVideoNav.xml) + String.IsEmpty(ListItem.DBID)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,call_path=$INFO[ListItem.FolderPath])</onclick>
-                <onclick condition="!Window.IsVisible(MyVideoNav.xml) + !String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBType,tvshow)">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,call_path=$INFO[ListItem.DBID,videodb://tvshows/titles/,/])</onclick>
-                <onclick condition="Window.IsVisible(MyVideoNav.xml) + !String.IsEmpty(ListItem.DBID) + ListItem.IsCollection">RunScript(plugin.video.themoviedb.helper,close_dialog=1190,call_path=$INFO[ListItem.DBID,videodb://movies/sets/,/])</onclick>
+                     ActivateWindow(Videos,<path>,return) covers both cases in one
+                     builtin - activating the window closes the info dialog itself,
+                     so there is no close-then-lose-context ordering hazard and no
+                     need for the MyVideoNav / not-MyVideoNav split. $INFO[...] is
+                     still evaluated at click time, while the ListItem is valid. -->
+                <onclick>Dialog.Close(1140)</onclick>
+                <onclick condition="String.IsEmpty(ListItem.DBID)">ActivateWindow(Videos,$INFO[ListItem.FolderPath],return)</onclick>
+                <onclick condition="!String.IsEmpty(ListItem.DBID) + String.IsEqual(ListItem.DBType,tvshow)">ActivateWindow(Videos,$INFO[ListItem.DBID,videodb://tvshows/titles/,/],return)</onclick>
+                <onclick condition="!String.IsEmpty(ListItem.DBID) + ListItem.IsCollection">ActivateWindow(Videos,$INFO[ListItem.DBID,videodb://movies/sets/,/],return)</onclick>
             </include>
 
             <include content="Object_Info_Button">
@@ -177,7 +191,19 @@
                 <onclick condition="!String.IsEmpty(ListItem.TvShowTitle)">Skin.SetString(SearchTerm,$INFO[ListItem.TvShowTitle])</onclick>
                 <onclick condition="String.IsEmpty(ListItem.TvShowTitle) + !String.IsEmpty(ListItem.Title)">Skin.SetString(SearchTerm,$INFO[ListItem.Title])</onclick>
                 <onclick condition="String.IsEmpty(ListItem.TvShowTitle) + String.IsEmpty(ListItem.Title) + !String.IsEmpty(ListItem.Label)">Skin.SetString(SearchTerm,$INFO[ListItem.Label])</onclick>
-                <onclick>RunScript(plugin.video.themoviedb.helper,close_dialog=1190,call_id=1138)</onclick>
+                <!-- Was RunScript(...,close_dialog=1190,call_id=1138). Everything
+                     useful here is already local: the Skin.SetString calls above
+                     stash the title, and 1138 is the skin's own search window.
+                     Only the "open it" step needed TMDbHelper.
+
+                     Note this button is invisible in this setup anyway - its
+                     <visible> needs ListItem.Property(tmdb_id) or IMDbNumber, and
+                     JellyCon sets neither (docs/jellycon.md). Left as-is rather
+                     than widened, since making a hidden button appear would be a
+                     new feature, not a fix. Relaxing that condition to
+                     Title/Label would restore search-by-title if wanted. -->
+                <onclick>Dialog.Close(all,true)</onclick>
+                <onclick>ActivateWindow(1138)</onclick>
             </include>
 
             <include content="Object_Info_Button">
@@ -214,8 +240,18 @@
                 <param name="icon" value="special://skin/extras/icons/trakttv.png" />
                 <param name="visible" value="[!String.IsEmpty(ListItem.Property(tmdb_id)) | !String.IsEmpty(Window(Home).Property(TMDbHelper.ListItem.Monitor.TMDb_ID))] + [String.IsEqual(ListItem.DBTYPE,movie) | String.IsEqual(ListItem.DBTYPE,tvshow)] + !String.IsEmpty(Window(Home).Property(TMDbHelper.TraktIsAuth))" />
 
-                <onclick condition="!String.IsEmpty(ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,sync_trakt=watchlist,tmdb_id=$INFO[ListItem.Property(tmdb_id)],type=$VAR[tmdb_type],cache_refresh)</onclick>
-                <onclick condition="String.IsEmpty(ListItem.Property(tmdb_id))">RunScript(plugin.video.themoviedb.helper,sync_trakt=watchlist,tmdb_id=$INFO[Window(Home).Property(TMDbHelper.ListItem.Monitor.TMDb_ID)],type=$VAR[tmdb_type],cache_refresh)</onclick>
+                <!-- Trakt watchlist sync, removed. The button is already invisible
+                     - its <visible> above requires TMDbHelper.TraktIsAuth, which is
+                     empty - but that is an external addon's state, not ours, so the
+                     actions are removed rather than left to depend on it. Same
+                     reasoning as Def_Cast_List and the DialogPersonInfo paths.
+
+                     A Jellyfin favourites toggle is the intended replacement and is
+                     deferred: it needs a mode=SET_FAVORITE route in the JellyCon
+                     fork, because the only skin-reachable path today opens
+                     JellyCon's own modal and refreshes the container underneath
+                     this dialog. See the deferred list in docs/jellycon.md. -->
+                <onclick>noop</onclick>
             </include>
 
             <include content="Object_Info_Button">
