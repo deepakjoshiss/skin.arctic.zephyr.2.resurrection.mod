@@ -1,8 +1,8 @@
 # Pre-existing lint findings, accepted as of this commit.
 # Regenerate: python3 tools/lint.py --update-baseline
 # Anything NOT listed here is a regression.
-duplicate-definition|1080i/Includes_Images_Background_FakeBlur.xml|variable "Image_Background_Blur" already defined at 1080i/Includes_Images.xml:306
-duplicate-definition|1080i/Includes_Images_Background_FakeBlur.xml|variable "Image_Foreground" already defined at 1080i/Includes_Images.xml:312
+duplicate-definition|1080i/Includes_Images_Background_FakeBlur.xml|variable "Image_Background_Blur" intentionally shadows 1080i/Includes_Images.xml
+duplicate-definition|1080i/Includes_Images_Background_FakeBlur.xml|variable "Image_Foreground" intentionally shadows 1080i/Includes_Images.xml
 missing-font-file|1080i/Defaults.xml|font file "arialbd.ttf" not found in fonts/ or Kodi's own font dir
 missing-font-file|1080i/Font.xml|font file "arialbd.ttf" not found in fonts/ or Kodi's own font dir
 missing-string|1080i/Custom_1120_EnableInfoButtons.xml|$LOCALIZE[31250] has no msgctxt "#31250" in language/resource.language.en_gb/strings.po

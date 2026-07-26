@@ -18,6 +18,51 @@ It sits inside Kodi's addons directory, so editing a file here changes the runni
 UI as soon as the skin reloads. There is nothing between your edit and the user's
 screen. A broken commit breaks their TV.
 
+## Read `NOTES.md` first
+
+`NOTES.md` is the project memory and it is short. **Invariants** are the
+constraints that cost a segfault, a black screen or a wasted session to learn
+and that you cannot infer from the XML — read them before your first edit.
+**Background** is what we built on top of upstream, so you can tell our work
+from the fork's. **Log** is what we changed recently and why.
+
+`docs/` holds per-integration reference documents — deeper than `NOTES.md`, read
+on demand rather than up front:
+
+| Doc | Read it before |
+| --- | --- |
+| [docs/tmdbhelper.md](docs/tmdbhelper.md) | touching anything `TMDbHelper.*`, the ratings row, the info dialog's online lists, or window 1190 |
+| [docs/jellycon.md](docs/jellycon.md) | assuming any `ListItem.*` infolabel or `videodb://` path has data — the Jellyfin library is **not** in Kodi's native library |
+
+## Keep `NOTES.md` current
+
+This is part of finishing a task, not optional bookkeeping. Do it before you
+report done — the next agent has only this file and the code.
+
+**Add a Log entry** at the top of the Log section when you changed behaviour,
+discovered a constraint, rejected an approach, or did something that looks wrong
+but is deliberate:
+
+```markdown
+### YYYY-MM-DD — Short title
+
+What changed and why. What you tried that did not work. How you verified it.
+Two to six sentences. Reference commits as `abc1234` if useful.
+```
+
+Skip the entry for version bumps, typo fixes, pure layout nudges, and anything
+in the generated includes. One entry per change, not per commit — fold a
+multi-commit fix into a single entry.
+
+**Promote to Invariants instead** (or as well) when what you learned is a
+standing constraint rather than a one-off change: something that will still trip
+up an agent six months from now. That section is the one that gets read first,
+so keep it tight and delete entries that stop being true.
+
+Newest entries at the top. Do not rewrite existing entries — they are the record
+of what we believed at the time. `NOTES.md` is hand-written throughout; nothing
+generates it.
+
 ## The loop
 
 ```bash
@@ -28,7 +73,7 @@ python3 tools/kodi.py shot    # screenshot -> .dev/screenshots/*.png, then read 
 
 `lint.py` resolves every include, `$VAR`, `$CONST`, font, colour, texture and
 `$LOCALIZE` id against its definition and reports what does not exist. The repo
-has 42 pre-existing findings recorded in `tools/lint-baseline.txt`; those are
+has 35 pre-existing findings recorded in `tools/lint-baseline.txt`; those are
 suppressed so that **anything the linter prints is something you just broke**.
 Exit code 1 means a regression. Use `--all` to see the baselined ones too, and
 `--update-baseline` only when deliberately accepting new debt.

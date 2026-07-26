@@ -41,6 +41,19 @@ GENERATED = {
     'script-skinviewtypes-includes.xml',
 }
 
+# Files that deliberately redefine names owned by another file, to override them
+# without editing upstream text. Kodi resolves duplicates first-registration-wins,
+# so a shadow only works if Includes.xml pulls it in BEFORE its target — see the
+# include-resolution invariant in NOTES.md.
+#
+# Their duplicate-definition findings are reported without the other file's line
+# number: the baseline key embeds the message, so a line number would make the
+# suppression break every time upstream inserts a line above the original.
+SHADOW_FILES = {
+    '1080i/Includes_Images_Background_FakeBlur.xml',
+    '1080i/Includes_Vinelec_Meta.xml',
+}
+
 # Tags whose text content is a texture path.
 TEXTURE_TAGS = [
     'texture', 'texturefocus', 'texturenofocus', 'texturefocusdown',
@@ -156,6 +169,7 @@ class Linter:
         self.inc_defs = set(re.findall(r'<include\s+name="([^"]+)"', allt))
         self.var_defs = set(re.findall(r'<variable\s+name="([^"]+)"', allt))
         self.const_defs = set(re.findall(r'<constant\s+name="([^"]+)"', allt))
+        self.exp_defs = set(re.findall(r'<expression\s+name="([^"]+)"', allt))
 
         # Font definitions are NOT confined to Font.xml -- e.g. the lyrics
         # fontset is declared inline in Includes_VideoLyrics.xml.
@@ -347,9 +361,15 @@ class Linter:
                     where = (rel, line_of(text, m.start()))
                     if name in seen:
                         first = seen[name]
-                        self.add('duplicate-definition', where[0], where[1],
-                                 '%s "%s" already defined at %s:%d'
-                                 % (kind, name, first[0], first[1]))
+                        if where[0] in SHADOW_FILES:
+                            # Intentional override. No line number: see SHADOW_FILES.
+                            self.add('duplicate-definition', where[0], where[1],
+                                     '%s "%s" intentionally shadows %s'
+                                     % (kind, name, first[0]))
+                        else:
+                            self.add('duplicate-definition', where[0], where[1],
+                                     '%s "%s" already defined at %s:%d'
+                                     % (kind, name, first[0], first[1]))
                     else:
                         seen[name] = where
 
@@ -361,6 +381,13 @@ class Linter:
                         'unknown-variable', 'variable')
         self.check_refs(r'\$CONST\[([^\]]+)\]', self.const_defs,
                         'unknown-constant', 'constant')
+        # $EXP was unchecked until 2026-07-26. An undefined expression makes the
+        # condition it sits in never true, so the control silently never draws --
+        # exactly the failure mode this linter exists to catch. Finding it added:
+        # Path_Param_Type referenced $EXP[Exp_IsPersonInfo], which was never
+        # defined anywhere in the skin.
+        self.check_refs(r'\$EXP\[([^\],]+)', self.exp_defs,
+                        'unknown-expression', 'expression')
         self.check_fonts()
         self.check_colors()
         self.check_textures()
