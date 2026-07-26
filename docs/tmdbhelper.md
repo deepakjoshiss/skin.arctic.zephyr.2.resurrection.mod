@@ -27,11 +27,50 @@ Queried against the running Kodi (`tools/kodi.py rpc XBMC.GetInfoLabels`).
 | `TMDbHelper.ListItem.Title` / `.Plot` / `.IMDb_Rating` / `.Trailer` / `.BlurImage` / `.Top250` | *(empty)* | *(empty)* |
 | `TMDbHelper.TraktIsAuth` | *(empty)* | *(empty)* |
 
-`Monitor.TMDb_ID` going from a real id to empty is the proof the lookups stopped.
-The detail properties were *already* empty before, because `Startup.xml` also sets
-`TMDbHelper.DisableExtendedProperties` — kept deliberately as belt and braces.
-`TMDbHelper.ServiceStarted` still reads `True`: a stale property TMDbHelper set
-while running and nothing clears. Its only reader was `Label_Splash`, now deleted.
+`Monitor.TMDb_ID` going from a real id to empty is the proof the *ListItem*
+lookups stopped. The detail properties were already empty before, because
+`Startup.xml` also sets `TMDbHelper.DisableExtendedProperties` — kept deliberately
+as belt and braces.
+
+**`TMDbHelper.ServiceStarted` still reads `True`, and that is not stale.** The
+addon's service sets it on every run. Which leads to the important correction
+below.
+
+## The skin cannot switch the addon's service off
+
+`Skin.HasSetting(TMDbHelper.Service)` does **not** control whether TMDbHelper's
+service runs. Reading the addon's own source: `resources/service.py` is registered
+as `point="xbmc.service"`, so Kodi starts `ServiceMonitor().run()` whenever the
+addon is installed and enabled. That method unconditionally constructs
+`PlayerMonitor()`, starts the cron and image threads, sets `ServiceStarted`, and
+begins polling. The skin setting is only consulted *inside* `imgmon.py` to gate
+specific image-processing behaviours (crop/blur/desaturate/colors).
+
+So with the skin fully de-TMDb'd, this still happened on playback:
+
+```
+monitor/player.py
+ConnectionError: HTTPSConnectionPool(host='api.themoviedb.org', port=443)
+  ... /3/movie ... /3/search
+```
+
+The service's player monitor looks up whatever is playing. There is also a cron
+thread, visible in the log as `GetDirectory - Error getting .../log_library/` and
+`.../timer_report/` every ten minutes.
+
+**Turning that off is not a skin change.** The addon has to be disabled or
+uninstalled in Kodi. The skin's only lever was `addon.xml`, which declared the
+addon a hard `<import>` — Kodi will not let you disable an addon a running skin
+requires. That import has now been removed, which unblocks disabling it.
+
+Two consequences before disabling:
+
+- A configured video **source** is a TMDbHelper directory (see *Still live*
+  below). Disabling the addon breaks that source.
+- The skin's remaining references (`System.HasAddon`, `InstallAddon`,
+  `Addon.OpenSettings`, `System.AddonVersion` in `SkinSettings.xml` and
+  `Custom_1119`) all degrade cleanly when the addon is absent — they are guarded
+  or are install prompts.
 
 Two things this means in practice: the service setting **persists in userdata**, so
 turning it off required an explicit `Skin.Reset` rather than just deleting the

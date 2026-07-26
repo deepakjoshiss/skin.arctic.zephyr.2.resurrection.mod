@@ -61,6 +61,23 @@ task — see "Keep `NOTES.md` current" in `CLAUDE.md`.
   flipping the underlying skin setting needs a `tools/kodi.py reload` before it
   takes effect, which makes it unsuitable for a live settings-menu toggle.
 
+- **`Skin.HasSetting(TMDbHelper.Service)` does NOT control TMDbHelper's service.**
+  The addon registers `resources/service.py` as `point="xbmc.service"`, so Kodi
+  runs `ServiceMonitor().run()` whenever the addon is installed and enabled. That
+  unconditionally constructs `PlayerMonitor()`, starts the cron and image threads,
+  sets `TMDbHelper.ServiceStarted` and begins polling. The skin setting is only
+  consulted inside `imgmon.py`, to gate crop/blur/desaturate/colors.
+
+  So a fully de-TMDb'd skin still produced `api.themoviedb.org` traffic from
+  `monitor/player.py` on playback, plus a cron thread visible as
+  `GetDirectory - Error getting .../log_library/` every ten minutes. **No skin
+  change can stop this** — the addon must be disabled or uninstalled. The skin's
+  only lever was the `addon.xml` `<import>`, since Kodi refuses to disable an
+  addon a running skin requires; that import is now gone.
+
+  Corollary: `TMDbHelper.ServiceStarted` reading `True` is **live evidence the
+  service is running**, not a stale leftover. Do not explain it away.
+
 - **`Startup.xml` runs only at Kodi launch, never on `tools/kodi.py reload`.**
   Confirmed from the log: one `Loading skin file: Startup.xml` at launch and none
   across seven reloads. So nothing in it — the `TMDbHelper.*` service bools, the
@@ -143,6 +160,41 @@ rather than how the skin looks — the **skinshortcuts v3 migration** and the
 ## Log
 
 Newest first. Curated — one entry per meaningful change, not per commit.
+
+### 2026-07-26 — Correction: the two entries below overclaimed; dropped the `addon.xml` import
+
+Deepak checked the log and found live TMDb traffic *after* all of the work below:
+
+```
+2026-07-26 14:03:10  monitor/player.py
+  ConnectionError: HTTPSConnectionPool(host='api.themoviedb.org', port=443)
+  ... /3/movie ...  /3/search ...
+```
+
+The two entries below claim "the skin now issues no TMDb requests" and call
+`Skin.Reset(TMDbHelper.Service)` "the actual off-switch". **Both are wrong as
+stated.** The accurate claim is narrower: *the skin's own XML* makes no TMDb
+requests. TMDbHelper's service runs on its own and no skin setting stops it — see
+the new invariant above for the mechanism.
+
+Worth recording how the mistake was made, because it was avoidable. The service
+being off was verified by two *proxies* — `Skin.HasSetting(TMDbHelper.Service)`
+reading empty and `Monitor.TMDb_ID` going from `93740` to empty — rather than by
+the thing actually claimed, which is network traffic. And the one piece of
+evidence that contradicted the conclusion, `ServiceStarted` still reading `True`,
+was written off in `docs/tmdbhelper.md` as "a stale property nothing clears"
+instead of being chased. It was the service announcing itself.
+
+The fix available skin-side: `addon.xml` no longer `<import>`s
+`plugin.video.themoviedb.helper`. That does not stop the service by itself, but it
+was what *prevented* stopping it — Kodi will not disable an addon that the running
+skin declares as a hard dependency. Disabling or uninstalling the addon is now
+possible and is the step that actually silences the traffic.
+
+Before disabling it, note a configured video **source** is a TMDbHelper directory
+(`plugin://...?info=dir_movie`), which lives in Kodi's sources rather than the
+skin and will break. The skin's own leftovers (`System.HasAddon`, `InstallAddon`,
+`Addon.OpenSettings`, `System.AddonVersion`) all degrade cleanly.
 
 ### 2026-07-26 — Replaced the TMDb `RunScript` actions
 

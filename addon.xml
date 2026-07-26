@@ -5,7 +5,6 @@
         <import addon="script.skinshortcuts" version="3.0.0" />
         <import addon="script.skinhelper" version="0.0.4" />
         <import addon="script.skinvariables" version="2.1.28" />
-        <import addon="plugin.video.themoviedb.helper" version="5.5.11" />
         <import addon="resource.images.studios.white"/>
         <import addon="resource.images.moviegenreicons.transparent"/>
         <import addon="resource.images.weathericons.white"/>
